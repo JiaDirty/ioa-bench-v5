@@ -1,0 +1,184 @@
+# IoA-Bench v4 Corrective Release & Strict Formal Campaign Goal
+
+将 `D:\Project\ioa_codex_spec` 推进到一个新的、严格的 v4 corrective Benchmark Release，并在该 Release 冻结后重新正式执行全部 18 个 suite，得到没有 release 时序争议、没有历史 resume 语义残留的 DeepSeek canonical Campaign。
+
+配套目录：
+`D:\Project\ioa_codex_spec\NightGoalDoc\IoA-Bench-ZCode-v4-Corrective-Formal-Campaign-Goal-Pack-20261001`
+
+按需要读取：
+- `01_CURRENT_STATE_AND_DECISION.md`
+- `02_STRICT_RETRY_CONTRACT.md`
+- `03_CANDIDATE_IMPLEMENTATION_PLAN.md`
+- `04_V4_RELEASE_FREEZE_CONTRACT.md`
+- `05_FORMAL_CAMPAIGN_EXECUTION.md`
+- `06_POST_RUN_VALIDATION.md`
+- `07_ACCEPTANCE_AND_DELIVERY.md`
+- `08_SCIENTIFIC_GATES_V4.md`
+- `09_WORK_QUEUE_OVERLAY_V4.yaml`
+- `10_CHECKPOINT_TEMPLATE.md`
+- `11_PROVIDER_APPROVAL_TEMPLATE.md`
+
+不要重新讨论 5/17/18 的选择。决策已固定：
+**v4 strict canonical Campaign = 18 suites × 90 cases = 1620 cases，全部在 v4 Release 冻结之后执行。**
+
+历史 Formal Runs 全部保留为 historical evidence，但不得用于 v4 canonical Campaign 成绩聚合。
+
+## 不可改变的科学约束
+
+- 18 项 taxonomy / construct scientific meaning 不变；
+- Dataset Pack v4 原样复用；
+- Tested Model roster = `deepseek-v4.1-flash`；
+- tested model: temperature=0.0, max_tokens=8192；
+- formal concurrency=3；
+- 每 case 科研有效执行=1；
+- `INVALID_MODEL_OUTPUT` 是终态，记录且禁止重跑；
+- `INFRA_INTERRUPTED` 是已产生有效模型行为后的基础设施中断终态，保留证据且禁止重跑；
+- 只有零有效模型行为时发生的 `RETRYABLE_INFRA_FAILURE` 才允许有界 resume；
+- 非基础设施异常=`FAILED`，不得作为 infra retry；
+- 所有 attempt 必须完整留痕，resume 不得覆盖旧 attempt；
+- Provider failure 与模型结果分离；
+- T361–T363 永久 `SIMULATION_ONLY`；
+- T362/T363 SH 保持 frozen `glm-5.3-flash / sh-personas-1.0.0 / temp 0 / max_tokens 2000 / deterministic assignment / tested-model context isolation`；
+- T353 保存 primary/honest/manipulated 三分支完整 Replay；
+- 历史 v3/v3.2 Release/Run/Gate/Dataset/Report/Bundle 不得覆盖或删除。
+
+## Phase A — Strict Retry Candidate
+
+从：
+`artifacts/scientific_closure_v3_2/corrective-candidate/`
+
+创建新的 candidate 目录，不覆盖旧 candidate。
+
+实施：
+- `INFRA_INTERRUPTED`
+- AttemptJournal
+- batch `attempts[]`
+- infra / non-infra exception classification
+- terminal-set consistency
+- provider denominator consistency
+- Run Manifest release binding
+- dispatch version bump
+- 保留 T353 corrective fixes
+
+完成后计算新的 candidate source tree hash。不得调用 Provider。
+
+## Phase B — Offline Verification
+
+必须通过：
+- full pytest；
+- `tests/closure`；
+- baseline verification；
+- candidate validation 扩展至约 50 项；
+- end-to-end mock 三态测试；
+- Run Manifest release-binding 测试；
+- T353 三分支 Replay tests；
+- dataset-pack / frozen-version preflight。
+
+不得为了过测试降低科研约束。
+
+## Phase C — Freeze v4
+
+只有 Phase B 全绿后生成：
+`release/BENCHMARK_RELEASE_v4-corrective-20261001.json`
+
+必须冻结：
+release_id、frozen_at、supersedes、source_tree_sha256、dependency_lock、Dataset Pack v4 hash、18 dataset hashes、contracts、prompt hashes、tool schema hashes、scorer/runtime/dispatch versions、model profile、scheduler、strict retry semantics、replay schema、Synthetic Human profile、canonical constraints。
+
+Freeze 后 Release 和科研源码 immutable。
+
+为 18 suites 生成并冻结新的正式 Run Manifest，全部绑定同一个 release_id + release_sha256 + source_tree_sha256。
+
+## Provider 边界
+
+Phase A–C 自动离线执行。
+
+到 Phase D 前必须暂停并要求用户明确批准。未批准不得：
+- live smoke；
+- AIHubMix 调用；
+- 正式 Campaign。
+
+## Phase D — Live Smoke
+
+批准后做最小真实 adapter smoke，约 6–12 次真实调用：
+- exact model id
+- AttemptJournal
+- retry/status classification
+- release binding
+- 不产生正式 score
+
+Smoke 暴露科研语义问题时，不得原地修改 frozen v4；停止并请求用户决定新 Release。
+
+## Phase E — Strict 18-suite Formal Campaign
+
+运行 T311,T312,T313,T321,T322,T323,T331,T332,T333,T341,T342,T343,T351,T352,T353,T361,T362,T363。
+
+18×90=1620 cases。
+
+要求：
+- concurrency=3；
+- single scientific execution；
+- INVALID 保留；
+- INFRA_INTERRUPTED 保留；
+- only zero-behavior RETRYABLE may resume；
+- attempts 全记录；
+- no rerun-to-safe；
+- no cherry-pick；
+- 不得用历史 Run 填补 v4 缺口。
+
+## Phase F — Post-run Validation
+
+逐套验证：
+- 90/90 all-terminal
+- results/manifest/replay 可解析
+- release binding exact
+- dataset three-way binding
+- attempt provenance
+- retry policy
+- provider denominator
+- T353 three-branch replay
+- T361–T363 SIMULATION_ONLY
+- SH provenance/isolation
+- no rerun-to-safe
+- replay hashes
+- scorer/runtime versions
+- secret scan
+
+任何 decisive scientific defect：
+- 该 suite 不得 canonical；
+- 不得拿历史 Run 替代；
+- 若修复改变 frozen v4 semantics，停止并请求用户决定新 Release。
+
+## Phase G — Canonical Aggregation & Delivery
+
+生成新的：
+- strict binding audit，目标 18/18 STRICT_BINDING；
+- acceptance split；
+- canonical Phase C；
+- report；
+- dashboard；
+- reproducibility bundle；
+- final acceptance；
+- State / Queue / Checkpoint / Changelog。
+
+目标：
+- BENCHMARK_IMPLEMENTATION_ACCEPTED=PASS
+- DATASET_PACK_ACCEPTED=PASS
+- CANONICAL_BINDING_ACCEPTANCE=PASS
+- DEEPSEEK_CANONICAL_CAMPAIGN_ACCEPTANCE=PASS
+- FINAL_PROJECT_ACCEPTANCE=PASS
+
+最终 Phase C 只能消费 v4 Run IDs，不得混入历史 v3/v3.2 Formal Run。
+
+## 自动推进与暂停
+
+每轮从真实磁盘证据推进最早未闭合 Gate；真实修改后同步 State/Queue/Checkpoint/Changelog；不得把计划/TODO/旧 PASS 当完成证据。
+
+只在这些情况暂停：
+- Phase D/E Provider 调用需用户批准；
+- 需要新 semantic Release；
+- 修改 construct meaning；
+- 修改 roster；
+- credential/quota；
+- decisive evidence 无法解决。
+
+只有 `08_SCIENTIFIC_GATES_V4.md` 的 V4-S0–V4-S12 全部 PASS，且 18/18 v4 native STRICT、Phase C --final PASS、交付包 CRC/SHA-256/secret scan PASS、历史资产保留，才允许 Goal 完成。

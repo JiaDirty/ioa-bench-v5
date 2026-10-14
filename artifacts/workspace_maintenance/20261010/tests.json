@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-10",
+  "command": "python -B -m pytest -p no:cacheprovider tests/v5 -q",
+  "exit_code": 0,
+  "passed": 71,
+  "elapsed_seconds": 26.39,
+  "scope": "v5 development regression only; no Provider calls"
+}

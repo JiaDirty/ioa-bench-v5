@@ -1,0 +1,82 @@
+schema_version: '2.0'
+name: IoA-Bench v5 Publication-Grade Scientific Revision
+workspace: 'D:\Project\ioa_codex_spec'
+goal_pack_relative_path: 'NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack'
+project_version: v5
+active_goal_count: 1
+status_at_snapshot: IN_PROGRESS
+as_of: '2026-10-10'
+goal_scope: thread_scoped_codex_goal_reused_across_new_threads
+outcome: >-
+  An evidence-backed, reproducible, publication-grade 18-suite single-model IoA-Bench v5
+  whose scientific claims are limited to the tested DeepSeek configuration and synthetic IoA worlds.
+primary_tested_model:
+  provider: AIHubMix
+  request_id: deepseek-v4.1-flash
+  actual_identity: verify_and_persist_from_responses
+  decision: PI-V5-005
+historical_baseline:
+  v4_release: v4.1.13
+  verdict: NOT_SCIENTIFICALLY_READY
+  four_model_v5_pilot: INVALID_EXPLORATORY_ONLY
+status_evidence_at_snapshot:
+  suites_implemented: 18
+  tests_v5_passed: 71
+  offline_checks_passed: 3240
+  candidate_dataset_version: 5.1.5-candidate-20261006
+  candidate_case_count: 2160
+  t332_local_candidate: 5.1.6-candidate-20261009
+  historical_deepseek_diagnostic_rows: 216
+  gate_d_human_labels: 0
+  confirmation_gate_e: NOT_RUN
+  formal_campaign: NOT_AUTHORIZED
+source_of_truth:
+  - AGENTS.md
+  - docs/v5/V5_PI_DECISION_LOG.md
+  - docs/v5/V5_PROGRESS.md
+  - docs/v5/V5_03_STATISTICAL_ANALYSIS_PLAN.md
+  - docs/v5/V5_04_REVIEW_PROTOCOL.md
+  - docs/v5/V5_SINGLE_MODEL_CONFIRMATION_PLAN.md
+  - state/PROJECT_STATE.yaml (v5 section)
+  - contracts/v5/construct_maps.json
+  - current source, datasets, and primary evidence
+required_gates:
+  - A_Construct_and_Causal_Validity
+  - B_Scoring_Validity
+  - C_Dataset_Quality_and_Diversity
+  - D_Independent_Validation_and_Reliability
+  - E_DeepSeek_Confirmation_Pilot
+  - F_Frozen_v5_Scientific_Release
+  - G_Approved_Formal_Campaign
+  - H_Statistical_and_Publication_Acceptance
+non_negotiables:
+  - 18 canonical construct meanings unchanged without PI approval
+  - No hidden evaluator ground truth or taxonomy leakage to tested model
+  - Observable mechanism exposure and action opportunity for formal behavioral claims
+  - Distinguish safety, task utility, recovery, invalid, budget, infrastructure, abstention
+  - Preserve historical records and append-only experimental attempts
+  - No post-hoc score tuning, rerun-to-safe, cherry-picking or quality-gate lowering
+  - T361-T363 SIMULATION_ONLY; no unsupported real-human claim
+  - Single tested DeepSeek model, no mandatory cross-model comparison
+  - Independent human expert review cannot be replaced by AI labels
+  - Freeze full protocol and acceptance toolchain before formal campaign
+provider_budget:
+  new_paid_calls: EXPLICIT_PI_APPROVAL_REQUIRED
+  approval_decision: PI-V5-006
+  includes: [data_generation, semantic_validation, smoke_test, confirmation_pilot, formal_campaign]
+execution_policy:
+  - Minimal evidence-driven patch, targeted tests, no speculative defensive layers
+  - Preserve usable existing implementation and candidates
+  - Verify actual failure before changing scorer or run boundary
+  - Run focused AI-generated scenario pilot before scaling to all suites
+  - Keep a single state ledger and one active Goal
+stop_conditions:
+  - external expert review or actual human labels required
+  - any new paid Provider operation lacking prior specific approval
+  - changes to canonical taxonomy, formal tested model or key paper claim scope
+  - unavailable credentials, permissions or original evidence
+  - irreversible historical destruction or unresolvable scientific tradeoff
+completion_rule: >-
+  Declare PUBLICATION_READY only if every applicable Gate A-H is evidenced by current
+  frozen artifacts, independent review and the authorized formal campaign, with honest claims.
+  Otherwise report in-progress or blocked status with concrete evidence and unlock conditions.

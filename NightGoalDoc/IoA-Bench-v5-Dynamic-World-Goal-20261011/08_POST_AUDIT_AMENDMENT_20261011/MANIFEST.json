@@ -1,0 +1,59 @@
+{
+  "kind": "ioabench.v5.dynamic-goal-audit-amendment/1",
+  "created_at": "2026-10-11",
+  "authoritative_goal": "NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml",
+  "notice": "append-only amendment; not a new Goal; latest workspace must be checked",
+  "source_snapshot": "IoA-Bench-source-20261011.zip",
+  "files": [
+    {
+      "path": "00_READ_ME_FIRST.md",
+      "bytes": 2713,
+      "sha256": "ce5ccb69959d5decd47796f708b80d19c8978095b2311554cbb4d4573f30c38a"
+    },
+    {
+      "path": "01_GOAL_ACCEPTANCE_AMENDMENT.md",
+      "bytes": 3364,
+      "sha256": "4ec75390e0160e7f5d91b9c49c8e74d9c2082462daf9b112b2a172a514d79099"
+    },
+    {
+      "path": "02_PRIORITIZED_REMEDIATION_QUEUE.md",
+      "bytes": 4332,
+      "sha256": "aabd7276eb6df736ae0459933404b81cdedcc8d0869564e7f1d8aec85562685b"
+    },
+    {
+      "path": "03_P0_DEFECTS_AND_NEGATIVE_CONTROLS.md",
+      "bytes": 6180,
+      "sha256": "5fff0363894c8f3d6bfb6635bca9b1c445f15c1996be14297b3df09d292580bd"
+    },
+    {
+      "path": "04_GLOBAL_EXECUTION_AND_MONITOR_CONTRACT.md",
+      "bytes": 3525,
+      "sha256": "e6bc4806c831d9b556ce9c9040ef24171f312aa46598ce04355f9b90dc2cc0fb"
+    },
+    {
+      "path": "05_DATA_FACTORY_AND_DIVERSITY_CONTRACT.md",
+      "bytes": 4469,
+      "sha256": "c07ef60d9bbee028fd1978f392a2eaed3c115126c9a098645cecf9ea490ba1bf"
+    },
+    {
+      "path": "06_ZCODE_RESUME_PROMPT.md",
+      "bytes": 3939,
+      "sha256": "070bce68e21f75bc04af196e0c160b6371a6869d93d42e12ba33783fd2632a0e"
+    },
+    {
+      "path": "07_COMPLETION_EVIDENCE_MATRIX.md",
+      "bytes": 3098,
+      "sha256": "242179ebc774921028a82bb5fcca9ee3010375dfaf5099df513f376a6defd00b"
+    },
+    {
+      "path": "08_SOURCE_AUDIT_BASIS.md",
+      "bytes": 2385,
+      "sha256": "3c166abf58bb6e73d83942a8aca218832add221c6faa7e7b37ad95c7dee2fcd6"
+    },
+    {
+      "path": "09_TASK_OVERLAY.yaml",
+      "bytes": 3295,
+      "sha256": "50f231d03ab2130fc8a6c8169a6ca48ae41a2d611a77992c808dcd3f2214a2aa"
+    }
+  ]
+}

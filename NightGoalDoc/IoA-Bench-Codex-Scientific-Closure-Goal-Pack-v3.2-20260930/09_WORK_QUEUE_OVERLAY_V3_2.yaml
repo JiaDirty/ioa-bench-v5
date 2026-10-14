@@ -1,0 +1,65 @@
+overlay_version: 3.2-20260930
+stage: scientific_closure_and_canonical_binding
+tested_model_roster:
+- deepseek-v4.1-flash
+default_provider_calls_allowed: false
+selection_rule: Continue from the earliest unmet evidence gate whose dependencies
+  are satisfied. Do not reopen construct implementation unless evidence demonstrates
+  a real scientific semantic defect.
+tasks:
+- id: V32-S0-RECONCILE
+  gate: S0
+  depends_on: []
+- id: V32-S1-INDEPENDENT-REVERIFY
+  gate: S1
+  depends_on:
+  - V32-S0-RECONCILE
+  provider_calls: false
+- id: V32-S2-DATASET-BINDING
+  gate: S2
+  depends_on:
+  - V32-S1-INDEPENDENT-REVERIFY
+- id: V32-S3-RUNTIME-SCORER-PROMPT-TOOL
+  gate: S3
+  depends_on:
+  - V32-S1-INDEPENDENT-REVERIFY
+- id: V32-S4-T311-DEVIATION
+  gate: S4
+  depends_on:
+  - V32-S3-RUNTIME-SCORER-PROMPT-TOOL
+- id: V32-S5-RETROACTIVE-BINDING
+  gate: S5
+  depends_on:
+  - V32-S2-DATASET-BINDING
+  - V32-S3-RUNTIME-SCORER-PROMPT-TOOL
+  - V32-S4-T311-DEVIATION
+- id: V32-S6-RELEASE-ADDENDUM
+  gate: S6
+  depends_on:
+  - V32-S5-RETROACTIVE-BINDING
+- id: V32-S7-ACCEPTANCE-SPLIT
+  gate: S7
+  depends_on:
+  - V32-S6-RELEASE-ADDENDUM
+- id: V32-S8-PHASE-C-CANONICAL-CONSISTENCY
+  gate: S8
+  depends_on:
+  - V32-S7-ACCEPTANCE-SPLIT
+- id: V32-S9-STATE-SYNC
+  gate: S9
+  depends_on:
+  - V32-S8-PHASE-C-CANONICAL-CONSISTENCY
+- id: V32-S10-FINAL-DELIVERY
+  gate: S10
+  depends_on:
+  - V32-S9-STATE-SYNC
+- id: V32-S11-COMPLETE
+  gate: S11
+  depends_on:
+  - V32-S10-FINAL-DELIVERY
+rerun_branch:
+  trigger: Any suite is INCOMPATIBLE or decisive evidence remains UNPROVEN and rerun
+    is the only scientifically valid resolution.
+  action: Record exact suite(s), reason, expected provider scope/cost, and stop for
+    user approval before formal rerun.
+  never_expand_without_evidence: true

@@ -1,0 +1,61 @@
+{
+  "pack_name": "IoA-Bench-v5-Publication-Grade-Goal-Pack",
+  "revision": "2026-10-10",
+  "purpose": "Same active Codex v5 publication-grade goal; stable versionless folder name; content-path references synchronized.",
+  "source_basis": {
+    "uploaded_source": "IoA-Bench-source-review-20261010.zip",
+    "snapshot_date": "2026-10-10",
+    "official_codex_guides": [
+      "https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex",
+      "https://openai.com/index/harness-engineering/",
+      "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra"
+    ]
+  },
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "bytes": 3459,
+      "sha256": "ed082fecd6e59dc5a70e538ddd31d9557ecf4f60aeabf5d47073c86d360b3d4d"
+    },
+    "01_SCIENTIFIC_CONSTITUTION.md": {
+      "bytes": 5529,
+      "sha256": "fcfccee334b6a004a450b5ec1338a5bbd722a3f2461ea4507c9501bc0e44a544"
+    },
+    "02_CURRENT_BASELINE_AND_AUDIT.md": {
+      "bytes": 4004,
+      "sha256": "7cde4b554fe9884650adf62d1856a631b31cf0e14f43e747ed3e2adbb5b2329b"
+    },
+    "03_PUBLICATION_READINESS_CONTRACT.md": {
+      "bytes": 7310,
+      "sha256": "1357ea1cbe99ec1abc56c1d10d4237a49b4c223e426e085791c3cdce720a8cda"
+    },
+    "04_COST_AND_AUTONOMY_POLICY.md": {
+      "bytes": 3683,
+      "sha256": "f5274baee41834a5972a6a2598ea4a33d711960941552c9006edf7ed9708992a"
+    },
+    "05_STARTUP_HANDOFF.md": {
+      "bytes": 2722,
+      "sha256": "70e878a3e49fbb4b50812bee8acc64009ccb4f5e1cd72527e486bcdef422110e"
+    },
+    "06_CURRENT_EXECUTION_STAGE.md": {
+      "bytes": 3162,
+      "sha256": "663d24faa556cf84634dcb53002dbe089fee106392e70ce9aa89b2561cc7af3d"
+    },
+    "CODEX_FIRST_MESSAGE.txt": {
+      "bytes": 1850,
+      "sha256": "8c1ac6a5e711cfd1086e493b1611764b6262c6661e1e516dc66e4c0d33e71dbf"
+    },
+    "GOAL_CONTRACT.yaml": {
+      "bytes": 3829,
+      "sha256": "c0659b22ca6504d6e7ad464404f4bdc6b9c63b9915edf156bc8989b4cf4ac5ba"
+    },
+    "GOAL_DIRECT_PASTE.txt": {
+      "bytes": 2971,
+      "sha256": "8bb85d4f41917f22b2f52d2f1993b68841846b5595503478306f6b975a949f3e"
+    },
+    "GOAL_TEXT.md": {
+      "bytes": 3041,
+      "sha256": "bb3daf8d656466271b195ef8c6d68861158f22f3a432da7ab579428a3c999ea6"
+    }
+  },
+  "note": "Manifest excludes itself; install instructions live at the archive root. Historical snapshot paths remain unchanged."
+}

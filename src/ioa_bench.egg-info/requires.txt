@@ -1,0 +1,7 @@
+jsonschema>=4.22
+PyYAML>=6.0
+
+[dev]
+mypy>=1.11
+pytest>=8
+ruff>=0.6

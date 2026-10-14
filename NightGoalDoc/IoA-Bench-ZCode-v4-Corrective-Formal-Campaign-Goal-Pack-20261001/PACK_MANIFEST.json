@@ -1,0 +1,73 @@
+{
+  "pack_version": "v4-corrective-20261001",
+  "purpose": "Strict retry corrective implementation, v4 freeze, and full post-freeze 18-suite formal Campaign.",
+  "created_at_utc": "2026-10-01T10:04:07.195320+00:00",
+  "canonical_scope": {
+    "suites": 18,
+    "cases_per_suite": 90,
+    "total_cases": 1620
+  },
+  "tested_model_roster": [
+    "deepseek-v4.1-flash"
+  ],
+  "provider_calls_default_allowed": false,
+  "historical_results_allowed_in_v4_canonical_aggregation": false,
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "size": 1108,
+      "sha256": "7c2a735f60443d9b151b0e87670493d726ce7038e716796a3f05d83dfb8805c4"
+    },
+    "01_CURRENT_STATE_AND_DECISION.md": {
+      "size": 445,
+      "sha256": "ff1673800465f3e1b652308153e4239de64c0205e407c668a7f6c4df27884396"
+    },
+    "02_STRICT_RETRY_CONTRACT.md": {
+      "size": 1026,
+      "sha256": "a9fdaaea06f7e6b2797ac4012d408419663bea4fcdbd4ec6a0ef02bb37d37bfd"
+    },
+    "03_CANDIDATE_IMPLEMENTATION_PLAN.md": {
+      "size": 1145,
+      "sha256": "134d3b5c22da4d6af2016811ef9991ea1e77a5c675e0236331b161fe0d8fb202"
+    },
+    "04_V4_RELEASE_FREEZE_CONTRACT.md": {
+      "size": 808,
+      "sha256": "4694afd22b6fff02d4ad52dee9666e68d8c6acee0dd881bfdf1e4376b34a178a"
+    },
+    "05_FORMAL_CAMPAIGN_EXECUTION.md": {
+      "size": 782,
+      "sha256": "2f0247a1a92a77fbc1ce621b2d9226a23e25177b4225fd5ce5b6997ec580b63f"
+    },
+    "06_POST_RUN_VALIDATION.md": {
+      "size": 703,
+      "sha256": "3c3f6466bd04329fcfff4c08613b30f109c2c3a5bd39f17c8c94843c9d96a2fa"
+    },
+    "07_ACCEPTANCE_AND_DELIVERY.md": {
+      "size": 902,
+      "sha256": "9607bc31eed0f9958deb0eece877fb59d21f5a70fff4eafbd04b1dcb615e1197"
+    },
+    "08_SCIENTIFIC_GATES_V4.md": {
+      "size": 982,
+      "sha256": "b0dbc1f6e6e4fa81eae3c07968bc9bb0e6f37f32df558adca5de11d1f1365b47"
+    },
+    "09_WORK_QUEUE_OVERLAY_V4.yaml": {
+      "size": 1641,
+      "sha256": "1a41a167f33eb7e6fe78155b1f2ffe9c9f8b3d3fd1a8565afe0d3162820562fc"
+    },
+    "10_CHECKPOINT_TEMPLATE.md": {
+      "size": 484,
+      "sha256": "a8204dafb0922041e652ca07ef737ae97fbdd0dcd26302918cd091cea1cedd50"
+    },
+    "11_PROVIDER_APPROVAL_TEMPLATE.md": {
+      "size": 585,
+      "sha256": "63cd7334725ee2ba1e0f4127b49cddce5d6e863a0eb817080be185127ec38da3"
+    },
+    "GOAL_PROMPT_ZCODE_V4_CORRECTIVE.md": {
+      "size": 6413,
+      "sha256": "6f1439fa44c353231369d76504385ad8f4079bc9e4e959833dbe62adba0e27e4"
+    },
+    "PASTE_GOAL.txt": {
+      "size": 6354,
+      "sha256": "f271c56b0b279cc7eef61394b1c38b019ec062354f06a4de9b50848b19a387a0"
+    }
+  }
+}

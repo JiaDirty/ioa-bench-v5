@@ -1,0 +1,170 @@
+{
+  "status": "OFFLINE_EVIDENCE_VERIFIED",
+  "current_source_tree_sha256": "14ecaf00a1659b672efe12875ead7c9a107534e66b35d7c20c4fda3959f92e9b",
+  "candidates": [
+    {
+      "run_id": "pi-order-gpt-sol-20261014-r1",
+      "candidate": "candidate-01",
+      "suite_id": "T312-DYNA",
+      "status": "REJECTED",
+      "failed_stage": "INDEPENDENT_REVIEW",
+      "findings": [
+        {
+          "code": "REVIEW_REJECTED",
+          "reason": "ABSTAIN"
+        }
+      ],
+      "requests": 2,
+      "responses": 2,
+      "requested_difficulty": "M",
+      "generated_difficulty": "M",
+      "difficulty_matches": true,
+      "new_reference_structure": false,
+      "formal_accepted": false
+    },
+    {
+      "run_id": "pi-order-gpt-sol-20261014-r1",
+      "candidate": "candidate-02",
+      "suite_id": "T331-DYNA",
+      "status": "MACHINE_ACCEPTED",
+      "failed_stage": null,
+      "findings": [],
+      "requests": 2,
+      "responses": 2,
+      "requested_difficulty": "M",
+      "generated_difficulty": "H",
+      "difficulty_matches": false,
+      "new_reference_structure": false,
+      "formal_accepted": false
+    },
+    {
+      "run_id": "pi-order-gpt-sol-20261014-r1",
+      "candidate": "candidate-03",
+      "suite_id": "T352-DYNA",
+      "status": "REJECTED",
+      "failed_stage": "INDEPENDENT_REVIEW",
+      "findings": [
+        {
+          "code": "REVIEW_COMPILED_EVIDENCE_MISSING",
+          "field_path": "/structural_novelty/evidence",
+          "reason": "dimension must cite the final compiled world, not only proposal or metadata"
+        },
+        {
+          "code": "REVIEW_CITATION_UNRESOLVED",
+          "field_path": "/paired_causality/evidence/2",
+          "reason": "citation does not identify supplied evidence: '/candidate/paired_cases/0/world/mechanism_slots'"
+        }
+      ],
+      "requests": 2,
+      "responses": 2,
+      "requested_difficulty": "M",
+      "generated_difficulty": "H",
+      "difficulty_matches": false,
+      "new_reference_structure": false,
+      "formal_accepted": false
+    },
+    {
+      "run_id": "pi-order-gpt-sol-20261014-r2",
+      "candidate": "candidate-01",
+      "suite_id": "T331-DYNA",
+      "status": "MACHINE_ACCEPTED",
+      "failed_stage": null,
+      "findings": [],
+      "requests": 2,
+      "responses": 2,
+      "requested_difficulty": "M",
+      "generated_difficulty": "M",
+      "difficulty_matches": true,
+      "new_reference_structure": false,
+      "formal_accepted": false
+    },
+    {
+      "run_id": "pi-order-gpt-sol-20261014-r2",
+      "candidate": "candidate-02",
+      "suite_id": "T352-DYNA",
+      "status": "REJECTED",
+      "failed_stage": "INDEPENDENT_REVIEW",
+      "findings": [
+        {
+          "code": "REVIEW_COMPILED_EVIDENCE_MISSING",
+          "field_path": "/structural_novelty/evidence",
+          "reason": "dimension must cite the final compiled world, not only proposal or metadata"
+        }
+      ],
+      "requests": 2,
+      "responses": 2,
+      "requested_difficulty": "M",
+      "generated_difficulty": "M",
+      "difficulty_matches": true,
+      "new_reference_structure": false,
+      "formal_accepted": false
+    },
+    {
+      "run_id": "pi-order-gpt-sol-20261014-r3",
+      "candidate": "candidate-01",
+      "suite_id": "T352-DYNA",
+      "status": "MACHINE_ACCEPTED",
+      "failed_stage": null,
+      "findings": [],
+      "requests": 2,
+      "responses": 2,
+      "requested_difficulty": "M",
+      "generated_difficulty": "M",
+      "difficulty_matches": true,
+      "new_reference_structure": true,
+      "formal_accepted": false
+    }
+  ],
+  "requests": 15,
+  "responses": 15,
+  "usage": {
+    "prompt_tokens": 231008,
+    "completion_tokens": 22460,
+    "total_tokens": 253572
+  },
+  "candidate_status_counts": {
+    "REJECTED": 3,
+    "MACHINE_ACCEPTED": 3
+  },
+  "archives": {
+    "pi-order-gpt-sol-20261014-r1": {
+      "files": 457,
+      "zip_crc": "PASS",
+      "archive_sha256": "7778d45696340fb19224c676121117ddbe032d5adc3dc842780b5895948db248",
+      "terminal_resume": {
+        "status": "COMPLETED_SMALL_TRIALS",
+        "provider_constructions": 0,
+        "source_sha256": "abe51cf18f51408dfb52edacf2d0ec40ea60e052e0313e9b054c686e3b47785b"
+      }
+    },
+    "pi-order-gpt-sol-20261014-r2": {
+      "files": 457,
+      "zip_crc": "PASS",
+      "archive_sha256": "10df07129f4fe3301127d0adf15aaa2aecd0d42df66a9da6ba68f8b97b894aca",
+      "terminal_resume": {
+        "status": "COMPLETED_SMALL_TRIALS",
+        "provider_constructions": 0,
+        "source_sha256": "47fe7928e747421c0c1b31d3747a19ee75d0dc5306e2e299b3d56446a72fe28a"
+      }
+    },
+    "pi-order-gpt-sol-20261014-r3": {
+      "files": 457,
+      "zip_crc": "PASS",
+      "archive_sha256": "1699b2206de68daf220d528711ca70a6cfc64c3b9b09801423a89a151e227382",
+      "terminal_resume": {
+        "status": "COMPLETED_SMALL_TRIALS",
+        "provider_constructions": 0,
+        "source_sha256": "46785748a6a7d0d2d80002b9cf261d4a9f127602e2ee47eb578d058610de19f6"
+      }
+    }
+  },
+  "immutable_candidate_files_checked": 90,
+  "candidate_hashes_unchanged": true,
+  "historical_dataset_hashes_unchanged": true,
+  "official_models_verified": 7,
+  "new_connection_probes": 3,
+  "credential_occurrences": 0,
+  "new_qualified_global_families": 0,
+  "formal_accepted": false,
+  "scope": "Replay and provenance only; original machine judgment retained, r1 difficulty mismatch explicitly reported"
+}

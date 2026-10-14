@@ -1,0 +1,8 @@
+请先读取工作区根目录 `AGENTS.md`，再读取：
+`NightGoalDoc\IoA-Bench-Codex-End-to-End-Completion-Goal-Pack-20261002\00_READ_ME_FIRST.md`
+
+随后读取该 Goal Pack 中与你当前工作相关的配套文档和当前 `state/`、`release/`、`data/`、`artifacts/` 的真实证据。
+
+然后使用 `GOAL_DIRECT_PASTE.txt` 中的内容激活 Goal。
+
+不要只给我状态总结；先独立核对当前状态，然后直接开始推进最终目标。普通工程问题自主解决，只有触及 `06_USER_DECISION_BOUNDARIES.md` 时才暂停问我。

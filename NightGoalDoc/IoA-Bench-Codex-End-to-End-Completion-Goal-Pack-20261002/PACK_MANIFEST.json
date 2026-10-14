@@ -1,0 +1,67 @@
+{
+  "pack_name": "IoA-Bench-Codex-End-to-End-Completion-Goal-Pack-20261002",
+  "created_at_utc": "2026-10-01T16:32:39.054617+00:00",
+  "purpose": "Macro, evidence-driven Codex Goal Pack for end-to-end completion of IoA-Bench.",
+  "goal_design_principles": [
+    "outcome",
+    "verification_surface",
+    "constraints",
+    "boundaries",
+    "iteration_policy",
+    "blocked_stop_condition"
+  ],
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "bytes": 2229,
+      "sha256": "00e1bfb9479f9e02d22f699f131276f3e9880817f4c42c3ef0333b09a414ef71"
+    },
+    "01_MISSION_AND_FINISH_LINE.md": {
+      "bytes": 2862,
+      "sha256": "d412ed28806ead2d786acfb2982577e59a2d308099ac39b0efed73ac5be3a67c"
+    },
+    "02_SCIENTIFIC_CONSTITUTION.md": {
+      "bytes": 2510,
+      "sha256": "181e0ca7166e4ee5d8b8fb30b108e04a049a95d8518ac36163e15b7a09e6ca15"
+    },
+    "03_EVIDENCE_AND_COMPLETION_CONTRACT.md": {
+      "bytes": 2535,
+      "sha256": "5bf0e886ae32efd446092f9e447297601b4d4e0e5d6f1cc337d0400e28242fb2"
+    },
+    "04_AUTONOMY_AND_ITERATION_POLICY.md": {
+      "bytes": 2321,
+      "sha256": "c6b5cf02f0290685e832196fb9089e5788a13cc1beabb875a55e5ddf1cc7d987"
+    },
+    "05_PROJECT_EVIDENCE_MAP.md": {
+      "bytes": 2005,
+      "sha256": "5a080d7af4ff5b6a2f6a0cb23149b008c4ab6ba6ecafb74c677d3ff0fae7a38f"
+    },
+    "06_USER_DECISION_BOUNDARIES.md": {
+      "bytes": 1604,
+      "sha256": "d59bf927fb1f651defe66534e54c1d6daa3f44ed52de50ec07bddb5a1244c578"
+    },
+    "07_FINAL_DELIVERY_CONTRACT.md": {
+      "bytes": 1689,
+      "sha256": "79980e72258cb4f79bc69dc4de8a53ea5860ef6e224379ea0493263c266c0573"
+    },
+    "08_STARTUP_HANDOFF.md": {
+      "bytes": 966,
+      "sha256": "aa8fc8ad75e62d10210640ecbad77f5eb8e6133d718b9fe2434834156a2bc671"
+    },
+    "CODEX_FIRST_MESSAGE.txt": {
+      "bytes": 561,
+      "sha256": "5fe616d8a5401173ddbb4739fe23ebc5dd2ab342241c5520aa44adf509d4d33d"
+    },
+    "GOAL_CONTRACT.yaml": {
+      "bytes": 2131,
+      "sha256": "733156f8c26b2943ee40ad699079efb40d784bf703d8c3648285a7dadce7812c"
+    },
+    "GOAL_DIRECT_PASTE.txt": {
+      "bytes": 3157,
+      "sha256": "f0b8d013a31e5ff18d070f64b951892ef51a7f3810495e33dcb701d390497835"
+    },
+    "GOAL_TEXT.md": {
+      "bytes": 3203,
+      "sha256": "0493f2bca8aac57768e348aa63d964b3bd7a5a32923c9a74823ca41b8d8ee9aa"
+    }
+  }
+}

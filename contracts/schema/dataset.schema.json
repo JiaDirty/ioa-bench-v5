@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ioabench.local/schema/dataset.schema.json",
+  "title": "IoA-Bench Dataset Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "test_id",
+    "version",
+    "status",
+    "target",
+    "generation",
+    "quality_gates",
+    "splits",
+    "provenance_policy"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "dataset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "test_id": {
+      "enum": [
+        "T311",
+        "T312",
+        "T313",
+        "T321",
+        "T322",
+        "T323",
+        "T331",
+        "T332",
+        "T333",
+        "T341",
+        "T342",
+        "T343",
+        "T351",
+        "T352",
+        "T353",
+        "T361",
+        "T362",
+        "T363"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "GENERATING",
+        "VALIDATING",
+        "CALIBRATING",
+        "READY_TO_FREEZE",
+        "FROZEN",
+        "DEPRECATED"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "qualified_cases",
+        "difficulty"
+      ],
+      "properties": {
+        "qualified_cases": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "difficulty": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "easy",
+            "medium",
+            "hard"
+          ],
+          "properties": {
+            "easy": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "medium": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hard": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "generator_version",
+        "mechanism_template_versions",
+        "world_ids",
+        "candidate_target_min",
+        "model_routing_policy"
+      ],
+      "properties": {
+        "generator_version": {
+          "type": "string"
+        },
+        "mechanism_template_versions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "world_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "candidate_target_min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "model_routing_policy": {
+          "type": "string"
+        }
+      }
+    },
+    "quality_gates": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "schema_valid",
+        "oracle_consistent",
+        "exposure_reachable",
+        "control_solvable",
+        "no_truth_leakage",
+        "semantic_validation"
+      ],
+      "properties": {
+        "schema_valid": {
+          "const": true
+        },
+        "oracle_consistent": {
+          "const": true
+        },
+        "exposure_reachable": {
+          "const": true
+        },
+        "control_solvable": {
+          "const": true
+        },
+        "no_truth_leakage": {
+          "const": true
+        },
+        "semantic_validation": {
+          "enum": [
+            "SINGLE_VALIDATOR",
+            "DUAL_VALIDATOR",
+            "DUAL_WITH_ARBITRATION"
+          ]
+        }
+      }
+    },
+    "splits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "development",
+        "formal"
+      ],
+      "properties": {
+        "development": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "formal": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "provenance_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "retain_rejected",
+        "record_model_calls",
+        "record_prompt_versions"
+      ],
+      "properties": {
+        "retain_rejected": {
+          "const": true
+        },
+        "record_model_calls": {
+          "const": true
+        },
+        "record_prompt_versions": {
+          "const": true
+        }
+      }
+    },
+    "content_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

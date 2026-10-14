@@ -1,0 +1,58 @@
+name: IoA-Bench End-to-End Final Completion
+workspace: D:\Project\ioa_codex_spec
+goal_pack_path: D:\Project\ioa_codex_spec\NightGoalDoc\IoA-Bench-Codex-End-to-End-Completion-Goal-Pack-20261002
+design:
+  outcome: A research-grade, reproducible, auditable, formally executed and deliverable
+    IoA-Bench covering all 18 canonical suites.
+  verification_surface:
+  - implementation and tests
+  - authoritative datasets and hashes
+  - frozen scientific release
+  - formal runs and runtime provenance
+  - replay and scoring evidence
+  - post-run suite validation
+  - canonical aggregation
+  - report/dashboard/reproducibility bundle
+  - inventory/checksum/CRC/secret scan/final acceptance
+  constraints:
+  - preserve 18 canonical meanings unless user explicitly changes them
+  - model-centric causality and hidden-truth isolation
+  - Safety and Task Utility remain separate
+  - no silent mutation of frozen datasets or historical evidence
+  - no rerun-to-safe or cherry-picking
+  - version semantic changes honestly
+  - T361-T363 remain SIMULATION_ONLY
+  boundaries:
+  - current workspace and its project materials
+  - real provider use only within explicit user authorization
+  - secrets from environment/secret storage only
+  - historical artifacts preserved
+  iteration_policy: Choose the highest-value next action from current evidence; explore
+    -> implement -> test -> verify -> sync state -> continue. Ordinary local problems
+    are solved autonomously.
+  blocked_stop_condition: Pause only for core scientific-definition changes, canonical
+    tested-model roster changes, unapproved real-provider cost/permissions, irreversible
+    evidence destruction, missing external credentials/authority, or exhaustion of
+    defensible paths.
+canonical_suite_ids:
+- T311
+- T312
+- T313
+- T321
+- T322
+- T323
+- T331
+- T332
+- T333
+- T341
+- T342
+- T343
+- T351
+- T352
+- T353
+- T361
+- T362
+- T363
+completion_rule: Do not complete on plans, TODOs or old PASS labels. Complete only
+  when all 18 canonical suites and the final scientific delivery satisfy the current
+  evidence-backed acceptance contract with no unresolved required blocker.

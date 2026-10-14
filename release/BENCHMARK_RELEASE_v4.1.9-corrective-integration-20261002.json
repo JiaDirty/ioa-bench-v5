@@ -1,0 +1,495 @@
+{
+  "artifact": "BENCHMARK_RELEASE",
+  "auxiliary_model_profiles": {
+    "frozen": true,
+    "frozen_at": "2026-09-29 21:07:25",
+    "model_id": "glm-5.3-flash",
+    "parameters": {
+      "max_tokens": 2000,
+      "temperature": 0.0
+    },
+    "persona_assignment": "case_id_sha256_mod_v1",
+    "persona_set_version": "sh-personas-1.0.0",
+    "protocol_version": "sh-protocol-1.0.0",
+    "role": "synthetic_human",
+    "selection_evidence": "artifacts/gates/AUX_MODEL_PROFILES.json",
+    "simulation_only": true,
+    "tested_model_separation": "model_id must differ from the tested model; enforced by scripts/run_online_pilot.py and ioabench.cli"
+  },
+  "basis": {
+    "candidate_validation_checks": 82,
+    "full_pytest": "831 passed, 2 skipped",
+    "predecessor_campaign": "artifacts/scientific_closure_v4/ONLINE_CAMPAIGN_STATE_v4_1_8.json",
+    "predecessor_smoke_attempt": "artifacts/scientific_closure_v4/live-smoke/V4_1_7_S8_LIVE_SMOKE_ATTEMPT_001.json",
+    "predecessor_smoke_gate": "artifacts/scientific_closure_v4/live-smoke/V4_1_8_S8_LIVE_SMOKE.json",
+    "prefreeze_audit_checks": 27,
+    "provider_calls": 2743,
+    "reason": "strict retry semantics: INVALID_MODEL_OUTPUT, BUDGET_EXCEEDED, and INFRA_INTERRUPTED are terminal; only zero-behaviour infrastructure failures may resume; every attempt is retained",
+    "successor_reason": "capture BudgetExceeded inside the T313/T323 runtime so the terminal model failure retains a complete replay; accept BUDGET_EXCEEDED as non-retryable and never safe"
+  },
+  "canonical_constraints": {
+    "frozen_datasets_immutable": true,
+    "oracle_hidden": true,
+    "public_internet_formal_runs": false,
+    "retry_semantics_strict": true,
+    "single_execution_per_case_per_model": true,
+    "t361_t363_simulation_only": true,
+    "taxonomy_frozen": true
+  },
+  "contracts": {
+    "T311": "b6b7889a809079d22791e1115f4753fef0f96c9eb0f5b132b23c51d25bbe7921",
+    "T312": "50d33910c04054fd3daebcc01e3fad4be17a1dda4c069b3eb683243d7ba10f22",
+    "T313": "6ec68552582bbc3929a574d615629c1de21a29b46b9f070d038f6c3febbc7e85",
+    "T321": "edd26afa7734cd3ca4c73a732fd107a468c695de618430d1afa3b8d0480e9fd4",
+    "T322": "53e3f4cf0e192d4e75604f41c451f21f1bd6c93cac27e17f9ab0045c81d6dff1",
+    "T323": "75952c6b32c27757cae05d0e5e747c67ec5ae23f3a7f00ba96fbbf8e6920bfa4",
+    "T331": "3e1b747107b60996b03317a16c951973efdad8d3f4094c37f1beb61fd367812b",
+    "T332": "ea9d1daae0aacac2b4bd87f18f05926780f4fa5510050427e6438ed944d7e149",
+    "T333": "dc22e9c036812d5231954cf39e306f8bf211df1769231649b24bf93effc52807",
+    "T341": "eb71d90d1aded7b018b3abbd684401ce5c0b74c7189e117e5ab98de2822f2a4e",
+    "T342": "5e32e28f7e2c042ea6ab14f5be2b6c825ce4e4260657bcd872775afdd4a2c584",
+    "T343": "946693313ed1d5a59cc2024987f8728a60fec7c387d68bb436677ea2790fe3ba",
+    "T351": "4352cdc1cc91d7aa03973cfbd5f50452eba724823e907383f7f8734dc9e44927",
+    "T352": "1ad51e56d2d6360b085dff708ebc43bab19ee9f5226c801e5a6a7e0a2a821a77",
+    "T353": "a7cb77b03761517c057089a8f5126ecb31dc467b7ce042c83c92506d5a4ae5f2",
+    "T361": "4e71c281b4bc62d269845fa508f527e4672ac7f50a08051eb31bede3f3579bab",
+    "T362": "f1d46ede4326907a549ac0737210e218fdcc123e53c29fca4c388770524098d3",
+    "T363": "2e0778c0d0a6c835e7f02d7da41a750cc5de11b2f9137d318da0b383ebfee1f8"
+  },
+  "dataset_pack_v4_sha256": "63b2d147f6b625d51be90f1115bcf0e56903874f57e16568e3cc31c456becb48",
+  "datasets": {
+    "T311": {
+      "content_sha256": "04637fca35e40600af79c2d158167cba3f3c5d34c8afaeb20206675614c78687",
+      "manifest_sha256": "61674481c5d2e2e1301aae64eb403228a2f3b8d3577b217bca07eea00407e2ac",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "schema_valid": true,
+        "semantic_validation": "DUAL_VALIDATOR"
+      },
+      "version": "2.0.0"
+    },
+    "T312": {
+      "content_sha256": "8f50bbe03c24b211168f8a108cbda9760649cb9641de2a57381f3ac32a754072",
+      "manifest_sha256": "5f974c04e5f4d111ba9d87aea7ec26fc2ebe9671bd264bfb9017cbccdc2ead22",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.2.0"
+    },
+    "T313": {
+      "content_sha256": "024b0aaa01a243cb999f7346bf0a1615c772365a244c63c0dd45a8bcbc783a1a",
+      "manifest_sha256": "150230d875630d8fe3337a9fc736fb53c3170c83937e75048ec5ea616d169474",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.3.0"
+    },
+    "T321": {
+      "content_sha256": "3694359845b383c853c1137cd1f80448690dba02ce0f5987c8419a9ff5420d00",
+      "manifest_sha256": "c53a499da16cddb928bcc0e6d36f3525385de71e1a361ba6a4d004b018cef0f1",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.2.0"
+    },
+    "T322": {
+      "content_sha256": "41517e061d18af59d31995a2bc349dcdeaa45f4e9b06a16f7f652d65ceee3f90",
+      "manifest_sha256": "9f1b805b44ceea964da0ce9570b9253a46c40cf8e354dab25c11cc1e2947768e",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T323": {
+      "content_sha256": "a3f385d83e7b6c238fa92e410cdfcf7a26eb1c13543a04e2eb8b8dea0f53d7bd",
+      "manifest_sha256": "d4500eba4e77c303f8770542e80e2d1e38c14eb50c502ff8e5bf3a2d6288d59f",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T331": {
+      "content_sha256": "c68dac62b0f31c271fc81fc57fca3cc652db1464d13a7d91b20b2491341a116b",
+      "manifest_sha256": "684aaffc021329c0e927f65388bd649f9664a8dceac7904b6389d677f4bad511",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T332": {
+      "content_sha256": "97f9699a2d380d82d9c331ecd31452ad12a69d4d00d95e88a3e44d08f50c6c31",
+      "manifest_sha256": "1661c73828fb1ac4b3e3a294d16fb051b9c9e6416d947a0ee5597432a83604b3",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.3.0"
+    },
+    "T333": {
+      "content_sha256": "e22292129308d4ea568b5812cf7216fbccc3af77f1f0e1b31ddf6e63ec2b3275",
+      "manifest_sha256": "c6301cb22010d63f5ac1d1edaa1a39abe2a1d6534cbc9860f3d6fa1c3f7939cf",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T341": {
+      "content_sha256": "52363cfaae932a071952c6212ae939e7d89951fdc49a272f4dac4e216e6d206e",
+      "manifest_sha256": "3102a108b1f6df83e73c69d1751f3f0648ae4cc2cd84a86e8a64fb69d683d92a",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T342": {
+      "content_sha256": "aece303772c1f5d4b1cb3ed63d55d3ea3b6bfd2ef4bb7bd3f56c852de32ad0b3",
+      "manifest_sha256": "aa9f987defe9d9ac278c6b47257d54ece2c024ea04d74f171960f8c0f12a3d95",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T343": {
+      "content_sha256": "d410d8c79d2f6e659536f4145ea662e997db4a4145ffda2f6999eb8303212b1f",
+      "manifest_sha256": "618f7fb5ff022d4f60b3a6b655458a164215ffe86f4ad4c4f69cebc4f9a29ac2",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T351": {
+      "content_sha256": "6a01a032b002f6442fbb38d18c3a290515d7a2e1c6c3fad4918aec341ddf52f4",
+      "manifest_sha256": "cee0af10daa3157a58feed34789cf9fa4c5f69f1ae7d3a53a4f546f6e9f4caff",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.3.0"
+    },
+    "T352": {
+      "content_sha256": "a1c6f5b8d8edcdc2e33d26681d5a4bae0a54486b6b54db5ea77403a12b6ab818",
+      "manifest_sha256": "d6d4f58fa263272f4f1297b52ac76e134c07659add363acaff6a544beb4dce1a",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.2.0"
+    },
+    "T353": {
+      "content_sha256": "83d3478a46b8a4924e4bc1291822ba1aaed37d794324d3595d9bea2a1a6a3e5d",
+      "manifest_sha256": "cc7afb23830f3b1f448ec1d4845b878accf24b0c3b112581ab09ea049160b5c2",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.3.0"
+    },
+    "T361": {
+      "content_sha256": "de046bf9264f3f85b9e3fa4c080c4c0bae97f832c550513da045bfd2b4f50f7b",
+      "manifest_sha256": "591b7ec38d577b9898a6bb31c8f62755e97b808c5c6728b3d1bde177873359b9",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.3.0"
+    },
+    "T362": {
+      "content_sha256": "4086402890b051543b7131fb866754311fb3917f13a4d10dfbc8f0f2e5cc23b5",
+      "manifest_sha256": "0471a0a0aa98ed43e64776348eaaebee037038e938da4173091793c4afe292d9",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.4.0"
+    },
+    "T363": {
+      "content_sha256": "fe0622b82f1e8aa9ec48712182230bdf51ec4c54005344f8200a03239a922f42",
+      "manifest_sha256": "14982efa3d9315e231fcfe30bebf581310611c9c0f0d62272f9704195172430e",
+      "quality_gates": {
+        "control_solvable": true,
+        "exposure_reachable": true,
+        "no_truth_leakage": true,
+        "oracle_consistent": true,
+        "prompt_leakage": "PASS",
+        "runtime_execution_gates": "safe_path_utility + naive_path_unsafe + replay_hash on every candidate",
+        "schema_valid": true,
+        "semantic_validation": "DEFERRED_PROVIDER_DUAL_VALIDATOR"
+      },
+      "version": "2.3.0"
+    }
+  },
+  "dependency_lock_sha256": "0cb4ebe58cac3133fe92441ca6fb835fb7790e604de79d3ef35bf3c945d8642c",
+  "execution_integration": {
+    "execution_tool_sha256": {
+      "scripts/run_online_campaign_v4_1_9.py": "b1748acc042e6408138493e8ca2e4c825778540fd013d1a592d8cfbf847a4dcf",
+      "scripts/v4_1_9_finalize_campaign.py": "9890d9d1003a20260e647ec02d35f47a6ade50a42bffb8ef097190d23b85e196",
+      "scripts/v4_1_9_live_smoke.py": "a8f18a89485b07f82bb6858d6495ffef93ee30f3a7c3f3f2703d0829a9f4f10c",
+      "scripts/v4_1_9_strict_binding_audit.py": "fd2e9384aa74095938f86c2362a00de8e4bc0fe8e39cce9a618def54cff2b7b4",
+      "scripts/v4_1_9_validate_run.py": "4a0693f13d7ed37c5ac01757accb6ad13973bcf4d2d8470593ae871bd34e6dee",
+      "scripts/v4_1_9_verify_runtime_promotion.py": "9f8384db36768a62a5bdab529e8b799e95951e959d46ffd8564d34a73aa58f09"
+    },
+    "formal_run_suffix": "v4.1.9-formal",
+    "frozen_dataset_writes_allowed": false,
+    "historical_pilot_gates_consumed": false,
+    "live_smoke_gate": "artifacts/scientific_closure_v4/live-smoke/V4_1_9_S8_LIVE_SMOKE.json",
+    "prefrozen_manifest_directory": "data/runs/_v4_1_9_manifests"
+  },
+  "frozen_at": "2026-10-02T04:45:42.193106+00:00",
+  "invalid_output_semantics": {
+    "BUDGET_EXCEEDED": "terminal model action-budget exhaustion with complete replay; never scored safe; never retried",
+    "FAILED": "terminal; non-infrastructure exception; never auto-retried",
+    "INFRA_INTERRUPTED": "terminal after at least one valid model behaviour; partial evidence retained; never retried",
+    "INVALID_MODEL_OUTPUT": "recorded terminal outcome; never scored safe; never retried",
+    "PROVIDER_FAILURE": "infrastructure denominator; never counted as a model result",
+    "RETRYABLE_INFRA_FAILURE": "resumable only when zero valid model behaviour was observed and the cause is infrastructure-class",
+    "attempts": "every attempt is recorded; resume never overwrites a prior attempt",
+    "strict_retry_semantics": true
+  },
+  "model_profile_sha256": "0967837dd76d2e2c266c281523401c20cacc39acb3dd0a4eda2ae9209ee71998",
+  "prompt_hashes": {
+    "T311.base": "3f820c90a8c8e38c2654d6cae630a23ac075b3b43ffe939f464d4b41134bd296",
+    "T311.role": "9e5236c0b981fd459a856163e171a7fb5a745d5f22a222e012821fd2ec66c1dd"
+  },
+  "provenance_contract": {
+    "contracts": "release.contracts maps each suite to its frozen contract hash",
+    "prompts": "request snapshots in every Replay are authoritative; source tree and release prompt hashes pin their definitions",
+    "runtimes": "release.runtime_versions maps each suite to the emitted replay runtime_version",
+    "scorers": "release.scorer_versions maps each suite to its scorer version",
+    "tools": "request tool definitions plus Release execution_tool_sha256 pin execution tooling"
+  },
+  "release_id": "v4.1.9-corrective-integration-20261002",
+  "replay_schema": {
+    "bundle_version": "construct-replay-v2",
+    "content_hash": "canonical_sha256 over the bundle excluding content_sha256",
+    "embedded": true,
+    "paired_branches": "T353 retains primary/honest/manipulated raw replays"
+  },
+  "runtime_mapping": {
+    "dispatch_version": "construct-dispatch-1.0.2",
+    "simulation_suites": [
+      "T361",
+      "T362",
+      "T363"
+    ]
+  },
+  "runtime_profile": {
+    "docker_required": false,
+    "os": "Windows",
+    "provider": "aihubmix"
+  },
+  "runtime_versions": {
+    "T311": "T311-construct-1.0.0",
+    "T312": "T312-selection-2.0.0",
+    "T313": "T313-delegation-1.0.1",
+    "T321": "T321-protocol-1.0.0",
+    "T322": "T322-protocol-1.0.0",
+    "T323": "T323-delegation-1.0.1",
+    "T331": "T331-propagation-1.0.0",
+    "T332": "T332-disclosure-1.0.0",
+    "T333": "T333-disclosure-1.0.0",
+    "T341": "T341-deliberation-2.0.0",
+    "T342": "T342-propagation-1.0.0",
+    "T343": "T343-deliberation-2.0.0",
+    "T351": "T351-incentive-reputation-2.0.0",
+    "T352": "T352-incentive-reputation-2.1.0",
+    "T353": "T353-selection-2.2.0",
+    "T361": "T361-agency-2.1.1",
+    "T362": "T362-agency-2.1.1",
+    "T363": "T363-agency-2.1.1"
+  },
+  "scheduler_profile": {
+    "artifact": "SCHEDULER_PROFILE",
+    "change_rule": "concurrency values are frozen per campaign before it starts; changing them mid-campaign is prohibited; recalibration requires new probe evidence",
+    "frozen": true,
+    "frozen_at": "2026-09-29",
+    "frozen_for": "canonical Benchmark Release campaigns (post G7); the development deepseek-v4.1-flash campaign ran at the same tested-model concurrency for consistency",
+    "profiles": {
+      "generator": {
+        "concurrency": 1,
+        "note": "v1 formal datasets are generated programmatically; no provider generation lane is active"
+      },
+      "semantic_validator": {
+        "concurrency": 2,
+        "max_tokens": 4000,
+        "note": "batched dual validation; lower concurrency avoids competing with tested-model calls",
+        "temperature": 0.0
+      },
+      "synthetic_human": {
+        "concurrency": 3,
+        "max_tokens": 2000,
+        "note": "same campaign lane as the tested model; persona calls are short",
+        "temperature": 0.0
+      },
+      "tested_model": {
+        "concurrency": 3,
+        "max_tokens": 8192,
+        "temperature": 0.0
+      }
+    },
+    "retry_policy": {
+      "invalid_model_output": "recorded terminal; never retried for score improvement",
+      "provider_transient": {
+        "backoff_s": "10 * (attempt + 1)",
+        "max_passes": 6,
+        "semantics": "RETRYABLE_INFRA_FAILURE units are re-executed on resume; never counted as model results"
+      },
+      "synthetic_human_failure": {
+        "internal_retries": 3,
+        "then": "case-level retryable infrastructure failure"
+      }
+    },
+    "selection_basis": {
+      "campaign_stability": "the development campaign executed 8+ formal suites at concurrency 3 with only isolated transient infrastructure failures cleared by resume passes; no persistent rate limiting",
+      "decision": "tested-model campaigns freeze at concurrency 3 (stable throughput with the strongest sustained evidence); level 4 probed clean and remains approved headroom for auxiliary roles",
+      "live_calibration": "artifacts/gates/CONCURRENCY_CALIBRATION.json (deepseek-v4.1-flash, 12 calls per level at max_tokens 8192: levels 2/3/4 all clean - 0x 429, 0x 5xx, 0x timeouts; throughput 21.4/38.5/45.3 calls-per-min)"
+    }
+  },
+  "scorer_versions": {
+    "T311": "v1",
+    "T312": "v1",
+    "T313": "v1",
+    "T321": "v1",
+    "T322": "v1",
+    "T323": "v1",
+    "T331": "v1",
+    "T332": "v1",
+    "T333": "v1",
+    "T341": "v1",
+    "T342": "v1",
+    "T343": "v1",
+    "T351": "v1",
+    "T352": "v1",
+    "T353": "t353-selection-2.2.0",
+    "T361": "v1",
+    "T362": "v1",
+    "T363": "v1"
+  },
+  "source_tree_sha256": "6397e496e450e273e7d4711186a639007932a62f3a631f4c174a671302a0648e",
+  "supersedes": {
+    "note": "v4.1.8 remains immutable; v4.1.9 makes action-budget exhaustion a replay-complete, non-retryable terminal outcome after v4.1.8 exposed three T313 BudgetExceeded failures, without changing taxonomy, datasets, scorers, prompts, or tested-model roster",
+    "path": "release/BENCHMARK_RELEASE_v4.1.8-corrective-integration-20261002.json",
+    "sha256": "601902b1ec9dec2ee80e128d9b567d25a2b657f570c4de5286f1038ea3bdff58"
+  },
+  "tested_model": {
+    "max_tokens": 8192,
+    "model_id": "deepseek-v4.1-flash",
+    "provider": "aihubmix",
+    "temperature": 0.0
+  },
+  "tested_model_roster_policy": [
+    "deepseek-v4.1-flash"
+  ],
+  "tool_schema_hashes": {
+    "note": "tool definitions are literal in each suite runtime module inside the pinned source tree; the per-record inventory is recorded in release/BENCHMARK_RELEASE_v3-20260930_ADDENDUM_1.json"
+  }
+}

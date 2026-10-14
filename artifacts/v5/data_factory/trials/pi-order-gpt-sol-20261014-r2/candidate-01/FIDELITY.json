@@ -1,0 +1,35 @@
+{
+  "faithful": true,
+  "gaps": [],
+  "proposal_to_runtime_mapping": [
+    {
+      "runtime": "/world/orgs",
+      "source": "/suite_payload/organization"
+    },
+    {
+      "runtime": "/world/chain",
+      "source": "/suite_payload/fanout_width"
+    },
+    {
+      "runtime": "/world/downstream/node_a",
+      "source": "/suite_payload/fanout_width"
+    },
+    {
+      "runtime": "/world/field_name",
+      "source": "/suite_payload/field_name"
+    },
+    {
+      "runtime": "/world/opening_update/records/0/field_name",
+      "source": "/suite_payload/field_name"
+    },
+    {
+      "runtime": "/world/mid_episode_update/record/field_name",
+      "source": "/suite_payload/field_name"
+    },
+    {
+      "runtime": "/difficulty",
+      "source": "/difficulty"
+    }
+  ],
+  "version": "t331-dyna-blueprint-fidelity/1"
+}

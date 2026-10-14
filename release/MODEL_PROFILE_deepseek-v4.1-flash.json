@@ -1,0 +1,24 @@
+{
+ "artifact": "TESTED_MODEL_PROFILE",
+ "model_id": "deepseek-v4.1-flash",
+ "provider": "aihubmix",
+ "frozen": true,
+ "frozen_at": "2026-09-30 15:39:34",
+ "capabilities": {},
+ "campaign_parameters": {
+  "temperature": 0.0,
+  "max_tokens": 8192
+ },
+ "campaign_evidence": {
+  "runs": "18 formal runs 90/90 terminal (RUN_CLASSIFICATION.json: VALID_RESEARCH_RESULT)",
+  "pilots": "18 B5 pilots PASS on authoritative datasets",
+  "no_substitution": "resolved by exact ID at every run; AIHubMix live discovery"
+ },
+ "roster_confirmation": {
+  "selected_by": "user (2026-09-30 session confirmation)",
+  "roster": [
+   "deepseek-v4.1-flash"
+  ]
+ },
+ "release": "release/BENCHMARK_RELEASE_v3-20260930.json"
+}

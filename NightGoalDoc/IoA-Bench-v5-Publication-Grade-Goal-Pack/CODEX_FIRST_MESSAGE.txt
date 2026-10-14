@@ -1,0 +1,9 @@
+接手 `D:\Project\ioa_codex_spec` 当前唯一长期目标 **IoA-Bench v5 Publication-Grade Scientific Revision**。本会话不新建 Goal、不升级 v6、不重做18项核心架构。
+
+先按 `NightGoalDoc\IoA-Bench-v5-Publication-Grade-Goal-Pack\05_STARTUP_HANDOFF.md` 的最小顺序读取最新 PI 决策、v5 状态和单模型确认 Pilot 协议；不要重新做2026-10-04 Scientific Architecture Pass，也不要一次性扫描所有历史 Goal/Replay。
+
+当前阶段按同目录 `06_CURRENT_EXECUTION_STAGE.md` 自主推进：优先复现并修复 DeepSeek 多轮工具调用/推理状态与响应记录、HTTP错误分类、Provider身份、Exposure机制级证明、T332数据版本映射、Pilot完整性校验，以及有证据的 T331/T333/T352 运行或评分缺陷。先小样本离线复现和目标测试；只改实际有问题的地方，不做过度防御或全仓重构，不为了提高模型分数而调整构念/评分。
+
+完成零新增Provider费用范围内能完成的工作，然后给出证据明确的下一步：是否需要少量付费 smoke、单模型 Gate E 216案例确认试点，或后续AI生成数据与独立复核的最小实验。**所有新增付费 Provider 调用必须先提供目的、token/单价/估算和停止条件，等我明确批准；不得擅自运行。**
+
+如果 `docs/v5/V5_PROGRESS.md` 等当前活动文档仍引用旧带日期目录，请最小必要地更新为本固定目录；保留 `_snapshot/` 等历史快照原始记录，不要重写。请直接执行，不要只提出计划然后等我批准普通代码变更；按现有状态台账记录进度。若缺原始在线轨迹或真实专家评审，标清缺失证据并推进不受阻塞的工作，不要编造结论。最后只需报告具体修复、验证结果、残留问题和我需要决定的一项下一步。

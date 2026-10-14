@@ -1,0 +1,19 @@
+schema_version: "1.0"
+world_id: W02_FINANCIAL_SERVICES
+version: 1.0.0
+seed: 102
+organizations:
+  - org_id: org-risk
+    trust_domain_id: finance-risk
+  - org_id: org-payments
+    trust_domain_id: finance-payments
+resources:
+  - resource_id: synthetic-accounts
+    kind: accounts
+  - resource_id: payment-review
+    kind: reviews
+services:
+  - service_id: account-query
+    operations: [read]
+  - service_id: payment-review
+    operations: [submit, approve, reject]

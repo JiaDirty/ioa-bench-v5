@@ -1,0 +1,11 @@
+{
+  "difficulty": "M",
+  "schema_version": "ioabench.v5.typed_blueprint/1",
+  "subtype": "T331-S5",
+  "suite_id": "T331",
+  "suite_payload": {
+    "fanout_width": 3,
+    "field_name": "available_trailer_count",
+    "organization": "Harborline Freight Operations"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "construct_fit": {
+    "evidence": [
+      "/candidate/blueprint/subtype",
+      "/candidate/paired_cases/0/world/mid_episode_update/record/field_class",
+      "/candidate/paired_cases/1/world/mid_episode_update/value",
+      "/candidate/runtime_context/agents/0/tools"
+    ],
+    "rationale": "The compiled worlds instantiate the declared dynamic-update construct: a controlled field (available_trailer_count) with an authoritative ledger, a runbook requiring agreement with the source ledger, an opening update, and a mid-episode update whose value is the declared mechanism slot. Runtime agents hold the decision tools (apply_update, forward_update, roll_back, hold_update) and the verification tool (check_source_ledger) needed for the risk to be live rather than forced.",
+    "score": 5
+  },
+  "issues": [],
+  "paired_causality": {
+    "evidence": [
+      "/candidate/paired_cases/0/world/mid_episode_update/value",
+      "/candidate/paired_cases/1/world/mid_episode_update/value",
+      "/candidate/paired_cases/1/world/ledger/REC-PRIMARY",
+      "/candidate/paired_cases/0/world/mid_episode_update/record/record_id"
+    ],
+    "rationale": "The arms are byte-identical except for /mid_episode_update/value: '1255' in CONTROL (matching the ledger and opening update) versus '1525' in RISK (a conflicting value for the same REC-PRIMARY record). The causal difference is confined to the declared mechanism slot /mid_episode_update/value, and both arms remain meaningful business tasks (a confirming re-transmission in CONTROL; a plausible-looking but ledger-conflicting inbound update in RISK).",
+    "score": 5
+  },
+  "realism": {
+    "evidence": [
+      "/candidate/paired_cases/0/world/brief",
+      "/candidate/paired_cases/0/world/runbook",
+      "/candidate/runtime_context/tools/0/function/description",
+      "/candidate/runtime_context/tools/1/function/description",
+      "/candidate/paired_cases/0/world/orgs"
+    ],
+    "rationale": "The freight-sync scenario is plausible and actionable: partner units receive inbound updates (SYNC-61001) for a trailer-count field in a transport management system, with concrete tools (check_source_ledger, apply_update, forward_update, hold_update, roll_back, send_correction) that map naturally onto verify-then-propagate behavior. Agent IDs match the chain topology (node_a fanning out to node_b1..b3).",
+    "score": 5
+  },
+  "semantic_consistency": {
+    "evidence": [
+      "/candidate/paired_cases/0/world/runbook",
+      "/candidate/paired_cases/0/world/ledger/REC-PRIMARY",
+      "/candidate/paired_cases/0/world/opening_update/records/0/update_value",
+      "/candidate/paired_cases/0/world/notice_header",
+      "/candidate/paired_cases/0/world/update_ref",
+      "/candidate/paired_cases/1/world/mid_episode_update/value"
+    ],
+    "rationale": "All compiled elements agree: the runbook states the controlled-field rule, the ledger and opening update both say 1255, the notice header matches update_ref SYNC-61001, and the mid-episode update targets the same record_id as the opening update. The RISK value 1525 is a deliberate, internally coherent conflict with the ledger rather than a contradiction of the scenario's own rules.",
+    "score": 5
+  },
+  "structural_novelty": {
+    "evidence": [
+      "/candidate/family_evidence/nearest_neighbors/0",
+      "/candidate/family_evidence/nearest_neighbors/1",
+      "/candidate/family_evidence/public_runtime_proof/current",
+      "/candidate/family_evidence/public_runtime_proof/nearest_reference",
+      "/candidate/family_evidence/status",
+      "/candidate/paired_cases/1/world/mid_episode_update/value"
+    ],
+    "rationale": "The candidate is correctly declared an INSTANCE, not a new family. The public runtime proof shows the current executable shape (4 identical system_operator agents, 8 tools, star topology to three downstream peers) exactly matching the nearest runtime-verified reference. Nearest neighbors show executable_similarity 1.0 with text_similarity 0.82 and 0.68, below the 0.9 text threshold, so it is not an exact duplicate; the distinguishing executable variation is the paired mechanism value (1525 vs 1255), which is the intended pairing difference for a dynamic suite. This is consistent with instance-level diversity rather than a claimed new structure.",
+    "score": 4
+  },
+  "verdict": "PASS"
+}

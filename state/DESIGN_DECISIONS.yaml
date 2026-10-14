@@ -1,0 +1,274 @@
+spec_version: "1.0"
+confirmed: true
+decisions:
+  Q001:
+    answer: "A"
+  Q002:
+    answer: "C"
+  Q003:
+    answer: "B"
+  Q004:
+    answer: "CUSTOM"
+    resolution: "18 independent datasets; shared automated generator; AIHubMix-assisted; no manual authoring"
+  Q005:
+    answer: "A"
+  Q006:
+    answer: "A"
+  Q007:
+    answer: "B"
+  Q008:
+    answer: "C"
+  Q009:
+    answer: "CUSTOM"
+    resolution: "18 independent datasets + one common generation framework"
+  Q010:
+    answer: "CUSTOM"
+    resolution: "AI-generated data requires independent AI validation"
+  Q011:
+    answer: "B"
+  Q012:
+    answer: "B"
+  Q013:
+    answer: "B"
+  Q014:
+    answer: "B"
+  Q015:
+    answer: "B"
+  Q016:
+    answer: "B"
+  Q017:
+    answer: "A"
+  Q018:
+    answer: "B"
+  Q019:
+    answer: "B"
+  Q020:
+    answer: "B"
+  Q021:
+    answer: "B"
+  Q022:
+    answer: "B"
+  Q023:
+    answer: "C"
+  Q024:
+    answer: "B"
+  Q025:
+    answer: "A"
+  Q026:
+    answer: "A"
+  Q027:
+    answer: "B"
+  Q028:
+    answer: "B"
+  Q029:
+    answer: "C"
+  Q030:
+    answer: "B"
+  Q031:
+    answer: "A"
+  Q032:
+    answer: "C"
+  Q033:
+    answer: "C"
+  Q034:
+    answer: "B"
+  Q035:
+    answer: "A"
+  Q036:
+    answer: "A"
+  Q037:
+    answer: "A"
+  Q038:
+    answer: "A"
+  Q039:
+    answer: "B"
+  Q040:
+    answer: "B"
+  Q041:
+    answer: "B"
+  Q042:
+    answer: "B"
+  Q043:
+    answer: "B"
+  Q044:
+    answer: "B"
+  Q045:
+    answer: "CUSTOM"
+    resolution: "v1 tested model deepseek-v4.1-flash"
+  Q046:
+    answer: "A"
+  Q047:
+    answer: "A"
+  Q048:
+    answer: "B"
+  Q049:
+    answer: "B"
+  Q050:
+    answer: "CUSTOM"
+    resolution: "local computer, no Docker requirement"
+  Q051:
+    answer: "A"
+  Q052:
+    answer: "A"
+  Q053:
+    answer: "B"
+  Q054:
+    answer: "B"
+  Q055:
+    answer: "A"
+  Q056:
+    answer: "B"
+  Q057:
+    answer: "B"
+  Q058:
+    answer: "A"
+  Q059:
+    answer: "B"
+  Q060:
+    answer: "B"
+  Q061:
+    answer: "CUSTOM"
+    resolution: "evaluate model endogenous safety in IoA tasks, not infrastructure security"
+  Q062:
+    answer: "B"
+  Q063:
+    answer: "B"
+  Q064:
+    answer: "B"
+  Q065:
+    answer: "B"
+  Q066:
+    answer: "A"
+  Q067:
+    answer: "CUSTOM"
+    resolution: "if qualified quota cannot be met, improve generation pipeline rather than lower quality standards"
+  Q068:
+    answer: "B"
+  Q069:
+    answer: "B"
+  Q070:
+    answer: "C"
+  Q071:
+    answer: "B"
+  Q072:
+    answer: "B"
+  Q073:
+    answer: "B"
+  Q074:
+    answer: "B"
+  Q075:
+    answer: "B"
+  Q076:
+    answer: "B"
+  Q077:
+    answer: "B"
+  Q078:
+    answer: "B"
+  Q079:
+    answer: "B"
+  Q080:
+    answer: "B"
+  Q081:
+    answer: "B"
+  Q082:
+    answer: "B"
+  Q083:
+    answer: "B"
+  Q084:
+    answer: "B"
+  Q085:
+    answer: "B"
+  Q086:
+    answer: "B"
+  Q087:
+    answer: "B"
+  Q088:
+    answer: "B"
+  Q089:
+    answer: "B"
+  Q090:
+    answer: "B"
+  Q091:
+    answer: "B"
+  Q092:
+    answer: "B"
+  Q093:
+    answer: "B"
+  Q094:
+    answer: "B"
+  Q095:
+    answer: "B"
+  Q096:
+    answer: "B"
+  Q097:
+    answer: "B"
+  Q098:
+    answer: "B"
+  Q099:
+    answer: "B"
+  Q100:
+    answer: "B"
+  Q101:
+    answer: "B"
+  Q102:
+    answer: "B"
+  Q103:
+    answer: "B"
+  Q104:
+    answer: "B"
+  Q105:
+    answer: "B"
+  Q106:
+    answer: "B"
+  Q107:
+    answer: "B"
+  Q108:
+    answer: "B"
+  Q109:
+    answer: "B"
+  Q110:
+    answer: "B"
+  Q111:
+    answer: "B"
+  Q112:
+    answer: "B"
+  Q113:
+    answer: "B"
+  Q114:
+    answer: "B"
+  Q115:
+    answer: "B"
+  Q116:
+    answer: "B"
+  Q117:
+    answer: "B"
+  Q118:
+    answer: "B"
+  Q119:
+    answer: "B"
+  Q120:
+    answer: "B"
+  Q121:
+    answer: "B"
+  Q122:
+    answer: "B"
+  Q123:
+    answer: "B"
+  Q124:
+    answer: "B"
+  Q125:
+    answer: "B"
+  Q126:
+    answer: "B"
+  Q127:
+    answer: "B"
+  Q128:
+    answer: "B"
+  Q129:
+    answer: "B"
+  Q130:
+    answer: "B"
+  Q131:
+    answer: "B"
+  Q132:
+    answer: "B"

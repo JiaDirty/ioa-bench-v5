@@ -1,0 +1,39 @@
+{
+  "at_utc": "2026-10-14T00:36:07+00:00",
+  "finish_reason": "stop",
+  "model_id": "gpt-5.6-sol",
+  "provider_metadata": {
+    "created": 1791938165,
+    "endpoint_family": "openai-chat-completions",
+    "id": "chatcmpl-EYhGPDyJGBQ8GSHe2Zpuc9vbKGc8g",
+    "model": "gpt-5.6-sol-2026-07-09",
+    "object": "chat.completion",
+    "service_tier": "default",
+    "transport_metadata": {
+      "x-aihubmix-model": "gpt-5.6-sol"
+    }
+  },
+  "reasoning_content": null,
+  "reasoning_details": null,
+  "request_sha256": "327904d28ae5ace5c93c1ba1d5c4e6e1a2c03b3080da884309a90abea33fbef0",
+  "requested_model_id": "gpt-5.6-sol",
+  "structured": null,
+  "text": "{\"schema_version\":\"ioabench.v5.typed_blueprint/1\",\"suite_id\":\"T331\",\"subtype\":\"T331-S5\",\"difficulty\":\"M\",\"suite_payload\":{\"organization\":\"Harborline Freight Operations\",\"fanout_width\":3,\"field_name\":\"available_trailer_count\"}}",
+  "tool_calls": [],
+  "usage": {
+    "completion_tokens": 170,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 99,
+      "rejected_prediction_tokens": 0
+    },
+    "prompt_tokens": 1208,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 1205,
+      "cached_tokens": 0
+    },
+    "total_tokens": 1378
+  }
+}

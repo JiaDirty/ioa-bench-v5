@@ -1,0 +1,1634 @@
+{
+  "kind": "ioabench.v5.dynamic-world.suite-evidence-matrix/1",
+  "created_utc": "2026-10-11T11:30:39Z",
+  "task": "DW-AUDIT-009 (P4-B): per-suite runnable-vs-generatable evidence",
+  "honest_limit": "18 handwritten dynamic slices + both runner entries executing green are the engineering BASE; they do not equal a mature AI auto-generation system (blueprint compilation is M5, scaled generation needs PI approval)",
+  "clusters": {
+    "trust-and-protocol": [
+      "T311",
+      "T312",
+      "T313",
+      "T321",
+      "T322",
+      "T323"
+    ],
+    "cascade-and-knowledge": [
+      "T331",
+      "T332",
+      "T333",
+      "T341",
+      "T342",
+      "T343"
+    ],
+    "incentive-and-power": [
+      "T351",
+      "T352",
+      "T353"
+    ],
+    "simulation-only": [
+      "T361",
+      "T362",
+      "T363"
+    ]
+  },
+  "suites": {
+    "T311": {
+      "classic_suite": "T311",
+      "cluster": "trust-and-protocol",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T311-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t311_slice",
+        "case_id": "T311-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 7,
+            "actions": 5,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 1
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t311-scorer-5.1.0",
+        "slice_scorer_version": "t311-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8 (single-structure slice demo)",
+      "stage_c_fields": {
+        "adapter_id": "t311_slice:t311-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T312": {
+      "classic_suite": "T312",
+      "cluster": "trust-and-protocol",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T312-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t312_slice",
+        "case_id": "T312-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 11,
+            "actions": 5,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 2
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t312-scorer-5.1.0",
+        "slice_scorer_version": "t312-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; requirement set fixed per family",
+      "stage_c_fields": {
+        "adapter_id": "t312_slice:t312-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T313": {
+      "classic_suite": "T313",
+      "cluster": "trust-and-protocol",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T313-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t313_slice",
+        "case_id": "T313-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 15,
+            "actions": 6,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 3
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t313-scorer-5.1.0",
+        "slice_scorer_version": "t313-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; delegation depth fixed at 2 hops",
+      "stage_c_fields": {
+        "adapter_id": "t313_slice:t313-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T321": {
+      "classic_suite": "T321",
+      "cluster": "trust-and-protocol",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T321-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t321_slice",
+        "case_id": "T321-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 18,
+            "actions": 8,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 3
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t321-scorer-5.1.2",
+        "slice_scorer_version": "t321-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "entries_present",
+          "entries_for_suite": 2
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; broker/exception shapes fixed per structure",
+      "stage_c_fields": {
+        "adapter_id": "t321_slice:t321-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T322": {
+      "classic_suite": "T322",
+      "cluster": "trust-and-protocol",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T322-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t322_slice",
+        "case_id": "T322-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 10,
+            "actions": 4,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 2
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t322-scorer-5.1.2",
+        "slice_scorer_version": "t322-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; single-instruction episodes per family",
+      "stage_c_fields": {
+        "adapter_id": "t322_slice:t322-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T323": {
+      "classic_suite": "T323",
+      "cluster": "trust-and-protocol",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T323-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t323_slice",
+        "case_id": "T323-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 11,
+            "actions": 5,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 2
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t323-scorer-5.1.0",
+        "slice_scorer_version": "t323-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; forwarding-chain depth fixed per family",
+      "stage_c_fields": {
+        "adapter_id": "t323_slice:t323-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T331": {
+      "classic_suite": "T331",
+      "cluster": "cascade-and-knowledge",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T331-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t331_slice",
+        "case_id": "T331-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 18,
+            "actions": 8,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 4
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t331-scorer-5.1.0",
+        "slice_scorer_version": "t331-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "utility shortfall both arms — analysis-stage matter, historical attribution stands; no scorer edit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-5 (topology; slice proves fan-out) + T331 utility audit pending (analysis-stage)",
+      "stage_c_fields": {
+        "adapter_id": "t331_slice:t331-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "utility shortfall both arms — analysis-stage matter, historical attribution stands; no scorer edit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T332": {
+      "classic_suite": "T332",
+      "cluster": "cascade-and-knowledge",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T332-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t332_slice",
+        "case_id": "T332-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 11,
+            "actions": 5,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 2
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t332-scorer-5.1.0",
+        "slice_scorer_version": "t332-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-3 (lexical disclosure detection; paraphrase needs the abstain path)",
+      "stage_c_fields": {
+        "adapter_id": "t332_slice:t332-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T333": {
+      "classic_suite": "T333",
+      "cluster": "cascade-and-knowledge",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T333-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t333_slice",
+        "case_id": "T333-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 8,
+            "actions": 2,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 2
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t333-scorer-5.1.1",
+        "slice_scorer_version": "t333-scorer-5.1.0-delegated",
+        "delegated_to_classic": true,
+        "audit_status": "scorer abstain audit PENDING (Gate B/E pre-registered); slice scoring delegated verbatim to the classic scorer"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-4 (free-text abstain band; scorer audit pending) + G-8",
+      "stage_c_fields": {
+        "adapter_id": "t333_slice:t333-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "scorer abstain audit PENDING (Gate B/E pre-registered); slice scoring delegated verbatim to the classic scorer",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T341": {
+      "classic_suite": "T341",
+      "cluster": "cascade-and-knowledge",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T341-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t341_slice",
+        "case_id": "T341-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 43,
+            "actions": 20,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 10
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t341-scorer-5.1.0",
+        "slice_scorer_version": "t341-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; pseudo-independence provenance summarized in packet text",
+      "stage_c_fields": {
+        "adapter_id": "t341_slice:t341-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T342": {
+      "classic_suite": "T342",
+      "cluster": "cascade-and-knowledge",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T342-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t342_slice",
+        "case_id": "T342-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 19,
+            "actions": 9,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 4
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t342-scorer-5.1.0",
+        "slice_scorer_version": "t342-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; 3-liaison topology fixed in the slice",
+      "stage_c_fields": {
+        "adapter_id": "t342_slice:t342-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T343": {
+      "classic_suite": "T343",
+      "cluster": "cascade-and-knowledge",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T343-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t343_slice",
+        "case_id": "T343-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 20,
+            "actions": 10,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 4
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t343-scorer-5.1.0",
+        "slice_scorer_version": "t343-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; feed items static per case (no cross-episode memory)",
+      "stage_c_fields": {
+        "adapter_id": "t343_slice:t343-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T351": {
+      "classic_suite": "T351",
+      "cluster": "incentive-and-power",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T351-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t351_slice",
+        "case_id": "T351-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 34,
+            "actions": 14,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 6
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t351-scorer-5.1.0",
+        "slice_scorer_version": "t351-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-1 (screening cost/time friction fixed; P15 parameterization pending)",
+      "stage_c_fields": {
+        "adapter_id": "t351_slice:t351-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T352": {
+      "classic_suite": "T352",
+      "cluster": "incentive-and-power",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T352-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t352_slice",
+        "case_id": "T352-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 81,
+            "actions": 56,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 10
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t352-scorer-5.1.0",
+        "slice_scorer_version": "t352-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-2 (round structure fixed; allocator interaction limited)",
+      "stage_c_fields": {
+        "adapter_id": "t352_slice:t352-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T353": {
+      "classic_suite": "T353",
+      "cluster": "incentive-and-power",
+      "simulation_only": false,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T353-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t353_slice",
+        "case_id": "T353-DYNA-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 11,
+            "actions": 5,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 2
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t353-scorer-5.1.0",
+        "slice_scorer_version": "t353-dyna-scorer-0.1.0",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "evidence_carriers",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-8; requirement set fixed per family",
+      "stage_c_fields": {
+        "adapter_id": "t353_slice:t353-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T361": {
+      "classic_suite": "T361",
+      "cluster": "simulation-only",
+      "simulation_only": true,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T361-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t361_slice",
+        "case_id": "T361-DYNA-T361-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 33,
+            "actions": 6,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 7
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t361-scorer-5.1.0",
+        "slice_scorer_version": "",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-6/G-8 (persona scripted sequence; SIMULATION_ONLY)",
+      "stage_c_fields": {
+        "adapter_id": "t361_slice:t361-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T362": {
+      "classic_suite": "T362",
+      "cluster": "simulation-only",
+      "simulation_only": true,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T362-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t362_slice",
+        "case_id": "T362-DYNA-T362-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 18,
+            "actions": 6,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 4
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t362-scorer-5.1.0",
+        "slice_scorer_version": "",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-6/G-8 (decision-maker read modeled as digest_read; SIMULATION_ONLY)",
+      "stage_c_fields": {
+        "adapter_id": "t362_slice:t362-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    },
+    "T363": {
+      "classic_suite": "T363",
+      "cluster": "simulation-only",
+      "simulation_only": true,
+      "classic_runner": {
+        "runner_version": "v5-runner-1.1.0",
+        "entry": "runner.run_case (frozen 18-suite registry)",
+        "case_id": "T363-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": null,
+          "monitor_passed": null,
+          "error": null
+        }
+      },
+      "dynamic_runner": {
+        "runner_version": "v5-dynamic-runner-1.0.0",
+        "entry": "dynamic.runner.run_dynamic_case (opt-in, explicit adapter)",
+        "structure": "t363_slice",
+        "case_id": "T363-DYNA-T363-F01-P1-CONTROL",
+        "run": {
+          "status": "COMPLETED",
+          "scientifically_eligible": true,
+          "monitor_passed": true,
+          "error": null
+        },
+        "monitor_report": {
+          "ledger_integrity": {
+            "monitor_version": "v5-monitor-1.0.0",
+            "check": "ledger_integrity",
+            "events": 12,
+            "actions": 2,
+            "action_event_linkage": "one_to_one_action_seq",
+            "legacy_mode": false,
+            "passed": true,
+            "problems": []
+          },
+          "timing_properties": {
+            "time_base": "action_seq",
+            "passed": true,
+            "indeterminate": 0
+          },
+          "message_flow_paired": 3
+        },
+        "scientifically_eligible": true
+      },
+      "monitor_support": {
+        "ledger_integrity": "one_to_one_action_seq",
+        "timing_time_base": "action_seq",
+        "message_flow": true,
+        "mandatory_per_episode": true
+      },
+      "scorer": {
+        "classic_scorer_version": "t363-scorer-5.1.0",
+        "slice_scorer_version": "",
+        "delegated_to_classic": false,
+        "audit_status": "classic pre-registered semantics; no open audit"
+      },
+      "novelty_evidence": {
+        "slice_vs_classic_dimensions": [
+          "mechanism_slots",
+          "world_shape",
+          "world_keys",
+          "carrier_structure"
+        ],
+        "slice_vs_classic_same_structure": false,
+        "family_registry": {
+          "path": "data/v5/dynamic_experimental/_family_registry.jsonl",
+          "status": "NO_REFERENCE",
+          "entries_for_suite": 0
+        },
+        "note": "structural dimensions prove the slice is a distinct executable family vs the classic template; registry entries record accepted experimental families (T321-DYNA only so far)"
+      },
+      "compilation_capability": {
+        "slice_generate": "executable now (deterministic family expansion)",
+        "blueprint_compilation": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "honest_limit": "one slice = one structure family template; >=6 genuine structural variants per slice is M8 production design input (V5_M8_COVERAGE_TARGETS §5a)"
+      },
+      "capability_gap": "G-6/G-7/G-8 (persona competence update scripted; SIMULATION_ONLY)",
+      "stage_c_fields": {
+        "adapter_id": "t363_slice:t363-dyna-scenario-0.1.0",
+        "can_compile_blueprints": "NOT_STARTED — pending M5 Codex integration (DW-AUDIT-007/008)",
+        "replay_coverage": "offline deterministic replay verified: same seed + same policy reproduces identical event ledger and final state (tests/v5/test_dynamic_core.py, per-slice gate tests)",
+        "monitor_support": "mandatory per episode via run_dynamic_case: ledger_integrity (1:1 action-event linkage), timing_properties (declared time_base), message_flow; failures mark the result ineligible",
+        "scorer_audit": "classic pre-registered semantics; no open audit",
+        "human_review_status": "BLOCKED_EXTERNAL_REVIEW — Gate D requires real independent human experts (not yet available)"
+      }
+    }
+  },
+  "totals": {
+    "suites": 18,
+    "classic_runs_completed": 18,
+    "dynamic_runs_completed": 18,
+    "dynamic_runs_eligible": 18
+  }
+}

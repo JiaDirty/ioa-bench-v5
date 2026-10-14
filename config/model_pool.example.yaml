@@ -1,0 +1,19 @@
+provider: aihubmix
+live_discovery_required: true
+candidate_models:
+  - deepseek-v4.1-flash
+  - glm-5.3-flash
+  - qwen-3.8-27b
+  - gpt-5.6-luna
+  - claude-sonnet-5
+  - gemini-3.8-flash
+roles:
+  tested:
+    requested: deepseek-v4.1-flash
+  generator:
+    policy: dynamic_from_live_catalog
+  validator:
+    policy: independent_from_generator_when_practical
+  judge:
+    policy: independent_or_dual_for_material_semantics
+notes: "Model IDs are candidate configuration only; validate exact live AIHubMix IDs/capabilities before freezing a run or generation job."

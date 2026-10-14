@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ioabench.local/schema/run_manifest.schema.json",
+  "title": "IoA-Bench Run Manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "run_id",
+    "profile",
+    "tested_model",
+    "benchmark",
+    "runtime",
+    "frozen_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "profile": {
+      "const": "local-v1"
+    },
+    "tested_model": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model_id",
+        "parameters"
+      ],
+      "properties": {
+        "provider": {
+          "const": "aihubmix"
+        },
+        "model_id": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "object"
+        }
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "required": [
+        "suite_versions",
+        "dataset_versions",
+        "scorer_versions",
+        "base_prompt_versions"
+      ],
+      "properties": {
+        "suite_versions": {
+          "type": "object"
+        },
+        "dataset_versions": {
+          "type": "object"
+        },
+        "scorer_versions": {
+          "type": "object"
+        },
+        "base_prompt_versions": {
+          "type": "object"
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "git_sha",
+        "dependency_lock_sha256",
+        "os",
+        "python_version"
+      ],
+      "properties": {
+        "git_sha": {
+          "type": "string"
+        },
+        "dependency_lock_sha256": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        },
+        "python_version": {
+          "type": "string"
+        }
+      }
+    },
+    "frozen_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

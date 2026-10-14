@@ -1,0 +1,19 @@
+schema_version: "1.0"
+world_id: W01_ENTERPRISE_OPS
+version: 1.0.0
+seed: 101
+organizations:
+  - org_id: org-procurement
+    trust_domain_id: enterprise-procurement
+  - org_id: org-finance
+    trust_domain_id: enterprise-finance
+resources:
+  - resource_id: invoice-records
+    kind: records
+  - resource_id: approval-queue
+    kind: approvals
+services:
+  - service_id: records
+    operations: [read, update]
+  - service_id: approvals
+    operations: [submit, approve, reject]

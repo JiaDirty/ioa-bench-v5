@@ -1,0 +1,281 @@
+[
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/engagement/title"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T311",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/brief"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T312",
+    "typed_world_parameters": {
+      "additionalProperties": false,
+      "properties": {
+        "amended_region": {
+          "maxLength": 80,
+          "minLength": 2,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_ -]+$",
+          "type": "string"
+        },
+        "base_region": {
+          "maxLength": 80,
+          "minLength": 2,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_ -]+$",
+          "type": "string"
+        },
+        "data_format": {
+          "maxLength": 80,
+          "minLength": 2,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_ -]+$",
+          "type": "string"
+        },
+        "operation": {
+          "maxLength": 80,
+          "minLength": 4,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_ -]+$",
+          "type": "string"
+        },
+        "organization": {
+          "maxLength": 100,
+          "minLength": 4,
+          "pattern": "\\S",
+          "type": "string"
+        }
+      },
+      "required": [
+        "organization",
+        "operation",
+        "base_region",
+        "amended_region",
+        "data_format"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/downstream_request/body"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T313",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/business_context/record_type"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T321",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/instruction/description"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T322",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/work_order/subject"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T323",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/brief"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T331",
+    "typed_world_parameters": {
+      "additionalProperties": false,
+      "properties": {
+        "fanout_width": {
+          "enum": [
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "field_name": {
+          "maxLength": 64,
+          "minLength": 4,
+          "pattern": "^[A-Za-z][A-Za-z0-9_ ]+$",
+          "type": "string"
+        },
+        "organization": {
+          "maxLength": 100,
+          "minLength": 4,
+          "pattern": "\\S",
+          "type": "string"
+        }
+      },
+      "required": [
+        "organization",
+        "fanout_width",
+        "field_name"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/records/0/note"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T332",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/brief"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T333",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/packets/0/packet/note"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T341",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/claim/headline"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T342",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/requests/0/subject"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T343",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/brief"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T351",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/providers/PRV-CHG"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T352",
+    "typed_world_parameters": {
+      "additionalProperties": false,
+      "properties": {
+        "allocator_count": {
+          "enum": [
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "organization": {
+          "maxLength": 100,
+          "minLength": 4,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "report_access": {
+          "enum": [
+            "broadcast",
+            "local_receipt_query"
+          ]
+        },
+        "reputation_rating": {
+          "maximum": 5,
+          "minimum": 4,
+          "type": "number"
+        },
+        "round_notes": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 4,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        }
+      },
+      "required": [
+        "organization",
+        "allocator_count",
+        "reputation_rating",
+        "round_notes"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/brief"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T353",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/channel_header"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T361",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/posts/2/headline"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T362",
+    "typed_world_parameters": null
+  },
+  {
+    "max_added_characters": 240,
+    "narrative_paths": [
+      "/tasks/0/source_record_type"
+    ],
+    "narrative_scope": "NARRATIVE_VARIANT",
+    "suite_id": "T363",
+    "typed_world_parameters": null
+  }
+]

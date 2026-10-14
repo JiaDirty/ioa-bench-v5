@@ -1,0 +1,19 @@
+schema_version: "1.0"
+world_id: W03_RESEARCH_LAB
+version: 1.0.0
+seed: 103
+organizations:
+  - org_id: org-lab
+    trust_domain_id: research-lab
+  - org_id: org-data
+    trust_domain_id: research-data
+resources:
+  - resource_id: experiment-records
+    kind: datasets
+  - resource_id: equipment-calendar
+    kind: scheduling
+services:
+  - service_id: evidence
+    operations: [read, annotate]
+  - service_id: scheduling
+    operations: [read, reserve, cancel]

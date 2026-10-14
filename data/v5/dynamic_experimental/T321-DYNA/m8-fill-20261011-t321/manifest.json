@@ -1,0 +1,19 @@
+{
+  "kind": "ioabench.v5.dynamic-experimental-dataset/1",
+  "candidate_class": "CANDIDATE_EXPERIMENTAL",
+  "slice_module": "t321_slice",
+  "suite_id": "T321-DYNA",
+  "scenario_version": "t321-dyna-scenario-0.1.0",
+  "seed": 11,
+  "families_requested": 3,
+  "pairs_accepted": 3,
+  "pairs_rejected": 3,
+  "dedup_reference": {
+    "suite": "T321",
+    "baseline": "5.1.5-candidate-20261006",
+    "classic_families": 30,
+    "accepted_with_baseline_overlaps": 0
+  },
+  "created_utc": "2026-10-11T09:25:19Z",
+  "authorization_note": "offline deterministic expansion; no provider calls; scaled AI generation remains PI_DECISION_REQUIRED (PI-V5-007)"
+}

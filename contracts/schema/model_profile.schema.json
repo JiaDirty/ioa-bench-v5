@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ioabench.local/schema/model_profile.schema.json",
+  "title": "Model Profile",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "provider",
+    "model_id",
+    "role",
+    "capabilities"
+  ],
+  "properties": {
+    "provider": {
+      "const": "aihubmix"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "TESTED",
+        "GENERATOR",
+        "VALIDATOR",
+        "JUDGE",
+        "SYNTHETIC_PERSONA"
+      ]
+    },
+    "capabilities": {
+      "type": "object"
+    },
+    "default_parameters": {
+      "type": "object"
+    }
+  }
+}

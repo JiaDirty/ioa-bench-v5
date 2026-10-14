@@ -1,0 +1,12 @@
+provider: aihubmix
+model_id: deepseek-v4.1-flash
+role: TESTED
+capabilities:
+  text: true
+  structured: false
+  tools: false
+default_parameters:
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 2048
+unsupported_parameters: []

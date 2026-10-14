@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-09-25T15:20:11.599298+00:00",
+  "purpose": "IoA-Bench full-lifecycle Codex autonomous completion goal pack",
+  "strategy": "implement all construct code first; then per-suite trial generation -> batch freeze -> online pilot -> formal run",
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "size": 1031,
+      "sha256": "88470a4699624929674c499ee393b05af066545affbefd0dcf3ff692d86ad7a7"
+    },
+    "01_FULL_LIFECYCLE_EXECUTION_PLAYBOOK.md": {
+      "size": 5734,
+      "sha256": "8fa746e9969a5c94563ef4d982813781116f7969340baf5516b191d7db7b620a"
+    },
+    "02_18_SUITE_CONSTRUCT_DATA_ONLINE_SPEC.md": {
+      "size": 4756,
+      "sha256": "1a2ca388a4ec80ebc4db6024db7ea4e45f6b40b750df953fd8e55566eaec5826"
+    },
+    "03_FULL_LIFECYCLE_SCIENTIFIC_GATES.md": {
+      "size": 3060,
+      "sha256": "4713c365ee6957c25b198aa8ee7720d2c674875a6e50f9c3142090ed036fef82"
+    },
+    "04_FULL_LIFECYCLE_WORK_QUEUE.yaml": {
+      "size": 1480,
+      "sha256": "7fa76966b5a3d32617a451429c40964ffadf22577e41095c214e4f446f3f4878"
+    },
+    "05_CODEX_FIRST_MESSAGE.txt": {
+      "size": 2469,
+      "sha256": "9d4a31fb52f530d1f6518ea01d2cb047a22355f0b41656371a41fba01ea168c4"
+    },
+    "GOAL_FULL_LIFECYCLE_AUTONOMOUS_COMPLETION.md": {
+      "size": 20078,
+      "sha256": "4fb5d50b597c736793124abce928eb50fa4d4650f64e6ea37b309e81d756373f"
+    }
+  }
+}

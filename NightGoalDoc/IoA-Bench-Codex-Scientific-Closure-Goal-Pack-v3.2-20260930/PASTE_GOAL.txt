@@ -1,0 +1,121 @@
+/goal 将 `D:\Project\ioa_codex_spec` 中已经完成实现的 IoA-Bench 收口为一个**证据完整、版本边界清晰、Run↔Release 绑定可审计、最终验收逻辑正确、可直接用于科研交付的冻结 Benchmark**。
+
+当前工作区：
+`D:\Project\ioa_codex_spec`
+
+本 Goal 配套规范目录：
+`D:\Project\ioa_codex_spec\NightGoalDoc\IoA-Bench-Codex-Scientific-Closure-Goal-Pack-v3.2-20260930`
+
+按当前任务需要读取：
+- `01_CURRENT_AUTHORITATIVE_STATE.md`
+- `02_INDEPENDENT_REVERIFICATION_PROTOCOL.md`
+- `03_RETROACTIVE_RELEASE_BINDING_PROTOCOL.md`
+- `04_RELEASE_METADATA_HARDENING.md`
+- `05_T311_DEVIATION_PROTOCOL.md`
+- `06_ACCEPTANCE_MODEL_AND_G13_REPAIR.md`
+- `07_FINAL_DELIVERY_AND_PROVENANCE.md`
+- `08_SCIENTIFIC_GATES_V3_2.md`
+- `09_WORK_QUEUE_OVERLAY_V3_2.yaml`
+- `10_CHECKPOINT_TEMPLATE.md`
+
+不要因为本 Goal 被重复发送而从头开始；从当前证据、State、Work Queue、Checkpoint 与 Gate 继续。
+
+## Outcome
+
+最终必须同时满足：
+
+1. 18 项 canonical IoA 测评保持当前已完成实现，除非新证据证明存在真实科研语义缺陷；
+2. 18 套 authoritative Dataset 的版本/hash/验证状态被再次核对并保持 immutable；
+3. 2026-09-30 只读审计的关键结论被 Codex 独立复核，而不是直接照抄；
+4. 每个 deepseek-v4.1-flash 正式 Run 都有明确的 Run↔Dataset↔Runtime↔Scorer↔Prompt↔Tool↔Model Profile↔Release 绑定证据；
+5. 将追认结果正式固化为版本化 `RETROACTIVE_RELEASE_BINDING_AUDIT`；
+6. Release 缺失的 runtime prompt content hashes、Tool Schema hashes、Model Profile provenance 等元数据被补齐，但不得静默修改原冻结 Release；
+7. T311 的 max_tokens/concurrency/contract-label 偏差有正式、可复核的 documented deviation；
+8. “Benchmark 本体通过”和“DeepSeek canonical Campaign 通过”被拆开验收；
+9. 当前 canonical Tested Model roster 固定为用户已确认的 `deepseek-v4.1-flash`，不自行扩充；
+10. 最终 Dashboard/Report/Replay/Delivery Bundle 只引用明确 canonical 的结果与验收状态；
+11. 最终状态可以由磁盘证据重建，并通过一致性检查。
+
+## Verification surface
+
+任何 PASS 必须由真实文件和可复核运算证明。优先使用：
+
+- authoritative Dataset / Manifest / content hash；
+- 18 个 Formal Run Manifest / Results / Replay；
+- Benchmark Release Manifest；
+- Runtime / Scorer / Contract / Prompt / Tool Schema 实际内容及 hash；
+- Model Profile / Scheduler Profile；
+- source tree / historical snapshot diff；
+- independent tests / recomputation；
+- acceptance artifacts；
+- final delivery manifest / secret scan / CRC。
+
+不得仅凭：
+`PROJECT_STATE`、旧 `FINAL_SCIENTIFIC_ACCEPTANCE.json`、总结文本、mtime 单点、目录存在、或“已经 PASS”作为完成证明。
+
+## Constraints
+
+持续保持：
+
+- 18 项 taxonomy 与科研含义不变；
+- 不重新设计已经通过的 construct；
+- 不因 source hash 不同自动判定重跑；
+- 不因 Run 已存在自动判定 canonical；
+- Frozen Dataset 不原地修改；
+- 历史 Run/Release/Gate 永不静默覆盖；
+- Safety 与 Task Utility 分离；
+- Oracle/SUT/Telemetry 隔离；
+- T361–T363 永远 `SIMULATION_ONLY`；
+- valid model outcome 不得 rerun-to-safe；
+- Provider failure 与模型结果分离；
+- secret 不得进入 Goal、日志、Replay、Manifest、handoff 包。
+
+## Iteration policy
+
+每轮：
+
+1. 读取当前 State/Queue/Checkpoint 和所需证据；
+2. 独立验证当前最关键的未闭合 Gate；
+3. 只修复证据/元数据/验收/一致性问题；
+4. 每次真实修改后同步 artifact、Gate、State、Queue、Checkpoint、Changelog；
+5. 若审计结论与真实证据冲突，以真实证据为准；
+6. 若发现真实科研语义缺陷，先做 impact analysis，再决定最小影响范围；
+7. 不允许为了“看起来统一”而重跑本来已被证明等价的 suite；
+8. 不允许为了保留旧结果而忽略已证明会影响模型行为/评分的差异。
+
+## Provider / rerun rule
+
+本 Goal 的默认路径不需要调用 AIHubMix，也不需要重新跑正式模型。
+
+如果独立复核发现某个 suite 的现有 Formal Run 无法证明与目标 Release 科研等价，并且只有重跑才能解决：
+- 先输出受影响 suite、证据、预计调用范围；
+- 将其记录为 blocker；
+- 不自动扩大到全部 18 项；
+- 涉及额外正式 Provider 成本时，等待用户确认后再跑。
+
+## Boundaries requiring user decision
+
+只有以下事项需要用户决定：
+
+- 修改 18 项 canonical 科研含义；
+- 修改核心科研解释；
+- 扩展 Tested Model roster；
+- 需要付费/大规模 Provider 重跑；
+- 无法通过证据判定 T311 或其它 suite 是否 canonical；
+- 会形成新语义 Benchmark Release 的方法变更。
+
+普通文档、hash、manifest、acceptance、reconciliation、report、packaging 修复无需询问。
+
+## Completion condition
+
+只有当 `08_SCIENTIFIC_GATES_V3_2.md` 全部通过，且最终证据明确给出：
+
+- `BENCHMARK_IMPLEMENTATION_ACCEPTED = PASS`
+- `DATASET_PACK_ACCEPTED = PASS`
+- `RETROACTIVE_RELEASE_BINDING = PASS` 或逐 suite 明确例外
+- `DEEPSEEK_CANONICAL_CAMPAIGN = PASS` / `PASS_WITH_DOCUMENTED_DEVIATIONS`
+- `FINAL_PROJECT_ACCEPTANCE = PASS`
+
+并且最终交付包可复核、secret scan clean、历史资产保留、State 与磁盘一致时，本 Goal 才完成。
+
+如果最终结论仍需重跑任何 suite，则本 Goal 不能把项目标记 complete；应停在明确的 evidence-based blocker。

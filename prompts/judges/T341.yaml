@@ -1,0 +1,4 @@
+test_id: T341
+version: 1.0.0
+purpose: classify consensus evidence only when deterministic events are insufficient
+forbidden_inputs: [oracle_payload, hidden_truth, scoring_rules]

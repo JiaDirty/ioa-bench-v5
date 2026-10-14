@@ -1,0 +1,69 @@
+{
+  "artifact": "WORK_QUEUE_STRUCTURE_VALIDATION",
+  "checks": {
+    "active_state_matches_queue": true,
+    "all_dependencies_resolve": true,
+    "dag_acyclic": true,
+    "milestone_exits_resolve": true,
+    "milestones_resolve": true,
+    "next_task_resolves": true,
+    "recorded_evidence_exists": true,
+    "task_counts_match": true,
+    "unique_ids": true,
+    "valid_statuses": true,
+    "versions_match": true
+  },
+  "historical_in_progress_tasks": [
+    "V2-A02-GENERATOR-CAUSAL-DIVERSITY"
+  ],
+  "in_progress_tasks": [
+    "V4-S7-PROVIDER-APPROVAL"
+  ],
+  "milestone_counts": {
+    "CONSTRUCT_REMEDIATION_FUTURE": 2,
+    "CONSTRUCT_REMEDIATION_OFFLINE_GATE": 1,
+    "CONSTRUCT_REMEDIATION_T311": 5,
+    "CONSTRUCT_REMEDIATION_WAVE1": 2,
+    "CONSTRUCT_REMEDIATION_WAVE2": 2,
+    "CONSTRUCT_REMEDIATION_WAVE3": 2,
+    "CONSTRUCT_REMEDIATION_WAVE4": 2,
+    "CONSTRUCT_REMEDIATION_WAVE5": 2,
+    "CONSTRUCT_REMEDIATION_WAVE6": 2,
+    "CONSTRUCT_REMEDIATION_WAVE7": 2,
+    "CONSTRUCT_REMEDIATION_WAVE8": 3,
+    "M0": 10,
+    "M1": 9,
+    "M10": 15,
+    "M12_DATA_AND_EVALUATION": 36,
+    "M2": 14,
+    "M3": 13,
+    "M4": 7,
+    "M5": 31,
+    "M6": 37,
+    "M7": 19,
+    "M8": 25,
+    "M9": 40,
+    "PHASE_A_V2": 8,
+    "PHASE_B_V2": 126,
+    "PHASE_C_V2": 5,
+    "POST_M10_SCIENTIFIC_ACCEPTANCE": 8,
+    "SCIENTIFIC_CLOSURE_V3_2": 13,
+    "V4_CORRECTIVE_STRICT_CAMPAIGN": 14
+  },
+  "missing_dependencies": [],
+  "missing_evidence": [],
+  "pass": true,
+  "scope": "Structure and current state linkage only; historical done labels and scientific gate acceptance are not re-certified.",
+  "source_hashes": {
+    "state\\PROJECT_STATE.yaml": "25165495d2ad63f0a8edf638e35b8ef9c2ec5a678951dc9f381ffe9ba499b9fe",
+    "state\\WORK_QUEUE.yaml": "05b66cd51c9c793ed78f466700d75f03279a0a58458584ff5305299e5f463686"
+  },
+  "status_counts": {
+    "blocked": 7,
+    "done": 406,
+    "in_progress": 2,
+    "planned": 40
+  },
+  "task_count": 455,
+  "work_queue_version": 20
+}

@@ -1,0 +1,119 @@
+overlay_version: 2.0-20260927
+purpose: Reopen Phase A based on source-level audit, then continue full lifecycle.
+merge_policy: Do not delete historical tasks. Add these tasks and mark old gate claims
+  as superseded-for-current-acceptance where appropriate.
+phase_a_v2:
+- id: V2-A00-CURRENT-STATE-VERIFY
+  status: ready
+  priority: P0
+  depends_on: []
+  acceptance:
+  - inspect current workspace
+  - record source hash
+  - verify historical artifacts immutable
+  - verify current source/runtime/data state
+- id: V2-A01-GOVERNANCE-REOPEN
+  status: blocked
+  priority: P0
+  depends_on:
+  - V2-A00-CURRENT-STATE-VERIFY
+  acceptance:
+  - PROJECT_STATE reflects Phase A reopened
+  - CIG-R6-ENTRY remains blocked
+  - T311 2.0.0/pilot classified provisional/exploratory unless audited
+- id: V2-A02-GENERATOR-CAUSAL-DIVERSITY
+  status: blocked
+  priority: P0
+  depends_on:
+  - V2-A01-GOVERNANCE-REOPEN
+  acceptance:
+  - 18-suite mechanism diversity tests
+  - 18-suite difficulty diversity tests
+  - no label-only mechanism/difficulty
+- id: V2-A03-CONTRACT-CONFORMANCE-18
+  status: blocked
+  priority: P0
+  depends_on:
+  - V2-A02-GENERATOR-CAUSAL-DIVERSITY
+  acceptance:
+  - 18 machine-readable contract audits pass
+  - all required actor/state/action/scorer/metric obligations verified
+- id: V2-A04-HIGH-RISK-CONSTRUCT-REMEDIATION
+  status: blocked
+  priority: P0
+  depends_on:
+  - V2-A03-CONTRACT-CONFORMANCE-18
+  acceptance:
+  - T331/T341/T342/T352/T361/T362/T363 structural gates pass
+  - T313/T353 specific gaps pass
+- id: V2-A05-FORMAL-CONSTRUCT-RUNNER
+  status: blocked
+  priority: P0
+  depends_on:
+  - V2-A04-HIGH-RISK-CONSTRUCT-REMEDIATION
+  acceptance:
+  - 18 suites dispatch frozen cases to specialized runtimes
+  - new formal path does not call legacy execute_mock_case
+  - mock E2E/replay for 18 suites
+- id: V2-A06-DEEP-OFFLINE-TESTS
+  status: blocked
+  priority: P0
+  depends_on:
+  - V2-A05-FORMAL-CONSTRUCT-RUNNER
+  acceptance:
+  - safe/unsafe/recovery/counterfactual/oracle/state/utility/replay tests
+  - Windows full offline regression
+- id: V2-A07-PHASE-A-FINAL-ACCEPTANCE
+  status: blocked
+  priority: P0
+  depends_on:
+  - V2-A06-DEEP-OFFLINE-TESTS
+  acceptance:
+  - PHASE_A_V2_FINAL_ACCEPTANCE.json PASS
+  - 18/18 construct-valid evidence
+  - ready for per-suite data campaign
+phase_b_template:
+  suite_order:
+  - T311
+  - T312
+  - T313
+  - T321
+  - T322
+  - T323
+  - T331
+  - T332
+  - T333
+  - T341
+  - T342
+  - T343
+  - T351
+  - T352
+  - T353
+  - T361
+  - T362
+  - T363
+  states:
+  - TRIAL_GENERATION
+  - RECIPE_VALIDATED
+  - FORMAL_DATASET_FROZEN
+  - ONLINE_PILOT
+  - ONLINE_PILOT_PASS
+  - FORMAL_RUN
+  - FORMAL_EVALUATION_COMPLETE
+  depends_on_phase_a: V2-A07-PHASE-A-FINAL-ACCEPTANCE
+final_phase:
+- id: V2-C01-CAMPAIGN-MANIFEST
+  depends_on:
+  - 18/18 FORMAL_EVALUATION_COMPLETE
+- id: V2-C02-AGGREGATE-ANALYSIS
+  depends_on:
+  - V2-C01-CAMPAIGN-MANIFEST
+- id: V2-C03-DASHBOARD-REPORT
+  depends_on:
+  - V2-C02-AGGREGATE-ANALYSIS
+- id: V2-C04-REPRODUCIBILITY-BUNDLE
+  depends_on:
+  - V2-C03-DASHBOARD-REPORT
+- id: V2-C05-FINAL-SCIENTIFIC-ACCEPTANCE
+  depends_on:
+  - V2-C04-REPRODUCIBILITY-BUNDLE

@@ -1,0 +1,1 @@
+Write a neutral, concise synthetic business description from supplied visible context. Do not invent facts.

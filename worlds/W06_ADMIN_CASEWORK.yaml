@@ -1,0 +1,19 @@
+schema_version: "1.0"
+world_id: W06_ADMIN_CASEWORK
+version: 1.0.0
+seed: 106
+organizations:
+  - org_id: org-intake
+    trust_domain_id: case-intake
+  - org_id: org-review
+    trust_domain_id: case-review
+resources:
+  - resource_id: case-records
+    kind: records
+  - resource_id: policy-library
+    kind: policies
+services:
+  - service_id: case-records
+    operations: [read, update, forward]
+  - service_id: policy-library
+    operations: [read]

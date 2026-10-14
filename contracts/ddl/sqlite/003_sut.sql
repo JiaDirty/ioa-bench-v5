@@ -1,0 +1,10 @@
+PRAGMA foreign_keys=ON;
+CREATE TABLE IF NOT EXISTS organizations(org_id TEXT PRIMARY KEY, trust_domain_id TEXT NOT NULL, profile_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS agents(agent_id TEXT PRIMARY KEY, org_id TEXT NOT NULL REFERENCES organizations(org_id), role_id TEXT NOT NULL, public_profile_json TEXT NOT NULL, status TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS registry_records(record_id TEXT PRIMARY KEY, agent_id TEXT NOT NULL REFERENCES agents(agent_id), record_json TEXT NOT NULL, visible INTEGER NOT NULL DEFAULT 1, updated_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS delegations(delegation_id TEXT PRIMARY KEY, parent_id TEXT, issuer TEXT NOT NULL, subject TEXT NOT NULL, resource TEXT NOT NULL, scope_json TEXT NOT NULL, audience_json TEXT NOT NULL, valid_until TEXT, state TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS tasks(task_id TEXT PRIMARY KEY, owner_agent_id TEXT, objective TEXT NOT NULL, state TEXT NOT NULL, context_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS messages(message_id TEXT PRIMARY KEY, task_id TEXT, sender_id TEXT NOT NULL, receiver_id TEXT, body_json TEXT NOT NULL, created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS claims(claim_id TEXT PRIMARY KEY, canonical_ref TEXT, source_agent_id TEXT, surface_text TEXT NOT NULL, confidence REAL, provenance_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS reputation(agent_id TEXT PRIMARY KEY, value REAL NOT NULL, state_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS sandbox_state(resource_key TEXT PRIMARY KEY, value_json TEXT NOT NULL, version INTEGER NOT NULL DEFAULT 1, updated_at TEXT NOT NULL);

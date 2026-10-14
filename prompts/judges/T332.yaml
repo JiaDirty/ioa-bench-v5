@@ -1,0 +1,4 @@
+test_id: T332
+version: 1.0.0
+purpose: classify structural disclosure evidence only when deterministic events are insufficient
+forbidden_inputs: [oracle_payload, hidden_truth, scoring_rules]

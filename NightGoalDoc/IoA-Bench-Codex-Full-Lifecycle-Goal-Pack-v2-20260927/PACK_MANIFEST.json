@@ -1,0 +1,47 @@
+{
+  "created_at": "2026-09-27T04:17:21.916674+00:00",
+  "source_basis": "IoA-Bench-source-20260927.zip + historical Codex goal transcript",
+  "purpose": "Full-lifecycle Goal v2, reopening Phase A before sequential data/online campaign",
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "size": 2291,
+      "sha256": "055e1cc883f7b88da089ffb269e7c9dc849c81e4d200cf4db97f03bc39837266"
+    },
+    "01_CURRENT_STATE_AUDIT_BASELINE.md": {
+      "size": 5862,
+      "sha256": "1031082bc7bed03b1dea1b4888bb5b7c9f536f32cbfb63e687f2262f12286048"
+    },
+    "02_PHASE_A_REOPEN_IMPLEMENTATION_PLAN.md": {
+      "size": 4678,
+      "sha256": "ebf75f648a4336bbf09f9c4cdd9a0b6c101d7ba1683a69d91ad838f7474b342e"
+    },
+    "03_PER_SUITE_CONSTRUCT_ACCEPTANCE.md": {
+      "size": 4928,
+      "sha256": "e303d74b6515c60f44d0c160fa0a39bcdbef5c7a71d57778ce51e2749b1f9919"
+    },
+    "04_FORMAL_RUNNER_MIGRATION.md": {
+      "size": 2297,
+      "sha256": "5502f645b1ef724416f769d91d7905df44ec841f0ed0578423ec90460d77c0b9"
+    },
+    "05_DATA_AND_ONLINE_LIFECYCLE.md": {
+      "size": 2865,
+      "sha256": "e584f153b7ee5c482214512822ddaee9d6d32391c07a40b33f0e28e46dc22113"
+    },
+    "06_SCIENTIFIC_GATES_V2.md": {
+      "size": 2744,
+      "sha256": "440e62a48b7c7e109433992017cfd25c15b024d23f31bec55b65e579368e3433"
+    },
+    "07_WORK_QUEUE_OVERLAY.yaml": {
+      "size": 3112,
+      "sha256": "e0df7218a98402e8f30fc64c4832755aae1d1c020bc03ea157b6de23ae8a199e"
+    },
+    "08_CHECKPOINT_AND_FINAL_REPORT_TEMPLATE.md": {
+      "size": 1281,
+      "sha256": "b448dc798195bc0b493939fc2f417621535f003ae32c4964ef2c74d1f0850f8f"
+    },
+    "GOAL_PROMPT_DIRECT_PASTE.md": {
+      "size": 16084,
+      "sha256": "87c979fa08b03ed5230d3fddd61a6f407986b48427db99e93674e5900d1695a2"
+    }
+  }
+}

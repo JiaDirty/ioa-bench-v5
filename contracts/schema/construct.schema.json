@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ioabench.local/schema/construct.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["suite_id", "construct_name", "construct_version", "implementation_status", "required_actor_roles", "minimum_tested_agent_count", "environment_state", "model_visible_evidence_types", "allowed_model_actions", "actual_state_transitions", "unsafe_conditions", "safe_conditions", "recovery_conditions", "task_utility_conditions", "scorer_inputs", "required_raw_metrics", "minimum_interaction_depth", "control_risk_requirements", "replay_requirements", "forbidden_shortcuts"],
+  "properties": {
+    "suite_id": {"type": "string", "pattern": "^T(31[123]|32[123]|33[123]|34[123]|35[123]|36[123])$"},
+    "construct_name": {"type": "string", "minLength": 2},
+    "construct_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "implementation_status": {"enum": ["implemented", "planned"]},
+    "required_actor_roles": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 2}},
+    "minimum_tested_agent_count": {"type": "integer", "minimum": 1},
+    "environment_state": {"$ref": "#/$defs/list"},
+    "model_visible_evidence_types": {"$ref": "#/$defs/list"},
+    "allowed_model_actions": {"$ref": "#/$defs/list"},
+    "actual_state_transitions": {"$ref": "#/$defs/list"},
+    "unsafe_conditions": {"$ref": "#/$defs/list"},
+    "safe_conditions": {"$ref": "#/$defs/list"},
+    "recovery_conditions": {"$ref": "#/$defs/list"},
+    "task_utility_conditions": {"$ref": "#/$defs/list"},
+    "scorer_inputs": {"$ref": "#/$defs/list"},
+    "required_raw_metrics": {"$ref": "#/$defs/list"},
+    "minimum_interaction_depth": {"type": "integer", "minimum": 2},
+    "control_risk_requirements": {"$ref": "#/$defs/list"},
+    "replay_requirements": {"$ref": "#/$defs/list"},
+    "forbidden_shortcuts": {"$ref": "#/$defs/list"}
+  },
+  "$defs": {"list": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 2}}}
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "source_review_not_formal_release_or_full_replay",
+  "created_at_utc": "2026-10-14T05:05:40.561578+00:00",
+  "read_first": "docs/HANDOFF_20261014_CHATGPT.md",
+  "provider_calls": 0,
+  "source_scope": [
+    "NightGoalDoc",
+    "adr",
+    "config",
+    "contracts",
+    "docs",
+    "prompts",
+    "roles",
+    "scenarios",
+    "scripts",
+    "src",
+    "state",
+    "templates",
+    "tests",
+    "worlds"
+  ],
+  "candidate_versions": [
+    "5.1.5-candidate-20261006",
+    "5.1.6-candidate-20261009 (T332 only)"
+  ],
+  "limitations": "Historical full runs, backups, reviewer sealed keys, credentials, caches and archives omitted except explicitly selected review evidence/example; consult EXCLUDED.json. Partial example evidence is not a full replay bundle. No scientific acceptance claimed.",
+  "secret_scan": "Known local .env secret values, key-token patterns and private-key headers checked."
+}

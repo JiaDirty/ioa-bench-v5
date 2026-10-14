@@ -1,0 +1,66 @@
+{
+  "pack_version": "v3.2-20260930",
+  "purpose": "IoA-Bench scientific closure, independent reverification, canonical Run↔Release binding, acceptance repair, and final delivery",
+  "created_at_utc": "2026-09-30T12:59:27.794717+00:00",
+  "current_stage": "SCIENTIFIC_CLOSURE_AND_CANONICAL_BINDING",
+  "tested_model_roster": [
+    "deepseek-v4.1-flash"
+  ],
+  "agent_note": "Codex may be running GPT-6 Astra; this is the development/audit agent model, not a Benchmark Tested Model unless explicitly invoked and recorded by the benchmark.",
+  "default_no_rerun": true,
+  "default_no_provider_calls": true,
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "size": 1882,
+      "sha256": "b0c274a3c83c931a48ae849b4d90ccdd5da1054287f1e626c17ad1c7c3aae06b"
+    },
+    "01_CURRENT_AUTHORITATIVE_STATE.md": {
+      "size": 1909,
+      "sha256": "47f2575f22a20be0fa453b41aa4e9f65dbb8391a598b476d1ac8c57387608616"
+    },
+    "02_INDEPENDENT_REVERIFICATION_PROTOCOL.md": {
+      "size": 2070,
+      "sha256": "15c410dcc74187a07969577411d8b65e4a94cc68a769c965b68f03a8137a70d7"
+    },
+    "03_RETROACTIVE_RELEASE_BINDING_PROTOCOL.md": {
+      "size": 1816,
+      "sha256": "5a9a4dd232c0f2444c7ad63ce2e9ec5c93bacd0cdeae5c83d0baf279ec7ff29d"
+    },
+    "04_RELEASE_METADATA_HARDENING.md": {
+      "size": 1654,
+      "sha256": "607fe805f7aaa9a266956b69b8c37065149ca06f9134de8e1a573c8705cd1534"
+    },
+    "05_T311_DEVIATION_PROTOCOL.md": {
+      "size": 1243,
+      "sha256": "dc1f94dc74a067d3674867d4ed29cc784af8a5b30160d98aade04cb9e5a7cefa"
+    },
+    "06_ACCEPTANCE_MODEL_AND_G13_REPAIR.md": {
+      "size": 1733,
+      "sha256": "1cea2b953d952861efd504ec69daa8655191218cbd7a71a90d8afea36cfb1e8c"
+    },
+    "07_FINAL_DELIVERY_AND_PROVENANCE.md": {
+      "size": 1433,
+      "sha256": "0c17eb574b0b09e95e1cf86f4c33c16f83fccb6f86125b854a8de085b3675a08"
+    },
+    "08_SCIENTIFIC_GATES_V3_2.md": {
+      "size": 2256,
+      "sha256": "8fba8708b3a9a5bd3b964c92254ef0f266a30eb78dea83c661e968ce2b70a025"
+    },
+    "09_WORK_QUEUE_OVERLAY_V3_2.yaml": {
+      "size": 1765,
+      "sha256": "0caf329af5b0cb73cb837ab45c74437d57db29f737111a4ec5f2e6ed0094cf8b"
+    },
+    "10_CHECKPOINT_TEMPLATE.md": {
+      "size": 924,
+      "sha256": "0bc7b8a999a36185fe8332ab9166b4e5d52659bb0e703ff556eaf44e75416ee6"
+    },
+    "GOAL_PROMPT_CODEX_V3_2.md": {
+      "size": 5663,
+      "sha256": "190c8433ce1c631aa4187459222297e0debecaf9444b9ea46396edd49da5a640"
+    },
+    "PASTE_GOAL.txt": {
+      "size": 5603,
+      "sha256": "af43f03250ad5ffa423886df103a573168ef3ce296fb41043a3153fd4d2a0d4f"
+    }
+  }
+}

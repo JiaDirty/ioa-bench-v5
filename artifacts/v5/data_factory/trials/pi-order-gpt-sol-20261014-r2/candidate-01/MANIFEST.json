@@ -1,0 +1,40 @@
+{
+  "adapter_version": "ai-t331-dyna-compiler/1.0.0",
+  "auditor": {
+    "capabilities": {},
+    "default_parameters": {},
+    "model_id": "glm-5.3-flash",
+    "provider": "aihubmix",
+    "role": "INDEPENDENT_AUDITOR"
+  },
+  "baseline_sha256": "6ffcef3d95c07543169980839e89614ccb250768f2511d507d918b34c1fd9316",
+  "difficulty": "M",
+  "factory_version": "ioabench.v5.reusable-data-factory/2.3.3",
+  "generator": {
+    "capabilities": {},
+    "default_parameters": {},
+    "model_id": "gpt-5.6-sol",
+    "provider": "aihubmix",
+    "role": "GENERATOR"
+  },
+  "parameters": {
+    "auditor": {
+      "max_tokens": 65536,
+      "reasoning_effort": "high",
+      "thinking": {
+        "type": "enabled"
+      }
+    },
+    "generator": {
+      "max_completion_tokens": 65536,
+      "reasoning_effort": "high",
+      "response_format": {
+        "type": "json_object"
+      }
+    }
+  },
+  "seed": 6101411,
+  "simulation_only": false,
+  "source_sha256": "47fe7928e747421c0c1b31d3747a19ee75d0dc5306e2e299b3d56446a72fe28a",
+  "suite_id": "T331-DYNA"
+}

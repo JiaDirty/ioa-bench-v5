@@ -1,0 +1,1107 @@
+project: IoA-Bench
+spec_version: 1.0-draft-model-centric
+target_release: v4.1.13-corrective-integration-20261002
+status: v4_corrective_campaign_final_delivery_complete
+current_milestone: V4_CORRECTIVE_STRICT_CAMPAIGN
+confirmed_research_objective: model_endogenous_safety_in_ioa
+v1_tested_model_requested: deepseek-v4.1-flash
+runtime_profile: local-v1-no-docker
+completed:
+- design_grill_Q001_Q132
+- model_centric_specification_rebuild
+- M0-001_python_repository_and_toolchain
+- M0-002_local_config_and_secret_loading
+- M0-003_four_sqlite_stores_and_isolation
+- M0-004_contract_validation_and_canonical_hashing
+- M0-005_run_lifecycle_manifest_and_checkpoint
+- M0-006_telemetry_event_model_and_repository
+- M0-007_test_harness_and_contract_verifier
+- M0-008_isolation_and_secret_guardrails
+- M0-009_cli_and_spec_inspection
+- M0-010_gate_m0_core_local_storage
+- M2-011_memory_knowledge_reputation_incentive
+- M2-012_replay_bundle_and_telemetry_reconstruction
+- M2-013_local_no_docker_environment_manager
+- M2-014_gate_multi_agent_reference_ioa_e2e
+- M3-001_mechanism_template_and_recipe_registry
+- M3-002_programmatic_skeleton_and_ground_truth
+- M3-003_generation_prompts_and_provenance
+- M3-004_generation_model_router
+- M3-005_deterministic_generation_validators
+- M3-006_semantic_validation_and_arbitration
+- M3-007_bounded_repair_and_rejection_analytics
+- M3-008_deduplication_and_oracle_leakage_detection
+- M3-009_difficulty_features_and_calibration
+- M3-010_coverage_and_quota_planner
+- M3-011_immutable_dataset_freeze_and_versioning
+- M3-012_generation_pipeline_smoke
+- M3-013_gate_generation_readiness
+- M4-T311-01_t311_specification
+- M4-T311-02_t311_generator_and_validator
+- M4-T311-03_t311_scenario_and_exposure
+- M4-T311-04_t311_scoring_and_judges
+- M4-T311-05_t311_mini_dataset
+- M4-T311-06_t311_e2e_acceptance
+- M4-999_gate_t311_vertical_slice
+- M5-T312-01_t312_specification
+- M5-T312-02_t312_generator_and_validator
+- M5-T312-03_t312_scenario_and_exposure
+- M5-T312-04_t312_scoring_and_judges
+- M5-T312-05_t312_mini_dataset
+- M5-T312-06_t312_e2e_acceptance
+- M5-T313-01_t313_specification
+- M5-T313-02_t313_generator_and_validator
+- M5-T313-03_t313_scenario_and_exposure
+- M5-T313-04_t313_scoring_and_judges
+- M5-T313-05_t313_mini_dataset
+- M5-T313-06_t313_e2e_acceptance
+- M5-T321-01_t321_specification
+- M5-T322-01_t322_specification
+- M5-T323-01_t323_specification
+- M5-999_gate_trust_and_protocol_suites
+- M6-T331-01_t331_specification
+- M6-T331-02_t331_generator_and_validator
+- M6-T331-03_t331_scenario_and_exposure
+- M6-T331-04_t331_scoring_and_judges
+- M6-T331-05_t331_mini_dataset
+- M6-T331-06_t331_e2e_acceptance
+- M6-T332-01_t332_specification
+- M6-T332-02_t332_generator_and_validator
+- M6-T332-03_t332_scenario_and_exposure
+- M6-T332-04_t332_scoring_and_judges
+- M6-T332-05_t332_mini_dataset
+- M6-T332-06_t332_e2e_acceptance
+- M6-T333-01_t333_specification
+- M6-T333-02_t333_generator_and_validator
+- M6-T333-03_t333_scenario_and_exposure
+- M6-T333-04_t333_scoring_and_judges
+- M6-T333-05_t333_mini_dataset
+- M6-T333-06_t333_e2e_acceptance
+- M6-T341-01_t341_specification
+- M6-T341-02_t341_generator_and_validator
+- M6-T341-03_t341_scenario_and_exposure
+- M6-T341-04_t341_scoring_and_judges
+- M6-T341-05_t341_mini_dataset
+- M6-T341-06_t341_e2e_acceptance
+- M6-T342-01_t342_specification
+- M6-T342-02_t342_generator_and_validator
+- M6-T342-03_t342_scenario_and_exposure
+- M6-T342-04_t342_scoring_and_judges
+- M6-T342-05_t342_mini_dataset
+- M6-T342-06_t342_e2e_acceptance
+- M6-T343-01_t343_specification
+- M6-T343-02_t343_generator_and_validator
+- M6-T343-03_t343_scenario_and_exposure
+- M6-T343-04_t343_scoring_and_judges
+- M6-T343-05_t343_mini_dataset
+- M6-T343-06_t343_e2e_acceptance
+- M6-999_gate_propagation_inference_knowledge
+- M7-T351-01_t351_specification
+- M7-T351-02_t351_generator_and_validator
+- M7-T351-03_t351_scenario_and_exposure
+- M7-T351-04_t351_scoring_and_judges
+- M7-T351-05_t351_mini_dataset
+- M7-T351-06_t351_e2e_acceptance
+- M7-T352-01_t352_specification
+- M7-T352-02_t352_generator_and_validator
+- M7-T352-03_t352_scenario_and_exposure
+- M7-T352-04_t352_scoring_and_judges
+- M7-T352-05_t352_mini_dataset
+- M7-T352-06_t352_e2e_acceptance
+- M7-T353-01_t353_specification
+- M7-T353-02_t353_generator_and_validator
+- M7-T353-03_t353_scenario_and_exposure
+- M7-T353-04_t353_scoring_and_judges
+- M7-T353-05_t353_mini_dataset
+- M7-T353-06_t353_e2e_acceptance
+- M7-999_gate_incentive_and_power_suites
+- M8-T361-01_t361_specification
+- M8-T361-02_t361_generator_and_validator
+- M8-T361-03_t361_synthetic_persona_runtime
+- M8-T361-04_t361_scenario_and_exposure
+- M8-T361-05_t361_scoring_and_judges
+- M8-T361-06_t361_mini_dataset
+- M8-T361-07_t361_e2e_acceptance
+- M8-T361-08_t361_simulation_validity_gate
+- M8-T362-01_t362_specification
+- M8-T362-02_t362_generator_and_validator
+- M8-T362-03_t362_synthetic_persona_runtime
+- M8-T362-04_t362_scenario_and_exposure
+- M8-T362-05_t362_scoring_and_judges
+- M8-T362-06_t362_mini_dataset
+- M8-T362-07_t362_e2e_acceptance
+- M8-T362-08_t362_simulation_validity_gate
+- M8-T363-01_t363_specification
+- M8-T363-02_t363_generator_and_validator
+- M8-T363-03_t363_synthetic_persona_runtime
+- M8-T363-04_t363_scenario_and_exposure
+- M8-T363-05_t363_scoring_and_judges
+- M8-T363-06_t363_mini_dataset
+- M8-T363-07_t363_e2e_acceptance
+- M8-T363-08_t363_simulation_validity_gate
+- M8-999_gate_simulation_suites
+- M5-T321-02_t321_generator_and_validator
+- M5-T321-03_t321_scenario_and_exposure
+- M5-T321-04_t321_scoring_and_judges
+- M5-T321-05_t321_mini_dataset
+- M5-T321-06_t321_e2e_acceptance
+- M5-T322-02_t322_generator_and_validator
+- M5-T322-03_t322_scenario_and_exposure
+- M5-T322-04_t322_scoring_and_judges
+- M5-T322-05_t322_mini_dataset
+- M5-T322-06_t322_e2e_acceptance
+- M5-T323-02_t323_generator_and_validator
+- M5-T323-03_t323_scenario_and_exposure
+- M5-T323-04_t323_scoring_and_judges
+- M5-T323-05_t323_mini_dataset
+- M5-T323-06_t323_e2e_acceptance
+- M9-T311-01_t311_formal_candidates
+- M9-T311-02_t311_formal_freeze
+- M9-T312-01_t312_formal_candidates
+- M9-T312-02_t312_formal_freeze
+- M9-T313-01_t313_formal_candidates
+- M9-T313-02_t313_formal_freeze
+- M9-T321-01_t321_formal_candidates
+- M9-T321-02_t321_formal_freeze
+- M9-T322-01_t322_formal_candidates
+- M9-T322-02_t322_formal_freeze
+- M9-T323-01_t323_formal_candidates
+- M9-T323-02_t323_formal_freeze
+- M9-T331-01_t331_formal_candidates
+- M9-T331-02_t331_formal_freeze
+- M9-T332-01_t332_formal_candidates
+- M9-T332-02_t332_formal_freeze
+- M9-T333-01_t333_formal_candidates
+- M9-T333-02_t333_formal_freeze
+- M9-T341-01_t341_formal_candidates
+- M9-T341-02_t341_formal_freeze
+- M9-T342-01_t342_formal_candidates
+- M9-T342-02_t342_formal_freeze
+- M9-T343-01_t343_formal_candidates
+- M9-T343-02_t343_formal_freeze
+- M9-T351-01_t351_formal_candidates
+- M9-T351-02_t351_formal_freeze
+- M9-T352-01_t352_formal_candidates
+- M9-T352-02_t352_formal_freeze
+- M9-T353-01_t353_formal_candidates
+- M9-T353-02_t353_formal_freeze
+- M9-T361-01_t361_formal_candidates
+- M9-T361-02_t361_formal_freeze
+- M9-T362-01_t362_formal_candidates
+- M9-T362-02_t362_formal_freeze
+- M9-T363-01_t363_formal_candidates
+- M9-T363-02_t363_formal_freeze
+- M9-901_dataset_coverage_audit
+- M9-902_dataset_integrity_preflight
+- M9-903_dataset_pack_manifest
+- M9-999_gate_formal_datasets
+- M10-001_suite_all_scheduler
+- M10-002_full_run_manifest
+- M10-003_batch_checkpoint_resume
+- M10-004_formal_run_gates
+- M10-005_offline_mock_replay_dry_run
+- M10-006_formal_model_resolution
+- M10-007_full_formal_benchmark_run
+- M10-008_result_completeness_validation
+- M10-009_formal_metrics_analysis
+- M10-010_representative_case_selection
+- M10-012_research_report_and_risk_profile
+- M10-013_formal_replay_integrity_audit
+- M10-014_reproducibility_bundle
+- M10-015_v1_definition_of_done
+- M10-SCI-001_external_scientific_audit_triage
+- M10-SCI-002_frozen_manifest_and_case_integrity_remediation
+- M10-SCI-003_reference_ioa_runtime_and_baseline_discrimination
+- M10-SCI-004_prompt_leakage_quality_gate
+- M10-SCI-005_clean_dataset_pack_v2_release
+- M10-SCI-006_live_model_smoke_validation
+- M10-SCI-007_formal_v2_full_run
+- M10-SCI-008_final_scientific_acceptance
+- CIG-00_historical_status_correction
+- CIG-01_immutable_model_io_and_replay
+- CIG-02_independent_raw_evidence
+- CIG-CONTRACT_18_versioned_construct_contracts
+- CIG-T311_offline_construct_vertical_slice
+- CIG-WAVE1-T312_construct_valid_runtime
+- CIG-WAVE1-T353_construct_valid_runtime
+- CIG-WAVE2-T313_construct_valid_runtime
+- CIG-WAVE2-T323_construct_valid_runtime
+- CIG-WAVE3-T321_construct_valid_runtime
+- CIG-WAVE3-T322_construct_valid_runtime
+- CIG-WAVE4-T332_construct_valid_runtime
+- CIG-WAVE4-T333_construct_valid_runtime
+- CIG-REST-16_generated_world_adapters_and_all_suite_offline_runtime
+- V2-A00-CURRENT-STATE-VERIFY
+- V2-A01-GOVERNANCE-REOPEN
+- V32-S0-RECONCILE
+- V32-S1-INDEPENDENT-REVERIFY
+- V32-S2-DATASET-BINDING
+- V32-S3-RUNTIME-SCORER-PROMPT-TOOL
+- V32-S4-T311-DEVIATION
+- V32-S5-RETROACTIVE-BINDING
+- V32-S5B-CORRECTIVE-DECISION
+- V32-S6-RELEASE-ADDENDUM
+- V32-S7-ACCEPTANCE-SPLIT
+- V32-S8-PHASE-C-CANONICAL-CONSISTENCY
+- V32-S10-FINAL-DELIVERY
+- V32-S11-COMPLETE
+- V4-S0-RECONCILE
+- V4-S1-CANDIDATE-FORK
+- V4-S2-STRICT-RETRY
+- V4-S3-CANDIDATE-VALIDATION
+- V4-S4-PREFREEZE-AUDIT
+- V4-S5-FREEZE-RELEASE
+- V4-S6-FREEZE-RUN-MANIFESTS
+- V4-S7-RUNTIME-INTEGRATION
+- V4-S7-PROVIDER-APPROVAL
+- V4-S8-LIVE-SMOKE
+- V4-S9-FORMAL-CAMPAIGN
+- V4-S10-POSTRUN-VALIDATION
+- V4-S11-CANONICAL-AGGREGATION
+- V4-S12-FINAL-DELIVERY
+in_progress: []
+next: []
+incident:
+- INCIDENT-SUITE-GATES-T311-20260928 (documented; ADR_PHASE_A_V2_INCIDENT_SUITE_GATES_T311)
+blocked:
+- CIG-R6-ENTRY
+scientific_status:
+  run_id: deepseek-v4.1-flash-v1-pack-v2-r5
+  classification: historical_engineering_scientific_remediation_candidate
+  final_18_suite_construct_acceptance: false
+  evidence: artifacts/gates/CODEX_INDEPENDENT_REVERIFICATION.json
+  t311_offline_construct_slice: completed_offline_gate_passed_pending_independent_review
+  t311_generated_world_trial: completed_offline_replay_audit_passed
+  t312_t353_offline_construct_slice: completed_offline_gate_passed_pending_independent_review
+  all_18_offline_construct_slice: superseded_for_current_acceptance
+  phase_a_v2_gate: artifacts/gates/PHASE_A_V2_FINAL_ACCEPTANCE.json (overall_pass=true,
+    one documented deviation)
+  formal_construct_valid_run: 18_candidate_runs_preserved_5_incompatible_13_unproven_preliminary
+  phase_a_v2: PASSED_WITH_DOCUMENTED_DEVIATION (see artifacts/gates/PHASE_A_V2_FINAL_ACCEPTANCE.json)
+  benchmark_release: release/BENCHMARK_RELEASE_v3-20260930.json (frozen 2026-09-30)
+  independent_validation: artifacts/gates/INDEPENDENT_SEMANTIC_VALIDATION.json (18
+    suites x 90/90, tested-model-free)
+  phase_c: artifacts/gates/PHASE_C_CAMPAIGN.json (verdict complete; 1620 cases; single-execution
+    disclosure)
+  run_classification: artifacts/gates/RUN_CLASSIFICATION.json (historical 18 VALID_RESEARCH_RESULT;
+    current binding not accepted)
+  campaign_state: artifacts/gates/ONLINE_CAMPAIGN_STATE.json (historical campaign_complete=true;
+    current canonical acceptance false)
+  tested_model_roster: deepseek-v4.1-flash (user-confirmed 2026-09-30; MODEL_PROFILE
+    frozen at release/MODEL_PROFILE_deepseek-v4.1-flash.json)
+  final_acceptance: PASS (artifacts/gates/FINAL_PROJECT_ACCEPTANCE_V3_2_003.json;
+    components B/D PASS_WITH_DOCUMENTED_DEVIATIONS per user decision 2026-10-01)
+  historical_final_acceptance: artifacts/gates/FINAL_SCIENTIFIC_ACCEPTANCE.json (historical
+    PASS; preserved)
+  replay_audit: artifacts/gates/REPLAY_AUDIT_V3.json (historical hash audit; missing
+    T353 paired trajectories found in v3.2)
+  t311_dataset_2_0_0: ACCEPTED_FOR_V2_USE
+  frozen_datasets_2_0_0: superseded by 2.2.0 for T312-T363 (candidate_id collision
+    fix; IDs now unique across difficulty strata; T311 stays on audited 2.0.0)
+  t311_online_pilot: EXPLORATORY_INVALID_MODEL_OUTPUT
+  current_baseline: artifacts/scientific_closure_v3_2/baseline.json
+  current_progress: state/SCIENTIFIC_CLOSURE_CHECKPOINT.md
+  v3_2_identity_inventory: artifacts/gates/V32_S0_EVIDENCE_INVENTORY.json
+  v3_2_independent_verdict: PARTIALLY_CONFIRMED (S1 closed; no decisive UNKNOWN)
+  v3_2_policy_impact: artifacts/gates/V32_S1_POLICY_IMPACT_v2.json
+  v3_2_binding_audit: 'artifacts/gates/RETROACTIVE_RELEASE_BINDING_AUDIT_v4.json (13/18
+    accepted: 1 documented deviation, 10 semantic, 2 strict; 5 INCOMPATIBLE pending
+    user decision)'
+  v3_2_dataset_acceptance: PASS_WITH_DOCUMENTED_RECONFIRMATION_SCOPE
+  v3_2_t311_deviation: NON_MATERIAL_DEVIATION (T311_CANONICAL_DEVIATION_v2)
+  v3_2_replay_reexecution: 1440 exact; 90 T311 cap-diagnostic; 90 T353 primary-only
+  v3_2_invalid_retry_lower_bound: 30
+  v3_2_t353_missing_paired_trajectories: 180
+  v3_2_t353_counterfactual_metric_conflicts: 4
+  corrective_proposal: artifacts/scientific_closure_v3_2/proposed-corrective-release-v2.json
+  corrective_candidate_validation: artifacts/scientific_closure_v3_2/candidate-validation-002.json
+    (39 checks passed; offline only)
+  corrective_metric_diagnostic: artifacts/scientific_closure_v3_2/t353-metric-diagnostic-001.json
+    (90 checked; only 4 delta fields change)
+  historical_archive_recovery: artifacts/scientific_closure_v3_2/archive-attempt-recovery-002.json
+    (9 archives; 10 snapshots equal to current files)
+  auditor_regression_tests: artifacts/scientific_closure_v3_2/auditor-tests-009.xml
+    (19 passed)
+  history_preservation_check: artifacts/scientific_closure_v3_2/history-preservation-007.json
+  recorded_source_byte_recovery: artifacts/scientific_closure_v3_2/source-byte-recovery-001.json
+    (1202 cases; supplemented by literal history recovery)
+  history_source_byte_recovery: artifacts/scientific_closure_v3_2/history-source-recovery-004/recovery.json
+    (54 additional cases; 1256 total; 364 unresolved)
+  history_source_validation: artifacts/scientific_closure_v3_2/history-source-validation-001.json
+  source_semantic_review: artifacts/scientific_closure_v3_2/source-semantic-review-002.json
+    (4 exact; 8 semantic; 6 incomplete suites)
+  recovered_source_replay: 1256 matched including 90 T353 primary-only; source-specific
+    reports linked in source semantic review
+  history_source_replay: artifacts/scientific_closure_v3_2/recovered-source-replay-003-history.json
+    (54 additional T323 cases matched; 87 of 90 T323 source-resolved)
+  secret_pattern_scan: artifacts/scientific_closure_v3_2/secret-scan-006.json
+  release_metadata_addendum: release/BENCHMARK_RELEASE_v3-20260930_ADDENDUM_1.json
+    (metadata only; no canonical acceptance)
+  normalized_model_profile_addendum: release/MODEL_PROFILE_deepseek-v4.1-flash_ADDENDUM_1.json
+  metadata_addendum_validation: artifacts/scientific_closure_v3_2/metadata-addendum-validation-001.json
+    (19673 records; 18 suites)
+  metadata_acceptance_reconciliation: artifacts/scientific_closure_v3_2/metadata-acceptance-reconciliation-001.json
+  current_canonical_phase_c: artifacts/scientific_closure_v3_2/canonical-phase-c-001/campaign.json
+    (0 accepted suites; 18 excluded; NOT_ACCEPTED)
+  current_canonical_dashboard: artifacts/scientific_closure_v3_2/canonical-phase-c-001/dashboard.html
+  phase_c_canonical_gate: artifacts/gates/PHASE_C_CANONICAL_CONSISTENCY_V3_2_001.json
+    (report guards verified; scientific gate incomplete)
+  phase_c_behavior_validation: artifacts/scientific_closure_v3_2/phase-c-behavior-validation-001.json
+  observed_model_profiles: artifacts/scientific_closure_v3_2/observed-model-profiles-001.json
+  observed_profile_crosscheck: artifacts/scientific_closure_v3_2/observed-profile-check-001.json
+    (19673 records)
+  corrective_release_approval: 'RESOLVED_BY_USER_DECISION 2026-10-01: ACCEPT_DOCUMENTED_DEVIATION
+    for T323/T342/T353/T362/T363; zero provider calls'
+  active_scientific_source_modified: true
+  v4_source_promotion: workspace src/contracts/config now byte-identical to frozen corrective-candidate-v7;
+    historical v3/v3.2 source remains preserved in Release and delivery artifacts
+  v4_source_promotion_audit: artifacts/scientific_closure_v4/runtime-promotion-audit-v4.1.7-001.json
+    (18 expected source changes; 0 unexpected changes in src/contracts/config)
+  retained_evidence_recovery_boundary: artifacts/scientific_closure_v3_2/recovery-boundary-001.json
+    (15 nested ZIP trees and 2 disk trees; no additional source match)
+  recovery_boundary_gate: artifacts/gates/V32_S1_RECOVERY_BOUNDARY_001.json (bounded
+    search complete; scientific acceptance unresolved)
+  original_invalid_case_identity: UNKNOWN (results snapshot observation time cannot
+    identify original attempts)
+  v3_2_source_anchoring: artifacts/scientific_closure_v3_2/precampaign-source-anchoring-001.json
+    (per-file exact pinning; tree residuals launch-layer; both history exports parsed)
+  v3_2_source_semantic_review: artifacts/scientific_closure_v3_2/source-semantic-review-003.json
+    (18/18 scientific-path resolved)
+  v3_2_dataset_binding_fresh: 18/18 three-way confirmed 2026-10-01 (run==release==pack_v4;
+    case-id equality; all terminal)
+  retroactive_release_binding: PASS_WITH_DOCUMENTED_DEVIATIONS (artifacts/gates/RETROACTIVE_RELEASE_BINDING_AUDIT_v5.json;
+    18/18 accepted)
+  canonical_phase_c_final: artifacts/scientific_closure_v3_2/canonical-phase-c-003-final/campaign.json
+    (verdict PASS; 18/18 suites; 1620 cases)
+  final_delivery: artifacts/gates/V32_S10_FINAL_DELIVERY_001.json + IoA-Bench-v3.2-final-delivery-20261001.zip
+    + final-delivery-addendum-001.json
+  v4_release_id: v4.1.13-corrective-integration-20261002
+  v4_release_sha256: 23ff5143f0631487428fc9e1d2a637ea90474feba2b7b4b9a810396139161247
+  v4_source_tree_sha256: 1bb83f067da9798a5f08b9482aa32591a3404f1972478735b492d13aaf1b0457
+  v4_candidate_path: artifacts/scientific_closure_v4/corrective-candidate-v11
+  v4_manifests: artifacts/scientific_closure_v4/run-manifest-registry-v4.1.13-001.json (18/18
+    bound to the same release)
+  v4_gates: V4-S1..S6 historical PASS plus v4.1.7 successor integration PASS
+  v4_runtime_integration: PASS (artifacts/gates/V4_S7_RUNTIME_INTEGRATION_006.json;
+    workspace source equals frozen candidate; runtime manifest equals pre-frozen manifest)
+  v4_provider_approval: APPROVED_BY_USER (artifacts/gates/V4_S7_PROVIDER_APPROVAL_005.json; 23 predecessor-smoke calls retained)
+  v4_live_smoke: PASS (artifacts/scientific_closure_v4/live-smoke/V4_1_13_S8_LIVE_SMOKE.json; 3/3 terminal, 22 model responses, 23 provider calls including resolution)
+  v4_1_13_formal_campaign: PASS (18/18 suites, 1620/1620 terminal; 1488 COMPLETED, 103 INVALID_MODEL_OUTPUT, 21 BUDGET_EXCEEDED, 8 INFRA_INTERRUPTED; 21082 recorded model responses)
+  v4_1_13_validation: artifacts/scientific_closure_v4/validation-v4.1.13-003.json (18/18 STRICT_BINDING; post-campaign validator)
+  v4_1_13_binding_audit: artifacts/scientific_closure_v4/strict-binding-audit-v4.1.13-002.json (STRICT_18_OF_18)
+  v4_1_13_canonical_campaign: artifacts/scientific_closure_v4/canonical-v4.1.13-final-006/campaign.json
+  v4_1_13_final_acceptance: artifacts/scientific_closure_v4/canonical-v4.1.13-final-006/final-project-acceptance.json
+  v4_1_13_delivery: artifacts/delivery/IoA-Bench-v4.1.13-final-delivery-20261003-v4.zip
+canonical_constraints:
+  taxonomy_frozen: true
+  oracle_hidden: true
+  public_internet_formal_runs: false
+  t361_t363_simulation_only: true
+  frozen_datasets_immutable: true
+work_queue_version: 26
+work_queue_task_count: 464
+next_task: none
+blocked_external: none; explicit user approval recorded in artifacts/gates/V4_S7_PROVIDER_APPROVAL_005.json
+provider_calls_allowed: true
+suite_lifecycle:
+  T311: FORMAL_EVALUATION_COMPLETE (2.0.0; 90/90 terminal)
+  T312: FORMAL_EVALUATION_COMPLETE (2.2.0; 90/90 terminal)
+  T313: FORMAL_EVALUATION_COMPLETE (2.3.0; 90/90 terminal)
+  T321: FORMAL_EVALUATION_COMPLETE (2.2.0; 90/90 terminal)
+  T322: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T323: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T331: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T332: FORMAL_EVALUATION_COMPLETE (2.3.0; 90/90 terminal)
+  T333: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T341: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T342: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T343: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T351: FORMAL_EVALUATION_COMPLETE (2.3.0; 90/90 terminal)
+  T352: FORMAL_EVALUATION_COMPLETE (2.2.0; 90/90 terminal)
+  T353: FORMAL_EVALUATION_COMPLETE (2.3.0; 90/90 terminal)
+  T361: FORMAL_EVALUATION_COMPLETE (2.3.0; 90/90 terminal)
+  T362: FORMAL_EVALUATION_COMPLETE (2.4.0; 90/90 terminal)
+  T363: FORMAL_EVALUATION_COMPLETE (2.3.0; 90/90 terminal)
+suite_lifecycle_scope: v4.1.13_formal_campaign
+v4_suite_lifecycle: 18/18 FORMAL_EVALUATION_COMPLETE; canonical aggregation STRICT_18_OF_18
+work_queue_validation: state/WORK_QUEUE_VALIDATION.json
+v4_provider_model_records: 21082
+workspace_maintenance:
+  id: '20261001-223139'
+  scope: reversible_cache_and_diagnostic_archival_and_workspace_handoff
+  note: docs/HANDOFF_20261001_WORKSPACE.md
+  evidence_directory: artifacts/workspace_maintenance/20261001-223139
+  benchmark_acceptance_changed: false
+  benchmark_code_fixes_applied: false
+  provider_calls: 0
+
+workspace_full_organization_20261013:
+  status: ORGANIZED_AND_VERIFIED
+  scope: 'Entire workspace file inventory/classification, root archive relocation, path-dependent helper repairs and recoverable cleanup'
+  evidence: artifacts/workspace_maintenance/20261013-r2
+  guide: WORKSPACE.md
+  full_index: docs/WORKSPACE_FULL_INDEX_20261013.md
+  files_inventoried: 34405
+  original_logical_bytes: 6565461172
+  historical_root_zips_relocated: 10
+  historical_conversations_relocated: 5
+  archive: archive/
+  relocation_map: artifacts/workspace_maintenance/20261013-r2/RELOCATION.json
+  original_layout_restore: artifacts/workspace_maintenance/20261013-r2/restore_layout.py
+  duplicate_groups_detected: 8614
+  duplicate_policy: 'Preserve independent experiment/release/audit paths; identical bytes alone do not justify evidence deletion'
+  deleted_research_or_source_files: 0
+  prior_cache_cleanup: artifacts/workspace_maintenance/20261013-r1
+  runtime_source_unchanged: true
+  secrets_included_in_backup: false
+  provider_calls: 0
+  scientific_acceptance_changed: false
+
+v5:
+  line: IoA-Bench v5 publication-grade scientific revision (started 2026-10-04)
+  historical_baseline: v4.1.13 (read-only; NOT_SCIENTIFICALLY_READY per artifacts/scientific_validity_audit_20261004)
+  architecture_decision: docs/v5/V5_00_ARCHITECTURE_DECISION.md
+  pi_decisions: docs/v5/V5_PI_DECISION_LOG.md
+  construct_maps: contracts/v5/construct_maps.json
+  progress_ledger: docs/v5/V5_PROGRESS.md
+  code: src/ioabench/v5
+  tests: tests/v5
+  external_blockers: [Gate D human/expert reviewers (PI-V5-003), single-model confirmation pilot spend approval (PI-V5-006), formal campaign approval (PI-V5-002)]
+  continuation_checkpoint: 2026-10-14
+  implementation_status: 18_of_18_suite_modules_present
+  offline_gates: "PASS: 3240/3240 pair-seed checks; seeds 5, 11, 101"
+  offline_revalidation_artifact: artifacts/v5/gates/offline-matrix-20261009-single-model-precheck.json
+  offline_revalidation_sha256: 83492b76db5c261e880f4159a524979a20610bb4597578eba9a0379d933df783
+  candidate_dataset:
+    version: 5.1.5-candidate-20261006
+    suites: 18
+    pairs_per_suite: 60
+    cases_per_suite: 120
+    gate_c: "18/18 candidate checks pass; not frozen"
+  test_result: "2026-10-14: current factory2.3.5/quality1.4.0 source tests/v5 852 passed, focused155 passed;18-suite preflight36/36 and228 references; evidence data_factory_process_review_20261014. Earlier816/809/full-tree results remain source-bound."
+  online_link_fixes_20261011:
+    status: COMPLETE_OFFLINE (zero provider calls)
+    scope: v5 online evaluation chain hardening; no Goal/taxonomy/dataset/scorer/threshold changes
+    adapter: HTTPError-before-URLError order fixed; reasoning_content/reasoning_details parsed+persisted (never replayed); endpoint_family recorded
+    engine_runner: tool budget enforced pre-execution (executed==recorded); InvalidModelOutput split empty/truncated; LeakageViolation -> LEAKAGE_BLOCKED row instead of batch abort; versions v5-episode-engine-1.1.0 / v5-runner-1.1.0
+    protocol_determination: CORRECTED per DeepSeek official thinking-mode guide - direct API REQUIRES full reasoning_content replay on every tool-carrying request (HTTP 400 otherwise) and ignores it without tools; AIHubMix gateway request-side handling of replayed reasoning is UNVERIFIED (historical pilot completed 814/864 multi-turn episodes without replay and without 400s, so the deployed channel does not enforce the direct contract); current frozen v5 protocol stays persist-only, replay switch is a versioned protocol decision gated on the smoke compatibility probe; engine/types/test docstrings corrected
+    exposure: opportunity holds iff any exposing request offers a decision tool; exposure now requires the FULL declared fingerprint set (conjunction, v5-exposure-checker-1.2.0) closing T321's partial-carrier loophole; 18-suite audit found no false-exposure misjudgment (T332/T351 fingerprints co-delivered with manipulated content; T311/T312/T333/T342 fingerprints are the construct-map exposure objects)
+    pilot: per-suite dataset binding (T332 -> 5.1.6-candidate-20261009) + pre-run manifest.json pinning 216 case hashes; evaluate() hard gates sample_completeness + manifest_binding (18 suites, 12 rows each, pair/arm completeness, no duplicates, no missing, hash+version bound to manifest, terminal records required); pre-registered thresholds unchanged
+    runner_e2e: first offline end-to-end test of run_case (journal/engine/exposure/scorer/outcome/persistence) on a real T311-family case
+    offline_matrix: artifacts/v5/gates/offline-matrix-20261011.json (3240/3240 under conjunction exposure; re-run mandatory after checker change)
+    historical_pilot_attribution: T352 invalid rows = 4096-token output-budget truncation; T331 utility = genuine model non-completion; T332 = fixed by 5.1.1/5.1.6; T333 abstain = pre-registered lexicon rule (scorer audit pending)
+    known_preexisting_out_of_scope: tests/construct 32 failures (rpds-py lock 2026.6.3 vs installed 2026.9.1; WORK_QUEUE 464 vs state 462); tests/v4 and tests/v5 cannot share one pytest process (v4 conftest sys.path pin)
+    live_verification_pending: [reasoning_content actual shape under thinking, max_tokens=8192 effect on INVALID band, gateway reasoning/tool-call interplay under real traffic]
+    online_smoke_proposal: 'CLOSED_ENGINEERING_VERIFICATION (2026-10-11) - budget split stated precisely: T352/T332 original smoke rows = v1.1.0/8192 (T352 3 truncations motivated the budget corrections), 96 expansion rows = v1.1.2/131072; T352/T332 v1.1.2 coverage via closure pair recheck (scripts/v5/v112_pair_recheck.py, artifacts/v5/probes/v112-pair-recheck.jsonl): T352-F25-P1 (the 8192-truncated case) + T332-F15-P1, 4/4 COMPLETED zero truncation identity OK exposure OK slowest 44.8s, no systemic issue; probe evidence integrity labels strengthened (run1 explicitly NOT original provider-response evidence, reconstructed from session transcript; run2 verbatim; post-fix runs keep timestamped originals); UNRESOLVED SCIENTIFIC ITEMS (untouched by design): T331 task utility (both-arm forward-chain shortfall, analysis matter), T333 scorer audit (3/3 RISK abstain > 10% criterion on smoke sample, pre-registered rule, Gate E/B audit pending), smoke mechanism signals (T312/T361 RISK FULL_FAILURE, T313/T323 RISK TASK_SAFE_BUT_FAILED) are paper material; FINAL ENGINEERING STATE: 18/18 suites live-validated under protocol v1.1.2 (temperature 0.0 / max_tokens 131072), engine 1.2.0 / runner 1.1.0 / exposure 1.2.0, tests/v5 89 passed, offline matrix 3240/3240 (budget change is parameter-only, not re-run); CONFIRMATION PILOT (216 cases, v1.1.2) + CAMPAIGN NOT AUTHORIZED - next stage is the PI''s call (Gate D reviewers, pilot approval)'
+  data_quality_revalidation: "5.1.5-candidate-20261006: 18/18 suites pass; no gate failures, firewall hits, substitutions or exact pair duplicates"
+  gate_d:
+    status: BLOCKED_EXTERNAL_REVIEW
+    package: artifacts/v5/review_package/pilot-20261006-v5.1.5
+    single_model_package: artifacts/v5/review_package/pilot-20261006-v5.1.5-deepseek-single-model
+    manifest_hashes: 17_of_17_match
+    reviewer_zip_crc: PASS
+    human_reviews: 0
+  gate_e:
+    status: INVALID_ROSTER_IDENTITY_AND_CRITERIA_FAILURES
+    pilot: pilot-20261006-v5.1.5
+    rows: 864
+    requested_llama_model: llama-4-maverick
+    actual_llama_model: google/gemma-4-31B-it-turbo
+    other_raw_failures: [T322, T331, T332, T341, T352, T362]
+    token_usage: "12843221 prompt; 2060417 completion"
+  single_model_decision:
+    decision_id: PI-V5-005
+    date: 2026-10-09
+    formal_model: deepseek-v4.1-flash
+    protocol_version: v5-single-model-gate-e-1.1.0
+    provider_model_verified_from_pilot: deepseek-v4-1-flash-260910
+    cross_model_comparison: REMOVED_FROM_CONFIRMATORY_PROTOCOL
+    historical_pilot_diagnostic: artifacts/v5/pilot/pilot-20261006-v5.1.5/deepseek_single_model_diagnostic.json
+    diagnostic_rows: 216
+    diagnostic_status: HISTORICAL_EXPLORATORY_ONLY_GATE_E_NOT_PASSED
+    new_provider_spend_decision: PI-V5-006_APPROVAL_REQUIRED
+  v5_followup_fixes:
+    T332:
+      scenario_version: t332-scenario-5.1.1
+      candidate_version: 5.1.6-candidate-20261009
+      targeted_gate_c: "PASS: 60 pairs; zero candidate failures; zero firewall hits"
+    model_output_boundary:
+      historical_parameter: "max_tokens=4096"
+      future_parameter: "max_tokens=8192"
+      rerun_started: false
+  confirmation_pilot_plan: docs/v5/V5_SINGLE_MODEL_CONFIRMATION_PLAN.md
+  confirmation_pilot_estimate: "216 cases; ~1969 historical model calls; 4.3M prompt tokens; 0.9-1.8M completion tokens; provider price quote required"
+  formal_campaign: NOT_AUTHORIZED
+  implementation_progress_report: docs/v5/PROJECT_PROGRESS_18_SUITES_20261010.md
+  chatgpt_source_review_package:
+    status: VERIFIED_COMPLETE
+    output: exports/chatgpt-source-review-20261010/IoA-Bench-source-review-20261010.zip
+    read_first: docs/HANDOFF_20261010_CHATGPT.md
+    scope: current_source_tests_docs_and_selected_v5_evidence_not_full_historical_replay
+    archive_bytes: 3112669
+    files: 1197
+    sha256: 048550a020fa116c01bdc7300923fb377a8abc937add80adf732befffad4c80d
+    verification: exports/chatgpt-source-review-20261010/PACKAGE_VERIFICATION.json
+    provider_calls: 0
+    mimo_s1_probe: 'EXECUTED 2026-10-11T20:02Z (2 provider calls: discovery ok; generation HTTP 400 no_available_channel) — mimo-v2.6-pro NOT currently servable on AIHubMix; evidence artifacts/v5/data_factory/s1-mimo-probe-20261011T120201Z.json; probe script scripts/v5/mimo_s1_probe.py rerunnable; M8 stage-1 MiMo generation additionally blocked on gateway model availability until restored or PI designates an alternative generator (non-DeepSeek family per contract)'
+    pi_request_status: SUBMITTED_PENDING_DECISION (options A/B/C presented to PI via AskUserQuestion 2026-10-11 19:15; no answer recorded — request remains open in docs/v5/V5_PI_REQUEST_M5_M8_20261011.md)
+    p3_acceptance_harness: scripts/v5/verify_codex_snapshot.py (read-only hash verification + mainline diff classification + portability report; tamper-rejecting; 3 tests) — snapshot acceptance can execute same-day on delivery
+    tests_v5: 279 passed (+3 snapshot harness tests)
+    engine_1_4_0_hook_observability: after_turn/on_quiescent state transitions emitted as hook_world_transition events (state before/after hashes + responsible hook/actor); offline matrix 3240/3240 re-run (offline-matrix-20261011T112427Z.json)
+    dw_audit_009_stage_c_fields: adapter_id/can_compile_blueprints(NOT_STARTED pending M5)/replay_coverage/monitor_support/scorer_audit/human_review_status(BLOCKED_EXTERNAL_REVIEW) recorded per suite in suite-evidence-matrix.json
+    tests_v5: '299 passed (+20: hook events + stage-C fields + FAMILY-01 metamorphic list completion)'
+    dw_audit_011_prep: MATERIALS_PREPARED (scripts/v5/prep_audit_011.py -> artifacts/v5/dynamic_world/audit-prep/; T331 utility attribution + T333 abstain audit packages gathering pilot rows, frozen cases, pre-registered construct excerpts and verbatim scorer source; audit JUDGMENT remains on the PI/expert path)
+    fine_slot_diff_analysis: VALIDATED report-only over frozen 5.1.5/5.1.6 (18/18 suites zero confound markers; per-slot leaf variation width = 1 empirical minimal-pair discipline; artifacts/v5/dynamic_world/fine-slot-diff-analysis.json)
+    tests_v5: '297 passed (+18: hook events + stage-C field tests)'
+  workspace_maintenance_20261010:
+    status: COMPLETE
+    evidence: artifacts/workspace_maintenance/20261010/cleanup.json
+    workspace_index: docs/WORKSPACE_INDEX_20261010.md
+    offline_matrix: artifacts/workspace_maintenance/20261010/offline-matrix.json
+    offline_checks: 3240_of_3240_PASS
+    cache_directories_removed: 38
+    cache_files_archived: 166
+    protected_files_hash_unchanged: 17126
+    provider_calls: 0
+    scientific_acceptance_changed: false
+  next_required_decisions:
+    - Provide independent human/expert reviewers for Gate D.
+    - Approve the minimum single-model confirmation pilot and its estimated Provider spend under PI-V5-006 before any rerun.
+    - Request separate PI-V5-002 approval before Release freeze or Formal Campaign.
+  workspace_maintenance_20261011_late:
+    id: '20261011-source-package'
+    scope: reversible_cache_cleanup_and_source_package
+    cleanup: 18 cache dirs + 9 stray temp files removed; tests/v5 216 passed post-cleanup
+    package: exports/workspace-source-20261011/IoA-Bench-source-20261011.zip (1098 files, 2.3 MB)
+    package_sha256: 947c0bcb3919a30d (full hash in PACKAGE_VERIFICATION.json)
+    package_r2: 'exports/workspace-source-20261011-r2/IoA-Bench-source-20261011-r2.zip (1199 files, 3.0 MB; includes post-audit amendment work: P0 fixes, dynamic runner, family registry, 18-slice set, evidence matrix, audit-prep packages, PI request doc; zip integrity verified, no .env leak; scripts/v5/package_source.py STAMP=20261011-r2)'
+    package_r3: 'exports/workspace-source-20261011-r3/IoA-Bench-source-20261011-r3.zip (1213 files, 3.0 MB; zip_sha256 859b5bf4948131e55e2ea837c1e3d10b77b30b62b7aaf49ea66004854c91eda6; includes M5 option A execution: ported ai_generation contracts, T321-DYNA blueprint compiler + 14 tests, M5/P4 acceptance report, porting-review.json, two S1 MiMo probe records, data_factory evidence dir, YAML-quoting-repaired ledgers + pre-repair backup; verified: zip CRC clean, no .env, API key value absent from all text entries, 13 required new files present; scripts/v5/package_source.py STAMP=20261011-r3)'
+    package_excludes: .env secret, caches, data/ historical replay, historical zips, release blobs
+    package_includes: src/scripts/tests/contracts/config/docs/state/adr + assets + selected v5 evidence (gates, dynamic_world, probes)
+    provider_calls: 0
+    benchmark_acceptance_changed: false
+  post_audit_amendment_20261011:
+    source: NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/08_POST_AUDIT_AMENDMENT_20261011/
+    p0_correctness: ALL FIXED AND REGRESSION-TESTED (AUTH-01 fail-closed audience/time; LEDGER-01 1:1 action-event linkage + legacy mode; TIME-01 unified time_base with INDETERMINATE; FAMILY-01 executable-structure projection vs metadata; DEDUP-01 append-only family registry with NO_REFERENCE/instance_of_existing)
+    p1_runner: VALIDATED (v5-dynamic-runner-1.0.0 opt-in entry; T321-DYNA/T321-DYNB/T312-DYNA full-chain acceptance; monitor mandatory per episode; monitor failure = scientifically_eligible false)
+    p2_family: VALIDATED (executable_structure_signature/family_digest/metadata separation + deformation tests; family_registry.py persistent cross-run dedup; same-seed replay 0 accepted)
+    offline_matrix: 3240/3240 re-run post engine payload change (offline-matrix-20261011T103408Z.json)
+    tests_v5: 232 passed (+16 post-audit tests)
+    work_queue: M1/M2/M3/M7 acceptance_scope qualified; DW-AUDIT-001..012 overlay merged
+    dw_audit_009: 'VALIDATED (scripts/v5/suite_evidence_matrix.py -> artifacts/v5/dynamic_world/suite-evidence-matrix.json; 18 suites x real runs of BOTH runner entries — classic run_case 18/18 COMPLETED, dynamic run_dynamic_case 18/18 COMPLETED and scientifically_eligible; per-suite monitor/scorer-audit/novelty/capability-gap rows recorded; honest limit: handwritten slices != AI auto-generation maturity)'
+    m5: BLOCKED pending Codex immutable snapshot (24h rule superseded by hash-pinned handoff per amendment)
+    runner_acceptance_extended: T352-DYNA (4-round 2-allocator machine, all rounds green) + T331-DYNA (3-operator fan-out cascade, both terminals) via run_dynamic_case — 04 contract stage B closed
+    pi_request_20261011: 'docs/v5/V5_PI_REQUEST_M5_M8_20261011.md (request 1: M5 unlock = accept Codex hash-pinned snapshot + isolated integration; request 2: M8 scale-up in two stages gated on M5 merge + stage-1 evidence; option A/B/C for PI)'
+    provider_calls: 0
+    provider_calls: 0
+  dynamic_world_phase:
+    started: 2026-10-11
+    pi_decision: PI-V5-007 (goal integration); PI-V5-008 supersedes fixed auxiliary data-factory routing and authorizes evidence-backed dynamic model selection
+    integration_record: docs/v5/V5_DYNAMIC_WORLD_GOAL_INTEGRATION.md
+    work_queue: state/WORK_QUEUE_V5_DYNAMIC_WORLD.yaml
+    m0_status: VALIDATED (DW-000..DW-005; baseline manifest artifacts/v5/dynamic_world/m0-baseline-manifest.json, 75 files)
+    m1_status: VALIDATED (DW-010..DW-012; contract contracts/v5/dynamic_world_capability_maps.json DRAFT 18 suites 14 components; validator scripts/v5/validate_capability_maps.py; tests/v5 92 passed)
+    m2_status: 'VALIDATED (event ledger 1.0.0 + engine 1.3.0 + authority/evidence/clock components + authority arbitration; tests/v5 104 passed; offline matrix 3240/3240 twice: offline-matrix-20261011-m2-event-ledger.json; report-overwrite guard added)'
+    m3_status: 'VALIDATED (core/monitor.py v5-monitor-1.0.0: ledger_integrity + TimingRule/evaluate_timing + message_flow; 6 tests; suite-specific rules land with M4/M7 adapters; T333/T331 audits untouched)'
+    m4_status: 'VALIDATED (T321 dynamic vertical slice: structure A competing-brokers S5-conflict + structure B mid-episode exception delivery; dynamic/gates.py adapter-parameterized pair gates; both pass full reference sensitivity + fine arm-delta whitelists; independent-path completion without witness; timing monitors integrated; structural signatures separate classic/A/B families and ignore renaming; dynamic/t321_slice*.py CANDIDATE_EXPERIMENTAL, no dataset freeze)'
+    m5_status: 'IN_PROGRESS; selected-model trials preserved; current pipeline review fixed6 input/integrity/response gaps,852 v5 tests and18-suite offline preflight pass,API0. Broad structural quality, live positive/negative controls and calibration remain open.'
+    m6_status: 'VALIDATED (T312 dynamic slice on the same skeleton: live registry + mid-episode job amendment; gates/reference sensitivity/fine whitelist/timing/signature all pass with zero T321-specific code; Adapter API fixed = Scenario+component hooks + check_pair_dynamic + TimingRule + signature)'
+    m7_status: 'VALIDATED (ALL 18 suites adapted: 16 independently implemented dynamic slices + 3 SIMULATION_ONLY inheritance-delegation slices = 19 executable structures, each a distinct mechanism position; scoring/policies/persona delegated verbatim in the simulation cluster with zero semantic drift; SIMULATION_ONLY preserved in provenance; tests/v5 213 passed; M7 cumulative +64 tests; M5 BLOCKED <24h)'
+    m8_status: 'IN_PROGRESS (coverage-target pre-argumentation COMPLETE offline: docs/v5/V5_M8_COVERAGE_TARGETS.md + artifacts/v5/dynamic_world/coverage-analysis.json — nominal coverage complete 18x120, effective-diversity gaps located (carrier shapes T352=1/T363=1/T343=2/T333=5/T362=8), 19 dynamic slice structures = new validated family seeds not present in 5.1.5; CAPABILITY_GAP ledger G-1..G-9 consolidated (DW-071 VALIDATED); non-frozen candidate expansion later authorized by PI-V5-008; data freeze/Release, Gate D, confirmation Pilot and Campaign remain gated; historical coverage analysis retained)'
+    codex_probe: read-only inventory done; src/ioabench/v5/ai_generation/ actively modified 2026-10-11; no writes, no auto-merge (M5)
+    m5_option_a_execution_20261011:
+      pi_authorization: "Option A approved by PI (docs/v5/V5_PI_REQUEST_M5_M8_20261011.md): snapshot acceptance + selective integration + T321-DYNA real compilation + stage-1 small-scale live verification; large-scale generation/pilot/campaign remain separately authorized"
+      snapshot: 'D:\Project\ioa_codex_spec_ai_generation_probe\deliveries\IoA-Bench-v5-AIDataFactory-legacyT321-0.2.0-handoff-20261011-r1 (ioa-bench-v5-ai-data-factory-legacy-t321/0.2.0-handoff.20261011.r1)'
+      snapshot_verification: "ZIP SHA-256 1315ee5b… and MANIFEST SHA-256 b41f42f1… match PI-declared values; 460/460 payload files hash-verified; aggregate_sha256 construction undocumented (6 candidate constructions tried, none match) — recorded honestly as unverified, file-level hashes carry the guarantee; artifacts/v5/dynamic_world/porting-review.json"
+      selective_integration: "PORTED: blueprint_schema.py + 02_BLUEPRINT_SCHEMA.json + validator.py + suite_adapter.py -> src/ioabench/v5/ai_generation/; DO_NOT_PORT: legacy t321_adapter (fixed five-subtype compiler — must not cap T321-DYNA capability per HANDOFF.md) and private provider requester wiring"
+      blueprint_compiler: "src/ioabench/v5/ai_generation/t321_dyna_compiler.py T321DynaCompiler 1.3.0 / scenario 0.4.0; requires explicit per-arm offer_profiles (2 or 3 brokers), checks alpha/beta RISK weakening before compilation, retains version/signing across arms and matches broker claim text to offer version. Missing declarations fail closed; old run evidence is retained, not recompiled in place. Gamma publication timing and item labels are preserved. Live acceptance remains pending."
+      offline_e2e: "tests/v5/test_t321_dyna_compiler.py 14 passed: blueprint->schema->fidelity->compile->check_pair_dynamic->run_dynamic_case (mandatory monitor chain + exposure + score; witness SAFE both arms, naive RISK UNSAFE); deterministic per seed; 8 negative controls (unsupported tool, non-executable edge, unknown evidence channel, visibility violation, wrong delivery channel, unknown payload key, item_count mismatch, missing schema section) ALL block compilation with structured findings"
+      tests_v5: "313 passed (baseline 299 + 14 compiler)"
+      live_mimo_stage1: "BLOCKED_ON_GATEWAY: S1 probes 2026-10-11T12:02Z and 2026-10-11T13:51Z both HTTP 400 no_available_channel (mimo-v2.6-pro not servable); per PI option A 'stop if unavailable' the live stage stops here; rerun scripts/v5/mimo_s1_probe.py when restored, then limited generation + independent GLM review per stage 1"
+      historical_2160_candidates: untouched (frozen 5.1.5/5.1.6 read-only)
+      provider_calls: 0
+  overnight_execution_20261012:
+    pi_decision: PI-V5-008
+    current_pi_decision: PI-V5-016
+    current_user_scope: '审查数据生成流程及优化点，修复已证实工程缺陷并离线验证；本轮API0。七模型顺序与角色隔离保留，不批量生产、不变更正式模型或科研门。'
+    policy_version: ioabench.v5.model-routing.20261012.1
+    source: NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/09_MODEL_ROUTING_OVERNIGHT_20261012/
+    write_owner: Codex (user confirms ZCode stopped project work; no active command line references this workspace)
+    git_metadata: absent; no Git/worktree state claimed
+    formal_tested_model: deepseek-v4.1-flash (unchanged and excluded from generation/audit routes)
+    provider_routing:
+      catalog_entry_count: 419
+      generation_candidates: [qwen3.8-max, mimo-v2.6-pro, gpt-6.1-sol, claude-sonnet-5-5, glm-5.3, gpt-6-astra, gemini-3.8-flash]
+      live_trial_run: artifacts/v5/overnight_runs/model-routing-20261012-r10
+      live_trial_status: 'COMPLETED_WITH_REJECTIONS at 2026-10-12T02:13:23Z; Claude generated after MiMo/Sol failures; hard gate and 3 references pass; GLM independent PASS has unresolved evidence citations, so quality contract rejects. No new family.'
+      previous_live_trial: artifacts/v5/overnight_runs/model-routing-20261012-r9 (COMPLETED_WITH_REJECTIONS; original evidence retained)
+      latest_morning_report: artifacts/v5/overnight_runs/model-routing-20261012-r10/MORNING_REPORT.md
+      official_call_contract: docs/v5/V5_AIHUBMIX_CALL_CONTRACT_20261012.md
+      protocol_probe: 'artifacts/v5/provider_contracts/20261012-r1/probes.json; 8/8 basic JSON/content/identity checks PASS, 713 tokens. Not engineering or scientific-role qualification; native protocols and tool loops not verified.'
+      call_repairs: 'per-model official schema; documented output-token fields and reasoning enums; authoritative gateway model header plus preserved body snapshot ID; Claude json_object avoided; strict single JSON-fence parsing; exact-input audit replay; bounded 900-second auxiliary requests with 65536 output ceiling. Formal tested-model parameters unchanged.'
+      prior_mimo_failures: retained at artifacts/v5/data_factory/s1-mimo-probe-20261011T120201Z.json and s1-mimo-probe-20261011T135138Z.json; no longer a Goal-level stop
+    active_run: null
+    active_run_status: 'COMPLETED data-factory process review:6 gaps repaired,155 focused/852 v5 tests,36 all18 preflight checks/228 references,API0. Prior PI-V5-016 live trials and all original judgments retained; broad quality remains open.'
+    codex_cli:
+      version: codex-cli 0.162.0
+      read_only_exec_smoke: PASS (OK; --skip-git-repo-check --sandbox read-only --ephemeral --json)
+      workspace_write_smoke: FAILED_SAFE (automatic approval endpoint HTTP 404 for codex-auto-review; write not executed)
+      scheduled_resume: HEARTBEAT_FIRST_RUN_OBSERVED (heartbeat received 2026-10-12T01:52:36.772Z; 30-minute app trigger verified; computer and app must remain running)
+      automation_id: ioa-bench-v5-goal
+      automation_config: 'C:/Users/27640/.codex/automations/ioa-bench-v5-goal/automation.toml'
+    overnight_checkpointing:
+      runner: scripts/v5/routed_t321_data_factory_s1.py
+      status: IMPLEMENTED_AND_TESTED; atomic per-run checkpoint, append-only events, OS writer lock, interrupted generator response replay, terminal recovery, 06-template report with gate/suite/candidate/API/next-action/scheduler fields
+      diversity_rule: proven executable-family overlap stops before an independent-review Provider call
+      regression: tests/v5/test_routed_t321_factory.py (13 tests; generator and exact-input auditor replay plus fenced-JSON rejection preservation)
+      full_validation: tests/v5 + tests/m1 (374 passed; semantic-fidelity correction)
+    human_review:
+      gate_d: BLOCKED_EXTERNAL_REVIEW
+      existing_package: artifacts/v5/review_package/pilot-20261006-v5.1.5-deepseek-single-model
+      new_candidate_package: artifacts/v5/review_package/overnight-20261012-current-candidates (schema v2, suite versions and source hashes bound)
+      prep_status: blinded package, instructions, templates, adjudication workflow and agreement tool ready; actual expert decision remains blocked
+  system_engineering_20261012:
+    pi_decision: PI-V5-012
+    status: ENGINEERING_VALIDATED_SUPPORTED_CASES
+    evidence: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/SYSTEM_STATUS.json
+    acceptance: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/acceptance.json
+    acceptance_sha256: 999361bbaaf500a6cfd8d75f3810c32fe00845de2f942d65751311c8b6f4f695
+    handoff: docs/v5/V5_SYSTEM_HANDOFF_20261012.md
+    factory_contract_sha256: e3a4b2876819ff42ae4a9ffa17ad6bc4b8b66528b2d1f3edf58780808385c0f4
+    execution_source_tree_sha256: 07badcb26b5b9ca6458071eefc420b52f72aab37eb41325bb3ab082c399ea603
+    source_archive: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/source.zip
+    source_archive_sha256: 862d6af0134ca91d0b07c5034de8fb0f08adb4260fe5c84db8c4f191c7d353b2
+    acceptance_command_sha256: 0d07706f2ef24c315a837a0e5c3a21efc6a5e7ec2981a7094330e4834498ceb0
+    test_source_archive: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/test-source.zip
+    test_source_archive_sha256: d7e1f586fbcfc476e879ffc5f90945e5b8155889847f91446e9688bfced95103
+    report: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/MORNING_REPORT.md
+    scope: 18 existing classic suites and 19 registered dynamic structures; supplied-case execution, resume, replay, reporting and review software
+    generation_priority: 'Current user scope: local intake, quality validation, reference evaluation and review preparation; AIHubMix and bulk real-data generation remain outside this turn.'
+    current_tests: 'python -B -m pytest tests/v5 tests/m1 -q: 796 passed, 0 failed/errors/skipped; focused regression: 81 passed; prior offline matrix: 3240/3240'
+    latest_local_acceptance: '74 engineering cases across 18 classic suites and 19 registered dynamic structures; witness and naive each completed 74, exact expected behavior/exposure/opportunity checks 74/74, ledger and strict replay 74/74; resume added no execution; provider calls 0; current source is final-r9'
+    online_validation: 'Historical source-bound DeepSeek r2: 2/2 complete,77 actual model responses,2/2 exact replay,resume no new response; not revalidated against this local-only acceptance source.'
+    online_final_run: artifacts/v5/evaluations/system-20261012-live-r2
+    model_response_count_including_probes: 171
+    token_usage: '306370 prompt + 22672 completion =329042 total; monetary cost not returned'
+    human_review_software: artifacts/v5/review_package/system-20261013-engineering-r3; schema3 supplied classic/dynamic inputs; sample shortfalls explicit; unknown labels rejected; disagreements require human adjudication
+    gate_cd_materials: artifacts/v5/gates/gate-c-d-readiness-20261013-r3.json
+    gate_cd_materials_sha256: 0193b34a720fd1ce7cc3888b3f9a7d6dc5f4bcb584e60c604f6ff15e2d108834
+    manual_18_engineering_pack: artifacts/v5/manual_18/20261013-one-pair-per-suite-r3/MANUAL_18_VERIFICATION.json
+    manual_18_engineering_pack_sha256: d227de651cb828527781da19df3ea272d0bdc71fbf7f2ea7662180ce2bcf1d68
+    new_generation_batches: 0
+    new_qualified_families: 0
+    human_reviews: 0
+    current_writer: 'NONE at handoff; ZCode workspace writer not observed; Codex held the existing OS writer lock for state edits and released it after verification'
+    scheduler_current: 'NOT_FOUND: updating existing ioa-bench-v5-goal failed because automation no longer exists; previous observed heartbeat is historical evidence, no new heartbeat was created'
+    next_work: 'Local candidate intake, reference evaluation and blind-review preparation are validated for the supported scope. AIHubMix-backed generation/audit, broad diversity, calibration, Gate D and formal stages remain open; do not claim arbitrary-world support.'
+    formal_stages: NOT_STARTED; existing human/PI/freeze gates unchanged
+  direct_deepseek_official_config_20261013:
+    pi_decision: PI-V5-013
+    status: VERIFIED_EXPLORATORY_DIRECT_API
+    adapter: src/ioabench/models/deepseek.py
+    contract: docs/v5/V5_DEEPSEEK_DIRECT_CALL_CONTRACT_20261013.md
+    official_docs_snapshot: D:/Project/Playground/scrape/deepseek-docs
+    model: deepseek-flash
+    endpoint: https://api.deepseek.com/chat/completions
+    parameters: 'thinking={type: enabled}; reasoning_effort=high; stream=false; max_tokens=131072; temperature omitted because thinking mode ignores it'
+    t311_verification: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-t311-r1/CONFIG_VERIFICATION.json
+    t311_status: '2/2 completed; 10/10 responses exact deepseek-flash; reasoning replay verified; strict replay 2/2; resume added 0 calls'
+    all_suite_run: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-all-r1
+    all_suite_status: '36/36 completed across 18 classic suites; all 289 responses deepseek-flash; no truncation; strict replay 36/36; no-call resume unchanged'
+    all_suite_verification: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-all-r1/CONFIG_VERIFICATION.json
+    all_suite_verification_sha256: 46d151324b117276fd93afc6b42746195a59812a387f0cc6e62963f217beef90
+    all_suite_source_sha256: ef64b4368e2eb3e243acadbac5a3053b2e71cb611fa033c39c02d74ee31a3f6c
+    all_suite_outcomes: '32 EARLY_SAFE; 3 TASK_SAFE_BUT_FAILED; 1 SCORER_ABSTAINED; these are retained model/scoring outcomes, not Provider failures'
+    all_suite_model_responses: 289
+    all_suite_total_tokens: 1062003
+    current_turn_model_responses_including_t311_probe: 299
+    current_turn_total_tokens_including_t311_probe: 1166730
+    current_turn_catalog_requests: 4
+    report: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-all-r1/MORNING_REPORT.md
+    formal_accepted: false
+    formal_model_unchanged: deepseek-v4.1-flash
+    full_regression_tests: 802
+    junit: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-t311-r1/tests-junit.xml
+    junit_sha256: 060bf3c27b82c18d42593b46d6f57119919c86de507b7a8222c61f86a9ba510e
+  workspace_maintenance_20261013:
+    status: ORGANIZED_AND_RECOVERABLY_CLEANED
+    scope: 'Navigation/docs/cache/idle-backup maintenance only; runtime source and scientific evidence preserved'
+    evidence: artifacts/workspace_maintenance/20261013-r1
+    guide: WORKSPACE.md
+    index: docs/WORKSPACE_INDEX_20261013.md
+    report: artifacts/workspace_maintenance/20261013-r1/REPORT.md
+    rollback: artifacts/workspace_maintenance/20261013-r1/rollback.zip
+    cache_files_archived: 153
+    cache_bytes_archived: 2420796
+    idle_files_archived: 2
+    cache_directories_removed: 21
+    protected_files: 34390
+    source_sha256: 146eacffe47c7df7254794a0b1aa7383d923a64add1c6dc054e5822f4a81cfbd
+    historical_root_zip_policy: 'Keep all10 in place: original paths remain referenced by recovery scripts/state/historical indexes; no unvalidated relocation'
+    credentials: 'Local .env remains in place; excluded from rollback archive and public reports'
+    provider_calls: 0
+    formal_accepted: false
+    acceptance: 'Final results and after-cleanup hashes recorded in VERIFICATION.json; no claim of scientific milestone completion'
+  workspace_source_review_20261014:
+    authorization: user_requested_workspace_organization_and_source_package_for_web_chatgpt_review
+    status: CLEANED_WITH_ROLLBACK_CURRENT_REVIEW_HANDOFF_AND_EXPORT_REGISTERED
+    evidence: artifacts/workspace_maintenance/20261014-source-review-r1
+    report: artifacts/workspace_maintenance/20261014-source-review-r1/REPORT.md
+    handoff: docs/HANDOFF_20261014_CHATGPT.md
+    export_directory: exports/chatgpt-source-review-20261014
+    package_verification: exports/chatgpt-source-review-20261014/PACKAGE_VERIFICATION.json
+    packaging_command: python -B scripts/package_chatgpt_review.py --output exports/chatgpt-source-review-20261014 --handoff docs/HANDOFF_20261014_CHATGPT.md
+    inventory_before_files: 46769
+    cache_files_archived_and_removed: 53
+    cache_bytes_archived: 218620
+    cache_directories_removed: 16
+    edited_files_backed_up: 9
+    tests: '4 packaging checks passed;exported-source acceptance recorded with final package verification;runtime unchanged;one negative-test fixture root made independent of host temp directory'
+    source_tree_sha256: 1416449d4ae6fda00d3f487e9d32115f553baf0c2002f5bb41591d2a43787e7d
+    scope: 'Source/contracts/scripts/tests/docs/state,classic candidate references,current process-review evidence and one real historical generation example;private credentials and full history excluded'
+    acceptance: 'Final exported bytes,member hashes,ZIP CRC and secret scan are recorded in package_verification after publication;maintenance verification independently checks all prior protected file hashes'
+    provider_calls: 0
+    formal_accepted: false
+    research_gate_changes: false
+  data_factory_process_review_20261014:
+    authorization: user_requested_pipeline_review_and_improvement_under_existing_engineering_authority
+    status: REVIEW_AND_VERSIONED_ENGINEERING_REPAIRS_VERIFIED_OFFLINE
+    evidence: artifacts/v5/data_factory/review/process-audit-20261014-r1
+    report: artifacts/v5/data_factory/review/process-audit-20261014-r1/REPORT.md
+    verification: artifacts/v5/data_factory/review/process-audit-20261014-r1/AUDIT_VERIFICATION.json
+    morning_report: artifacts/v5/data_factory/review/process-audit-20261014-r1/MORNING_REPORT.md
+    factory_version: ioabench.v5.reusable-data-factory/2.3.5
+    quality_version: ioabench.v5.generation-quality/1.4.0
+    control_version: ioabench.v5.data-factory-quality-control/1.4.1
+    source_tree_sha256: 1416449d4ae6fda00d3f487e9d32115f553baf0c2002f5bb41591d2a43787e7d
+    repaired_findings: 'Authoritative public construct definitions for reviewer; required historical files; hash-bound cached pool/source list; complete terminal evidence inventory; normal-stop auxiliary responses; durable quality-control response rejection'
+    tests: '155 focused,852 complete tests/v5 passed;36 new regressions reproduced before repair;0 final failures/errors/skips'
+    all_suite_preflight: '18 suites,36/36 checks,228 reference checks; Provider constructor forbidden'
+    protected_files_unchanged: 274
+    original_candidates_evidence_checked: 6
+    source_and_test_snapshots: '457 source files +52 v5 test files; per-file SHA-256/ZIP CRC; credential occurrences0; before-code backups retained'
+    source_archive: artifacts/v5/data_factory/review/process-audit-20261014-r1/source.zip
+    test_archive: artifacts/v5/data_factory/review/process-audit-20261014-r1/test-source.zip
+    provider_calls: 0
+    new_data: 0
+    new_qualified_global_families: 0
+    formal_accepted: false
+    current_writer: 'Codex under existing OS lock; tests isolated to basetemp; no ZCode writer observed; lease released at handoff'
+    remaining: 'Most unified adapters enrich text only;3 typed compilers expose limited knobs;coverage planner/global index not fully integrated;live auditor controls and empirical calibration/reliability remain open'
+    next: 'Fixed positive/negative controls for revised reviewer input,then expand executable structures and coverage planning;preserve old judgments,no threshold lowering or bulk production'
+  selected_model_trials_20261014:
+    historical_source_checkpoint: true
+    superseded_current_source: data_factory_process_review_20261014; original online results remain immutable
+    pi_decision: PI-V5-016
+    status: BOUNDED_GENERATION_ENGINEERING_PASS_BROAD_QUALITY_PENDING
+    evidence: artifacts/v5/provider_contracts/pi-order-20261014T082638
+    report: artifacts/v5/provider_contracts/pi-order-20261014T082638/REPORT.md
+    verification: artifacts/v5/provider_contracts/pi-order-20261014T082638/VERIFICATION.json
+    requested_generation_order: [gpt-5.6-sol, deepseek-v4.1-flash, kimi-k3, deepseek-v4-pro, glm-5.3-flash, gemini-3.8-flash, grok-4.6]
+    actual_generator: gpt-5.6-sol
+    actual_auditors: [glm-5.3-flash, gemini-3.8-flash]
+    same_tested_family: 'DeepSeek listed for exploration only, not called as generator/auditor; formal factory exclusion remains. User question is not recorded as approval to remove formal isolation.'
+    automatic_seven_model_fallback_implemented: false
+    official_models_resolved: 7
+    official_schemas_and_local_docs: 7
+    new_connection_probes: 3
+    source_tree_sha256: 14ecaf00a1659b672efe12875ead7c9a107534e66b35d7c20c4fda3959f92e9b
+    factory_version: ioabench.v5.reusable-data-factory/2.3.4
+    trial_runs: [pi-order-gpt-sol-20261014-r1, pi-order-gpt-sol-20261014-r2, pi-order-gpt-sol-20261014-r3]
+    unique_generated_candidates: 6
+    completion_requests: 15
+    new_responses: 15
+    requests_breakdown: '6 GPT generation +5 GLM independent review +1 Gemini independent review +3 connectivity probes'
+    reported_tokens: 253572
+    reported_prompt_tokens: 231008
+    reported_completion_tokens: 22460
+    monetary_cost: NOT_RETURNED
+    observed_provider_failures: 0
+    observed_401: false
+    original_machine_accepted: 3
+    original_rejected: 3
+    acceptance_limit: 'r1 accepted T331 requested M/generated H, retained as historical result with defect; r2 T331 and r3 T352 pass their versioned contracts; not six uniformly qualified cases'
+    r3_relative_reference_structure: 1
+    structure_scope: 'Relative to bound accepted reference pool only; similar T352 parameters also occurred in rejected proposals, not a globally novel family'
+    new_qualified_global_families: 0
+    formal_accepted: false
+    human_reviews: 0
+    tests: '32 focused factory /816 complete tests/v5 passed; no failure or skip'
+    repairs: 'Requested design difficulty bound and checked; typed preview rebuilt using actual compile seed; no change to truth, compiler semantics, scorer or frozen data'
+    resume: 'All3 runs resumed with pinned archived source and provider construction forbidden;0 calls, immutable candidate JSON/logs and historical dataset hashes unchanged'
+    source_archives: '457 files per run, per-file SHA-256 and ZIP CRC verified; local credential occurrences0'
+    current_writer: 'Codex sole writer under existing OS lock during edits; no ZCode/project writer observed; lease released at handoff'
+    next: 'Validate independent positive/negative controls and remaining suites; improve executable structural capacity, all-history dedup and empirical difficulty/reliability; no bulk generation or formal freeze'
+  aihubmix_mainstream_connectivity_20261014:
+    authorization: user_requested_mainstream_model_parameters_and_live_connections
+    status: BASIC_CHAT_PASS_9_OF_10_ONE_CHANNEL_UNAVAILABLE
+    evidence: artifacts/v5/provider_contracts/mainstream-20261014T080611
+    report: artifacts/v5/provider_contracts/mainstream-20261014T080611/REPORT.md
+    parameters: artifacts/v5/provider_contracts/mainstream-20261014T080611/MODEL_PARAMETERS.json
+    verification: artifacts/v5/provider_contracts/mainstream-20261014T080611/VERIFICATION.json
+    source_sha256: f9cd9db539d25c5c553ff03190e055b69aea9386af6bdf6b34cedaa6793968e9
+    provider_role: CONNECTIVITY_PROBE
+    distinct_model_ids: 10
+    completion_requests: 11
+    passed_models: [glm-5.3, gemini-3.8-flash, deepseek-v4.1-flash, qwen-3.8-27b, gpt-5.6-luna, qwen3.8-max, gpt-6.1-sol, claude-sonnet-5-5, mimo-v2.6-pro]
+    unavailable_model: qwen3.8-27b
+    unavailable_evidence: 'HTTP400/no_available_channel twice: schema-derived parameters and official minimum request; distinct qwen-3.8-27b succeeded, not treated as an alias'
+    official_schemas: 9
+    copied_official_model_docs: 10
+    schema_missing_model: qwen-3.8-27b
+    tokens_reported_on_successes: 1109
+    failed_request_usage: unknown
+    observed_401: false
+    request_timeout_seconds: 120
+    source_unchanged: true
+    no_call_resume_verified: true
+    formal_acceptance_changed: false
+    scope: 'Live catalog/official parameters/single text-JSON request only; no tool-loop, concurrency, long-run reliability or generator-reviewer quality qualification; frozen tested configuration unchanged'
+  aihubmix_key_recheck_20261014:
+    authorization: user_requested_key_recovery_test
+    status: TEXT_CONNECTIVITY_PASS
+    checked_at_local: '2026-10-14T07:45:31+08:00'
+    evidence: artifacts/v5/provider_contracts/key-recheck-20261013T234522Z/RESULT.json
+    credential_source: workspace_env
+    requested_model: glm-5.3-flash
+    served_model: glm-5.3-flash
+    official_schema_verified: true
+    catalog_model_resolved: true
+    completion_requests: 1
+    completion_seconds: 5.828
+    returned_text: AIHUBMIX_OK
+    finish_reason: stop
+    total_tokens: 182
+    observed_401: false
+    source_unchanged: true
+    scope: 'Authentication/catalog/single text call only; not all-model, tool-loop, generation-role or scientific acceptance; no benchmark/generation batch started'
+  record_audit_repairs_20261014:
+    authorization: user_requested_fixes_after_personal_16_suite_audit
+    status: ENGINEERING_REPAIRS_VALIDATED_INDEPENDENT_REVIEW_PENDING
+    source_sha256: f9cd9db539d25c5c553ff03190e055b69aea9386af6bdf6b34cedaa6793968e9
+    contract: docs/v5/ADR_V5_016_RECORD_AUDIT_REPAIRS.md
+    evidence: artifacts/v5/overnight_runs/20261014-audit-fixes-r3
+    report: artifacts/v5/overnight_runs/20261014-audit-fixes-r3/MORNING_REPORT.md
+    final_acceptance: artifacts/v5/overnight_runs/20261014-audit-fixes-r3/FINAL_ACCEPTANCE.json
+    exposure_checker: v5-exposure-checker-1.3.0
+    scorer_versions: 'T321 5.2.1, dynamic A/B 0.2.1; T332/T342/T343/T351/T352 5.2.0; T363 5.2.2'
+    other_versions: 'T321 scenario 5.2.0; T363 scenario 5.2.1 and dynamic scenario 0.2.1; T341 generator 5.2.0; report 1.1.0; construct maps 5.0.1-audit-clarifications; record-audit-neutral-20261013.5'
+    tests_final: '809 passed in final tests/v5; 26 focused regressions; no failures/errors/skips'
+    tests_prior_revision: 'Full active tree excluding separately pinned tests/v4: 1682 passed, 2 skipped; source b310331564dd02392b3a868596b855b997b6a3507c2b51528810d988ef63d673; locked isolated test environment; final narrow T321/T363 follow-up reverified by all v5 tests, not another full historical-tree run'
+    system_acceptance: artifacts/v5/system_acceptance/audit-fixes-20261014-system-r3/acceptance.json
+    reference_verification: '18 classic +19 dynamic structures, 74 cases x2 policies:148 executions/replays;44 revised candidates x2 policies:88 executions/replays; both batches resume without reexecution'
+    historical_measurement: '32 pinned retained cases,321 saved responses; new source measurement only, not reconstructed revised environments or fresh online runs;25 EARLY_SAFE,5 TASK_SAFE_BUT_FAILED,2 SCORER_ABSTAINED; original results unchanged'
+    protected_files: 1064
+    protected_files_unchanged: true
+    candidate_cases: 44
+    new_qualified_global_families: 0
+    formal_dataset_accepted: 0
+    ordering_variants_count_as_new_families: false
+    blind_review: artifacts/v5/overnight_runs/20261014-audit-fixes-r3/t363_blind_review
+    blind_review_scope: '8 historical guidance responses from2 T363 cases; materials/rubric/private evidence index prepared; no independent labels'
+    independent_review: NOT_PERFORMED
+    human_labels: 0
+    provider_calls: 0
+    new_online_runs: 0
+    formal_accepted: false
+    publication_ready: false
+    historical_evidence_changed: false
+    remaining: 'Fresh online verification of revised scenarios/scorers; independent content review including T333/T361 interpretation issues; broader data calibration/dedup and formal gates. T361-T363 remain SIMULATION_ONLY.'
+    next_action: 'Review prepared blinded material and preregister a separate diagnostic using exact new source/candidates; do not reuse historical online responses as new version confirmation'
+  sixteen_suite_author_audit_20261013:
+    status: AUDIT_COMPLETE_REFINEMENT_REQUIRED
+    scope: '16 suites excluding T333/T361; 32 current control/risk records selected from original and contract-recheck runs; 321 saved deepseek-flash responses'
+    evidence: artifacts/v5/overnight_runs/20261013-16suite-audit-r1
+    report: artifacts/v5/overnight_runs/20261013-16suite-audit-r1/AUDIT_REPORT.md
+    machine_decisions: artifacts/v5/overnight_runs/20261013-16suite-audit-r1/AUDIT_DECISIONS.json
+    source_sha256: 146eacffe47c7df7254794a0b1aa7383d923a64add1c6dc054e5822f4a81cfbd
+    source_changed: false
+    observed_behavior: 'Main safety conclusions supported for these 32 records; this does not establish general scientific adequacy'
+    verification: '32/32 saved-response behavior reanalyses; 16 pair-diff checks; 37 focused regression tests passed; five scorer counterexamples reproduced offline'
+    findings: 'A01 exposure timing/content; A02 T343 completion/over-restriction; A03 T352 compliant alternative; A04 T363 content/task coverage; A05 business receipts/utility scope; A06 T341 ordering; A07 actual downstream exposure; A08 bundled manipulation/exception documentation'
+    provider_calls: 0
+    new_online_runs: 0
+    new_qualified_global_families: 0
+    independent_review: NOT_PERFORMED_AUTHOR_SELF_AUDIT_ONLY
+    formal_accepted: false
+    next_action: 'Versioned fixes for precise exposure, task coverage and utility/semantic measurement; preserve original inputs, prompts, scores and response evidence. Existing T333/T361 independent-review issues remain open.'
+  scoring_refinement_20261013:
+    authorization: 'User continuation after PI-V5-015; versioned engineering repairs and review preparation, no new formal protocol decision'
+    status: ENGINEERING_REPAIR_REANALYSIS_AND_REVIEW_MATERIALS_COMPLETE
+    evidence: artifacts/v5/overnight_runs/20261013-scoring-audit-r1
+    report: artifacts/v5/overnight_runs/20261013-scoring-audit-r1/MORNING_REPORT.md
+    contract: docs/v5/V5_SCORING_DIAGNOSTICS_REPAIR_20261013.md
+    source_sha256: 146eacffe47c7df7254794a0b1aa7383d923a64add1c6dc054e5822f4a81cfbd
+    scorer_versions: 'T333 5.1.2; T361 5.1.1; T333-DYNA binds actual delegated version'
+    report_version: v5-engineering-report-1.0.2
+    review_package_schema: ioabench.v5.gate-d-review-package/4
+    tests: '833 passed; 0 failures/errors/skips'
+    recorded_response_reanalysis: '40/40 identical requests/actions/events/state/exposure/monitors; original36 and repair4 kept separate; all40 outcome classes unchanged; four scores have corrected metrics/evidence'
+    new_online_runs: 0
+    provider_calls: 0
+    review_package: artifacts/v5/overnight_runs/20261013-scoring-audit-r1/review-package
+    review_preparation: '18 suites; 36 Part B cases +36 Part C trajectories (including one abstention) +276 Part D requests; 36/36 actual prompts/tool schemas matched'
+    new_finding: 'T361 authored-neutral .3 omitted the explicit recheck guideline; both original no-recheck failures have a visibility/interpretation confound and cannot establish disregard of a visible rule or blind deference'
+    scoring_boundary: 'T361 safety rules unchanged. T333 additional sensitive comment under an authorized structured driver now abstains; denial remains unresolved. Old scorer outputs preserved, no relabeling to SAFE.'
+    formal_accepted: false
+    human_labels: 0
+    new_qualified_global_families: 0
+    next_action: 'Independent review of exact T333 statement and T361 policy visibility/operationalization using prepared package; do not tune historical prompts or pool reanalysis with fresh model responses'
+  authored_online_diagnostic_20261013:
+    pi_decision: PI-V5-015
+    status: ENGINEERING_DIAGNOSTIC_AND_CONTRACT_RECHECK_COMPLETE
+    initial_run: artifacts/v5/evaluations/direct-deepseek-flash-20261013-authored-r3-all-r1
+    initial_completed: 36
+    initial_outcomes: '30 EARLY_SAFE; 2 TASK_SAFE_BUT_FAILED; 3 FULL_FAILURE; 1 SCORER_ABSTAINED'
+    initial_risk_outcomes: '14 EARLY_SAFE; 1 TASK_SAFE_BUT_FAILED; 2 FULL_FAILURE; 1 SCORER_ABSTAINED'
+    initial_source_sha256: 338c7ff03a902fa6acb00602441330bc23f59cacbd11fb13f921338f7216e896
+    initial_responses: 344
+    followup_run: artifacts/v5/evaluations/direct-deepseek-flash-20261013-authored-contract-fix-r1
+    followup_scope: 'Two separately versioned T331/T332 pairs; original results never replaced or pooled'
+    followup_completed: 4
+    followup_outcomes: '4 EARLY_SAFE; full three-record propagation and public support+gateway delivery verified'
+    followup_responses: 41
+    current_source_sha256: 67642e666e2ae2492215a9c52fdfa93a67be123a5f1b7eaee2387847b9a18d1f
+    repairs: 'Required candidate-profile execution/replay binding; abstention report classification; explicit complete-record attachment delivery with atomic reference validation; T331 business completion clarification in new candidate pair only'
+    model: deepseek-flash
+    provider: direct_deepseek
+    catalog_requests: 4
+    completion_responses: 385
+    observed_provider_failures: 0
+    truncations: 0
+    tokens: 1474537
+    monetary_cost: UNKNOWN
+    strict_replay: '36/36 original +4/4 followup; original36 additionally replayed from archived source'
+    completed_resume_provider_calls: 0
+    full_regression: '810 passed; initial implementation806 passed'
+    evidence: artifacts/v5/overnight_runs/20261013-authored-online-r1
+    report: artifacts/v5/overnight_runs/20261013-authored-online-r1/MORNING_REPORT.md
+    candidate_contract_revision: artifacts/v5/manual_18/20261013-authored-contract-fix-r1
+    current_all18_input: artifacts/v5/manual_18/20261013-authored-contract-fix-r1/cases_all18.jsonl
+    current_input_scope: '36 candidates assembled from the two versioned runs; exact per-case evidence index retained; combined file was not a new full online batch'
+    core_scoring_changed: false
+    frozen_data_changed: false
+    formal_accepted: false
+    scientific_limits: 'T332 original leakage attribution confounded by undocumented attachment semantics; T333 free-text abstention retained; T361 correct decisions but no suggested recheck, both arms fail same existing rule; one pair per suite, no independent human validation or difficulty calibration; T361-T363 SIMULATION_ONLY'
+    next_action: 'Independent semantic/construct review using retained trajectories, then versioned broader data calibration; do not rerun terminal batches to improve safety scores'
+  manual_authored_cases_20261013:
+    pi_decision: PI-V5-014
+    status: AUTHORED_CANDIDATE_LOCAL_VALIDATION_COMPLETE
+    dataset_version: authored-18-20261013.3
+    scenario_profile: authored-neutral-20261013.3
+    pack: artifacts/v5/manual_18/20261013-authored-scientific-r3
+    design: artifacts/v5/manual_18/20261013-authored-scientific-r3/18项样本设计说明.md
+    cases: 36
+    risk_cases: 18
+    paired_controls: 18
+    pair_gates: 18_of_18_PASS
+    neutral_reference_runs: 124
+    witness_safe_and_scored_useful_cases: 36
+    naive_risk_unsafe_cases: 18
+    supplementary_runs: 21
+    refuse_all_utility_failures: 18
+    bad_or_empty_reference_rejections: 10
+    valid_reference_hits: 5
+    full_public_reply_cases: 2
+    source_tree_sha256: ef64b4368e2eb3e243acadbac5a3053b2e71cb611fa033c39c02d74ee31a3f6c
+    source_changed: false
+    evidence: artifacts/v5/manual_18/20261013-authored-scientific-r3/MANIFEST.json
+    final_verification: artifacts/v5/manual_18/20261013-authored-scientific-r3/HANDOFF_VERIFICATION.json
+    rejected_drafts: 'r1 compatibility failures and r2 verifier failure/superseded content preserved in their original namespaces'
+    core_scoring_changed: false
+    t332_completion_limit: 'Native witness and main utility cover support address only; additional public_reply checks deliver support+gateway in both arms without protected fields; over_restriction separately checked.'
+    provider_calls: 0
+    real_tested_model_run: NOT_PERFORMED
+    historical_scope_note: 'Above values describe the PI-V5-014 authoring step only; subsequent real runs and findings are in authored_online_diagnostic_20261013.'
+    independent_semantic_review: NOT_PERFORMED
+    difficulty_calibration: DESIGN_PROXY_ONLY
+    full_historical_dedup: NOT_PERFORMED
+    new_qualified_global_families: 0
+    formal_accepted: false
+    current_writer: 'Codex sole authoring writer; existing OS lock held during writes; release verification retained with final handoff'
+    next: '独立内容审核及明确绑定此profile的新在线工程试测；旧DeepSeek结果不能作为新数据的安全结论。'
+  data_factory_validation_20261012:
+    historical_checkpoint: true
+    superseded_current_scope: selected_model_trials_20261014 (PI-V5-016); historical401 and PI-V5-012 pause retained below
+    pi_decision: PI-V5-012 (active scope override; PI-V5-011 evidence retained)
+    status: ENGINEERING_LOCAL_INTAKE_PROVIDER_PENDING
+    pause_source: historical_PI-V5-010_failure_preserved; current PI-V5-012 scope permits local intake and review preparation only
+    auto_continue_allowed: false
+    local_continuation_allowed: true
+    provider_calls_allowed_current_scope: false
+    current_turn_provider_calls: 0
+    current_turn_generation_batches: 0
+    factory_version: ioabench.v5.reusable-data-factory/2.3.2
+    evidence: artifacts/v5/data_factory/trials/local-historical-compare-20261013-r3/PREFLIGHT.json; artifacts/v5/data_factory/trials/factory-acceptance-20261012-r1/STATUS.json
+    source_sha256: e3a4b2876819ff42ae4a9ffa17ad6bc4b8b66528b2d1f3edf58780808385c0f4
+    source_archive: artifacts/v5/data_factory/trials/factory-acceptance-20261012-r1/source.zip
+    current_source_archive: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/source.zip
+    current_source_archive_sha256: 862d6af0134ca91d0b07c5034de8fb0f08adb4260fe5c84db8c4f191c7d353b2
+    source_integrity: '452 files; per-file SHA-256 and ZIP CRC verified; actual local credential occurrences 0'
+    checkpoint: artifacts/v5/data_factory/trials/factory-live-20261012-r6/RUN_STATE.json
+    report: artifacts/v5/data_factory/trials/factory-acceptance-20261012-r1/MORNING_REPORT.md
+    handoff: docs/v5/V5_DATA_FACTORY_HANDOFF_20261012.md
+    planned_generator: claude-sonnet-5-5
+    planned_independent_auditor: gpt-6-astra
+    model_selection_scope: 'Convenience defaults only; live catalog/schema/exact vendor identity checked per new run; generator and auditor are different families; tested DeepSeek unchanged'
+    provider_calls: 11
+    provider_failures: 4
+    unique_saved_responses: 7
+    provider_live_status: 'Latest generation and audit HTTP401; documented read-only authentication checks on both official domains also HTTP401'
+    auth_evidence: artifacts/v5/provider_contracts/20261012-auth-r1/AUTH_DIAGNOSIS.json
+    token_usage: '30868 prompt +7515 completion =38383 unique saved-response tokens; 2 copied generator responses excluded; unreturned usage and monetary cost unknown'
+    current_tests: 'historical factory acceptance: 784 passed; current workspace regression after intake, historical-reference dedup and T332 replay-order fix: 796 passed; all18 preflight 36/36,228 reference checks; historical baseline files 19/19 hash-bound; same blueprint+seed reproducible'
+    terminal_resume: 'Archived r4 source in disposable checkout; zero Provider construction/call, original REJECTED retained; 33 original files unchanged'
+    changes: 'Shared ModelPort pipeline; all18 controlled runtime text adapters; T312/T331/T352 typed compilers; T352 local receipts and explicit completed-report query; faithful deterministic gates/execution/replay; public independent review; actual runtime structure comparison; immutable evidence and response recovery; strict refusal/schema/identity/error handling'
+    trial_results: '7 candidate executions: 1 MACHINE_ACCEPTED,3 REJECTED,3 PROVIDER_FAILED; r2/r3/r4 reuse one proposal, not three new candidates'
+    semantic_quality_control: 'PREPARED_NOT_AUDITED, passed=false, API0; previous real negative-control attempt HTTP401; contradiction detection not yet live-validated'
+    quality_control_package: artifacts/v5/data_factory/quality_controls/factory-quality-control-20261012-r2
+    acceptance_scope: 'Supported-scope engineering and local candidate intake/reference/review handoff validated; latest T352 positive trial and blind negative control still unverified. No bulk generation, scientific acceptance, formal freeze or human labels.'
+    new_qualified_global_families: 0
+    historical_failure: 'PI-V5-010 process-validation-20261012-r1 duplicate-node failure preserved; compiler1.4.0 now rejects duplicates/cycles/unresolved nodes and has regression coverage'
+    remaining: 'Restore Provider authentication for fresh bounded positive/control trials; broader executable structure support, bulk historical-family comparison and difficulty calibration remain open; M5 stays IN_PROGRESS'
+    next_action: 'Continue local intake/quality/review preparation with new versioned runs; do not call Provider, batch-generate, freeze or alter historical evidence.'
+    current_writer: 'NONE at final handoff; root used existing OS lock and explicit worker file ownership, then released lease; no ZCode/project writer observed'
+    candidate_intake_20261013:
+      status: ENGINEERING_INTAKE_READY
+      source_run: data/v5/dynamic_experimental/T321-DYNA/m8-fill-20261011-t321-v2
+      intake: artifacts/v5/data_factory/intake/20261013-t321-v2
+      cases: 4
+      pairs: 2
+      source_case_sha256: e5741ba04346ea480b99236bcb63f3825520493969d712bb57beb10e50575998
+      reference_runs:
+        witness: artifacts/v5/evaluations/intake-20261013-t321-v2-witness
+        naive: artifacts/v5/evaluations/intake-20261013-t321-v2-naive
+      blind_review_package: artifacts/v5/data_factory/review/20261013-t321-v2
+      verification: artifacts/v5/data_factory/intake/20261013-t321-v2/INTAKE_VERIFICATION_20261013_R2.json
+      verification_sha256: 751e16f6b530f5825b6ae6f2a169a24b47cda7e0a510bb018b8cccf11545a098
+      full_regression_tests: 796
+      provider_calls: 0
+      formal_accepted: false
+      note: 'Local case intake, pair-gate recheck, reference evaluation and review-package preparation passed; this is not bulk or formal data acceptance.'
+    historical_reference_preflight_20261013:
+      status: OFFLINE_ENGINEERING_PASS
+      run: artifacts/v5/data_factory/trials/local-historical-compare-20261013-r2
+      factory_version: ioabench.v5.reusable-data-factory/2.3.2
+      suites: 18
+      checks: 36
+      reference_checks: 228
+      historical_reference_files: 19
+      baseline_hashes: artifacts/v5/data_factory/trials/local-historical-compare-20261013-r2/BASELINE_SOURCES.json
+      family_status_counts: 'TEXT_DUPLICATE=23, INSTANCE=11, NEW_STRUCTURE=2'
+      difficulty_evidence_status: DESIGN_PROXY_ONLY_NOT_EMPIRICALLY_CALIBRATED
+      provider_calls: 0
+      formal_accepted: false
+    historical_reference_preflight_current_20261013:
+      status: OFFLINE_ENGINEERING_PASS
+      run: artifacts/v5/data_factory/trials/local-historical-compare-20261013-r3
+      factory_version: ioabench.v5.reusable-data-factory/2.3.2
+      source_sha256: e3a4b2876819ff42ae4a9ffa17ad6bc4b8b66528b2d1f3edf58780808385c0f4
+      suites: 18
+      checks: 36
+      reference_checks: 228
+      historical_reference_files: 19
+      family_status_counts: 'TEXT_DUPLICATE=23, INSTANCE=11, NEW_STRUCTURE=2'
+      difficulty_evidence_status: DESIGN_PROXY_ONLY_NOT_EMPIRICALLY_CALIBRATED
+      provider_calls: 0
+      formal_accepted: false

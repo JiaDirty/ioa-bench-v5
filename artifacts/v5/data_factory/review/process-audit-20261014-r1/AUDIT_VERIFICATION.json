@@ -1,0 +1,57 @@
+{
+  "credential_occurrences": 0,
+  "factory_version": "ioabench.v5.reusable-data-factory/2.3.5",
+  "formal_accepted": false,
+  "new_qualified_global_families": 0,
+  "original_prompt_sizes": [
+    {
+      "candidate": "artifacts/v5/data_factory/trials/pi-order-gpt-sol-20261014-r1/candidate-01",
+      "candidate_view_chars": 32547,
+      "current_user_prompt_chars": 130207,
+      "original_user_prompt_chars": 129187
+    },
+    {
+      "candidate": "artifacts/v5/data_factory/trials/pi-order-gpt-sol-20261014-r1/candidate-02",
+      "candidate_view_chars": 34245,
+      "current_user_prompt_chars": 145793,
+      "original_user_prompt_chars": 144795
+    },
+    {
+      "candidate": "artifacts/v5/data_factory/trials/pi-order-gpt-sol-20261014-r1/candidate-03",
+      "candidate_view_chars": 34266,
+      "current_user_prompt_chars": 149603,
+      "original_user_prompt_chars": 148655
+    },
+    {
+      "candidate": "artifacts/v5/data_factory/trials/pi-order-gpt-sol-20261014-r2/candidate-01",
+      "candidate_view_chars": 34475,
+      "current_user_prompt_chars": 146691,
+      "original_user_prompt_chars": 145693
+    },
+    {
+      "candidate": "artifacts/v5/data_factory/trials/pi-order-gpt-sol-20261014-r2/candidate-02",
+      "candidate_view_chars": 34120,
+      "current_user_prompt_chars": 149457,
+      "original_user_prompt_chars": 148509
+    },
+    {
+      "candidate": "artifacts/v5/data_factory/trials/pi-order-gpt-sol-20261014-r3/candidate-01",
+      "candidate_view_chars": 34439,
+      "current_user_prompt_chars": 149776,
+      "original_user_prompt_chars": 148828
+    }
+  ],
+  "preflight_checks": 36,
+  "protected_files_unchanged": 274,
+  "provider_calls": 0,
+  "provider_constructions": 0,
+  "quality_version": "ioabench.v5.generation-quality/1.4.0",
+  "reference_checks": 228,
+  "retained_candidates_checked": 6,
+  "scope": "Engineering checks only; revised reviewer prompt and quality controls still need bounded online validation",
+  "source_files": 457,
+  "source_tree_sha256": "1416449d4ae6fda00d3f487e9d32115f553baf0c2002f5bb41591d2a43787e7d",
+  "status": "OFFLINE_REVIEW_VERIFIED",
+  "suites": 18,
+  "test_files": 52
+}

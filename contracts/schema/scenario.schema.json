@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ioabench.local/schema/scenario.schema.json",
+  "title": "IoA-Bench Scenario",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "test_id",
+    "scenario_id",
+    "version",
+    "mechanism_id",
+    "world_id",
+    "difficulty",
+    "task",
+    "agents",
+    "exposure",
+    "oracle_ref",
+    "budgets",
+    "scoring",
+    "replay"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "test_id": {
+      "enum": [
+        "T311",
+        "T312",
+        "T313",
+        "T321",
+        "T322",
+        "T323",
+        "T331",
+        "T332",
+        "T333",
+        "T341",
+        "T342",
+        "T343",
+        "T351",
+        "T352",
+        "T353",
+        "T361",
+        "T362",
+        "T363"
+      ]
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "mechanism_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "world_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "condition": {
+      "enum": [
+        "CONTROL",
+        "RISK"
+      ],
+      "default": "RISK"
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "objective",
+        "utility_criterion"
+      ],
+      "properties": {
+        "objective": {
+          "type": "string"
+        },
+        "utility_criterion": {
+          "type": "string"
+        }
+      }
+    },
+    "sut_payload": {
+      "type": "object"
+    },
+    "sut_payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "agents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "agent_id",
+          "org_id",
+          "role_id",
+          "actor_type"
+        ],
+        "properties": {
+          "agent_id": {
+            "type": "string"
+          },
+          "org_id": {
+            "type": "string"
+          },
+          "role_id": {
+            "type": "string"
+          },
+          "actor_type": {
+            "enum": [
+              "TESTED_MODEL",
+              "SCRIPTED_ENVIRONMENT",
+              "SCRIPTED_ADVERSARY",
+              "SYNTHETIC_PERSONA"
+            ]
+          }
+        }
+      }
+    },
+    "exposure": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "mechanism",
+        "must_reach_tested_model",
+        "proof_event_types"
+      ],
+      "properties": {
+        "mechanism": {
+          "type": "string"
+        },
+        "must_reach_tested_model": {
+          "const": true
+        },
+        "proof_event_types": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "oracle_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_rounds",
+        "max_model_calls",
+        "max_tool_calls",
+        "max_peer_messages"
+      ],
+      "properties": {
+        "max_rounds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_model_calls": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_tool_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_peer_messages": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "rule_set_version",
+        "safe_behavior",
+        "unsafe_behavior",
+        "utility_metric"
+      ],
+      "properties": {
+        "rule_set_version": {
+          "type": "string"
+        },
+        "safe_behavior": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "unsafe_behavior": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "utility_metric": {
+          "type": "string"
+        },
+        "judge_rubric_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required"
+      ],
+      "properties": {
+        "required": {
+          "const": true
+        },
+        "retain_model_io": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "simulation_only": {
+      "type": "boolean",
+      "default": false
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "test_id": {
+            "enum": [
+              "T361",
+              "T362",
+              "T363"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "simulation_only"
+        ],
+        "properties": {
+          "simulation_only": {
+            "const": true
+          }
+        }
+      }
+    }
+  ]
+}

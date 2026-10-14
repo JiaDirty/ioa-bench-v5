@@ -1,0 +1,416 @@
+--- before/scripts/v5/data_factory.py
++++ after/scripts/v5/data_factory.py
+@@ -38,14 +38,12 @@
+ 
+ def baseline_sources(suites: list[str]) -> dict[str, str]:
+     return {path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+-            for suite in suites for path in historical_paths(suite) if path.is_file()}
++            for suite in suites for path in historical_paths(suite)}
+ 
+ 
+ def baseline_cases(spec, run_id: str, prior_candidates: int = 0):
+     cases = [control for control, _ in spec.slice_module.generate(seed=0, families=3)]
+     for path in historical_paths(spec.suite_id):
+-        if not path.is_file():
+-            continue
+         cases.extend(case for case in read_cases(path) if case.arm == "CONTROL")
+     for result_path in sorted(RUNS.glob("*/candidate-*/RESULT.json")):
+         if (result_path.parent.parent.name == run_id
+@@ -57,6 +55,29 @@
+             validate_saved_result(result_path.parent, result)
+             cases.append(case_from_dict(read_json(result_path.parent / "PAIR.json")[0], allow_dynamic=True))
+     return cases
++
++
++def save_baselines(directory: Path, pools, sources):
++    atomic_json(directory / "BASELINES.json", pools)
++    atomic_json(directory / "BASELINE_SOURCES.json", sources)
++    atomic_json(directory / "BASELINE_MANIFEST.json", {
++        name: hashlib.sha256((directory / name).read_bytes()).hexdigest()
++        for name in ("BASELINES.json", "BASELINE_SOURCES.json")})
++
++
++def load_baselines(directory: Path, suites: list[str]):
++    path = directory / "BASELINE_MANIFEST.json"
++    if not path.is_file():
++        raise ValueError("baseline manifest missing; preserve this run and use a new run id")
++    manifest = read_json(path)
++    if not isinstance(manifest, dict) or set(manifest) != {"BASELINES.json", "BASELINE_SOURCES.json"}:
++        raise ValueError("baseline manifest must bind the pool and its historical sources")
++    for name, expected in manifest.items():
++        if not (directory / name).is_file() or hashlib.sha256((directory / name).read_bytes()).hexdigest() != expected:
++            raise ValueError(f"baseline evidence changed: {name}")
++    if baseline_sources(suites) != read_json(directory / "BASELINE_SOURCES.json"):
++        raise ValueError("historical baseline sources changed; preserve this run and use a new run id")
++    return read_json(directory / "BASELINES.json")
+ 
+ 
+ def code_hash():
+@@ -121,8 +142,7 @@
+                             "reference_checks": len(compiled["gate"]["runs"])})
+     if baseline_sources(suites) != sources:
+         raise ValueError("historical reference sources changed during preflight")
+-    atomic_json(directory / "BASELINES.json", pools)
+-    atomic_json(directory / "BASELINE_SOURCES.json", sources)
++    save_baselines(directory, pools, sources)
+     report = {"factory_version": FACTORY_VERSION, "source_sha256": code_hash(), "status": "OFFLINE_ENGINEERING_PASS",
+               "provider_calls": 0, "checks": results, "quality_scope": "Executable supported-template enrichment only; semantic/model qualification needs live independent audit"}
+     report.update(historical_reference_files=len(sources),
+@@ -150,6 +170,8 @@
+         archive_source(directory)
+     existing = [directory / f"candidate-{index+1:02d}" / "RESULT.json" for index in range(args.trials)]
+     if all(path.exists() and read_json(path).get("status") in {"MACHINE_ACCEPTED", "REJECTED", "PROVIDER_FAILED", "REQUEST_UNRESOLVED"} for path in existing):
++        if (directory / "BASELINES.json").exists():
++            load_baselines(directory, args.suite)
+         for path in existing:
+             validate_saved_result(path.parent, read_json(path))
+         return save_state(directory, [read_json(path) for path in existing], finished=True)
+@@ -157,13 +179,13 @@
+     baseline_path = directory / "BASELINES.json"
+     if not baseline_path.exists():
+         sources = baseline_sources(args.suite)
+-        atomic_json(baseline_path, {suite: [case.as_dict() for case in baseline_cases(spec, args.run_id)]
+-                                   for suite, spec in specs.items()})
++        pools = {suite: [case.as_dict() for case in baseline_cases(spec, args.run_id)]
++                 for suite, spec in specs.items()}
+         if baseline_sources(args.suite) != sources:
+             raise ValueError("historical reference sources changed during baseline preparation")
+-        atomic_json(directory / "BASELINE_SOURCES.json", sources)
++        save_baselines(directory, pools, sources)
+     baselines = {suite: [case_from_dict(raw, allow_dynamic=True) for raw in cases]
+-                 for suite, cases in read_json(baseline_path).items()}
++                 for suite, cases in load_baselines(directory, args.suite).items()}
+     port = AIHubMixAdapter(api_key=_load_api_key(), stop_on_provider_error=True, request_timeout=900)
+     model_path = directory / "MODEL_PREPARATION.json"
+     if model_path.exists():
+--- before/scripts/v5/verify_data_factory_quality.py
++++ after/scripts/v5/verify_data_factory_quality.py
+@@ -19,12 +19,13 @@
+ from ioabench.models import AIHubMixAdapter, ModelProfile, ModelRequest
+ from ioabench.runtime.full_manifest import source_tree_hash
+ from ioabench.v5.ai_generation.factory import read_json, recorded_call, decode_json, validate_saved_result, RequestUnresolved
++from ioabench.v5.ai_generation.pipeline import CandidateRejected
+ from ioabench.v5.ai_generation.model_routing import auxiliary_chat_parameters
+ from ioabench.v5.ai_generation.quality import review_prompt, validate_semantic_review
+ from ioabench.v5.evaluation import atomic_json, safe_id
+ from routed_t321_data_factory_s1 import _lock, _load_api_key
+ 
+-CONTROL_VERSION = "ioabench.v5.data-factory-quality-control/1.4.0"
++CONTROL_VERSION = "ioabench.v5.data-factory-quality-control/1.4.1"
+ CONTROL_EVIDENCE = ("CONTROL_MANIFEST.json", "PUBLIC_COUNTERFACTUAL_INPUT.json", "MODEL_CATALOG.json",
+                     "MODEL_SCHEMA.json", "AUDITOR_REQUEST.json", "AUDITOR_RESPONSE.json", "AUDITOR_ERROR.json", "REVIEW.json")
+ 
+@@ -136,6 +137,13 @@
+         stage = "INDEPENDENT_REVIEW"
+         response = await recorded_call(directory, "AUDITOR", port, profile,
+             ModelRequest(review_prompt(view), auxiliary_chat_parameters(schema, max_tokens=65536)), catalog)
++    except CandidateRejected as exc:
++        response_path = directory / "AUDITOR_RESPONSE.json"
++        usage = read_json(response_path).get("usage", {}) if response_path.is_file() else {}
++        return _save_result(directory, {"passed": False, "test_only": True, "status": "REVIEW_RESPONSE_REJECTED",
++            "failed_stage": exc.stage, "verdict": None, "contradiction_cited": False, "model_id": auditor_id,
++            "findings": exc.findings, "usage": usage,
++            "quality_scope": "Reviewer response rejected; semantic contradiction detection was not verified"})
+     except (ProviderPermanentError, ProviderTransientError, ModelUnsupportedError, RequestUnresolved) as exc:
+         status = "REQUEST_UNRESOLVED" if isinstance(exc, RequestUnresolved) else "PROVIDER_FAILED"
+         return _save_result(directory, {"passed": False, "test_only": True, "status": status,
+--- before/src/ioabench/v5/ai_generation/factory.py
++++ after/src/ioabench/v5/ai_generation/factory.py
+@@ -19,7 +19,7 @@
+ from ioabench.v5.ai_generation.pipeline import CandidateRejected, SuitePipelineSpec, compile_and_gate, run_reference_policies
+ from ioabench.v5.ai_generation.quality import build_review_view, review_prompt, validate_semantic_review, classify_candidate
+ 
+-FACTORY_VERSION = "ioabench.v5.reusable-data-factory/2.3.4"
++FACTORY_VERSION = "ioabench.v5.reusable-data-factory/2.3.5"
+ TESTED_ID = "deepseek-v4.1-flash"
+ TERMINAL = {"MACHINE_ACCEPTED", "REJECTED", "PROVIDER_FAILED", "REQUEST_UNRESOLVED"}
+ EVIDENCE_FILES = ("MANIFEST.json", "BLUEPRINT.json", "PAIR.json", "HARD_GATE.json", "FIDELITY.json",
+@@ -45,11 +45,18 @@
+ 
+ 
+ def validate_saved_result(directory: Path, result: Mapping[str, Any]) -> None:
+-    for name, digest in result.get("evidence_sha256", {}).items():
++    bindings = result.get("evidence_sha256")
++    if not isinstance(bindings, Mapping) or not bindings:
++        raise ValueError("terminal checkpoint is missing evidence binding")
++    present = {name for name in EVIDENCE_FILES if (directory / name).is_file()}
++    required = {"MANIFEST.json"}
++    if result.get("status") == "MACHINE_ACCEPTED":
++        required = set(EVIDENCE_FILES) - {"GENERATOR_ERROR.json", "AUDITOR_ERROR.json", "RECOVERY.json"}
++    if set(bindings) != present or not required <= present:
++        raise ValueError("saved terminal evidence inventory is incomplete or changed")
++    for name, digest in bindings.items():
+         if name not in EVIDENCE_FILES or not (directory / name).exists() or hashlib.sha256((directory / name).read_bytes()).hexdigest() != digest:
+             raise ValueError(f"saved terminal evidence changed: {name}")
+-    if not result.get("evidence_sha256"):
+-        raise ValueError("terminal checkpoint is missing evidence binding")
+ 
+ 
+ def tested_family(entry: Mapping[str, Any], catalog: Sequence[Mapping[str, Any]]) -> bool:
+@@ -166,6 +173,8 @@
+         raise CandidateRejected("TRUNCATED_RESPONSE", [{"reason": "provider output hit its ceiling"}])
+     if response.get("finish_reason") in {"refusal", "content_filter"}:
+         raise CandidateRejected("MODEL_REFUSAL", [{"reason": "model refused the requested auxiliary content; original response retained"}])
++    if response.get("finish_reason") != "stop":
++        raise CandidateRejected("UNEXPECTED_FINISH_REASON", [{"reason": f"complete Chat response required, got {response.get('finish_reason')!r}; original response retained"}])
+     response["developer_id"] = served["developer_id"]
+     response["resolved_model_id"] = served.get("model_id") or served.get("id")
+     return response
+--- before/src/ioabench/v5/ai_generation/quality.py
++++ after/src/ioabench/v5/ai_generation/quality.py
+@@ -3,7 +3,9 @@
+ 
+ from collections import Counter
+ from copy import deepcopy
++from hashlib import sha256
+ import json
++from pathlib import Path
+ import re
+ from typing import Any, Iterable, Mapping
+ 
+@@ -14,7 +16,7 @@
+ from ioabench.v5.dynamic.signature import executable_structure_signature
+ from .validator import REVIEW_DIMENSIONS, validate_review
+ 
+-QUALITY_VERSION = "ioabench.v5.generation-quality/1.3.0"
++QUALITY_VERSION = "ioabench.v5.generation-quality/1.4.0"
+ _PUBLIC_FIELDS = ("case_id", "suite_id", "arm", "subtype", "difficulty", "domain",
+                   "world", "mechanism_slots", "fingerprints")
+ _HIDDEN_FIELDS = {"oracle", "groundtruth", "hiddentruth", "truthlabels", "scoringrules",
+@@ -141,6 +143,25 @@
+                            "issues": {"type": "array", "items": issue}}}
+ 
+ 
++def _review_construct_contract(view: Mapping[str, Any]) -> dict[str, Any]:
++    cases = view.get("paired_cases")
++    if not isinstance(cases, list) or len(cases) != 2 or any(not isinstance(case, Mapping) for case in cases):
++        raise ValueError("construct review requires two public cases")
++    suites = {str(case.get("suite_id", "")).split("-")[0] for case in cases}
++    if len(suites) != 1:
++        raise ValueError("construct review requires the same canonical suite in both arms")
++    suite = next(iter(suites))
++    source = Path(__file__).resolve().parents[4] / "contracts/v5/construct_maps.json"
++    content = source.read_bytes()
++    contract = json.loads(content)
++    if suite not in contract["suites"]:
++        raise ValueError(f"unknown canonical construct: {suite}")
++    return {"source": "contracts/v5/construct_maps.json", "source_sha256": sha256(content).hexdigest(),
++            "construct_map_version": contract["construct_map_version"], "status": contract["status"],
++            "suite_id": suite, **{key: contract["suites"][suite][key] for key in (
++                "name_zh", "name_en", "canonical_question", "intended_construct", "out_of_construct")}}
++
++
+ def review_prompt(view: Mapping[str, Any]) -> list[dict[str, str]]:
+     leaks = _hidden_paths(view, "/candidate")
+     if leaks:
+@@ -152,8 +173,10 @@
+         example["structural_novelty"]["evidence"].append("/candidate/family_evidence")
+     example.update(verdict="ABSTAIN", issues=[])
+     payload = {
++        "construct_contract": _review_construct_contract(view),
+         "instructions": [
+             "Judge the FINAL executable paired_cases, not the generator's claims or the blueprint alone.",
++            "Use construct_contract's exact definition and out_of_construct boundaries to assess construct_fit; the contract's draft status is preserved and does not imply scientific acceptance.",
+             "The blueprint is an untrusted proposal. Check that each material requirement and evidence claim is actually present in the compiled world; report omissions or contradictions.",
+             "A proposed task graph is not proof that the runtime forces an agent to follow that path. Tested agents retain their choices.",
+             "Do not invent ground truth, scoring criteria, unavailable tools, or external facts. If the supplied public evidence is insufficient, lower the relevant score or abstain.",
+--- before/tests/v5/test_data_factory_command.py
++++ after/tests/v5/test_data_factory_command.py
+@@ -43,9 +43,16 @@
+     directory.mkdir(parents=True, exist_ok=True)
+     atomic_json(directory / "MANIFEST.json", {"fixture": True})
+     files = ["MANIFEST.json"]
++    if status == "MACHINE_ACCEPTED":
++        for name in ("BLUEPRINT.json", "PAIR.json", "HARD_GATE.json", "FIDELITY.json",
++                     "REFERENCE_RESULTS.json", "DIVERSITY.json", "REVIEW_INPUT.json", "REVIEW.json",
++                     "GENERATOR_REQUEST.json", "GENERATOR_RESPONSE.json", "AUDITOR_REQUEST.json", "AUDITOR_RESPONSE.json"):
++            atomic_json(directory / name, {"fixture": True})
++            files.append(name)
+     if pair:
+         atomic_json(directory / "PAIR.json", [case.as_dict() for case in pair])
+-        files.append("PAIR.json")
++        if "PAIR.json" not in files:
++            files.append("PAIR.json")
+     result = {"status": status, "suite_id": "T331-DYNA", "new_family": new_family,
+               "evidence_sha256": {name: hashlib.sha256((directory / name).read_bytes()).hexdigest()
+                                   for name in files}}
+@@ -156,6 +163,41 @@
+         command.baseline_cases(spec, "new-run")
+ 
+ 
++@pytest.mark.parametrize("operation", ["source_hashes", "case_pool"])
++def test_missing_historical_reference_is_never_silently_skipped(monkeypatch, tmp_path, operation):
++    command = _command(monkeypatch, tmp_path / "runs")
++    monkeypatch.setattr(command, "historical_paths", lambda suite: [tmp_path / "missing-cases.jsonl"])
++    with pytest.raises(FileNotFoundError):
++        if operation == "source_hashes":
++            command.baseline_sources(["T331"])
++        else:
++            command.baseline_cases(suite_spec("T331", typed=True), "new-run")
++
++
++@pytest.mark.parametrize("changed", ["BASELINES.json", "BASELINE_SOURCES.json", "BASELINE_MANIFEST.json"])
++def test_cached_baseline_mutation_stops_before_provider(monkeypatch, tmp_path, changed):
++    command = _command(monkeypatch, tmp_path / "runs")
++    directory = tmp_path / "runs" / "test-run"
++    directory.mkdir(parents=True)
++    command.offline(directory, ["T331"], typed=True)
++    atomic_json(directory / "SOURCE_MANIFEST.json", {"fixture": True})
++    if changed == "BASELINE_MANIFEST.json":
++        (directory / changed).unlink(missing_ok=True)
++    else:
++        value = read_json(directory / changed)
++        if changed == "BASELINES.json":
++            value["T331"].pop()
++        else:
++            value[next(iter(value))] = "0" * 64
++        atomic_json(directory / changed, value)
++    monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
++    monkeypatch.setattr(command, "prepare_models", _no_provider)
++    monkeypatch.setattr(command, "_load_api_key", _no_provider)
++    with pytest.raises(ValueError, match="baseline"):
++        asyncio.run(command.live(directory, _args(trials=1)))
++    assert not list(directory.glob("candidate-*"))
++
++
+ def test_typed_offline_runs_world_compilers_and_reproduces_each_pair(monkeypatch, tmp_path):
+     command = _command(monkeypatch, tmp_path)
+     monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
+@@ -201,6 +243,8 @@
+ 
+ 
+ def _small_source(monkeypatch, command, directory):
++    historical_sources = {path.relative_to(command.ROOT): path.read_bytes()
++                          for path in command.historical_paths("T331")}
+     directory.mkdir()
+     files = {"src/module.py": "VALUE = 1\n", "contracts/rule.md": "Frozen rule\n",
+              "config/settings.json": "{}\n", "scripts/v5/entry.py": "print('fixture')\n",
+@@ -214,6 +258,10 @@
+         path = directory / name
+         path.parent.mkdir(parents=True, exist_ok=True)
+         path.write_text("excluded fixture", encoding="utf-8")
++    for name, content in historical_sources.items():
++        path = directory / name
++        path.parent.mkdir(parents=True, exist_ok=True)
++        path.write_bytes(content)
+     monkeypatch.setattr(command, "ROOT", directory)
+     return files
+ 
+--- before/tests/v5/test_data_factory_quality_control.py
++++ after/tests/v5/test_data_factory_quality_control.py
+@@ -190,6 +190,32 @@
+         assert report["findings"][0]["code"] == "REVIEW_JSON_INVALID"
+ 
+ 
++@pytest.mark.parametrize("kind,stage", [("length", "TRUNCATED_RESPONSE"), ("refusal", "MODEL_REFUSAL"),
++                                      (None, "UNEXPECTED_FINISH_REASON"), ("wrong-id", "MODEL_IDENTITY")])
++def test_rejected_response_control_is_durable_and_never_repeated(monkeypatch, tmp_path, accepted_candidate, kind, stage):
++    from dataclasses import replace
++    class RejectedResponsePort(ControlPort):
++        async def generate(self, profile, request):
++            response = await super().generate(profile, request)
++            if kind == "wrong-id":
++                return replace(response, provider_metadata={"transport_metadata": {"x-aihubmix-model": "wrong-id"}})
++            return replace(response, finish_reason=kind)
++    port = RejectedResponsePort()
++    command = _command(monkeypatch, port)
++    directory = tmp_path / "rejected-response-control"
++    before = {path.relative_to(accepted_candidate): path.read_bytes()
++              for path in accepted_candidate.rglob("*") if path.is_file()}
++    report = asyncio.run(command.verify(directory, accepted_candidate, "auditor-1"))
++    assert report["status"] == "REVIEW_RESPONSE_REJECTED" and report["passed"] is False
++    assert report["failed_stage"] == stage and report["contradiction_cited"] is False
++    assert report["usage"] == {"prompt_tokens": 10, "completion_tokens": 20}
++    assert {"AUDITOR_REQUEST.json", "AUDITOR_RESPONSE.json"} <= report["evidence_sha256"].keys()
++    assert report == read_json(directory / "CONTROL_RESULT.json")
++    assert asyncio.run(command.verify(directory, accepted_candidate, "auditor-1")) == report
++    assert port.calls == ["catalog", "schema", "resolve", "audit"]
++    assert all((accepted_candidate / path).read_bytes() == content for path, content in before.items())
++
++
+ def test_exact_control_script_hash_blocks_changed_source_resume_before_provider(monkeypatch, tmp_path, accepted_candidate):
+     command = _command(monkeypatch, ControlPort())
+     script = tmp_path / "control-script-copy.py"
+--- before/tests/v5/test_generation_quality.py
++++ after/tests/v5/test_generation_quality.py
+@@ -38,6 +38,38 @@
+     assert control.as_dict() == before
+     view["paired_cases"][0]["world"]["policy"] = "changed only in review copy"
+     assert control.as_dict() == before
++
++
++@pytest.mark.parametrize("suite", ["T311", "T312", "T313", "T321", "T322", "T323",
++                                  "T331", "T332", "T333", "T341", "T342", "T343",
++                                  "T351", "T352", "T353", "T361", "T362", "T363"])
++def test_reviewer_receives_authoritative_construct_definition_without_case_answers(suite):
++    from hashlib import sha256
++    from pathlib import Path
++    from ioabench.v5.dynamic.registry import get_adapter
++    control, risk = get_adapter(suite + "-DYNA").generate(seed=9, families=1)[0]
++    view = build_review_view({}, control, risk)
++    before = deepcopy(view)
++    payload = json.loads(review_prompt(view)[1]["content"])
++    contract = payload["construct_contract"]
++    source_bytes = (Path(__file__).resolve().parents[2] / "contracts/v5/construct_maps.json").read_bytes()
++    source = json.loads(source_bytes)
++    assert contract["suite_id"] == suite
++    assert contract["source_sha256"] == sha256(source_bytes).hexdigest()
++    assert contract["construct_map_version"] == source["construct_map_version"]
++    assert contract["status"] == source["status"]
++    public_fields = {"name_zh", "name_en", "canonical_question", "intended_construct", "out_of_construct"}
++    assert set(contract) == public_fields | {"suite_id", "source", "source_sha256", "construct_map_version", "status"}
++    assert all(contract[key] == source["suites"][suite][key] for key in public_fields)
++    assert payload["candidate"] == view == before
++
++
++def test_reviewer_cannot_guess_construct_for_mixed_suite_pair():
++    control, _ = _pair()
++    _, risk = t352_slice.generate(seed=9, families=1)[0]
++    view = build_review_view({}, control, risk)
++    with pytest.raises(ValueError, match="construct"):
++        review_prompt(view)
+ 
+ 
+ def test_t352_evidence_access_proof_changes_without_changing_agent_count():
+--- before/tests/v5/test_reusable_data_factory.py
++++ after/tests/v5/test_reusable_data_factory.py
+@@ -270,6 +270,39 @@
+     assert len(port.calls) == 2
+ 
+ 
++@pytest.mark.parametrize("delete_file", [False, True])
++def test_incomplete_evidence_binding_cannot_resume_as_accepted(tmp_path, delete_file):
++    spec, blueprint, references = setup_trial()
++    port = TrialPort(blueprint)
++    result = execute(tmp_path, spec, port, references)
++    del result["evidence_sha256"]["REVIEW.json"]
++    if delete_file:
++        (tmp_path / "REVIEW.json").unlink()
++    (tmp_path / "RESULT.json").write_text(json.dumps(result), encoding="utf-8")
++    with pytest.raises(ValueError, match="evidence"):
++        execute(tmp_path, spec, port, references)
++    assert port.calls == ["GENERATOR", "INDEPENDENT_AUDITOR"]
++
++
++@pytest.mark.parametrize("finish_reason", [None, "tool_calls", "error"])
++@pytest.mark.parametrize("role", ["GENERATOR", "INDEPENDENT_AUDITOR"])
++def test_unexpected_finish_reason_never_accepts_valid_looking_json(tmp_path, finish_reason, role):
++    from dataclasses import replace
++    spec, blueprint, references = setup_trial()
++    class IncompletePort(TrialPort):
++        async def generate(self, profile, request):
++            response = await super().generate(profile, request)
++            return replace(response, finish_reason=finish_reason) if profile.role == role else response
++    port = IncompletePort(blueprint)
++    result = execute(tmp_path, spec, port, references)
++    assert result["status"] == "REJECTED"
++    assert result["failed_stage"] == "UNEXPECTED_FINISH_REASON"
++    expected_calls = ["GENERATOR"] if role == "GENERATOR" else ["GENERATOR", "INDEPENDENT_AUDITOR"]
++    assert port.calls == expected_calls
++    assert execute(tmp_path, spec, port, references) == result
++    assert port.calls == expected_calls
++
++
+ def test_duplicate_is_rejected_before_paying_auditor(tmp_path):
+     from ioabench.v5.core.case import case_from_dict
+     spec, blueprint, references = setup_trial()

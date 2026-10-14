@@ -1,0 +1,40 @@
+{
+  "status": "HANDOFF_VERIFIED",
+  "provider_calls": 0,
+  "formal_accepted": false,
+  "source_tree_sha256": "1416449d4ae6fda00d3f487e9d32115f553baf0c2002f5bb41591d2a43787e7d",
+  "xml": {
+    "PYTEST_ALL_FOCUSED.xml": {
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "PYTEST_V5.xml": {
+      "tests": 852,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "protected_files_unchanged": 274,
+  "snapshots": {
+    "source.zip": 457,
+    "test-source.zip": 52
+  },
+  "preflight_checks": 36,
+  "reference_checks": 228,
+  "queue_version": 26,
+  "queue_tasks": 464,
+  "diff_files": 8,
+  "diff_sha256": "4765ff23b2e7b628e35746ae7e2f958b5e101c1d562efd166ee5408641d6d550",
+  "state_and_report_hashes": {
+    "state/PROJECT_STATE.yaml": "5205db4b4b4a70c804a465bb8a97f0e65b231eb733614f16e5cd5258492f2ba0",
+    "state/WORK_QUEUE.yaml": "1a4a641fa0e9278876fe441febeb6a8d538f51293239a749e7ca7879c2a05d0d",
+    "state/WORK_QUEUE_V5_DYNAMIC_WORLD.yaml": "c28a8cbcacf0443c72cd46e4fcf7f06f4941c7eacc53c4f04f4750fc4140145a",
+    "state/WORK_QUEUE_VALIDATION.json": "09cee977e04c7c62b0d4e391d13944e03ab9060c27cec8a6f3624739e5471ccd",
+    "state/CHANGELOG.md": "382aaca9fc25ba14b0fd2ad096d74eecb8ef392e6ccb5a14b3ecf57461be35b7",
+    "docs/v5/V5_PROGRESS.md": "78c0b9661c1368df1c4fc71f49e9017abb840de601fff302fed3d894e5fde07a"
+  },
+  "limitations": "No online provider call; revised reviewer prompt and controls remain unvalidated online; broad structural generation remains open."
+}

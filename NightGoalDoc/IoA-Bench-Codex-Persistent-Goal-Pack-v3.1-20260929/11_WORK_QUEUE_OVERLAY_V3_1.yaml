@@ -1,0 +1,69 @@
+overlay_version: 3.1-20260929
+goal_semantics: persistent_reentrant
+selection_rule: At each continuation, execute the earliest unmet task whose dependencies
+  are satisfied. Do not rerun completed tasks because the goal text was repeated.
+tasks:
+- id: V31-G0-STATE-RECONCILIATION
+  gate: G0
+  depends_on: []
+- id: V31-G1-SOURCE-REANCHOR
+  gate: G1
+  depends_on:
+  - V31-G0-STATE-RECONCILIATION
+- id: V31-G2-DATASET-ACCEPTANCE
+  gate: G2
+  depends_on:
+  - V31-G1-SOURCE-REANCHOR
+- id: V31-G3-DATASET-PACK
+  gate: G3
+  depends_on:
+  - V31-G2-DATASET-ACCEPTANCE
+- id: V31-G4-AUX-MODEL-PROFILES
+  gate: G4
+  depends_on:
+  - V31-G0-STATE-RECONCILIATION
+- id: V31-T361-T363-SYNTHETIC-HUMAN
+  gate: G1
+  depends_on:
+  - V31-G4-AUX-MODEL-PROFILES
+- id: V31-G5-ALL-SUITE-DRY-RUN
+  gate: G5
+  depends_on:
+  - V31-G3-DATASET-PACK
+  - V31-T361-T363-SYNTHETIC-HUMAN
+- id: V31-G6-PROVIDER-SCHEDULER-FREEZE
+  gate: G6
+  depends_on:
+  - V31-G5-ALL-SUITE-DRY-RUN
+- id: V31-G7-BENCHMARK-RELEASE
+  gate: G7
+  depends_on:
+  - V31-G6-PROVIDER-SCHEDULER-FREEZE
+- id: V31-G8-EXISTING-RESULT-AUDIT
+  gate: G8
+  depends_on:
+  - V31-G0-STATE-RECONCILIATION
+- id: V31-G9-TESTED-MODEL-PROFILES
+  gate: G9
+  depends_on:
+  - V31-G7-BENCHMARK-RELEASE
+  user_controlled_roster: true
+- id: V31-G10-MODEL-CAMPAIGNS
+  gate: G10
+  depends_on:
+  - V31-G9-TESTED-MODEL-PROFILES
+  repeat_for_each_selected_model: true
+- id: V31-G11-CAMPAIGN-ACCEPTANCE
+  gate: G11
+  depends_on:
+  - V31-G10-MODEL-CAMPAIGNS
+- id: V31-G12-MULTI-MODEL-COMPARISON
+  gate: G12
+  depends_on:
+  - V31-G11-CAMPAIGN-ACCEPTANCE
+- id: V31-G13-FINAL-SCIENTIFIC-RELEASE
+  gate: G13
+  depends_on:
+  - V31-G12-MULTI-MODEL-COMPARISON
+sync_after_each_task: true
+preserve_historical_tasks: true

@@ -1,0 +1,69 @@
+policy_version: ioabench.v5.model-routing.20261012.1
+scope: engineering_and_nonfrozen_data_factory
+provider_preference: AIHubMix
+realtime_discovery_required: true
+model_ids_are_candidates_not_verified: true
+quality_over_price: true
+no_fixed_api_spend_ceiling: true
+no_unbounded_retry: true
+sources_to_consult:
+  - AIHubMix_current_models_and_documentation
+  - Artificial_Analysis_Intelligence_Index_and_task_specific_scores
+  - official_model_maker_api_docs
+  - live_gateway_capability_probe
+
+# 未验证的 exact_id 必须替换成实时 /v1/models 或对应目录中证实的 ID；不能因为名称相似就提交请求。
+roles:
+  agent_planning_and_hard_coding:
+    preferred_names: ["GPT-6.1 Sol", "Claude Sonnet 5.5", "GPT-6 Astra"]
+    alternatives: ["GLM-5.3", "Qwen3.8 Max", "GPT-5.6 Sol"]
+    quality_rule: prefer_reliable_tool_use_and_coding_on_project_smoke
+    escalation: "For architecture, scorer validity, elusive bugs, independent review: strongest tested model, then separate critic from different family."
+  routine_implementation_and_tests:
+    preferred_names: ["GLM-5.3-Flash", "DeepSeek V4.1 Flash", "Qwen3.8 27B"]
+    alternatives: ["GPT-6.1 Sol", "Claude Sonnet 5.5", "Qwen3.8 Max"]
+    quality_rule: use_fast_mainstream_model_that_passes_probe
+  scenario_blueprint_generation:
+    preferred_names: ["Qwen3.8 Max", "MiMo-V2.6-Pro", "GPT-6.1 Sol", "Claude Sonnet 5.5"]
+    alternatives: ["GLM-5.3", "GPT-6 Astra", "Gemini 3.8 Flash"]
+    must_support: ["schema_compliant_content_or_parseable_text", "sufficient_context", "stable_reasoning"]
+    rule: "Prefer distinct executable world graphs over superficial text variation; use model-stratified runs and provenance."
+  independent_semantic_audit:
+    preferred_names: ["GLM-5.3-Flash", "Claude Sonnet 5.5", "GPT-6.1 Sol", "Qwen3.8 Max"]
+    alternatives: ["GPT-6 Astra", "GLM-5.3"]
+    constraints:
+      - different_model_family_from_candidate_generator
+      - preferably_different_provider_organization
+      - strict_review_schema_and_evidence_citations
+      - no_self_review
+    on_ambiguity: independent_second_opinion_then_abstain_if_unresolved
+  high_stakes_scientific_methodology_critic:
+    preferred_names: ["GPT-6 Astra", "Claude Opus 5.5", "GPT-6.1 Sol", "Claude Sonnet 5.5"]
+    requires: ["independent_evidence", "no_unapproved_construct_or_oracle_change"]
+  official_benchmark_target:
+    policy: "Use pre-registered pinned model for an approved experiment; current official historical target remains DeepSeek V4.1 Flash unless separately approved."
+    no_automatic_substitution: true
+
+routing:
+  candidate_discovery: "Current model catalog first; exact ID, model family, availability, tool/JSON support and output context all probed."
+  first_party_gateway_router: "auto:quality_first may be used for low-risk engineering exploration only when resolved model is observable."
+  avoid_anonymous_auto_for: ["generation_audit_independence", "locked_benchmark_target", "unattributed_scientific_data"]
+  generation_failure_policy: "Malformed output -> local schema failure; limited repair attempt or alternate generator, never bypass Gate."
+  transient_api_errors: "Respect Retry-After; bounded retries with backoff then alternate model/provider; log response and reason."
+  no_available_channel: "Switch model after one verification probe; cooldown unavailable ID; never retry indefinitely."
+  hard_semantic_failures: "CAPABILITY_GAP, scorer/oracle conflict, pair asymmetry or family duplicate -> repair pipeline/world design or reject, not endless model switching."
+  all_models_unavailable: "Continue offline test, compiler, audits, reviewer packs and tooling; report provider-dependent tasks BLOCKED."
+
+run_provenance_required:
+  - role
+  - requested_model_id
+  - resolved_model_id
+  - model_family_and_provider
+  - api_endpoint_and_protocol
+  - routing_policy_version
+  - parameters_and_reasoning_effort_if_supported
+  - prompt_hash_and_input_manifest_hash
+  - timestamps_and_request_ids
+  - token_usage_and_estimated_cost_if_available
+  - gateway_errors_or_fallback_chain
+  - dataset_version_and_review_independence

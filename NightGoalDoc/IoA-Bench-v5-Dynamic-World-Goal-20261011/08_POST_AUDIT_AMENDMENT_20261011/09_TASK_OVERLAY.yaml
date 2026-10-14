@@ -1,0 +1,79 @@
+# PROPOSAL ONLY: reviewed tasks to merge into state/WORK_QUEUE_V5_DYNAMIC_WORLD.yaml
+# NOT a second Goal, NOT an authoritative replacement queue. Status must be revalidated on Windows.
+revision_id: V5_DYNAMIC_AUDIT_REMEDIATION_20261011
+source_snapshot: 2026-10-11T17:34:00+08:00
+applies_to_goal: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+approval_scope: implementation-and-small-technical-probe-only
+proposed_tasks:
+  - id: DW-AUDIT-001
+    milestone: M2
+    priority: P0
+    title: fail-closed authority audience/time binding
+    acceptance: unauthorized audience, expiry, revocation, derived authority fail; lawful cases pass
+    status: PROPOSED
+  - id: DW-AUDIT-002
+    milestone: M3
+    priority: P0
+    title: one-to-one action-event integrity
+    acceptance: missing one of two identical action events fails; historical trace compatibility explicit
+    status: PROPOSED
+  - id: DW-AUDIT-003
+    milestone: M3
+    priority: P0
+    title: shared logical event/evidence time base
+    acceptance: no false ordering on different seq domains; late visibility fails correctly
+    status: PROPOSED
+  - id: DW-AUDIT-004
+    milestone: M3
+    priority: P1
+    title: opt-in dynamic Runner with mandatory monitor report
+    acceptance: T321-DYNA/DYNB and T312 run via journal+monitor+score without frozen registry changes
+    status: PROPOSED
+  - id: DW-AUDIT-005
+    milestone: M5
+    priority: P2
+    title: executable family signature canonicalization
+    acceptance: comparisons and hashes agree; tags alone do not prove new family
+    status: PROPOSED
+  - id: DW-AUDIT-006
+    milestone: M5
+    priority: P2
+    title: append-only cross-run and classic baseline novelty evidence
+    acceptance: batch replay does not inflate effective family count; instance dedup separate
+    status: PROPOSED
+  - id: DW-AUDIT-007
+    milestone: M5
+    priority: P3
+    title: immutable Codex snapshot acceptance and selective integration
+    acceptance: signed manifest+tests+known gaps; no 24h waiting if stable handoff verified
+    status: PROPOSED
+  - id: DW-AUDIT-008
+    milestone: M5
+    priority: P3
+    title: MiMo Blueprint to dynamic world to GLM full technical pipeline
+    acceptance: real API identities; actual executable structure change; strict gates; raw evidence preserved
+    status: PROPOSED
+  - id: DW-AUDIT-009
+    milestone: M7
+    priority: P4
+    title: per-suite runnable-vs-generatable evidence matrix
+    acceptance: 18 suite slice, runner, compiler, monitor, scorer, novelty, reviewer capabilities independently recorded
+    status: PROPOSED
+  - id: DW-AUDIT-010
+    milestone: M8
+    priority: P4
+    title: falsifiable family diversity acceptance and negative control set
+    acceptance: no renaming/difficulty-only false novelty; diverse real topologies measured
+    status: PROPOSED
+  - id: DW-AUDIT-011
+    milestone: M3
+    priority: P4
+    title: preserve T331 utility and T333 scorer abstention audits
+    acceptance: audits with pre-registered norms, no outcome-driven scorer edits
+    status: PROPOSED
+  - id: DW-AUDIT-012
+    milestone: M9
+    priority: P5
+    title: external Gate D, PI Pilot/Campaign stop boundary
+    acceptance: no pilot/campaign until independent review, preregistration, explicit authorization
+    status: PROPOSED

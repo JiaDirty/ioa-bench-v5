@@ -1,0 +1,64 @@
+lifecycle: IoA-Bench v1 full lifecycle from current construct-remediation state to
+  final scientific release
+principles:
+  code_first: true
+  offline_testing_during_build: true
+  data_generation_after_all_construct_code_complete: true
+  data_and_online_progression: one suite at a time
+  trial_before_batch: true
+  lower_quality_threshold_to_fill_quota: false
+  overwrite_historical_frozen_artifacts: false
+milestones:
+- id: M11
+  title: Complete 18 construct-valid implementations
+  depends_on: []
+  exit:
+  - 18/18 construct-valid offline
+  - offline scientific gates pass
+  - project ready for data campaign
+- id: M12
+  title: Per-suite data generation and formal evaluation campaign
+  depends_on:
+  - M11
+  suite_order:
+  - T311
+  - T312
+  - T313
+  - T321
+  - T322
+  - T323
+  - T331
+  - T332
+  - T333
+  - T341
+  - T342
+  - T343
+  - T351
+  - T352
+  - T353
+  - T361
+  - T362
+  - T363
+  per_suite_states:
+  - CONSTRUCT_IMPLEMENTED
+  - TRIAL_GENERATION
+  - GENERATION_RECIPE_VALIDATED
+  - FORMAL_DATASET_FROZEN
+  - ONLINE_PILOT
+  - ONLINE_PILOT_PASS
+  - FORMAL_RUN
+  - FORMAL_EVALUATION_COMPLETE
+  exit:
+  - 18/18 FORMAL_EVALUATION_COMPLETE
+- id: M13
+  title: Aggregate, report, reproduce, and final scientific acceptance
+  depends_on:
+  - M12
+  exit:
+  - campaign manifest frozen
+  - 18 detailed results complete
+  - six category profiles complete
+  - dashboard/report complete
+  - reproducibility bundle verified
+  - final scientific acceptance PASS
+  - PROJECT_STATE complete

@@ -1,0 +1,34 @@
+接管当前 IoA-Bench 工作区，执行本次“Full-Lifecycle Autonomous Completion Goal”。
+
+这不是只做代码阶段的 Goal，而是覆盖当前项目直到最终科研 DoD 的完整生命周期：
+
+1. 先完成 T311–T363 全部 18 项 construct-valid 代码实现，并在开发过程中随写随做离线测试；
+2. 代码层 18/18 完成以后，再进入数据与在线阶段；
+3. 数据和在线阶段必须按 suite 一个一个推进：先少量试生成，验证并改进 generator/validator/mechanism recipe；方法稳定后再批量 overgenerate、质量筛选并冻结该 suite 正式 Dataset；然后做小规模 AIHubMix 在线 pilot；pilot 通过后再做该 suite 完整正式在线测评；完成后进入下一个 suite；
+4. 禁止一次性生成全部 18 套正式数据；
+5. 合格样本不足时只能改进生成/验证流程，不能降低质量阈值；
+6. 18 个 suite 全部完成正式在线测评后，再做 Campaign Manifest、聚合分析、六类风险画像、Dashboard、最终报告、复现包和 Final Scientific Acceptance Audit；
+7. 最终才把项目标记 complete。
+
+开始前严格读取当前 handoff、PROJECT_STATE、WORK_QUEUE、18 Construct Contracts、T311 新实现，以及我放入工作区的：
+
+- `GOAL_FULL_LIFECYCLE_AUTONOMOUS_COMPLETION.md`
+- `01_FULL_LIFECYCLE_EXECUTION_PLAYBOOK.md`
+- `02_18_SUITE_CONSTRUCT_DATA_ONLINE_SPEC.md`
+- `03_FULL_LIFECYCLE_SCIENTIFIC_GATES.md`
+- `04_FULL_LIFECYCLE_WORK_QUEUE.yaml`
+
+普通工程、生成、验证、运行、分析和报告问题自行决策并持续推进，不要只输出计划后停止，也不要频繁向我确认。
+
+在线阶段允许使用 AIHubMix，但必须：
+- 只从环境变量读取 key；
+- 不写入任何 artifact；
+- 每次正式运行前解析精确 model ID；
+- tested model 不得静默切换；
+- provider failure 与模型安全失败分离；
+- 任何 runtime/scorer/dataset/prompt 语义变化都必须新 version / 新 run；
+- 不把失败 case 重跑到“安全”为止。
+
+若到在线阶段时缺少可用 API key/provider 权限，或遇到必须改变冻结科研边界才能继续的问题，则精确保存 checkpoint，报告 blocker 后停止；除此之外持续自主推进。
+
+如果一晚上无法完成全部生命周期，不要为了宣称完成而降低标准。准确保存每个 suite 当前 lifecycle 状态、已冻结版本、run ID、下一 ready task 和 blocker，便于无缝继续。

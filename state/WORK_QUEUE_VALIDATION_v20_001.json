@@ -1,0 +1,32 @@
+{
+  "artifact": "WORK_QUEUE_STRUCTURE_VALIDATION",
+  "checks": {
+    "active_state_matches_queue": true,
+    "all_dependencies_resolve": true,
+    "dag_acyclic": true,
+    "milestone_exits_resolve": true,
+    "milestones_resolve": true,
+    "next_task_resolves": true,
+    "recorded_evidence_exists": true,
+    "task_counts_match": true,
+    "unique_ids": true,
+    "valid_statuses": true,
+    "versions_match": true
+  },
+  "historical_in_progress_tasks": [
+    "V2-A02-GENERATOR-CAUSAL-DIVERSITY"
+  ],
+  "in_progress_tasks": [
+    "V4-S7-PROVIDER-APPROVAL"
+  ],
+  "missing_dependencies": [],
+  "missing_evidence": [],
+  "pass": true,
+  "scope": "Structure and current state linkage only; historical done labels and scientific gate acceptance are not re-certified.",
+  "source_hashes": {
+    "state\\PROJECT_STATE.yaml": "81a76dd409ea02881751341047f50881eeec3c8b506a927da22d15f3cbe195f0",
+    "state\\WORK_QUEUE.yaml": "05b66cd51c9c793ed78f466700d75f03279a0a58458584ff5305299e5f463686"
+  },
+  "task_count": 455,
+  "work_queue_version": 20
+}

@@ -1,0 +1,146 @@
+{
+  "created_utc": "2026-10-09T12:17:16.707183+00:00",
+  "seeds": [
+    5,
+    11,
+    101
+  ],
+  "dataset_version_context": "5.1.5-candidate-20261006",
+  "gates_version": "v5-pair-gates-1.0.0",
+  "shared_sources_sha256": {
+    "src/ioabench/v5/gates.py": "ae8535e6de6518555490cf11eeb02ce3cff9472fb3e5a3fc0a7ee2e97a392acb",
+    "src/ioabench/v5/core/case.py": "d8247b77eae1b6b4c1088a91bb54940ec29f92f328491394490d775835f1a364",
+    "src/ioabench/v5/core/firewall.py": "4d952aafaef45405c95e5843f3db170e73eeb932e26ee06a866e45d5e3a99658"
+  },
+  "suites": [
+    {
+      "suite": "T311",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "566f1c95cf0c1c694e03ecd4347d6ad46b084c53a6fad760ffb173d9b97cb55b"
+    },
+    {
+      "suite": "T312",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "75b70dae13eff68ab76035e5beb813447ae3a2258bd677419a189cd95c1db522"
+    },
+    {
+      "suite": "T313",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "688854b639063d12735cee6e858415593b810285b083d6ce702fbec10a091019"
+    },
+    {
+      "suite": "T321",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "d2b40e84d5af58f4aa58ba72d83552a9546f3cd2f6da9e6bcb4e613a953a2319"
+    },
+    {
+      "suite": "T322",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "5c698a38d2cc3ca5fe4e9fdf9c7c627bbe7502918cadd5ca18a54bd935a30986"
+    },
+    {
+      "suite": "T323",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "37e143ab9958e9650ac18cb25d5891e367f1b82412bee37f47664372bed02e1a"
+    },
+    {
+      "suite": "T331",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "bed1efde08a47e8f1868bd9197a7efda5962a428421c1112fd1075f6b0c0bb6b"
+    },
+    {
+      "suite": "T332",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "29b1763adb1a083b595c6d45d1f7f8a8ceaeb87d1152964d3a1f9bbf44f49748"
+    },
+    {
+      "suite": "T333",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "22ca7153a6c00ca1be957e4cc10f51bb89ea63bd544171361d5294a15229b851"
+    },
+    {
+      "suite": "T341",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "3bcf48b2b466eb687c4e5fa23c7bf5652588c0d7c38eb42231f059af3490a96f"
+    },
+    {
+      "suite": "T342",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "5ba9b0d16198262694a8fe729b58d2a741b454bce2c2a71b8de87840fa96026a"
+    },
+    {
+      "suite": "T343",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "184e6548d23bac06ff951c0f65c25cee3fc1ea6f50b674b6ab5ec2b415f3a31e"
+    },
+    {
+      "suite": "T351",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "71d4c3e9704e3516161ecf14a35a6e6053d877694440016dc5faa3fe4a6a9838"
+    },
+    {
+      "suite": "T352",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "9098ae586fa9cea318aa0941a7ebc5ea8557b31efd79ea4f6dbe4003136ed06c"
+    },
+    {
+      "suite": "T353",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "23148f10a8144f2f2425689f9f46b7d62e21cb86f9b1cac39201bf409fb68f9f"
+    },
+    {
+      "suite": "T361",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "a3f5f06c2b3273c9a22968415ce29465da18d5a3e7d5d9eefc1a3c79b12b6673"
+    },
+    {
+      "suite": "T362",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "27135be19bc6ed7c717fe209c41ae9740fd5d1176a495d89e5678634b2ab607e"
+    },
+    {
+      "suite": "T363",
+      "pairs_checked": 180,
+      "failures": [],
+      "passed": true,
+      "source_sha256": "a2aa0f007b3f53d8b1a482951a6ba56104e7d0ea182e0c2db628d539d776d6df"
+    }
+  ],
+  "total_pairs": 3240,
+  "total_failures": 0,
+  "passed": true
+}

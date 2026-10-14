@@ -1,0 +1,67 @@
+overlay_version: 3.2-zcode-20261001
+stage: scientific_closure_and_canonical_binding
+execution_platform: zcode_goal_mode
+tested_model_roster:
+- deepseek-v4.1-flash
+default_provider_calls_allowed: false
+automatic_continuation: true
+selection_rule: At each ZCode goal iteration, continue from the earliest unmet evidence
+  gate whose dependencies are satisfied. Do not reopen construct implementation unless
+  actual evidence proves a scientific semantic defect.
+tasks:
+- id: V32Z-S0-RECONCILE
+  gate: S0
+  depends_on: []
+- id: V32Z-S1-INDEPENDENT-REVERIFY
+  gate: S1
+  depends_on:
+  - V32Z-S0-RECONCILE
+  provider_calls: false
+- id: V32Z-S2-DATASET-BINDING
+  gate: S2
+  depends_on:
+  - V32Z-S1-INDEPENDENT-REVERIFY
+- id: V32Z-S3-RUNTIME-SCORER-PROMPT-TOOL
+  gate: S3
+  depends_on:
+  - V32Z-S1-INDEPENDENT-REVERIFY
+- id: V32Z-S4-T311-DEVIATION
+  gate: S4
+  depends_on:
+  - V32Z-S3-RUNTIME-SCORER-PROMPT-TOOL
+- id: V32Z-S5-RETROACTIVE-BINDING
+  gate: S5
+  depends_on:
+  - V32Z-S2-DATASET-BINDING
+  - V32Z-S3-RUNTIME-SCORER-PROMPT-TOOL
+  - V32Z-S4-T311-DEVIATION
+- id: V32Z-S6-RELEASE-ADDENDUM
+  gate: S6
+  depends_on:
+  - V32Z-S5-RETROACTIVE-BINDING
+- id: V32Z-S7-ACCEPTANCE-SPLIT
+  gate: S7
+  depends_on:
+  - V32Z-S6-RELEASE-ADDENDUM
+- id: V32Z-S8-PHASE-C-CANONICAL-CONSISTENCY
+  gate: S8
+  depends_on:
+  - V32Z-S7-ACCEPTANCE-SPLIT
+- id: V32Z-S9-STATE-SYNC
+  gate: S9
+  depends_on:
+  - V32Z-S8-PHASE-C-CANONICAL-CONSISTENCY
+- id: V32Z-S10-FINAL-DELIVERY
+  gate: S10
+  depends_on:
+  - V32Z-S9-STATE-SYNC
+- id: V32Z-S11-COMPLETE
+  gate: S11
+  depends_on:
+  - V32Z-S10-FINAL-DELIVERY
+rerun_branch:
+  trigger: A suite is INCOMPATIBLE, or decisive evidence remains UNPROVEN and formal
+    rerun is the only scientifically valid resolution.
+  action: Record exact suite(s), evidence, minimum provider scope and expected cost;
+    pause for explicit user approval before any formal provider call.
+  never_expand_without_evidence: true

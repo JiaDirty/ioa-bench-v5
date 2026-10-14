@@ -1,0 +1,26 @@
+# v4 Corrective Checkpoint
+
+- Current Gate:
+- Current Task:
+- v4 Release:
+- release_sha256:
+- candidate source_tree_sha256:
+- Provider approval:
+- Formal suites complete:
+- Formal cases complete:
+- Candidate validation:
+- Full pytest:
+- Closure tests:
+- Baseline verify:
+- Smoke:
+- INVALID count:
+- INFRA_INTERRUPTED count:
+- RETRYABLE residual:
+- FAILED count:
+- Rerun-to-safe violations:
+- Binding STRICT count:
+- Phase C:
+- Delivery:
+- Final acceptance:
+- Blockers:
+- Next action:

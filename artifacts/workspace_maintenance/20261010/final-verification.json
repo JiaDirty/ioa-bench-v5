@@ -1,0 +1,9 @@
+{
+  "yaml": "PASS",
+  "report_suites": 18,
+  "links": "PASS",
+  "cache_absence": "PASS",
+  "protected_current_hashes": "PASS",
+  "zip_crc": "PASS",
+  "provider_calls": 0
+}

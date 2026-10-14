@@ -1,0 +1,1342 @@
+{
+  "addendum_scope": "provenance_and_metadata_only",
+  "artifact": "OBSERVED_MODEL_PROFILE_ADDENDUM",
+  "base_profile": {
+    "path": "release/MODEL_PROFILE_deepseek-v4.1-flash.json",
+    "sha256": "0967837dd76d2e2c266c281523401c20cacc39acb3dd0a4eda2ae9209ee71998"
+  },
+  "base_release": {
+    "path": "release/BENCHMARK_RELEASE_v3-20260930.json",
+    "sha256": "8891e33609fc18aa479ea06af9d81b5eda88704cd54c33a5fce1ac5c28d150ac"
+  },
+  "canonical_acceptance": false,
+  "canonical_tested_model_roster": [
+    "deepseek-v4.1-flash"
+  ],
+  "corrections_to_base_profile": [
+    "The base profile's single max_tokens=8192 value does not describe every retained call: T311 uses 4096; synthetic-human calls use 2000.",
+    "ModelResponse.model_id copies the requested model ID. Provider-returned aliases are separate metadata, not independent model-identity attestation.",
+    "Live model discovery replies/capabilities were not retained; the base profile's live-discovery claim is not independently re-certified here."
+  ],
+  "frozen": true,
+  "model_record_count": 19673,
+  "provider": "aihubmix",
+  "response_format_behavior_from_source": "No response_format is added by the adapter; explicit request parameters are forwarded.",
+  "scheduler": {
+    "actual_selection": "CLI reads IOABENCH_CONCURRENCY (default 1), not scheduler_profile.json; manifest records only initial value.",
+    "implementation": {
+      "path": "src/ioabench/cli.py",
+      "sha256": "608b84509f388de10fbb26fff5fb3eab94ff8106f6fecf5531f0e3bd18c0167b"
+    },
+    "profile": {
+      "path": "config/scheduler_profile.json",
+      "sha256": "7bb56f434f5be2eb293d034afbb4c03c9c91370dd2786c0ac1f1eb5c76cab95b"
+    },
+    "retry_conflict": {
+      "path": "artifacts/gates/V32_S1_POLICY_IMPACT_v2.json",
+      "sha256": "d9a728e43abce936f9eb0e9f6283db09492da06f06ff727843ce00f1e09f7d6b"
+    }
+  },
+  "source_evidence": {
+    "path": "src/ioabench/models/aihubmix.py",
+    "sha256": "fcb5667103e58ee3ce1b46c5423bc63e607558d41753e7dfad7fdfea76b88cc5"
+  },
+  "suites": {
+    "T311": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T311-2.0.0-formal/manifest/deepseek-v4.1-flash-T311-2.0.0-formal.json",
+          "sha256": "fd5126306d5e342e668805000c1e39abe0ade589acac4714a31aaea76cf53bee"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T311-2.0.0-formal/results.json",
+          "sha256": "f4b17257be4ea31ef41b21178b3d6d76f182fe24ab0d3d30426861ffe95f176e"
+        }
+      ],
+      "initial_manifest_concurrency": 1,
+      "roles": {
+        "executor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 4096,
+                "temperature": 0.0
+              },
+              "max_tokens": 4096,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 90,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "selector": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 4096,
+                "temperature": 0.0
+              },
+              "max_tokens": 4096,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 557,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 467
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T311-2.0.0-formal"
+    },
+    "T312": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T312-2.2.0-formal/manifest/deepseek-v4.1-flash-T312-2.2.0-formal.json",
+          "sha256": "c4616c5ca81af46e3a0ac3137408943ef6ba8cc4169c7ec69bab57089656b078"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T312-2.2.0-formal/results.json",
+          "sha256": "d6b37814333902f8033aa06e23eb0508328d857b3c1c18fcd3aae69de1193d16"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "executor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 60,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 60
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "selector": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 757,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 667
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T312-2.2.0-formal"
+    },
+    "T313": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T313-2.3.0-formal/manifest/deepseek-v4.1-flash-T313-2.3.0-formal.json",
+          "sha256": "c0bfb0e68b1eb3ef2cce81b4904ecee16f7382f9beb630596d7e534b18f2a354"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T313-2.3.0-formal/results.json",
+          "sha256": "730300f2fba97fdf711f94ffc276a8221ea28697e1bbb09b70cb631c45e8d7ea"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "delegator": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 952,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 952
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "executor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 81,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 81
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T313-2.3.0-formal"
+    },
+    "T321": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T321-2.2.0-formal/manifest/deepseek-v4.1-flash-T321-2.2.0-formal.json",
+          "sha256": "8c183998f0741307e9177321503dd576a1559b349d6533ec5368eee00a505f6a"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T321-2.2.0-formal/results.json",
+          "sha256": "1eb46071ef43b20d07a8afa64d4b62f68df43f3be3d6c94ad7a2890d229b1570"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "counterparty": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 170,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 170
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "initiator": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 542,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 528,
+            "deepseek-v4.1-flash": 14
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T321-2.2.0-formal"
+    },
+    "T322": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T322-2.4.0-formal/manifest/deepseek-v4.1-flash-T322-2.4.0-formal.json",
+          "sha256": "b0025c8ff7ead9d4a9e3622cc5ef9ed9ec7674108d0bfc4c4f76488fdff9752d"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T322-2.4.0-formal/results.json",
+          "sha256": "0d4a18339eec9f63fbba08ebd07e1277c0739486c5059a7ef0998e051a827d55"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "destination": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 90,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "source": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 416,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 416
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T322-2.4.0-formal"
+    },
+    "T323": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T323-2.4.0-formal/manifest/deepseek-v4.1-flash-T323-2.4.0-formal.json",
+          "sha256": "89214e6d3795943ee6a4b45b9060f3079cd7379f5aabb3f30a16818374295b1a"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T323-2.4.0-formal/results.json",
+          "sha256": "3215362fc18a0f0d1473dc3cb2f102c82dbc41f4ec4c069961f0dd22efec7dc8"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "delegator": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 1083,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 1083
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "executor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 100,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 100
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T323-2.4.0-formal"
+    },
+    "T331": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T331-2.4.0-formal/manifest/deepseek-v4.1-flash-T331-2.4.0-formal.json",
+          "sha256": "1b9a317f4149b931077a49a6909c402f2cfdee628ecd23b0949b9be9dc38441d"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T331-2.4.0-formal/results.json",
+          "sha256": "e1b7366eb1863196e61cb1486cabcda6b14d0284913154fe2a7ffba30078b162"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "origin": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 479,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 475,
+            "deepseek-v4.1-flash": 4
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "receiver": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 887,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 884,
+            "deepseek-v4.1-flash": 3
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T331-2.4.0-formal"
+    },
+    "T332": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T332-2.3.0-formal/manifest/deepseek-v4.1-flash-T332-2.3.0-formal.json",
+          "sha256": "2a460c4b70e5f63c74e62db21186efb437d89b8963c78a2fad812a52e1fd32bb"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T332-2.3.0-formal/results.json",
+          "sha256": "e1547a3f9d170dc2044c70854b1be98ef968a1d28bd4c88894166727ed2a55e7"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "internal": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 469,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 469
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "recipient": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 90,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T332-2.3.0-formal"
+    },
+    "T333": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T333-2.4.0-formal/manifest/deepseek-v4.1-flash-T333-2.4.0-formal.json",
+          "sha256": "c7b50208307a0b96860ea27888cabe04d1cc2b1694462d23c9a6291be40fd351"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T333-2.4.0-formal/results.json",
+          "sha256": "b848728f6f23c72d4ed1b9e97d56c3e3ec6a0220502df8ceb16f6a189fa42f52"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "analyst": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 387,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 387
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "receiver": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 90,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T333-2.4.0-formal"
+    },
+    "T341": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T341-2.4.0-formal/manifest/deepseek-v4.1-flash-T341-2.4.0-formal.json",
+          "sha256": "62aa124b691d49fe37ed469db58c6a837aa92722de661a62a01f8b63f20f2ad4"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T341-2.4.0-formal/results.json",
+          "sha256": "38c57a2171f6318ff8443d53b911274fcc7b614684a88416371b7398a36c4c93"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "tested_decider": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 426,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 426
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "tested_evidence_holder": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 427,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 427
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "tested_majority_a": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 431,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 431
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "tested_majority_b": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 429,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 429
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T341-2.4.0-formal"
+    },
+    "T342": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T342-2.4.0-formal/manifest/deepseek-v4.1-flash-T342-2.4.0-formal.json",
+          "sha256": "dc55ac81401907013720ab95e2cc861f8bf627b209f022e3f7c4570ec50db55d"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T342-2.4.0-formal/results.json",
+          "sha256": "3236f251c22ca6d8f05dbf0bc3d849a427ad91948ee2da7ce5abe2c83d6112f6"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "origin": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 483,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 483
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "receiver": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 993,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 993
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T342-2.4.0-formal"
+    },
+    "T343": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T343-2.4.0-formal/manifest/deepseek-v4.1-flash-T343-2.4.0-formal.json",
+          "sha256": "e4e5df245b6a5ebb81297ea5ed53048b1fe3fa65f4958ea43460c1b6cd925fee"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T343-2.4.0-formal/results.json",
+          "sha256": "44c175ec82b197b3231a3128b48f4f34946c772587ce36926352a209efbe9bd0"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "tested_peer": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 1555,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 1550,
+            "deepseek-v4.1-flash": 5
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "tested_policy_agent": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 1531,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 1530,
+            "deepseek-v4.1-flash": 1
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T343-2.4.0-formal"
+    },
+    "T351": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T351-2.3.0-formal/manifest/deepseek-v4.1-flash-T351-2.3.0-formal.json",
+          "sha256": "1901bb07eb04350afae2b975870671eb2390ecf928fe30da8cacdbf1b0a02f67"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T351-2.3.0-formal/results.json",
+          "sha256": "d0fc75e0f9d4e37c2737ebcf1edbaa150174ea7568ec1189462208ff83859e0f"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "supervisor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 194,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 104
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "worker": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 431,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 341
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T351-2.3.0-formal"
+    },
+    "T352": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T352-2.2.0-formal/manifest/deepseek-v4.1-flash-T352-2.2.0-formal.json",
+          "sha256": "2aeb9386f435ad0341fe12056719350aaec49cc2713c92feece366d4fb773006"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T352-2.2.0-formal/results.json",
+          "sha256": "f673ab734f7f976808d4da710bbe31b2a407de53e7f0798eba081f8a5ac05647"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "executor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 390,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 300
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "selector_a": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 390,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 300
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "selector_b": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 390,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 300
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T352-2.2.0-formal"
+    },
+    "T353": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T353-2.3.0-formal/manifest/deepseek-v4.1-flash-T353-2.3.0-formal.json",
+          "sha256": "84187b5b561004b8809e3dbd3a102d7363167e10ac3fe9a27dae6f8ecb443d42"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T353-2.3.0-formal/results.json",
+          "sha256": "cf14170c260e5753b5c37c1a46b612cf6dc1d71e1755086ac112385f4a2f285b"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "executor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 76,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 76
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "selector": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 709,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 90,
+            "deepseek-v4.1-flash": 619
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T353-2.3.0-formal"
+    },
+    "T361": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T361-2.3.0-formal/manifest/deepseek-v4.1-flash-T361-2.3.0-formal.json",
+          "sha256": "a50d60fd80e45e3b7a7bc2f92b5de195f5079db80e94020d469d03fae9097150"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T361-2.3.0-formal/results.json",
+          "sha256": "222ce029e0e5686010e2fc4cb72b1dae8301aaf209e31c1a1a2de9f82bfc3e81"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "SYNTHETIC_HUMAN": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 2000,
+                "temperature": 0.0
+              },
+              "max_tokens": 2000,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 390,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "glm-5.3-flash": 390
+          },
+          "requested_model_id": "glm-5.3-flash",
+          "role_class": "AUXILIARY_SYNTHETIC_HUMAN"
+        },
+        "advisor": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 390,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 99,
+            "deepseek-v4.1-flash": 291
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "reviewer": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 390,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 95,
+            "deepseek-v4.1-flash": 295
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T361-2.3.0-formal"
+    },
+    "T362": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T362-2.4.0-formal/manifest/deepseek-v4.1-flash-T362-2.4.0-formal.json",
+          "sha256": "0531f4329bf4018b430951f22b052a892ac2acee39a1f6e6367c7903439d1f79"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T362-2.4.0-formal/results.json",
+          "sha256": "4e1e03623e0e9420974807445341bb9e1398dfd70a52b30a22fb621bd8077449"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "SYNTHETIC_HUMAN": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 2000,
+                "temperature": 0.0
+              },
+              "max_tokens": 2000,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 384,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "glm-5.3-flash": 384
+          },
+          "requested_model_id": "glm-5.3-flash",
+          "role_class": "AUXILIARY_SYNTHETIC_HUMAN"
+        },
+        "discussant_a": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 385,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 166,
+            "deepseek-v4.1-flash": 219
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "discussant_b": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 384,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 128,
+            "deepseek-v4.1-flash": 256
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "moderator": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 384,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 132,
+            "deepseek-v4.1-flash": 252
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T362-2.4.0-formal"
+    },
+    "T363": {
+      "actual_concurrency_on_each_resume": "UNKNOWN_NOT_PERSISTED",
+      "evidence": [
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T363-2.3.0-formal/manifest/deepseek-v4.1-flash-T363-2.3.0-formal.json",
+          "sha256": "9af330ca5d8bce160ed7ce1266496dd5a082ebe31de75c219460cde1b2a87626"
+        },
+        {
+          "path": "data/runs/deepseek-v4.1-flash-T363-2.3.0-formal/results.json",
+          "sha256": "5fa3aabc64a38f7f7a05ff81e57c634be72a89dc52fef99b60196451d0b822c7"
+        }
+      ],
+      "initial_manifest_concurrency": 3,
+      "roles": {
+        "SYNTHETIC_HUMAN": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 2000,
+                "temperature": 0.0
+              },
+              "max_tokens": 2000,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 271,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "glm-5.3-flash": 271
+          },
+          "requested_model_id": "glm-5.3-flash",
+          "role_class": "AUXILIARY_SYNTHETIC_HUMAN"
+        },
+        "assistant": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 270,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 209,
+            "deepseek-v4.1-flash": 61
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        },
+        "reviewer": {
+          "parameter_profiles": [
+            {
+              "explicit_parameters": {
+                "max_tokens": 8192,
+                "temperature": 0.0
+              },
+              "max_tokens": 8192,
+              "reasoning_parameters": "PROVIDER_DEFAULT_UNSET",
+              "record_count": 270,
+              "response_format": "PROVIDER_DEFAULT_UNSET",
+              "temperature": 0.0,
+              "tool_choice": "PROVIDER_DEFAULT_UNSET",
+              "top_p": "PROVIDER_DEFAULT_UNSET"
+            }
+          ],
+          "provider_returned_model_ids": {
+            "deepseek-v4-1-flash-260910": 251,
+            "deepseek-v4.1-flash": 19
+          },
+          "requested_model_id": "deepseek-v4.1-flash",
+          "role_class": "TESTED_AGENT"
+        }
+      },
+      "run_id": "deepseek-v4.1-flash-T363-2.3.0-formal"
+    }
+  },
+  "tool_calling_behavior_from_source": "AIHubMixAdapter forwards recorded tools when nonempty and omits tools when empty; tool_choice is unset unless explicit in request parameters.",
+  "transport_from_source": {
+    "actual_base_url_per_call": "UNKNOWN_NOT_PERSISTED",
+    "configured_base_urls": [
+      "https://aihubmix.com/v1",
+      "https://api.inferera.com/v1"
+    ],
+    "context_window": "UNKNOWN_NOT_PERSISTED",
+    "endpoint_family": "/chat/completions",
+    "live_discovery_response": "NOT_RETAINED_IN_FORMAL_RUN_MANIFEST",
+    "per_attempt_fallbacks": "Transport may try both configured hosts; 3 is not a total HTTP-request bound.",
+    "provider_adapter": "AIHubMixAdapter",
+    "source": {
+      "path": "src/ioabench/models/aihubmix.py",
+      "sha256": "fcb5667103e58ee3ce1b46c5423bc63e607558d41753e7dfad7fdfea76b88cc5"
+    },
+    "timeout_seconds_per_transport_attempt": 300,
+    "transient_outer_attempt_limit": 3,
+    "transient_sleep_seconds": [
+      1.5,
+      3.0,
+      4.5
+    ]
+  }
+}

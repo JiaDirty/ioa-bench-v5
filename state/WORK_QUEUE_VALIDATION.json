@@ -1,0 +1,59 @@
+{
+  "artifact": "WORK_QUEUE_STRUCTURE_VALIDATION",
+  "checks": {
+    "unique_ids": true,
+    "all_dependencies_resolve": true,
+    "dag_acyclic": true,
+    "milestones_resolve": true,
+    "task_counts_match": true,
+    "versions_match": true
+  },
+  "pass": true,
+  "work_queue_version": 26,
+  "task_count": 464,
+  "milestone_counts": {
+    "CONSTRUCT_REMEDIATION_FUTURE": 2,
+    "CONSTRUCT_REMEDIATION_OFFLINE_GATE": 1,
+    "CONSTRUCT_REMEDIATION_T311": 5,
+    "CONSTRUCT_REMEDIATION_WAVE1": 2,
+    "CONSTRUCT_REMEDIATION_WAVE2": 2,
+    "CONSTRUCT_REMEDIATION_WAVE3": 2,
+    "CONSTRUCT_REMEDIATION_WAVE4": 2,
+    "CONSTRUCT_REMEDIATION_WAVE5": 2,
+    "CONSTRUCT_REMEDIATION_WAVE6": 2,
+    "CONSTRUCT_REMEDIATION_WAVE7": 2,
+    "CONSTRUCT_REMEDIATION_WAVE8": 3,
+    "M0": 10,
+    "M1": 9,
+    "M10": 15,
+    "M12_DATA_AND_EVALUATION": 36,
+    "M2": 14,
+    "M3": 13,
+    "M4": 7,
+    "M5": 31,
+    "M6": 37,
+    "M7": 19,
+    "M8": 25,
+    "M9": 40,
+    "PHASE_A_V2": 8,
+    "PHASE_B_V2": 126,
+    "PHASE_C_V2": 5,
+    "POST_M10_SCIENTIFIC_ACCEPTANCE": 8,
+    "SCIENTIFIC_CLOSURE_V3_2": 13,
+    "V4_CORRECTIVE_STRICT_CAMPAIGN": 14,
+    "V5_PUBLICATION_GRADE_CONTINUATION": 9
+  },
+  "status_counts": {
+    "blocked": 8,
+    "done": 418,
+    "in_progress": 1,
+    "planned": 37
+  },
+  "missing_dependencies": [],
+  "source_hashes": {
+    "state/WORK_QUEUE.yaml": "d7a3efcfa2180cc6eca8cf6a702fad696949d940ea53805a789c8829e2d1d64e",
+    "state/PROJECT_STATE.yaml": "28ecc1ccd1ba89dd38b666e5523335fd7cedcf8e37dee403dccf17298fb7addc"
+  },
+  "scope": "Counts, versions, IDs, dependencies and DAG only; no historical done labels, evidence paths or scientific gates re-certified.",
+  "repaired_by": "artifacts/v5/overnight_runs/20261013-audit-fixes-r1/refresh_queue_statistics.py"
+}

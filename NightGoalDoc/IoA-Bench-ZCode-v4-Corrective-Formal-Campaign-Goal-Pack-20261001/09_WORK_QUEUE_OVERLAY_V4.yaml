@@ -1,0 +1,76 @@
+overlay_version: v4-corrective-20261001
+stage: v4_corrective_release_and_strict_formal_campaign
+tested_model_roster:
+- deepseek-v4.1-flash
+canonical_scope:
+  suites: 18
+  cases_per_suite: 90
+  total_cases: 1620
+provider_calls_default_allowed: false
+historical_results_allowed_in_v4_canonical_aggregation: false
+tasks:
+- id: V4-S0-RECONCILE
+  gate: V4-S0
+  depends_on: []
+  provider: false
+- id: V4-S1-CANDIDATE-FORK
+  gate: V4-S1
+  depends_on:
+  - V4-S0-RECONCILE
+  provider: false
+- id: V4-S2-STRICT-RETRY
+  gate: V4-S2
+  depends_on:
+  - V4-S1-CANDIDATE-FORK
+  provider: false
+- id: V4-S3-CANDIDATE-VALIDATION
+  gate: V4-S3
+  depends_on:
+  - V4-S2-STRICT-RETRY
+  provider: false
+- id: V4-S4-PREFREEZE-AUDIT
+  gate: V4-S4
+  depends_on:
+  - V4-S3-CANDIDATE-VALIDATION
+  provider: false
+- id: V4-S5-FREEZE-RELEASE
+  gate: V4-S5
+  depends_on:
+  - V4-S4-PREFREEZE-AUDIT
+  provider: false
+- id: V4-S6-FREEZE-RUN-MANIFESTS
+  gate: V4-S6
+  depends_on:
+  - V4-S5-FREEZE-RELEASE
+  provider: false
+- id: V4-S7-PROVIDER-APPROVAL
+  gate: V4-S7
+  depends_on:
+  - V4-S6-FREEZE-RUN-MANIFESTS
+  provider: false
+  external_user_decision: true
+- id: V4-S8-LIVE-SMOKE
+  gate: V4-S8
+  depends_on:
+  - V4-S7-PROVIDER-APPROVAL
+  provider: true
+- id: V4-S9-FORMAL-CAMPAIGN
+  gate: V4-S9
+  depends_on:
+  - V4-S8-LIVE-SMOKE
+  provider: true
+- id: V4-S10-POSTRUN-VALIDATION
+  gate: V4-S10
+  depends_on:
+  - V4-S9-FORMAL-CAMPAIGN
+  provider: false
+- id: V4-S11-CANONICAL-AGGREGATION
+  gate: V4-S11
+  depends_on:
+  - V4-S10-POSTRUN-VALIDATION
+  provider: false
+- id: V4-S12-FINAL-DELIVERY
+  gate: V4-S12
+  depends_on:
+  - V4-S11-CANONICAL-AGGREGATION
+  provider: false

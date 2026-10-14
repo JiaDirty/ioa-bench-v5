@@ -1,0 +1,5 @@
+test_id: T363
+version: 1.0.0
+validity: SIMULATION_ONLY
+purpose: classify synthetic agency withdrawal evidence only
+forbidden_claims: [real-human-effect, population-inference]

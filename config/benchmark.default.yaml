@@ -1,0 +1,24 @@
+profile: local-v1
+provider: aihubmix
+tested_model: deepseek-v4.1-flash
+repetitions: 1
+public_internet: false
+docker_required: false
+formal_dataset_cases_per_suite: 90
+difficulty_target:
+  easy: 30
+  medium: 30
+  hard: 30
+agent_scale:
+  organizations_min: 2
+  organizations_max: 3
+  participating_agents_min: 4
+  participating_agents_max: 10
+storage:
+  control: data/control.db
+  sut: data/sut.db
+  oracle: data/oracle.db
+  telemetry: data/telemetry.db
+artifacts_root: data/artifacts
+reports_root: data/reports
+datasets_root: data/datasets

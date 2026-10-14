@@ -1,0 +1,67 @@
+{
+  "pack_version": "v3.2-zcode-20261001",
+  "purpose": "ZCode Goal Mode adaptation for IoA-Bench scientific closure, independent reverification, canonical Run↔Release binding, acceptance repair, and final delivery.",
+  "created_at_utc": "2026-10-01T02:17:36.509860+00:00",
+  "stage": "SCIENTIFIC_CLOSURE_AND_CANONICAL_BINDING",
+  "execution_platform": "ZCode Goal Mode",
+  "tested_model_roster": [
+    "deepseek-v4.1-flash"
+  ],
+  "current_execution_agent_is_not_tested_model": true,
+  "default_provider_calls_allowed": false,
+  "default_formal_rerun": false,
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "size": 2305,
+      "sha256": "794f4eebbded713f5ccf21f579afa4a946dd3706601ebd845f9b103dbdee5294"
+    },
+    "01_CURRENT_AUTHORITATIVE_STATE.md": {
+      "size": 1909,
+      "sha256": "22405d108a6669d016ae8eacb9acf5a18ff226525d69a42d659b4d612d54c428"
+    },
+    "02_INDEPENDENT_REVERIFICATION_PROTOCOL.md": {
+      "size": 2300,
+      "sha256": "a451fc78ea24a66ae2b396e4276d4272ed016095eee629208f5c25ce98f9f5e3"
+    },
+    "03_RETROACTIVE_RELEASE_BINDING_PROTOCOL.md": {
+      "size": 1816,
+      "sha256": "d1eab8112ae2cf1adaad66d3e4028953e898963581c8f6a5608658ebdcaf0ec2"
+    },
+    "04_RELEASE_METADATA_HARDENING.md": {
+      "size": 1654,
+      "sha256": "607fe805f7aaa9a266956b69b8c37065149ca06f9134de8e1a573c8705cd1534"
+    },
+    "05_T311_DEVIATION_PROTOCOL.md": {
+      "size": 1243,
+      "sha256": "dc1f94dc74a067d3674867d4ed29cc784af8a5b30160d98aade04cb9e5a7cefa"
+    },
+    "06_ACCEPTANCE_MODEL_AND_G13_REPAIR.md": {
+      "size": 1733,
+      "sha256": "1cea2b953d952861efd504ec69daa8655191218cbd7a71a90d8afea36cfb1e8c"
+    },
+    "07_FINAL_DELIVERY_AND_PROVENANCE.md": {
+      "size": 1433,
+      "sha256": "0c17eb574b0b09e95e1cf86f4c33c16f83fccb6f86125b854a8de085b3675a08"
+    },
+    "08_SCIENTIFIC_GATES_V3_2.md": {
+      "size": 2255,
+      "sha256": "55a34059e598369afba49110926bc5d242af9a477752dd10507a8ec38b321ef5"
+    },
+    "09_WORK_QUEUE_OVERLAY_V3_2.yaml": {
+      "size": 1925,
+      "sha256": "7ede57e0b59c96b0d472bef413e619db8432997f85a992fc9abd1758238e81fa"
+    },
+    "10_CHECKPOINT_TEMPLATE.md": {
+      "size": 981,
+      "sha256": "32de8ce36598c04a501b277df10cd01dcc361bc4850e6e61fab08f59729e5c12"
+    },
+    "GOAL_PROMPT_ZCODE_V3_2.md": {
+      "size": 6413,
+      "sha256": "4ef8b60b1955d40f5de0aae11d945b3b0043173b193c22021400355e2b09057d"
+    },
+    "PASTE_GOAL.txt": {
+      "size": 6347,
+      "sha256": "a2d9ea65bc73f09ef6aea97aaf63a6fdf4ee15877b34b1ce56dcd701ed836095"
+    }
+  }
+}

@@ -1,0 +1,742 @@
+# IoA-Bench v5 — Dynamic World execution queue (M0-M10)
+# Created 2026-10-11 by ZCode from NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/04_WORK_QUEUE_GATES.md
+# after M0 integration review (docs/v5/V5_DYNAMIC_WORLD_GOAL_INTEGRATION.md).
+# This queue is the execution task tree of the SINGLE existing v5 goal; it does not create a
+# competing goal. Gate A-H definitions stay in
+# NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/03_PUBLICATION_READINESS_CONTRACT.md.
+# Status vocabulary: NOT_STARTED / IN_PROGRESS / VALIDATED / BLOCKED / PI_DECISION_REQUIRED.
+# PI-V5-008 (2026-10-12) supersedes fixed auxiliary-model routing and authorizes versioned,
+# non-frozen candidate expansion; formal freeze, Gate D, confirmation Pilot and Campaign stay gated.
+# Mainstream connectivity20261014:9/10 exact IDs basic Chat PASS; qwen3.8-27b no_available_channel even with official minimum request; no401.
+# Current process review20261014:factory2.3.5/quality1.4.0/control1.4.1;6 repairs;852 v5 tests;18-suite preflight36/36 and228 references;API0.
+# Evidence:artifacts/v5/data_factory/review/process-audit-20261014-r1/REPORT.md; broad structural capacity and online auditor controls remain open.
+# Historical PI-V5-016 selected-model trials:7 official models;6 GPT candidates;15 completion requests incl3 probes; no401. factory2.3.4/816 tests.
+# Evidence:artifacts/v5/provider_contracts/pi-order-20261014T082638/REPORT.md; original judgments and all frozen research evidence retained.
+# Evidence:artifacts/v5/provider_contracts/mainstream-20261014T080611; no new generation-quality qualifications or formal gate changes.
+# Current execution follows PI-V5-015: 36 authored candidate episodes under direct DeepSeek, versioned engineering repairs and strict replay; no formal freeze or bulk generation.
+# Task id prefix DW (dynamic world). Rules: no scientific-threshold skipping; no quality-gate
+# lowering; non-frozen candidate expansion is authorized by PI-V5-008; Gate D human review
+# cannot be replaced by AI, and confirmation Pilot/Campaign remain separately gated.
+
+queue_id: V5_DYNAMIC_WORLD
+created: 2026-10-11
+goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+design_sources:
+  - NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/01_LONG_TERM_GOAL.md
+  - NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/02_RUNTIME_AND_MEASUREMENT_DESIGN.md
+  - NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/03_DATA_FACTORY_AND_QUALITY.md
+  - NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/05_INTEGRATION_AND_EXECUTION.md
+  - NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/07_18_SUITE_MIGRATION_MATRIX.md
+integration_record: docs/v5/V5_DYNAMIC_WORLD_GOAL_INTEGRATION.md
+
+milestones:
+  - id: M0
+    name: 现场基线与并行隔离
+    status: VALIDATED
+    tasks:
+      - id: DW-000
+        desc: 读完新设计包 7 份文件、现有 Goal 契约、PROJECT_STATE、V5_PROGRESS、PI 决策日志、源码树、Codex 原型（只读）。
+        status: VALIDATED
+        evidence: docs/v5/V5_DYNAMIC_WORLD_GOAL_INTEGRATION.md §1/§4/§6
+      - id: DW-001
+        desc: Goal 整合与冲突核查（C1-C7），写入整合记录。
+        status: VALIDATED
+        evidence: docs/v5/V5_DYNAMIC_WORLD_GOAL_INTEGRATION.md §2/§4
+      - id: DW-002
+        desc: PI 决策记录 PI-V5-007（授权范围 + 数据工厂模型固定）。
+        status: VALIDATED
+        evidence: docs/v5/V5_PI_DECISION_LOG.md PI-V5-007
+      - id: DW-003
+        desc: 主线 v5 相关文件基线哈希清单（只读快照，不备份复制历史证据）。
+        status: VALIDATED
+        evidence: artifacts/v5/dynamic_world/m0-baseline-manifest.json
+      - id: DW-004
+        desc: 并行规则确认：不写 Codex 目录；共享文件（engine/pilot 等）改动前检查并行状态；无 .git，不做 worktree 假设。
+        status: VALIDATED
+        evidence: 本文件 header + 整合记录 §1
+      - id: DW-005
+        desc: 版本区分记录（T352/T332 冒烟 = v1.1.0/8192；96 行扩展冒烟 = v1.1.2/131072；pair recheck 补齐 v1.1.2 覆盖）不得混称。
+        status: VALIDATED
+        evidence: docs/v5/V5_PROGRESS.md（2026-10-11 各节）；整合记录 §4 C5
+
+  - id: M1
+    name: 科研—执行契约（18 构念 → 世界能力/评价事实）
+    status: VALIDATED
+    acceptance_scope: 能力契约与校验器已交付并持续通过；DW-013 未触发（映射过程未发现构念级冲突），不代表未来不会触发
+    tasks:
+      - id: DW-010
+        desc: 从 contracts/v5/construct_maps.json + 18 个 Suite 模块 + 07 迁移矩阵，生成结构化能力契约：每 Suite 的机制操纵、合法世界变化、所需世界能力组件、评价事件/状态谓词、外部 oracle 事实、成功/失效反例、难度与覆盖指标、共享 vs Suite-specific 标注。
+        status: VALIDATED
+        output: contracts/v5/dynamic_world_capability_maps.json（status=DRAFT，18 suites + 14 shared components）
+        evidence: 契约由 scripts/v5/build_capability_maps.py 从客观扫描+语义注释构建；构念语义零变化（authority_note 保留 construct_maps 唯一权威）
+      - id: DW-011
+        desc: 能力契约校验脚本（一致性检查：subtype 集合、操纵槽位、指纹、norms 与 construct_maps 及 Suite 代码对齐）。
+        status: VALIDATED
+        output: scripts/v5/validate_capability_maps.py + tests/v5/test_capability_maps.py（3 tests）
+        evidence: validator 校验 subtype ids 与 construct map 逐字一致、oracle_facts 与采样 oracle 键一致、组件 required_by 双向一致、每个 Suite 声明的事件引用真实存在的 decision tool；tests/v5 92 passed
+      - id: DW-012
+        desc: 共享能力组件清单定版（消息/身份授权验证/目录/协商/资源发送/状态转换/声誉/论坛/任务队列/证据图的接口与验收条件）+ Suite-specific 保留项清单。
+        status: VALIDATED
+        output: 契约内 shared_components 节（14 组件：message_bus/authority_registry/directory_catalog/evidence_graph/operational_ledger/transfer_session/task_graph_engine/forum/reputation_ledger/incentive_signal/committee/persona_interface/logical_clock/event_ledger，各含 provides/required_by/acceptance）
+      - id: DW-013
+        desc: 若 M1 过程中发现构念无法在动态世界表达或需要语义澄清 → PI_DECISION_REQUIRED 记录，不静默处理。
+        status: NOT_STARTED
+        note: M1 映射过程中未发现需要构念/Oracle/评分语义变更的冲突；T333 的 free-text abstain 带宽问题维持既有预注册审计路径（记于契约 gaps，未动 scorer）。
+
+  - id: M2
+    name: 动态 IoA 运行核心
+    status: VALIDATED
+    acceptance_scope: 事件账本/组件/仲裁/多路径证明已交付；DW-022 声明式世界规范 DEFERRED_TO_M4_M5（蓝图契约归 M5 数据工厂，未作为 M2 交付物）；post-audit P0-A/B/C 修复后引擎升版内容见 DW-AUDIT 任务
+    tasks:
+      - id: DW-020
+        desc: 事件账本升级：causal 事件模型（event_id/parent_event_id/agent_id/channel/action/inputs_digest/visibility/authority_reference/state_before_hash/state_after_hash/effects/error），与现有 EnvContext.events 兼容（保留旧字段或版本化迁移）。
+        status: VALIDATED
+        output: src/ioabench/v5/core/events.py（v5-event-ledger-1.0.0）；engine v5-episode-engine-1.3.0 集成（message_enqueued/message_delivered/tool_executed 自动事件 + ActionRecord 状态前后哈希 + 因果父链）
+        evidence: 旧字段 seq/turn/kind/payload 保留；18 套件回归 104 passed；离线矩阵 3240/3240 重跑通过（offline-matrix-20261011-m2-event-ledger.json）
+      - id: DW-021
+        desc: 能力组件库（按 DW-012 清单）：有状态工具模板（前置条件/状态转移/返回证据/错误）、调用方授权仲裁、证据图（来源/权威/可见时机/冲突/撤销/过期）、agent_network（角色/组织/路由/信任边界/可见工具）。
+        status: VALIDATED
+        output: core/authority.py（AuthorityLedger，派生链/撤销/有效窗）、core/evidence.py（EvidenceGraph，reveal/revoke/supersede/evaluator_private 隔离）、core/clock.py（LogicalClock）；ToolSpec.authority_scope 引擎级仲裁（无账本 fail-loud）；Scenario 组件钩子（authority/evidence/clock）
+        acceptance_note: 有状态工具模板在 fixture 中由 handler+组件组合证明；agent_network 的路由/信任边界由 message_bus + 后续 Suite 适配承载（现有 inboxes 已覆盖单层路由）
+      - id: DW-022
+        desc: 声明式世界规范层（Blueprint→世界编译所需的目标 schema），与 Case 现有字段映射。
+        status: DEFERRED_TO_M4_M5
+        rationale: 避免投机性 DSL——schema 由 T321 垂直切片编译器的实际需求定义（04 工作队列允许有理由的顺序调整；M5 数据工厂 blueprint→Case 路径需要它时落地）
+      - id: DW-023
+        desc: 多路径执行证明：同一世界≥2 条不同合法动作序列到达一致安全/效用判定（参考策略之外的替代路径测试、负例、无操作、错误环境状态测试）。
+        status: VALIDATED
+        output: tests/v5/test_dynamic_core.py（12 tests）
+        evidence: 两条不同自主路径（direct / verify-first）同判 utility；未授权发送被仲裁拒绝且拒收事件留存历史；中段撤销真实交错（pause→revoke→denied→replacement→ok）；同策略重放事件序列与终态完全一致
+      - id: DW-024
+        desc: 防泄漏回归：动态消息中的注入/越权文本不污染 evaluator/Oracle（负例测试）；CAPABILITY_GAP 显式拒收路径（编译器返回结构化原因，不静默丢弃）。
+        status: VALIDATED
+        evidence: 防泄漏负例（handler 返回 evaluator 词汇 → LeakageViolation；evaluator_private 证据禁止 reveal 给 agent；authority_scope 无账本 → ValueError 不静默豁免）。CAPABILITY_GAP 结构化拒收属编译器接口 → 移交 M4/M5 落地（DW-040 验收项含）
+      - id: DW-025
+        desc: 离线矩阵报告覆盖隐患修复（run_offline_gates 默认时间戳 + 拒绝覆盖已有报告，与既有 run-id 覆盖隐患同类）。
+        status: VALIDATED
+        evidence: 本次 M2 重跑曾原地覆盖同日早前报告（该报告内容已被取代，其结论在 V5_PROGRESS 有文字记录）；已加 --overwrite 显式开关 + 时间戳默认名；版本化副本 offline-matrix-20261011-m2-event-ledger.json
+
+  - id: M3
+    name: 全局监测与可靠测量
+    status: VALIDATED
+    acceptance_scope: 监测组件与 P1 强制接线已交付；DW-033（T333 abstain/T331 utility 科研审计）NOT_STARTED —— 维持预注册审计待办，本里程碑不含该项
+    tasks:
+      - id: DW-030
+        desc: 事件→outcome 通用链路：完整性/可重放/因果关联/暴露机会/分母处理泛化（沿用 outcome.py 轴与 LEGACY_TABLE，不改语义）。
+        status: VALIDATED
+        output: core/monitor.py `ledger_integrity`（执行事件完备性、因果父链可解析、seq 连续、状态哈希在场）+ 既有 exposure/outcome 链路复用（语义未动）
+        evidence: 正例通过 + 缺失执行事件/断裂父链被检出（tests/v5/test_dynamic_core.py）
+      - id: DW-031
+        desc: 时序性质监测：确定性有限状态监视器/事件谓词（如”先核验后行动””未经许可不发送”），窗口与可见性按 Suite 预注册。
+        status: VALIDATED
+        output: core/monitor.py `TimingRule` + `evaluate_timing`（决策工具前置条件：先前工具 ok 或证据 reveal 行；scope_actor 可选）；Suite 预注册规则在 M4/M7 各自 adapter 落地
+        evidence: 合法顺序通过；无核验 ok 决策被拒；证据时序（过早/过晚 reveal）正反例测试
+      - id: DW-032
+        desc: 跨 Agent 传播测量（T331 类）：多跳传播轨迹、责任主体、持久影响的事件级提取。
+        status: VALIDATED
+        output: core/monitor.py `message_flow`（enqueued→delivered FIFO 配对基底）；T331 专属传播指标在 M7 其 Suite adapter 上构建（契约已登记 operational_ledger+message_bus 依赖）
+      - id: DW-033
+        desc: T333 scorer abstain 审计与 T331 utility 归因沿用既有预注册审计路径（不趁机改 scorer）。
+        status: NOT_STARTED
+        note: 维持既有待办（T333 3/3 RISK abstain 超标 → Gate B/E 预注册审计；T331 utility → 分析期事项）；动态世界不触碰这两项语义。
+
+  - id: M4
+    name: T321 动态垂直切片
+    status: VALIDATED
+    tasks:
+      - id: DW-040
+        desc: T321 ≥2 种真正不同的可执行任务/证据/交互结构（非换 subtype 文本），Agent 不按 witness 路径也能完成；工具事件随结构变化；安全/违规均可判。
+        status: VALIDATED
+        output: src/ioabench/v5/dynamic/（t321_slice.py 结构A=竞争broker+协商冲突 S5泛化；t321_slice_b.py 结构B=例外中段送达 证据时序变化；gates.py 适配器参数化配对Gate；signature.py 结构签名）
+        evidence: |
+          - 结构A gates 全过（witness SAFE双臂/naive RISK UNSAFE/recovery RISK UNSAFE_RECOVERED + 暴露/机会证明 + 配对差分 + 细粒度白名单）；结构B 同
+          - 独立路径测试：不经 witness 顺序（跳过 broker offers 直接 rencotiate）双臂 SAFE+utility
+          - 结构B 例外记录送达前 read_exception 失败（证据时序可执行化）；witness 真实等待-使用序列
+          - 时序监测集成：合法路径过、naive 违反（accept-after-profile-check / exception-use-after-reading）
+          - 账本完整性在切片 episode 上通过；测试 11+2 个（tests/v5/test_t321_dynamic_slice*.py）
+          - 结构差异证据：A 无 broker_offers 有 delivery_schedule；B 无 written_exception 有 exception_delivery；世界键交集仅限共享业务字段
+          - CAPABILITY_GAP 路径：结构化拒收归编译器（M5）；已实现的等价物 = authority_scope 无账本 fail-loud、fine_arm_delta 白名单显式拒收
+      - id: DW-041
+        desc: 结构签名与跨家族去重在切片上运行（与 5.1.5 既有 T321 数据对比，换名不换结构 = 同 family）。
+        status: VALIDATED
+        output: dynamic/signature.py（signature/structural_delta；实体名/数字归一化）
+        evidence: classic/A/B 三个签名两两结构维度不同（真三个家族）；实体改名 + 数字替换 → same_family=true（换皮不产生新家族）；与 5.1.5 全量数据的批量比对随 M5 数据工厂落地
+
+  - id: M5
+    name: 数据工厂修复与合流（Codex 原型）
+    status: IN_PROGRESS
+    blocked_reason: '当前API已恢复，阻塞不再是401；18项广泛结构质量、独审正负控制及实测难度/重复可靠性尚未全部验证'
+    unlock: 'PI-V5-016首选GPT小批历史结果保留；本轮审查修复独审定义、参考池和接受证据完整性、异常响应及质量控制终态，factory2.3.5/quality1.4.0/control1.4.1通过852项测试、18项离线预检；API0，新版独审真实质量尚待在线验证，不代表M5完成。'
+    pi_authorization: PI-V5-016 resumes bounded official-schema-based selected-model trials and autonomous repairs under PI-V5-011/008 safeguards; no bulk generation or formal freeze/Pilot/Campaign.
+    tasks:
+      - id: DW-050
+        desc: 隔离审查 Codex ai_generation 包（blueprint_schema/t321_adapter/diversity/validator/pipeline）+ 测试 + 报告；逐文件 diff 判定可移植性（不用整目录覆盖）。
+        status: VALIDATED
+        output: artifacts/v5/dynamic_world/porting-review.json（验收直接运行于 Codex 交付目录，主线未复制快照载荷）
+        evidence: |
+          verify_codex_snapshot.py 验收：ZIP SHA-256 1315ee5b… 与 Manifest SHA-256 b41f42f1… 与 PI 声明一致；
+          460/460 逐文件载荷哈希核验通过；aggregate_sha256 未在 SEAL/文档中记录构造方式（6 个候选构造均不匹配），
+          如实记录为未验证字段——逐文件核验提供实质保证；版本 ioa-bench-v5-ai-data-factory-legacy-t321/0.2.0-handoff.20261011.r1。
+          可移植性分类：blueprint_schema/validator（reviewer 契约）/suite_adapter（Protocol）= PORT；
+          t321_adapter（legacy 五 subtype 固定编译器）= DO_NOT_PORT（HANDOFF.md 集成边界：不得成为 T321-DYNA 能力上限）；
+          私有 provider requester 接线 = DO_NOT_PORT。
+      - id: DW-051
+        desc: 选择性移植 + 主线测试（正/负控制集：换皮同构、偷换非机制字段、错误例外授权、编译丢步、oracle-工具不一致、模糊评分、流畅度替代证据）。
+        status: VALIDATED
+        output: src/ioabench/v5/ai_generation/（blueprint_schema.py + data/02_BLUEPRINT_SCHEMA.json + validator.py + suite_adapter.py，均自快照移植并保持契约不变）
+        evidence: 移植模块验证器/审查契约测试通过（tests/v5 含移植模块正负控制）；移植台账记录于 porting-review.json（含逐文件理由）
+      - id: DW-052
+        desc: 跨 run/跨候选结构去重索引（对比 5.1.5/5.1.6/新批）；拒收证据与覆盖矩阵闭环。
+        status: IN_PROGRESS
+        evidence: family_registry（DW-AUDIT-006 已 VALIDATED）+ build_dynamic_dataset.py 跨批对比冻结基线已闭环（拒收证据留存 rejected/ 目录）；与 5.1.5 全量 2160 条的批量结构签名比对基底在 signature/registry 就绪，待新批数据一并执行
+      - id: DW-053
+        desc: 有界真实试跑（实时发现及合格模型回退；按 PI-V5-008 记录模型身份/证据并贯通生成、编译、动态运行、去重与独立审核）。
+        status: IN_PROGRESS
+        evidence: |
+          历史 MiMo 探针（artifacts/v5/data_factory/s1-mimo-probe-20261011T120201Z.json 与
+          s1-mimo-probe-20261011T135138Z.json）均记录 HTTP 400 no_available_channel；这些原始失败证据保留，
+          不再作为 Goal 级停止条件。实时目录路由与当前 S1 运行证据见 artifacts/v5/overnight_runs/；
+          失败模型有界熔断，转用角色合格备用模型。编译器端到端离线链路见 DW-AUDIT-008。
+          2026-10-12 官方调用校核：8/8 JSON/identity 探针通过（713 token）；r9 GLM 独审成功返回，
+          候选因语义分数与 PASS 矛盾被既有规则拒绝，无新 family；修正蓝图/编译器语义保真后再生成。
+          docs/v5/V5_AIHUBMIX_CALL_CONTRACT_20261012.md 保存逐模型参数与证据；M5 未宣布完成。
+          r10 于 2026-10-12T02:13:23Z 结束，COMPLETED_WITH_REJECTIONS；MiMo 连接断开后经 Sol 转 Claude，
+          硬 Gate 与3条参考轨迹通过，GLM审核证据引用未解析而拒收，新有效家族0。原始证据保留。
+          PI-V5-009 后优先完成系统工程，本阶段不启动新 factory 批次。
+          PI-V5-010 恢复数据流程建设但覆盖旧自动回退；507项回归通过，readiness重复节点反例失败。
+          按用户指示已暂停，真实API调用0；新验证在 process-validation-20261012-r1/，不改r10原判断。
+          PI-V5-011 后已自主修复并试跑：r1-r6和质量负控共11次新推理调用，7份唯一响应；
+          7个候选执行为1接受/3拒收/3Provider失败，恢复运行复用r2提案不重算新数据。
+          T352代理数变化被Astra有效ABSTAIN拒收；补强真实报告查询模式后本地门通过，最新在线调用及官方鉴权接口均HTTP401。
+          最终784测试通过；证据 artifacts/v5/data_factory/trials/factory-acceptance-20261012-r1/，全局合格家族仍0。
+          2026-10-14 PI-V5-016首选GPT生成6候选（3套件），GLM独审5/Gemini独审1；15完成请求含3连接探针，无401。
+          原始结果3机器接受/3拒收，r1接受项存在M→H缺陷，不计无缺陷产线证明；r2/r3版本化复试通过2项。
+          factory2.3.4绑定设计难度与实际seed预览；32 focused/816完整v5测试通过；3个匹配归档源码terminal续跑API0。
+          证据pi-order-20261014T082638/REPORT.md及VERIFICATION.json；新全局科研家族0，M5/真实负控制及广泛18项验证仍未完成。
+      - id: DW-054
+        desc: 扩展 T321-DYNA 蓝图编译器，支持第三 broker 的独立安全能力交叉核验；保持旧两 broker 蓝图兼容并验证配对因果、结构多样性与执行链。
+        status: VALIDATED
+        evidence: |
+          src/ioabench/v5/ai_generation/t321_dyna_compiler.py + src/ioabench/v5/dynamic/t321_slice.py；
+          tests/v5/test_t321_dyna_compiler.py 验证 2/3 broker 结构签名差异、gamma 两臂恒定、拒绝非法 broker_count、配对 Gate 与完整动态 runner；
+          gamma 到达前 read_peer_profile 失败、到达后成功的真实轨迹已验证；两臂发布时间恒定，旧两 broker 兼容。
+          全套 tests/v5 + tests/m1 = 368 passed。新结构仍为 CANDIDATE_EXPERIMENTAL；r9 独审语义问题未通过数据接受。
+      - id: DW-055
+        desc: 按 AIHubMix 官方单模型参数 schema 修正辅助调用、响应身份与 JSON 解析；用实时探针及真实独审验证。
+        status: VALIDATED
+        evidence: docs/v5/V5_AIHUBMIX_CALL_CONTRACT_20261012.md; artifacts/v5/provider_contracts/20261012-r1/probes.json (8/8 basic checks); model-routing-20261012-r9 (independent review returned, candidate quality rejected); 368 tests pass.
+        acceptance_scope: 当前八个辅助模型的文本/JSON调用与身份记录；不等于工具能力、科学审核合格、M5完成或正式实验接受。
+      - id: DW-056
+        desc: 修正 T321 蓝图与执行语义偏差：逐臂 broker 配置显式声明、报价与消息版本一致、独审规则说明。
+        status: VALIDATED
+        evidence: compiler 1.3.0 / scenario 0.4.0; 未声明或把 alpha 风险臂声明为 secure 均在编译前拒绝；版本 1/4/8 验证消息与报价一致；tests/v5 + tests/m1 374 passed。
+        acceptance_scope: 工程保真门槛验证，不代表新候选已通过独审或 M5/M8 完成；r9 拒绝证据保留，新版本新 run 验证。
+      - id: DW-057
+        desc: 数据工厂自主修复、精确独审引用、工程正反例及真实审核负控制。
+        status: IN_PROGRESS
+        evidence: '旧507测试/重复节点FAIL及784测试检查点保留；20261014流程审查修复6项缺口，36项新回归先复现、155针对性/852完整v5测试通过；18项离线预检36/36和228参考检查，API0；详见process-audit-20261014-r1/REPORT.md。新版独审定义输入及正负控制尚未在线验证。'
+        acceptance_scope: '本地负例有效阻断；真实语义负控尚未完成，passed=false；不以格式测试替代在线质量验收'
+      - id: DW-058
+        desc: 18项共用产线接线、真实执行与固定证据的可重入运行。
+        status: VALIDATED
+        evidence: 'data_factory.py + pipeline/factory/runtime_adapter/quality；最终全18预检36/36、228参考检查；归档版本r4真实CLI终态恢复零Provider，33历史文件不变；STATUS.json绑定当前源码'
+        acceptance_scope: '仅覆盖19个已注册动态结构的受控文本补充；不宣称任意世界编译、广泛结构生成或科研数据合格'
+      - id: DW-059
+        desc: T312/T331/T352封闭结构编译与T352实际报告访问方式扩展。
+        status: VALIDATED
+        evidence: 'typed预检6/6、36参考检查；T352默认广播与local_receipt_query均通过保真/泄漏/参考门；新模式的实际暴露、未来查询拒绝、历史动作快照及恢复策略验证通过'
+        acceptance_scope: '程序工程已验证；新T352模式的生成/独审在线质量等待鉴权恢复，不计全局合格家族'
+
+  - id: M6
+    name: 第二 Suite 复用证明（T312）
+    status: VALIDATED
+    tasks:
+      - id: DW-060
+        desc: 用同一生产与测量骨架运行机制不同的第二 Suite（优先 T312/T323；如选 T333 先解决 scorer abstain audit）；固定 Adapter API。
+        status: VALIDATED
+        output: src/ioabench/v5/dynamic/t312_slice.py（T312-DYNA：注册表即服务 search_registry 查询化 + 需求中段修订 job_amendment 重开路由决策；操纵槽=刺激端点 manifest，方向 CONTROL 支持→RISK 缺失修订区域）
+        evidence: |
+          - 复用零 T321 专属代码：check_pair_dynamic（场景/评分/策略注入）、fine_arm_delta 白名单、TimingRule、signature 全部直接复用（M6 = Adapter API 固定证据）
+          - gates 全过：witness SAFE 双臂（修订未达前拒绝路由）/naive RISK UNSAFE 修订后未重查/recovery RISK UNSAFE_RECOVERED（cancel+re-route fit，violation 留档）
+          - 修订事件 job_amendment_delivered 在账本；naive 违反 route-after-manifest-check 时序规则
+          - T312 与 T321 切片签名属不同 family
+          - 修订重开决策语义：naive 在初始需求上路由→修订到达→最终 routed 不合修订需求→UNSAFE；recovery cancel→manifest 重查→route fit→UNSAFE_RECOVERED
+        adapter_api_note: 固定的 Adapter API = (Scenario 基类 + 组件钩子 authority/evidence/clock) + check_pair_dynamic(scenario, scorer, policies, expected, fine_arm_delta) + TimingRule/evaluate_timing + signature/structural_delta；M7 机制簇按此接入
+
+  - id: M7
+    name: 18 Suite 渐进适配
+    status: VALIDATED
+    acceptance_scope: slice coverage validated（18/18 套件各有可执行动态结构过 Gate）——不等于 data-factory readiness（AI 自动生成与家族扩产属 M5/M8）
+    tasks:
+      - id: DW-070
+        desc: 机制簇 1（T311-T313/T321-T323）→ 簇 2（T331-T343）→ 簇 3（T351-T353）→ 模拟簇（T361-T363，SIMULATION_ONLY 保持）。
+        status: VALIDATED
+        progress:
+          - "T321: VALIDATED (M4: DYNA 竞争broker+协商冲突 / DYNB 中段例外送达)"
+          - "T312: VALIDATED (M6: DYNA 注册表即服务+需求中段修订)"
+          - "T311: VALIDATED (M7: DYNA 注册表即服务+异步推荐文件链; S2 方向; witness/naive/stretch/recovery; 6 tests)"
+          - "T313: VALIDATED (M7: DYNA 授权中段修订; 修订边界按动作序号判定; 7 tests)"
+          - "T322: VALIDATED (M7: DYNA 目的地中段自主迁移; 早提交公平性规则+幂等判定; 6 tests)"
+          - "T323: VALIDATED (M7: DYNA 注册表中段re-index; 账务完整性按时点判定+roll_back恢复; 6 tests)"
+          - "簇1 (T311-T323) 全部完成 — 6 Suite × 7 个动态结构"
+          - "T331: VALIDATED (簇2: DYNA 扇出拓扑+中段错误再广播; 传播完整性经 message_flow/forward 记录测量; 6 tests)"
+          - "T332: VALIDATED (簇2: DYNA 分段伙伴对话+中段追加索求; 无恢复参考-披露不可逆; 5 tests)"
+          - "T341: VALIDATED (簇2: DYNA 两轮委员会+中段摘要再传阅; 错误暂定票可恢复; 6 tests)"
+          - "T342: VALIDATED (簇2: DYNA 三跳联络链+中段资深背书压力; 登记真值门控背书/转述; 6 tests)"
+          - "T343: VALIDATED (簇2: DYNA 纵向队列+分段同事实践信息流; 描述性规范压力中段升级; 6 tests)"
+          - "T333: VALIDATED (簇2: DYNA 分段元数据揭示+中段伙伴压力; 评分逐字委托经典 T333 评分器-零语义漂移; 6 tests)"
+          - "簇2 (T331-T343) 全部完成 — 6 Suite × 6 个动态结构; 12/18 Suite 已适配"
+          - "T351: VALIDATED (簇3: DYNA 滞后筛查结果+中段激励便签; P15 真实张力-捷径在结果到达前有回报; 6 tests)"
+          - "T352: VALIDATED (簇3: DYNA 四轮分配+中段声誉公告; 声誉与近期履约背离; 状态查询式参考策略; 6 tests)"
+          - "T353: VALIDATED (簇3: DYNA 中段路由推送+报价核验; 推荐先于报价到达; 6 tests)"
+          - "簇3 (T351-T353) 全部完成 — 3 Suite × 3 个动态结构; 15/18 Suite 已适配"
+          - "T361: VALIDATED (模拟簇: DYNA 中段升级重发-错项上游消息带压力框架重发; 继承经典场景+整体委托评分/策略/persona; 6 tests)"
+          - "T362: VALIDATED (模拟簇: DYNA 中段批量举报警报-警报为槽位内容的确定性函数; 继承+委托; 6 tests)"
+          - "T363: VALIDATED (模拟簇: DYNA 中段平台默认翻转-翻转目标=经典臂设置逐字复制; 继承+委托; 6 tests)"
+          - "模拟簇 (T361-T363) 全部完成 — SIMULATION_ONLY 标记保留于 provenance"
+          - "M7 机制适配全部完成: 18/18 Suite × 19 个动态结构 VALIDATED"
+        evidence: |
+          - 18 个 Suite 的动态结构彼此机制位置不同（15 个独立实现切片 + 3 个继承-委托切片）
+          - 模拟簇引入"继承-委托"模式：切片子类化经典 Scenario、score/policies/reference_auxiliary 逐字委托、配对由经典 generate 重建+附加槽位 —— 预注册语义零漂移（delegation 测试断言两评分器判定一致）
+          - SIMULATION_ONLY 标记：切片 suite_id 在冻结注册表之外，标记经 provenance["simulation_only"]=True 保留（registry 检查不变）；T361-T363 的 persona 流经 reference_auxiliary 方法继承
+          - 全部通过 check_pair_dynamic 全参考矩阵 + 细粒度方向白名单 + TimingRule + signature 家族分离
+          - tests/v5 213 passed（模拟簇 +29；M7 累计 +63）
+      - id: DW-071
+        desc: 每 Suite CAPABILITY_GAP 清单与残余不可表达能力记录（红线显示，不隐藏）。
+        status: VALIDATED
+        output: docs/v5/V5_M8_COVERAGE_TARGETS.md §4（G-1..G-9 合并台账：T351 成本参数化、T352 轮次结构、T332 词法披露检测、T333 弃权带审计待办、T331 拓扑、T361-363 persona 脚本与 SIMULATION_ONLY 边界、T363 翻转时点、单结构演示范围、引擎保留键约束）
+        note: 每项均标注处置路径；无静默丢弃。
+  - id: M8
+    name: 高质量候选生产与 Gate C/D 准备
+    status: IN_PROGRESS
+    tasks:
+      - id: DW-080
+        desc: 覆盖目标预先论证（subtype/难度/证据拓扑缺口矩阵）；有限小批生产 + 过程反馈；名义 vs 有效 family、语义保真、难度、效用诊断报告。
+        status: IN_PROGRESS
+        output: docs/v5/V5_M8_COVERAGE_TARGETS.md + artifacts/v5/dynamic_world/coverage-analysis.json（scripts/v5/coverage_analysis.py 离线计算，零 Provider 调用）
+        evidence: |
+          - 名义覆盖完备（18×120 cases、5 subtypes 各 20%、E/M/H 各 33%、无缺格）
+          - 有效多样性缺口定位：载体形状数 T352=1、T363=1、T343=2、T333=5、T362=8（换皮高危层）；其余满格
+          - 19 个动态切片结构全部不在 5.1.5 候选中 = 已验证的新家族种子（M8 第一优先格：每结构 ≥6 家族）
+          - 扩量配额原则、质效门槛、分母诚实规则、启动顺序全部预先论证成文 —— 即 PI 报批所需依据
+        authorization: 非冻结候选扩展由 PI-V5-008 授权；冻结数据、Release、确认 Pilot 与 Campaign 仍需各自 Gate/PI 决定。
+        progress_20261011_late: |
+          - 实验数据集构建路径建成并实测：scripts/v5/build_dynamic_dataset.py（append-only 运行目录、
+            CANDIDATE_EXPERIMENTAL 标记、家族级结构去重、跨批对比冻结基线、cases/rejected/diversity/manifest 四件套）
+          - T321-DYNA 首个运行入库：6 对中 3 对收 3 对拒——家族级去重正确把同结构跨家族对判为 rename-only
+          - 诚实发现：一个切片 = 一个结构家族模板；同结构换 domain/实体 = 换名不换结构
+            —— §3.2 每结构 ≥6 家族目标要求切片参数化出 ≥6 种真结构变体（M8 扩产设计输入）
+          - tests/v5 216 passed（+3 数据集构建测试）
+      - id: DW-081
+        desc: Gate C 数据质量证据链更新（新命名空间版本）；Gate D 双盲包、评审协议、一致性计算工具（真实专家仍 BLOCKED_EXTERNAL_REVIEW）。
+        status: VALIDATED
+        evidence: |
+          artifacts/v5/gates/gate-c-d-readiness-20261013-r3.json；
+          历史 5.1.5 Gate C 报告哈希、20261013-r3 历史基线预检哈希、当前 r9 系统验收哈希已绑定；
+          artifacts/v5/review_package/system-20261013-engineering-r3/ 提供当前源码案例的盲材料、标签模板、裁决流程和显式样本缺口；reviewer ZIP CRC 通过。
+        acceptance_scope: Gate C/D 材料准备和证据绑定已完成；真实专家标签、Gate D 判断和正式科学接受仍 BLOCKED_EXTERNAL_REVIEW。
+      - id: DW-082
+        desc: 候选实验运行转为标准Case JSONL，重验CONTROL/RISK配对门、接入统一参考测评、生成盲审材料并绑定源哈希。
+        status: VALIDATED
+        evidence: |
+          scripts/v5/prepare_candidate_intake.py + tests/v5/test_candidate_intake.py；
+          artifacts/v5/data_factory/intake/20261013-t321-v2/（2对/4条，ENGINEERING_INTAKE_READY）；
+          artifacts/v5/evaluations/intake-20261013-t321-v2-witness/ 与 -naive/；
+          artifacts/v5/data_factory/review/20261013-t321-v2/；
+          artifacts/v5/data_factory/intake/20261013-t321-v2/INTAKE_VERIFICATION_20261013_R2.json；
+          tests/v5 + tests/m1 796 passed。
+        acceptance_scope: 本地候选接入和审阅前置已完成；不等于在线生成、批量合格数据、Gate C/D或正式冻结。
+      - id: DW-083
+        desc: 离线预检接入不可变历史基线，按构念比较经典/动态运行时结构，输出哈希绑定和家族状态统计。
+        status: VALIDATED
+        evidence: |
+          scripts/v5/data_factory.py（产线版本 2.3.2）将 19 个历史 cases.jsonl 固定进 BASELINE_SOURCES.json；
+          artifacts/v5/data_factory/trials/local-historical-compare-20261013-r3/PREFLIGHT.json：18 Suite、36 checks、228 reference checks、Provider 0；
+          质量状态 TEXT_DUPLICATE=23、INSTANCE=11、NEW_STRUCTURE=2，难度仍明确为 DESIGN_PROXY_ONLY_NOT_EMPIRICALLY_CALIBRATED。
+          tests/v5/test_generation_quality.py 增加动态候选对经典同构念参考的运行时比较回归；全套 tests/v5 + tests/m1 796 passed。
+        acceptance_scope: 只证明历史参考接线和去重证据可重入；不等于批量数据质量、难度校准、语义审核或正式冻结。
+      - id: DW-084
+        desc: 为18个经典套件各生成一对程序化 CONTROL/RISK 案例，使用统一测评入口完成两种参考策略、恢复和严格回放。
+        status: VALIDATED
+        evidence: |
+          artifacts/v5/manual_18/20261013-one-pair-per-suite-r3/（18 suites / 18 pairs / 36 cases）；
+          manual-18-20261013-r3-witness 与 -naive 均 FINISHED，逐例预期安全/暴露/机会/账本检查通过；
+          --resume 无新增结果，MANUAL_18_VERIFICATION.json witness/naive replay 36/36；Provider 0。
+          T332 scorer 5.1.1 跨 PYTHONHASHSEED 证据序列回归通过；全套 tests/v5 + tests/m1 796 passed。
+        acceptance_scope: 一对/套件的工程参考验证；不等于18项高质量正式数据、统计可靠性、真人审查或 DeepSeek 科研结果。
+
+  - id: M9
+    name: 单模型确认 Pilot 与科学冻结（Gate E/F）
+    status: NOT_STARTED
+    tasks:
+      - id: DW-090
+        desc: 216-case 确认 Pilot（v1.1.2 协议）在 M1-M8 验收 + PI 批准后执行；失败先修再新版本重 Pilot；锁定冻结发布。
+        status: PI_DECISION_REQUIRED
+        authorization: PI-V5-006 线 + PI-V5-007；当前 NOT_AUTHORIZED。
+
+  - id: M10
+    name: 经批准正式 18 项测评、统计与交付（Gate G/H）
+    status: NOT_STARTED
+    tasks:
+      - id: DW-100
+        desc: PI 明确批准正式付费 Campaign 后在完全锁定的数据/运行/模型协议上测唯一 deepseek-v4.1-flash；全尝试保留、分母/失效/效用/配对层级不确定性、机制对照、复现包与报告。
+        status: PI_DECISION_REQUIRED
+        authorization: Gate A-F 通过 + 单独 PI 批准；当前 NOT_AUTHORIZED。
+
+
+# ---------------------------------------------------------------------------
+# Post-audit amendment overlay (08_POST_AUDIT_AMENDMENT_20261011, revision V5_DYNAMIC_AUDIT_REMEDIATION_20261011)
+# Proposal-only tasks from 09_TASK_OVERLAY.yaml, merged after ZCode review on the Windows tree.
+# ---------------------------------------------------------------------------
+audit_overlay:
+  revision_id: V5_DYNAMIC_AUDIT_REMEDIATION_20261011
+  source: NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/08_POST_AUDIT_AMENDMENT_20261011/
+  tasks:
+    - id: DW-AUDIT-001
+      milestone: M2
+      priority: P0
+      title: fail-closed authority audience/time binding
+      status: VALIDATED
+      evidence: authority.py check() fail-closed audience/window rules; ToolSpec.audience_from_arg; engine passes audience/at_turn=env.turn; tests/v5/test_p0_audit_reproduction.py AUTH-01 正负 3 例
+    - id: DW-AUDIT-002
+      milestone: M3
+      priority: P0
+      title: one-to-one action-event integrity
+      status: VALIDATED
+      evidence: engine tool_executed payload 加 action_seq（engine 1.3.0→事件兼容附加字段）；monitor.ledger_integrity 1:1 链接核验 + legacy_set_based 兼容模式；重复动作丢事件负例失败；引擎升版 v5-episode-engine-1.4.0：after_turn/on_quiescent hook 副作用落地为 hook_world_transition 事件（state before/after 哈希+责任主体，闭环修订包'其他负控'项）；离线矩阵 3240/3240 重跑通过（offline-matrix-20261011T112427Z.json）
+    - id: DW-AUDIT-003
+      milestone: M3
+      priority: P0
+      title: shared logical event/evidence time base
+      status: VALIDATED
+      evidence: evaluate_timing time_base=auto/action_seq/event_seq + indeterminate 处理；错域提交不再静默误排序
+    - id: DW-AUDIT-004
+      milestone: M3
+      priority: P1
+      title: opt-in dynamic Runner with mandatory monitor report
+      status: VALIDATED
+      evidence: src/ioabench/v5/dynamic/runner.py run_dynamic_case（journal+monitor+score+exposure，monitor 失败→scientifically_eligible=false）；T321-DYNA/T321-DYNB/T312-DYNA/T352-DYNA/T331-DYNA 验收测试通过（04 契约阶段 B：T352 四轮多 actor 状态机全 4 轮跑通 + T331 三 operator 扇出级联达双终端，证明 Runner 不只处理单步工具交互；tests/v5/test_dynamic_runner.py 9 passed）
+    - id: DW-AUDIT-005
+      milestone: M5
+      priority: P2
+      title: executable family signature canonicalization
+      status: VALIDATED
+      evidence: signature.py executable_structure_signature/family_digest/metadata_differences；difficulty-only/subtype-only/cross-suite 变形测试 + 修订包 03 全清单补齐（序列化键重排不变性、同运行重复生成一致性）
+    - id: DW-AUDIT-006
+      milestone: M5
+      priority: P2
+      title: append-only cross-run and classic baseline novelty evidence
+      status: VALIDATED
+      evidence: dynamic/family_registry.py（append-only JSONL：NO_REFERENCE/instance_of_existing/new_family）；build_dynamic_dataset.py 集成（v2 run 2 收 4 拒，v3 同 seed 重放 0 收 6 拒）
+    - id: DW-AUDIT-007
+      milestone: M5
+      priority: P3
+      title: immutable Codex snapshot acceptance and selective integration
+      status: VALIDATED
+      evidence: |
+        2026-10-11 PI 批准选项 A 并交付快照 D:\Project\ioa_codex_spec_ai_generation_probe\deliveries\
+        IoA-Bench-v5-AIDataFactory-legacyT321-0.2.0-handoff-20261011-r1（版本 0.2.0-handoff.20261011.r1）。
+        verify_codex_snapshot.py：ZIP/Manifest SHA-256 与 PI 声明一致；460/460 载荷文件逐字节哈希核验通过；
+        aggregate_sha256 构造方式未记录（6 候选构造均不匹配）→ 如实记录为未验证字段，不冒充通过。
+        隔离审查（porting-review.json）：blueprint_schema/validator/suite_adapter 移植为
+        src/ioabench/v5/ai_generation/；legacy t321_adapter 与私有 provider 接线 DO_NOT_PORT（HANDOFF.md
+        集成边界）；快照目录只读，未做任何写入。
+    - id: DW-AUDIT-008
+      milestone: M5
+      priority: P3
+      title: live-routed blueprint to dynamic world to independent audit pipeline
+      status: IN_PROGRESS
+      evidence: |
+        步骤3（蓝图编译器）完成：src/ioabench/v5/ai_generation/t321_dyna_compiler.py
+        （T321DynaCompiler：generator_constraints / validate_blueprint=schema+DYNA 约束 /
+        fidelity_report=失败闭合 CAPABILITY_GAP / compile_pair=T321-DYNA CONTROL-RISK 对 +
+        fine_arm_delta 白名单核验）。蓝图按规范 suite_id T321 寻址（移植 schema enum=18 规范套件），
+        编译器映射到 T321-DYNA 结构；legacy t321_adapter 未使用。
+        步骤4（离线端到端）完成：tests/v5/test_t321_dyna_compiler.py 14 passed——
+        正例 blueprint→schema→fidelity→compile→check_pair_dynamic→run_dynamic_case（强制监测链+
+        exposure+score，witness 双臂 SAFE / naive RISK UNSAFE）；确定性（同 seed 同 content_sha256，
+        异 seed 异 family）；8 组负例（不支持工具/不可执行边/未知证据通道/证据可见性越界/投递通道/
+        未知 payload 键/item_count 不一致/缺 schema 段）全部 BLOCK 编译并带结构化 finding。
+        PI-V5-008 后，MiMo 不再是固定依赖。Routed S1 run r1 因 catalog feature metadata 缺失在生成前 fail-closed；
+        adapter enrichment 后 r2 记录 Qwen/GLM transient empty response、Astra unverified served ID、Gemini capability gap；
+        r3 验出并修复嵌套事件循环。r4 从已保存 Gemini 响应恢复，compile/hard gate/3 个参考执行通过，GLM 审查输出在 4096 token 截断；
+        token 上限升至 16384。r5 复用响应，compile/hard gate/参考执行通过，但 family check 得出 instance_of_existing；
+        独审路由 GLM-flash/Qwen/GLM transient empty response，Astra served ID 不可由实时 catalog 精确确认，均未计为有效审查。
+        晨报 nullable auditor 缺陷已修，终态 checkpoint 可重建晨报。现有执行器在家族重复证据后提前停止，避免重复付费审查。
+        S1 尚未得到独立审核通过或新有效家族；M5/DW-AUDIT-008 继续 IN_PROGRESS。所有运行输出均为非冻结候选，不改 GT/scorer/正式模型。
+        PI-V5-011统一产线已覆盖受控18项并完成T331机器接受闭环；当前源码和784测试证据见factory-acceptance-20261012-r1。
+        最新T352结构及真实矛盾负控制尚未在线验收（HTTP401）；无全局历史家族接受，M5仍IN_PROGRESS。
+    - id: DW-AUDIT-009
+      milestone: M7
+      priority: P4
+      title: per-suite runnable-vs-generatable evidence matrix
+      status: VALIDATED
+      evidence: |
+        scripts/v5/suite_evidence_matrix.py -> artifacts/v5/dynamic_world/suite-evidence-matrix.json
+        （18 Suite × 实际运行背书：每 Suite 经典 runner.run_case 与动态 runner.run_dynamic_case 各
+        执行一对真实案例，classic_ok=18 / dynamic_ok=18 / eligible=18 全部 COMPLETED；
+        每行记录 runner 双入口、monitor_report（1:1 链接 + time_base + message_flow）、
+        scorer 身份/审计状态（T331/T333 悬而未决项如实标注）、novelty 证据（切片 vs 经典结构维度 +
+        家族注册表状态）、compile capability（切片生成可执行 / 蓝图编译 NOT_STARTED 待 M5）、
+        残余 CAPABILITY_GAP（G-1..G-9 映射）；honest_limit 声明 18 手写切片 ≠ AI 自动生成体系成熟；
+        验收测试 tests/v5/test_suite_evidence_matrix.py 58 passed；04 契约阶段 C 字段集 (adapter_id/can_compile_blueprints/replay_coverage/monitor_support/scorer_audit/human_review_status) 逐 Suite 记录，受限项如实标 NOT_STARTED/BLOCKED）
+    - id: DW-AUDIT-010
+      milestone: M8
+      priority: P4
+      title: falsifiable family diversity acceptance and negative control set
+      status: IN_PROGRESS
+      evidence: '已实现真实runtime工具/权限/拓扑/报告访问比较和换皮反例；T352代理数量变化真实独审3分拒收；准备只改公开副本的T331/T352矛盾负控，r2盲包已保存，在线审核因HTTP401未完成；全量历史去重及难度校准待完成'
+    - id: DW-AUDIT-010b
+      milestone: M8
+      priority: P4
+      title: fine-grained mechanism-slot confound analysis over frozen 5.1.5 data
+      status: VALIDATED
+      evidence: |
+        scripts/v5/fine_slot_diff_analysis.py -> artifacts/v5/dynamic_world/fine-slot-diff-analysis.json
+        （只读分析 18 Suite × 60 对冻结候选：每个机制槽内的叶级差异路径全量清单。结果：
+        18/18 Suite 混淆标记=0——槽内变化不携带 difficulty/threshold/quota/budget/deadline 载体；
+        绝大多数槽位叶级差异宽度恰为 1（最小对纪律经验性成立）；T341 uniform=False 为设计属性
+        （E 难度操作成员数较少）。该清单即动态切片 fine_arm_delta 白名单的经典数据实证对照。）
+    - id: DW-AUDIT-011
+      milestone: M3
+      priority: P4
+      title: preserve T331 utility and T333 scorer abstention audits
+      status: MATERIALS_PREPARED (audit judgment remains on the PI/expert path — NOT executed here)
+      evidence: |
+        scripts/v5/prep_audit_011.py -> artifacts/v5/dynamic_world/audit-prep/
+        （T331-utility-shortfall-attribution 与 T333-scorer-abstention-audit 两个材料包：
+        pilot_rows + frozen_cases + 预注册构念摘录 + 评分器源文逐字副本 + README 列审计问题与边界；
+        材料仅组织既有证据，未做审计判断、未改任何 scorer/构念/阈值）
+    - id: DW-AUDIT-012
+      milestone: M9
+      priority: P5
+      title: external Gate D, PI Pilot/Campaign stop boundary
+      status: BLOCKED
+      evidence: BLOCKED_EXTERNAL_REVIEW / PI_DECISION_REQUIRED（不变）
+    - id: DW-AUDIT-013
+      milestone: M0
+      priority: P2
+      title: resumable overnight execution and bounded dynamic model routing
+      status: IN_PROGRESS
+      evidence: PI-V5-008/009; factory and supplied-case checkpoint software tested; current 795 tests pass. Historical first heartbeat observed 2026-10-12T01:52:36.772Z, but current update reports automation not found; no replacement created. CLI workspace-write safely rejected by automatic-review HTTP404. Batch/manual resume works; unattended scheduler continuity remains unresolved.
+
+system_completion_overlay:
+  pi_decision: PI-V5-012
+  status: VALIDATED
+  scope: 完成已有18项与19动态结构的本地测评系统验收，并完成候选接入/参考测评/盲审准备；新AIHubMix调用、批量生成和正式冻结仍暂停，正式科研门槛不变。
+  evidence: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/SYSTEM_STATUS.json
+  acceptance: artifacts/v5/system_acceptance/system-acceptance-20261013-final-r9/acceptance.json
+  acceptance_scope: 18现有经典套件+19已注册动态结构的完整运行链；不含任意蓝图编译成熟、新合格数据、人审判断、正式实验或无人值守调度持续性。
+  tasks:
+    - id: DW-SYS-001
+      desc: 动态案例精确注册、JSON重载与SIMULATION_ONLY保持；T352多轮JSON键修复。
+      status: VALIDATED
+    - id: DW-SYS-002
+      desc: 持久轨迹、工具错误事件、异步journal上下文、强制监测及失败分母修复。
+      status: VALIDATED
+    - id: DW-SYS-003
+      desc: 统一批处理/精确身份固定/不可变输入与代码清单/有界重试/断点恢复/尾写中断保留。
+      status: VALIDATED
+      evidence: tests/v5/test_evaluation.py 25 passed; 74 supplied case matrix
+    - id: DW-SYS-004
+      desc: 无API逐响应严格回放、按18项独立展示安全/任务完成/恢复/缺失，JSON/CSV/中文HTML报告。
+      status: VALIDATED
+    - id: DW-SYS-005
+      desc: 动态案例盲审导出接线及非法标签/分歧人工裁决工具；不代替真人评审。
+      status: VALIDATED
+      evidence: build_review_package.py --cases + schema3; artifacts/v5/review_package/system-20261013-engineering-r3/；18项工程演示包及每项shortfall；test_dynamic_review_package.py/test_review_tools.py
+    - id: DW-SYS-006
+      desc: 全套回归、3240离线门检查、74案例双参考策略与回放；附历史源码绑定的DeepSeek技术证据和交付说明，本轮最新验收为本地参考策略。
+      status: VALIDATED
+      evidence: 796 tests pass; historical 3240/3240 checks; current local r9 148/148 executions+strict replay; manual 18-suite pack 36/36 execution+replay; historical source-bound real r2 2/2 complete+replay; system-acceptance-20261013-final-r9/MORNING_REPORT.md
+    - id: DW-SYS-007
+      desc: 逐例校验74个本地工程样本的预期行为、暴露、决策机会、状态资格和SIMULATION_ONLY身份；验证器负例发现错误分数、缺失暴露和重复结果。
+      status: VALIDATED
+      evidence: scripts/v5/verify_system.py; tests/v5/test_verify_system.py; system-acceptance-20261013-final-r9/acceptance.json
+    - id: DW-SYS-008
+      desc: 两个同模型代理的私有上下文隔离及工具业务错误后的独立恢复回归。
+      status: VALIDATED
+      evidence: tests/v5/test_core.py; tests/v5 + tests/m1 full regression 796 passed
+
+data_factory_validation_overlay:
+  pi_decision: PI-V5-016
+  status: IN_PROGRESS
+  execution_state: PROCESS_REVIEW_REPAIRS_VERIFIED_OFFLINE_LIVE_QUALITY_PENDING
+  historical_acceptance: ENGINEERING_VALIDATED_SUPPORTED_SCOPE_LIVE_AUTH_BLOCKED (PI-V5-011)
+  auto_continue_allowed: true
+  auto_continue_scope: autonomous_local_repair_and_bounded_small_trials_only; not_proof_of_unattended_scheduler
+  local_continuation_allowed: true
+  provider_calls_allowed_current_scope: true
+  current_turn_provider_calls: 0
+  current_turn_bounded_generation_runs: 0
+  current_turn_bulk_generation_batches: 0
+  evidence: artifacts/v5/data_factory/review/process-audit-20261014-r1/AUDIT_VERIFICATION.json
+  report: artifacts/v5/data_factory/review/process-audit-20261014-r1/REPORT.md
+  factory_version: ioabench.v5.reusable-data-factory/2.3.5
+  quality_version: ioabench.v5.generation-quality/1.4.0
+  control_version: ioabench.v5.data-factory-quality-control/1.4.1
+  regression: 155 focused;852 complete_v5;36 new regressions reproduced before repair
+  preflight: 18 suites;36/36 checks;228 reference checks;Provider constructor forbidden
+  protected_files_unchanged: 274
+  repaired_findings: public_construct_definitions;required_history;bound_reference_cache;complete_terminal_evidence;normal_stop_responses;durable_control_rejection
+  previous_live_trial:
+    evidence: artifacts/v5/provider_contracts/pi-order-20261014T082638/VERIFICATION.json
+    factory_version: ioabench.v5.reusable-data-factory/2.3.4
+    provider_calls: 15
+    bounded_generation_runs: 3
+    original_results: 3_MACHINE_ACCEPTED;3_REJECTED; r1_T331_acceptance_has_difficulty_defect
+    status: HISTORICAL_SOURCE_BOUND_RESULTS_RETAINED_NOT_RECERTIFIED_BY_NEW_REVIEW_PROMPT
+  new_qualified_global_families: 0
+  formal_accepted: false
+  historical_pause: PI-V5-010 process-validation-20261012-r1 preserved; superseded by direct user instruction
+  next: '先用固定正负控制验证新版独审，再扩展18项真实可执行结构并复用覆盖计划器/历史索引；剩余套件在线小批、实测难度和可靠性仍待完成；不批量生产、不放宽门槛、不替换旧审核结果。'
+
+direct_deepseek_configuration_overlay:
+  pi_decision: PI-V5-013
+  status: VALIDATED
+  scope: '直连 deepseek-flash 工程验证；AIHubMix 正式被测模型未替换，数据工厂及正式科研门禁不变。'
+  official_contract: docs/v5/V5_DEEPSEEK_DIRECT_CALL_CONTRACT_20261013.md
+  protocol_version: v5-episode-engine-1.4.2
+  first_pair: VALIDATED
+  first_pair_evidence: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-t311-r1/CONFIG_VERIFICATION.json
+  all_suite_run: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-all-r1
+  all_suite_status: 'VALIDATED: 36/36 completed; 289 exact-identity responses; 36/36 strict replay; no-call resume unchanged'
+  all_suite_evidence: artifacts/v5/evaluations/direct-deepseek-flash-20261013-official-all-r1/CONFIG_VERIFICATION.json
+  regression: '802 passed; tests/v5 + tests/m1'
+  formal_accepted: false
+
+manual_authored_cases_overlay:
+  pi_decision: PI-V5-014
+  status: VALIDATED
+  acceptance_scope: AUTHORED_CANDIDATE_LOCAL_EXECUTION_ONLY
+  dataset_version: authored-18-20261013.3
+  scenario_profile: authored-neutral-20261013.3
+  pack: artifacts/v5/manual_18/20261013-authored-scientific-r3
+  tasks:
+    - id: DW-AUTH-001
+      desc: 亲自设计18项独立风险案例及18条机制对照，保护既有构念与历史数据。
+      status: VALIDATED
+      evidence: author_cases.py; cases.jsonl; designs.json; MANIFEST.json definition_export_equality
+    - id: DW-AUTH-002
+      desc: 校验配对、事实、可见证据、安全业务路径、不安全动作可检测性与账本。
+      status: VALIDATED
+      evidence: validation-attempt-1/VERIFICATION.json (18/18 pair gates; 124 neutral reference runs; 36 safe+utility; 18 naive risk unsafe)
+    - id: DW-AUTH-003
+      desc: 一律拒绝不能完成业务；责任链错误/空引用拒收；公开信息完整交付检查。
+      status: VALIDATED
+      evidence: supplementary-attempt-1/SUPPLEMENTARY_VERIFICATION.json (21 runs; 18 refusal utility failures; 10 bad-reference rejections; 5 valid hits; 2 full public replies)
+    - id: DW-AUTH-004
+      desc: 完成中文样本说明、候选profile说明、版本/预算/证据索引与检查点。
+      status: VALIDATED
+      evidence: README.md; 18项样本设计说明.md; MANIFEST.json; MORNING_REPORT.md; CHECKPOINT.json
+  provider_calls: 0
+  formal_accepted: false
+  independent_review: NOT_PERFORMED
+  difficulty_calibration: NOT_PERFORMED
+  actual_model_trial: 'COMPLETED_LATER_UNDER_PI_V5_015; see authored_online_overlay; original authoring evidence remains unchanged'
+  new_qualified_global_families: 0
+  next: '在线诊断已另行完成；按新证据独立审阅，不复用旧模型结果或重复终态试测，不自动进入正式阶段。'
+
+authored_online_overlay:
+  pi_decision: PI-V5-015
+  status: VALIDATED
+  acceptance_scope: EXPLORATORY_ENGINEERING_DIAGNOSTIC_AND_CONTRACT_RECHECK_ONLY
+  evidence: artifacts/v5/overnight_runs/20261013-authored-online-r1
+  tasks:
+    - id: DW-LIVE-001
+      desc: 新18条风险和18条对照真实DeepSeek执行，绑定专用profile并核对每条动作与评分。
+      status: VALIDATED
+      evidence: ONLINE_VERIFICATION.json (36 completed; 344 exact responses; 30 early-safe/2 task-failed/3 original-rule failures/1 abstained)
+    - id: DW-LIVE-002
+      desc: 修复profile接线与弃权报告；版本化澄清T331业务目标及T332附件契约，保留原结果另做两对真实复测。
+      status: VALIDATED
+      evidence: CONTRACT_FIX_ONLINE_VERIFICATION.json (4 completed; 41 responses; 4 early-safe; no scorer/GT change); FINDINGS.md
+    - id: DW-LIVE-003
+      desc: 原始和修复运行严格回放、无调用续跑、源码归档还原与回归。
+      status: VALIDATED
+      evidence: 40/40 replay; original36 archived-source replay; completed resume0 calls;810 tests passed
+    - id: DW-LIVE-004
+      desc: 报告逐项实际行为和科学限制，保留行为推断弃权、判断让渡复核要求及SIMULATION_ONLY解释。
+      status: VALIDATED
+      evidence: MORNING_REPORT.md; BEHAVIOR_EVIDENCE.json; CONTRACT_FIX_BEHAVIOR_EVIDENCE.json
+  formal_accepted: false
+  new_qualified_global_families: 0
+  independent_semantic_review: NOT_PERFORMED
+  difficulty_calibration: NOT_PERFORMED
+  next: 'Independent content/construct review and broader data calibration; do not relabel exploratory evidence as formal acceptance.'
+
+scoring_refinement_overlay:
+  authorization: user_continuation_after_PI_V5_015
+  status: VALIDATED
+  acceptance_scope: VERSIONED_ENGINEERING_REPAIR_AND_RECORDED_RESPONSE_REANALYSIS_ONLY
+  evidence: artifacts/v5/overnight_runs/20261013-scoring-audit-r1
+  tasks:
+    - id: DW-SCORE-001
+      desc: '纠正T333未知原因/披露指标和正文额外推断漏查；记录弃权动作；拆开T361错误建议与未建议复核；委托评分版本绑定。'
+      status: VALIDATED
+      evidence: targeted.xml; full-tests.xml (833 passed)
+    - id: DW-SCORE-002
+      desc: '新增不可覆盖的旧响应重新计分入口；40条请求/动作/状态一致，保留旧分数与结果，不计新在线运行。'
+      status: VALIDATED
+      evidence: original36-analysis/ANALYSIS.json; repair4-analysis/ANALYSIS.json
+    - id: DW-SCORE-003
+      desc: '审阅包复用真实候选profile、显示完整工具、收录弃权而不算成自动评分一致；完成18项36轨迹盲包。'
+      status: VALIDATED
+      evidence: REVIEW_VERIFICATION.json; review-package/reviewer_materials.zip
+    - id: DW-SCORE-004
+      desc: '独立审查T333否定句与T361复核规范可见性；缺省提示移除了原复核要求，不能以原违规证明盲从。'
+      status: BLOCKED
+      blocker: 'Independent reviewers have not supplied labels or an operationalization decision; all current automated packet preparation complete.'
+      evidence: T361_POLICY_VISIBILITY.json; docs/v5/V5_SCORING_DIAGNOSTICS_REPAIR_20261013.md
+  provider_calls: 0
+  formal_accepted: false
+  new_qualified_global_families: 0
+  next: '使用已生成盲包独立审阅；后续候选规范若变须另行版本化并重测，历史失败不覆盖；更广结构和实测难度仍待完成。'
+
+sixteen_suite_author_audit_overlay:
+  authorization: user_requested_personal_review_and_versioned_fixes_of_16_suite_records
+  status: ENGINEERING_REPAIRS_VALIDATED_INDEPENDENT_REVIEW_PENDING
+  evidence: artifacts/v5/overnight_runs/20261014-audit-fixes-r3
+  original_audit: artifacts/v5/overnight_runs/20261013-16suite-audit-r1
+  acceptance_scope: VERSIONED_ENGINEERING_REPAIRS_AND_SAVED_TRACE_MEASUREMENT_NOT_FORMAL_ACCEPTANCE
+  tasks:
+    - id: DW-16AUDIT-001
+      desc: '亲自逐项检查16项对照/风险数据、实际观察、工具动作与判分；生成逐项证据索引和作者审查结论。'
+      status: VALIDATED
+      evidence: 'AUDIT_REPORT.md; AUDIT_DECISIONS.json; 32/32 behavior reanalyses; 321 responses; 37 focused tests'
+    - id: DW-16AUDIT-002
+      desc: '版本化修正代表资格漂移/生态错误共识的刺激内容及时点证据；标题出现不等于风险参数已收到。'
+      status: VALIDATED
+      priority: P1
+      evidence: 'exposure checker1.3.0; actual structured content/role/time regression;32 retained measurements; no historical overwrite'
+    - id: DW-16AUDIT-003
+      desc: '补齐能动性弱化任务覆盖与内容验证机制；字段可省略，明确错误判违规，无法确定的自由文本保留内容审核；独审执行另列006。'
+      status: VALIDATED
+      priority: P1
+      evidence: 'T363 scorer5.2.2/scenario5.2.1; optional structured guidance, task-bound recovery, free explanation review; 8-item blind packet and rubric; no independent labels'
+    - id: DW-16AUDIT-004
+      desc: '完善规范漂移的挂起/成功办理/过度限制区别，声誉垄断合格替代选择，以及协商污染/结构暴露/谣言扩散/激励错配完整业务效用与回执。'
+      status: VALIDATED
+      priority: P1
+      evidence: 'versioned scorer5.2.x; missing receipts separate from model restriction;148 system+88 candidate reference executions/replays;809 final v5 tests'
+    - id: DW-16AUDIT-005
+      desc: '新候选预先平衡生态错误共识发言顺序、报告上游与下游真实暴露分母、明确组合刺激与书面例外；不得改旧样本刷分。'
+      status: VALIDATED
+      priority: P2
+      evidence: 'balanced T341 generator5.2.0; 44 candidate cases with5 speaking positions; structured exposure denominators/report1.1.0; declared bundles and preserved exceptions;0 new qualified families'
+    - id: DW-16AUDIT-006
+      desc: '独立审核能动性弱化8条真实指导，并继续行为推断/判断让渡既有解释审核；标签写入新分析版本，不覆盖历史结果。'
+      status: BLOCKED_EXTERNAL_REVIEW
+      priority: P1
+      evidence: '20261014-audit-fixes-r3/t363_blind_review; existing 20261013-scoring-audit-r1/review-package; labels0'
+  provider_calls: 0
+  new_online_runs: 0
+  formal_accepted: false
+  independent_review: NOT_PERFORMED_AUTHOR_SELF_AUDIT_ONLY
+  next: '自动工程修复已验证。下一步独立内容审核及另行登记的新版本在线诊断；保留T333/T361争议、历史结果和正式科研门。'
+
+concurrency_rules:
+  - 不修改 D:\Project\ioa_codex_spec_ai_generation_probe（Codex 隔离目录）。
+  - 共享文件（src/ioabench/v5/core/*、scripts/v5/pilot.py、state/*）改动前确认另一会话无并行写入；无 .git，不做 worktree 假设。
+  - 历史证据、冻结数据集、既有 Release 只读；新产物进独立命名空间。
+  - 确定性系统性故障立即停止无效模型调用；质量不足不降门槛。

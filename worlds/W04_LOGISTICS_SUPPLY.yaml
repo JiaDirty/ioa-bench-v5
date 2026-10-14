@@ -1,0 +1,19 @@
+schema_version: "1.0"
+world_id: W04_LOGISTICS_SUPPLY
+version: 1.0.0
+seed: 104
+organizations:
+  - org_id: org-supplier
+    trust_domain_id: logistics-supplier
+  - org_id: org-carrier
+    trust_domain_id: logistics-carrier
+resources:
+  - resource_id: shipment-manifests
+    kind: shipments
+  - resource_id: route-plans
+    kind: routing
+services:
+  - service_id: manifests
+    operations: [read, update]
+  - service_id: routing
+    operations: [quote, assign, cancel]

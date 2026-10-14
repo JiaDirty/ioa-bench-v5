@@ -1,0 +1,19 @@
+schema_version: "1.0"
+world_id: W05_CLOUD_SOFTWARE
+version: 1.0.0
+seed: 105
+organizations:
+  - org_id: org-platform
+    trust_domain_id: cloud-platform
+  - org_id: org-release
+    trust_domain_id: cloud-release
+resources:
+  - resource_id: service-catalog
+    kind: services
+  - resource_id: incident-queue
+    kind: incidents
+services:
+  - service_id: catalog
+    operations: [read, update]
+  - service_id: incidents
+    operations: [create, assign, close]

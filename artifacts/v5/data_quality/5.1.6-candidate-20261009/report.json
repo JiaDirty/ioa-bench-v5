@@ -1,0 +1,846 @@
+{
+  "near_duplicate_threshold": 0.9,
+  "suites": [
+    {
+      "suite": "T332",
+      "version": "5.1.6-candidate-20261009",
+      "cases": 120,
+      "pairs": 60,
+      "families": 30,
+      "subtypes": [
+        "T332-S1",
+        "T332-S2",
+        "T332-S3",
+        "T332-S4",
+        "T332-S5"
+      ],
+      "domains": {
+        "procurement": 8,
+        "logistics": 8,
+        "finance_ops": 7,
+        "platform_ops": 8,
+        "public_permits": 7,
+        "workforce": 8,
+        "clinical_admin": 7,
+        "research_data": 7
+      },
+      "difficulty": {
+        "E": 20,
+        "M": 20,
+        "H": 20
+      },
+      "subtype_x_difficulty": {
+        "T332-S1/E": 4,
+        "T332-S1/H": 4,
+        "T332-S1/M": 4,
+        "T332-S2/E": 4,
+        "T332-S2/H": 4,
+        "T332-S2/M": 4,
+        "T332-S3/E": 4,
+        "T332-S3/H": 4,
+        "T332-S3/M": 4,
+        "T332-S4/E": 4,
+        "T332-S4/H": 4,
+        "T332-S4/M": 4,
+        "T332-S5/E": 4,
+        "T332-S5/H": 4,
+        "T332-S5/M": 4
+      },
+      "entity_substitution_only_cases": 0,
+      "entity_substitution_only_rate": 0.0,
+      "pair_template_exact_duplicate_groups": [],
+      "pair_template_exact_unique_families": 30,
+      "pair_template_effective_family_n_by_jaccard_threshold": {
+        "0.85": 30,
+        "0.90": 30,
+        "0.95": 30
+      },
+      "pair_template_family_n_by_subtype": {
+        "T332-S1": 6,
+        "T332-S2": 6,
+        "T332-S3": 6,
+        "T332-S4": 6,
+        "T332-S5": 6
+      },
+      "risk_world_near_duplicate_pairs_legacy": 4,
+      "risk_world_max_cross_family_jaccard_legacy": 0.9111,
+      "risk_world_effective_family_n_legacy": 26,
+      "scenario_family_inventory": {
+        "T332-F01": {
+          "subtypes": [
+            "T332-S1"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "logistics",
+            "procurement"
+          ],
+          "organizations": [
+            "Halvard Components",
+            "Northgate Cold Chain"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "c24a10e35d551a50d2e14c362d6bc3e2c4daa810be5d3a95f68ff8f4e32afc03"
+        },
+        "T332-F02": {
+          "subtypes": [
+            "T332-S2"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "finance_ops",
+            "platform_ops"
+          ],
+          "organizations": [
+            "Calloway Capital",
+            "Ironleaf Systems"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "59fe6c0e302169a4979844c3b8c618dc6df0dc13fcb454d913928da8de516f2c"
+        },
+        "T332-F03": {
+          "subtypes": [
+            "T332-S3"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "public_permits",
+            "workforce"
+          ],
+          "organizations": [
+            "Harrowgate Borough",
+            "Seabright Retail"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "35095ab797eb1b73d75a210a7d26489c01a3b61f832d454a1a480d0e197a0f47"
+        },
+        "T332-F04": {
+          "subtypes": [
+            "T332-S4"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "clinical_admin",
+            "logistics"
+          ],
+          "organizations": [
+            "Northern Imaging Group",
+            "Northgate Cold Chain"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "6cae4474fa4da12742933c6f59ade5afad72fb9d6190f5fed77b2cf9477a0bec"
+        },
+        "T332-F05": {
+          "subtypes": [
+            "T332-S5"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "platform_ops",
+            "research_data"
+          ],
+          "organizations": [
+            "Ironleaf Systems",
+            "Westbrook Genomics Centre"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "3c5224bfd7b125c5133f208d0610878a73aab3328b2c0569c1dc5e06faa0a95b"
+        },
+        "T332-F06": {
+          "subtypes": [
+            "T332-S1"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "procurement",
+            "workforce"
+          ],
+          "organizations": [
+            "Nordvale Supply",
+            "Seabright Retail"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "55e8a9ab0becd4043ffee94266e0044dda5608362c6e207c9057a518c93a7caf"
+        },
+        "T332-F07": {
+          "subtypes": [
+            "T332-S2"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "clinical_admin",
+            "finance_ops"
+          ],
+          "organizations": [
+            "Greywater Health Partners",
+            "Ivory Bay Bank"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "8137d6615a0c7c7b9f835ddd17825c99a11251bf003d78641feddba35aac4e8f"
+        },
+        "T332-F08": {
+          "subtypes": [
+            "T332-S3"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "public_permits",
+            "research_data"
+          ],
+          "organizations": [
+            "Millbrook District",
+            "Westbrook Genomics Centre"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "d8f63a5dfd202726b99f2292993da5d230ed69c1d960129706f995f34f45b94a"
+        },
+        "T332-F09": {
+          "subtypes": [
+            "T332-S4"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "logistics",
+            "procurement"
+          ],
+          "organizations": [
+            "Kestrel Haulage",
+            "Nordvale Supply"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "fe64175bf41ebcf05805af80418dd00795e6941d5412546e09de2470eef8033d"
+        },
+        "T332-F10": {
+          "subtypes": [
+            "T332-S5"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "finance_ops",
+            "platform_ops"
+          ],
+          "organizations": [
+            "Ivory Bay Bank",
+            "Vantage Cloud"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "6f569a6bb8ef48a4dc84851c5291d0a035cff8478550a763d14ba5a29c4d604c"
+        },
+        "T332-F11": {
+          "subtypes": [
+            "T332-S1"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "public_permits",
+            "workforce"
+          ],
+          "organizations": [
+            "Aster Hospitality",
+            "Saltcombe Planning"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "55ef2707ae9331a630d695dafe49e2a74dbb4ce8bfc4c6fc8e574135e328fa07"
+        },
+        "T332-F12": {
+          "subtypes": [
+            "T332-S2"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "clinical_admin",
+            "logistics"
+          ],
+          "organizations": [
+            "Kestrel Haulage",
+            "Mercy Vale Health"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "0759233a78b300ad931fa2e41e06706c3e39e9cb2600ca7761ee8d540e8f3203"
+        },
+        "T332-F13": {
+          "subtypes": [
+            "T332-S3"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "platform_ops",
+            "research_data"
+          ],
+          "organizations": [
+            "Bluecrest Hosting",
+            "Tamsin Biobank"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "d2d959967bc6e777c8b75f50a1a8eb5d0aa905911fa83cbcd9661dcb81d9f6b2"
+        },
+        "T332-F14": {
+          "subtypes": [
+            "T332-S4"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "procurement",
+            "workforce"
+          ],
+          "organizations": [
+            "Laurel Care Homes",
+            "Lindqvist Fabrication"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "1e9e9f37c81769b55f2502319180c045d6c631b72a04affe3f23cf1673a44c50"
+        },
+        "T332-F15": {
+          "subtypes": [
+            "T332-S5"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "clinical_admin",
+            "finance_ops"
+          ],
+          "organizations": [
+            "Calloway Capital",
+            "Mercy Vale Health"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "0624e7c2c0510a21c5149ada902ff1bdb2d8a16f155a77f9e4b5328df2b38607"
+        },
+        "T332-F16": {
+          "subtypes": [
+            "T332-S1"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "public_permits",
+            "research_data"
+          ],
+          "organizations": [
+            "Harrowgate Borough",
+            "Westbrook Genomics Centre"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "c099c354227ede66429dce8adca80393282859361a454d0994551a2c274d572d"
+        },
+        "T332-F17": {
+          "subtypes": [
+            "T332-S2"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "logistics",
+            "procurement"
+          ],
+          "organizations": [
+            "Lindqvist Fabrication",
+            "Sundial Couriers"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "d5ee706fe12299c296e796bbe4ef3e00fc072ed51337f7d0902c260ea099cefb"
+        },
+        "T332-F18": {
+          "subtypes": [
+            "T332-S3"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "finance_ops",
+            "platform_ops"
+          ],
+          "organizations": [
+            "Pemberton Pensions",
+            "Quanta DevOps"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "626cd70eac1a5601888059bc6b51091fb30e54c6ef7ea10260eec2e1c7049401"
+        },
+        "T332-F19": {
+          "subtypes": [
+            "T332-S4"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "public_permits",
+            "workforce"
+          ],
+          "organizations": [
+            "Harrowgate Borough",
+            "Kingsbury Engineering"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "c994603229e9d52f0db95233ccb6a853a168f18c2e7bbe54824c26cd752c7005"
+        },
+        "T332-F20": {
+          "subtypes": [
+            "T332-S5"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "clinical_admin",
+            "logistics"
+          ],
+          "organizations": [
+            "Bellweather Labs",
+            "Northgate Cold Chain"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "91df9bbf63963688975cb72ae1f0a99fcc70de9a8ce6be5916035aa8b1365596"
+        },
+        "T332-F21": {
+          "subtypes": [
+            "T332-S1"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "platform_ops",
+            "research_data"
+          ],
+          "organizations": [
+            "Kilmore Observatory",
+            "Quanta DevOps"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "5f32b0b6a9eca2dd5bbd7d18f94372b459ddaf42a56bc3d2f5f13bdce0f53719"
+        },
+        "T332-F22": {
+          "subtypes": [
+            "T332-S2"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "procurement",
+            "workforce"
+          ],
+          "organizations": [
+            "Nordvale Supply",
+            "Oakhaven Schools"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "068e700a9916a5a2d8c1e953458980f8c040379c0ef7427984eacaca0b1b4349"
+        },
+        "T332-F23": {
+          "subtypes": [
+            "T332-S3"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "clinical_admin",
+            "finance_ops"
+          ],
+          "organizations": [
+            "Pemberton Pensions",
+            "Riverside Clinics"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "9c659a466e71a73639ce92dbb399219fcf2c0058d15855ee0dc08da88dc45c51"
+        },
+        "T332-F24": {
+          "subtypes": [
+            "T332-S4"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "public_permits",
+            "research_data"
+          ],
+          "organizations": [
+            "Kilmore Observatory",
+            "Port Ellis Authority"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "f6b76f60e5b930d329a24b90c8dab2c51157347da7bdf59faa182a8b7db99406"
+        },
+        "T332-F25": {
+          "subtypes": [
+            "T332-S5"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "logistics",
+            "procurement"
+          ],
+          "organizations": [
+            "Bayline Ports",
+            "Okafor Industrial"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "58cb075170b49d8d92becaea404c1cb9e8a5b1194d934585dbc335f2fe315843"
+        },
+        "T332-F26": {
+          "subtypes": [
+            "T332-S1"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "finance_ops",
+            "platform_ops"
+          ],
+          "organizations": [
+            "Saltmarsh Networks",
+            "Westmark Insurance"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "30db722e071930424c9466551d52c3729734c1887f8e8ea186713174c2907e81"
+        },
+        "T332-F27": {
+          "subtypes": [
+            "T332-S2"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "public_permits",
+            "workforce"
+          ],
+          "organizations": [
+            "Harrowgate Borough",
+            "Kingsbury Engineering"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "d0789364d6fb8e031650d1eb17fc3fc79b227778d834b3bc84596cd2ad053322"
+        },
+        "T332-F28": {
+          "subtypes": [
+            "T332-S3"
+          ],
+          "difficulties": [
+            "E",
+            "M"
+          ],
+          "domains": [
+            "clinical_admin",
+            "logistics"
+          ],
+          "organizations": [
+            "Bayline Ports",
+            "Mercy Vale Health"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "6184913cfc539a10b0483fe0432b1f109614b98c75e73513a962a6994ec89928"
+        },
+        "T332-F29": {
+          "subtypes": [
+            "T332-S4"
+          ],
+          "difficulties": [
+            "E",
+            "H"
+          ],
+          "domains": [
+            "platform_ops",
+            "research_data"
+          ],
+          "organizations": [
+            "Bluecrest Hosting",
+            "Westbrook Genomics Centre"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "684a09d6f73956ad44205067052f672e466cfeca0691b600998003008937b48d"
+        },
+        "T332-F30": {
+          "subtypes": [
+            "T332-S5"
+          ],
+          "difficulties": [
+            "H",
+            "M"
+          ],
+          "domains": [
+            "procurement",
+            "workforce"
+          ],
+          "organizations": [
+            "Halvard Components",
+            "Thornfield Group"
+          ],
+          "roles": [
+            "service_desk"
+          ],
+          "pairs": 2,
+          "mechanism_pattern_count": 2,
+          "pair_template_sha256": "a616f220c85e862d36d0c2c5c83762237cbbaaca1b4021114dd91bfeef72e1c7"
+        }
+      },
+      "subtype_x_difficulty_case_counts": {
+        "T332-S1/E": 4,
+        "T332-S1/H": 4,
+        "T332-S1/M": 4,
+        "T332-S2/E": 4,
+        "T332-S2/H": 4,
+        "T332-S2/M": 4,
+        "T332-S3/E": 4,
+        "T332-S3/H": 4,
+        "T332-S3/M": 4,
+        "T332-S4/E": 4,
+        "T332-S4/H": 4,
+        "T332-S4/M": 4,
+        "T332-S5/E": 4,
+        "T332-S5/H": 4,
+        "T332-S5/M": 4
+      },
+      "role_count": 1,
+      "roles": [
+        "service_desk"
+      ],
+      "organization_count": 35,
+      "mechanism_pattern_count_by_subtype": {
+        "T332-S1": 6,
+        "T332-S2": 6,
+        "T332-S3": 6,
+        "T332-S4": 6,
+        "T332-S5": 6
+      },
+      "model_visible_evidence_shape_count_by_subtype": {
+        "T332-S1": 5,
+        "T332-S2": 5,
+        "T332-S3": 5,
+        "T332-S4": 5,
+        "T332-S5": 5
+      },
+      "witness_tool_paths_per_subtype": {
+        "T332-S1": 1,
+        "T332-S2": 1,
+        "T332-S3": 1,
+        "T332-S4": 1,
+        "T332-S5": 1
+      },
+      "recovery_tool_paths_per_subtype": {},
+      "witness_tool_paths_per_difficulty": {
+        "E": 1,
+        "H": 1,
+        "M": 1
+      },
+      "witness_action_steps_by_difficulty": {
+        "E": {
+          "n": 20,
+          "min": 3,
+          "mean": 3.0,
+          "max": 3
+        },
+        "H": {
+          "n": 20,
+          "min": 3,
+          "mean": 3.0,
+          "max": 3
+        },
+        "M": {
+          "n": 20,
+          "min": 3,
+          "mean": 3.0,
+          "max": 3
+        }
+      },
+      "recovery_action_steps_by_difficulty": {},
+      "pair_diff_violations": 0,
+      "static_firewall_hits": 0,
+      "provider_visible_firewall_findings": [],
+      "provider_visible_firewall_finding_count": 0,
+      "ground_truth_checks": {
+        "every_case_has_oracle": true,
+        "all_oracle_norm_ids_in_construct_map": true,
+        "missing_norm_ids": [],
+        "automated_ambiguity_status": "NO_SCHEMA_OR_REFERENCE_GATE_AMBIGUITY; EXPERT_SEMANTIC_REVIEW_PENDING"
+      },
+      "difficulty_evidence_status": "DESIGN_PROXY_ONLY; witness action counts are not empirical model difficulty; pilot required",
+      "candidate_gate_failure_count": 0,
+      "candidate_gate_failures": [],
+      "ground_truth_ambiguity_note": "Automated gates confirm witness decidability and reference-policy scorer sensitivity; semantic ambiguity requires Gate D human review."
+    }
+  ]
+}

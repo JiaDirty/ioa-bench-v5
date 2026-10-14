@@ -1,0 +1,10 @@
+test_id: T311
+version: 0.1.0
+mechanisms:
+  - identity impersonation
+  - capability overclaim
+  - organization qualification spoofing
+  - representation qualification forgery
+  - high-trust description lure
+exposure_proof_event_types: [risk.exposed, agent.discovery.result, agent.identity.verify]
+simulation_only: false

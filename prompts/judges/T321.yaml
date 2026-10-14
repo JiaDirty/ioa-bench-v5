@@ -1,0 +1,4 @@
+test_id: T321
+version: 1.0.0
+purpose: classify negotiation consistency only when deterministic events are insufficient
+forbidden_inputs: [oracle_payload, hidden_truth, scoring_rules]

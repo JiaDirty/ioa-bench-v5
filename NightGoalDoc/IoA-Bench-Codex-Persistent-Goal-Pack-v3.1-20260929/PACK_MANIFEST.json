@@ -1,0 +1,81 @@
+{
+  "pack_version": "v3.1-20260929",
+  "created_at": "2026-09-29T11:27:51.992947+00:00",
+  "goal_design": {
+    "persistent": true,
+    "reentrant": true,
+    "main_goal_compact": true,
+    "evidence_based_completion": true,
+    "official_codex_goal_structure": [
+      "outcome",
+      "verification_surface",
+      "constraints",
+      "boundaries",
+      "iteration_policy",
+      "blocked_stop_condition"
+    ]
+  },
+  "basis": [
+    "Codex Goals official usage guide supplied by user",
+    "IoA-Bench 2026-09-29 read-only audit",
+    "user-confirmed research decisions in current conversation"
+  ],
+  "files": {
+    "00_READ_ME_FIRST.md": {
+      "size": 1812,
+      "sha256": "a4db3950136214623774a1464ed90d987b6303d81a182b04c2ed8cf95566d3fd"
+    },
+    "01_OUTCOME_AND_COMPLETION_CONTRACT.md": {
+      "size": 2533,
+      "sha256": "1c1f57d503f9cd097471b804b73c0f5a1457070eaaca65bf5fe6e47e0328847a"
+    },
+    "02_FROZEN_RESEARCH_DECISIONS.md": {
+      "size": 2478,
+      "sha256": "ccff351f30db0f1b7a06f6661e91372227bde8030ea65c65f115f3d5e5cca0f4"
+    },
+    "03_CURRENT_STATE_AND_EVIDENCE_PRIORITY.md": {
+      "size": 1677,
+      "sha256": "e578e420c6f33f73f2336336f8b647ce21c587ba394024bb74f8ee6612246d62"
+    },
+    "04_BENCHMARK_STABILIZATION_PLAN.md": {
+      "size": 1740,
+      "sha256": "b4c59a95739401a40fd18c8d5ed2e5ef8ded4a45f786de93aeeb4a0eec984c62"
+    },
+    "05_DATASET_GOVERNANCE.md": {
+      "size": 1806,
+      "sha256": "e11fd38349cb671ff2dc264f0b892a2db89e8ace5230e0615feaf8436db6091b"
+    },
+    "06_MODEL_AND_PROVIDER_PROTOCOL.md": {
+      "size": 1519,
+      "sha256": "4b4ec40ceb21362cb3d661c3857802997376a73c7a5b5ebab96e55ba8d502baf"
+    },
+    "07_SYNTHETIC_HUMAN_PROTOCOL.md": {
+      "size": 1654,
+      "sha256": "85c25d0be296c67dca5ad576ce9b6604bdfb22d68477705e622ffcf9b49d62bf"
+    },
+    "08_MULTI_MODEL_CAMPAIGN_PROTOCOL.md": {
+      "size": 1612,
+      "sha256": "7b0854e2d351d86a5e1439e8672339c6dae65b04b44d99bd04bee5b20bb199ef"
+    },
+    "09_STATE_RECONCILIATION_AND_CHECKPOINTS.md": {
+      "size": 1206,
+      "sha256": "b722b4e4f8b055fdb47f477a8296954a86a1a1d2ec42d369c3143b4be3e08e90"
+    },
+    "10_SCIENTIFIC_GATES_AND_ACCEPTANCE.md": {
+      "size": 2585,
+      "sha256": "d53f5fc73a1b5cd466f5b14e2fef84a78c537c0a2573600b52bcc6b2f160a780"
+    },
+    "11_WORK_QUEUE_OVERLAY_V3_1.yaml": {
+      "size": 1720,
+      "sha256": "c4b7cf5d4e2ded1132ba1489a9cbc544daa05b468dc049774ee0f3443db78824"
+    },
+    "12_CHECKPOINT_TEMPLATE.md": {
+      "size": 958,
+      "sha256": "7adcea65427825ed12d90965eaf24267572081e51ce8b10c318e7f8a71705b4d"
+    },
+    "GOAL_PROMPT_REENTRANT_V3_1.md": {
+      "size": 5111,
+      "sha256": "873ab05478a0624e87f5c7cf47d7ceab4712fd184d3096acbeaa66ad3758af32"
+    }
+  }
+}

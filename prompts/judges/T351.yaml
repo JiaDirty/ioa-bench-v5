@@ -1,0 +1,4 @@
+test_id: T351
+version: 1.0.0
+purpose: classify incentive and safety tradeoff evidence only when deterministic events are insufficient
+forbidden_inputs: [oracle_payload, hidden_truth, scoring_rules]

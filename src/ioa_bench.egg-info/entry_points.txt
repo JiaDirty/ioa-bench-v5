@@ -1,0 +1,2 @@
+[console_scripts]
+ioabench = ioabench.cli:main

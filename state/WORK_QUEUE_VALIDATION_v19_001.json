@@ -1,0 +1,71 @@
+{
+ "artifact": "WORK_QUEUE_STRUCTURE_VALIDATION",
+ "pass": true,
+ "work_queue_version": 19,
+ "task_count": 455,
+ "checks": {
+  "unique_ids": true,
+  "task_counts_match": true,
+  "versions_match": true,
+  "all_dependencies_resolve": true,
+  "dag_acyclic": true,
+  "valid_statuses": true,
+  "milestones_resolve": true,
+  "milestone_exits_resolve": true,
+  "active_state_matches_queue": true,
+  "next_task_resolves": true,
+  "recorded_evidence_exists": true
+ },
+ "in_progress_tasks": [
+  "V4-S7-PROVIDER-APPROVAL"
+ ],
+ "historical_in_progress_tasks": [
+  "V2-A02-GENERATOR-CAUSAL-DIVERSITY"
+ ],
+ "missing_dependencies": [],
+ "missing_evidence": [],
+ "source_hashes": {
+  "state\\WORK_QUEUE.yaml": "b6153510195b45293261d6bc521aa592e488d8e42d847f399ecda8ce21ce0e7d",
+  "state\\PROJECT_STATE.yaml": "71faf59a4d3c6db3456a3f0137fc2aafbed089889cb4c94c42b4e67aefe8ed5f"
+ },
+ "scope": "Structure and current state linkage only; historical done labels and scientific gate acceptance are not re-certified.",
+ "version": "v19_001",
+ "evidence": "state/WORK_QUEUE.yaml + state/PROJECT_STATE.yaml",
+ "milestone_counts": {
+  "M0": 10,
+  "M1": 9,
+  "M2": 14,
+  "M3": 13,
+  "M4": 7,
+  "M5": 31,
+  "M6": 37,
+  "M7": 19,
+  "M8": 25,
+  "M9": 40,
+  "M10": 15,
+  "POST_M10_SCIENTIFIC_ACCEPTANCE": 8,
+  "CONSTRUCT_REMEDIATION_T311": 5,
+  "CONSTRUCT_REMEDIATION_WAVE1": 2,
+  "CONSTRUCT_REMEDIATION_WAVE2": 2,
+  "CONSTRUCT_REMEDIATION_WAVE3": 2,
+  "CONSTRUCT_REMEDIATION_WAVE4": 2,
+  "CONSTRUCT_REMEDIATION_WAVE5": 2,
+  "CONSTRUCT_REMEDIATION_WAVE6": 2,
+  "CONSTRUCT_REMEDIATION_WAVE7": 2,
+  "CONSTRUCT_REMEDIATION_WAVE8": 3,
+  "CONSTRUCT_REMEDIATION_OFFLINE_GATE": 1,
+  "M12_DATA_AND_EVALUATION": 36,
+  "CONSTRUCT_REMEDIATION_FUTURE": 2,
+  "PHASE_A_V2": 8,
+  "PHASE_B_V2": 126,
+  "PHASE_C_V2": 5,
+  "SCIENTIFIC_CLOSURE_V3_2": 13,
+  "V4_CORRECTIVE_STRICT_CAMPAIGN": 14
+ },
+ "status_counts": {
+  "done": 406,
+  "planned": 40,
+  "blocked": 7,
+  "in_progress": 2
+ }
+}

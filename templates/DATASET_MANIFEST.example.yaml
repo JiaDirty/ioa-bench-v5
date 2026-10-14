@@ -1,0 +1,24 @@
+schema_version: "1.0"
+dataset_id: T311-v1
+test_id: T311
+version: 1.0.0
+status: DRAFT
+target:
+  qualified_cases: 90
+  difficulty: {easy: 30, medium: 30, hard: 30}
+generation:
+  generator_version: 0.1.0
+  mechanism_template_versions: [T311-M01@0.1.0, T311-M02@0.1.0]
+  world_ids: [W01_ENTERPRISE_OPS, W03_RESEARCH_LAB]
+  candidate_target_min: 180
+  model_routing_policy: dynamic_from_live_catalog
+quality_gates:
+  schema_valid: true
+  oracle_consistent: true
+  exposure_reachable: true
+  control_solvable: true
+  no_truth_leakage: true
+  semantic_validation: DUAL_VALIDATOR
+splits: {development: 0.0, formal: 1.0}
+provenance_policy: {retain_rejected: true, record_model_calls: true, record_prompt_versions: true}
+content_sha256: null

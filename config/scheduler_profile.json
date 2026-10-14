@@ -1,0 +1,27 @@
+{
+ "artifact": "SCHEDULER_PROFILE",
+ "frozen": true,
+ "frozen_at": "2026-09-29",
+ "frozen_for": "canonical Benchmark Release campaigns (post G7); the development deepseek-v4.1-flash campaign ran at the same tested-model concurrency for consistency",
+ "selection_basis": {
+  "live_calibration": "artifacts/gates/CONCURRENCY_CALIBRATION.json (deepseek-v4.1-flash, 12 calls per level at max_tokens 8192: levels 2/3/4 all clean - 0x 429, 0x 5xx, 0x timeouts; throughput 21.4/38.5/45.3 calls-per-min)",
+  "campaign_stability": "the development campaign executed 8+ formal suites at concurrency 3 with only isolated transient infrastructure failures cleared by resume passes; no persistent rate limiting",
+  "decision": "tested-model campaigns freeze at concurrency 3 (stable throughput with the strongest sustained evidence); level 4 probed clean and remains approved headroom for auxiliary roles"
+ },
+ "profiles": {
+  "tested_model": {"concurrency": 3, "max_tokens": 8192, "temperature": 0.0},
+  "semantic_validator": {"concurrency": 2, "max_tokens": 4000, "temperature": 0.0,
+                          "note": "batched dual validation; lower concurrency avoids competing with tested-model calls"},
+  "synthetic_human": {"concurrency": 3, "max_tokens": 2000, "temperature": 0.0,
+                       "note": "same campaign lane as the tested model; persona calls are short"},
+  "generator": {"concurrency": 1,
+                 "note": "v1 formal datasets are generated programmatically; no provider generation lane is active"}
+ },
+ "retry_policy": {
+  "provider_transient": {"max_passes": 6, "backoff_s": "10 * (attempt + 1)",
+                          "semantics": "RETRYABLE_INFRA_FAILURE units are re-executed on resume; never counted as model results"},
+  "invalid_model_output": "recorded terminal; never retried for score improvement",
+  "synthetic_human_failure": {"internal_retries": 3, "then": "case-level retryable infrastructure failure"}
+ },
+ "change_rule": "concurrency values are frozen per campaign before it starts; changing them mid-campaign is prohibited; recalibration requires new probe evidence"
+}

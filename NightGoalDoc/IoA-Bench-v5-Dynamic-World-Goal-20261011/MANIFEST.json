@@ -1,0 +1,47 @@
+{
+  "package": "IoA-Bench v5 Dynamic World Goal",
+  "created_date": "2026-10-11",
+  "nature": "proposed ZCode goal handoff; not executed",
+  "files": [
+    {
+      "name": "00_READ_ME_FIRST.md",
+      "sha256": "9fb0b48a5df3e74b28eb9d5f5da30a58f932d4e4c0d114a3f3adb50061b54315",
+      "bytes": 2397
+    },
+    {
+      "name": "01_LONG_TERM_GOAL.md",
+      "sha256": "bddad5832d2a77068ffbe4eb96fba83d9a3ec551d032d1b9b430b86e20d39c99",
+      "bytes": 6490
+    },
+    {
+      "name": "02_RUNTIME_AND_MEASUREMENT_DESIGN.md",
+      "sha256": "7982a12a727a38118c53a1e081e9fed880f362117f8b462411c86f743aea4f51",
+      "bytes": 8289
+    },
+    {
+      "name": "03_DATA_FACTORY_AND_QUALITY.md",
+      "sha256": "ddb6bfe70ae3dd8115cbba24958815f44637b80c68f36bc31a9aac1e0ec7bfd6",
+      "bytes": 6069
+    },
+    {
+      "name": "04_WORK_QUEUE_GATES.md",
+      "sha256": "8944759e36373228aa1ea9640a4b3dd5a8467169bb227bc9f5c5968fe22e21e9",
+      "bytes": 6621
+    },
+    {
+      "name": "05_INTEGRATION_AND_EXECUTION.md",
+      "sha256": "50f1f77134a482faf9f2ddc0c00ae4a261e35a2491e53fe950047314ab27c86c",
+      "bytes": 4710
+    },
+    {
+      "name": "06_ZCODE_START_PROMPT.md",
+      "sha256": "78500dfdc96675288a9c7ba21e60fbbdf1a01c2fa07503d9b6b5548682cebd73",
+      "bytes": 4881
+    },
+    {
+      "name": "07_18_SUITE_MIGRATION_MATRIX.md",
+      "sha256": "0e263aec1f62faac20f062a2fc8a38dae97a97f5392bf1a6d55c1212e386fa8b",
+      "bytes": 4289
+    }
+  ]
+}

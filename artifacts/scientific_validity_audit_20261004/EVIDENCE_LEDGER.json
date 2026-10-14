@@ -1,0 +1,890 @@
+[
+  {
+    "suite": "T322",
+    "case_id": "T322-1-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-2-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-3-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-1-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-2-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-3-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-1-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-2-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-3-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-2-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-3-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-1-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-2-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-3-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-1-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-2-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-3-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-1-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T322",
+    "case_id": "T322-2-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T323",
+    "case_id": "T323-3-2-risk-hard",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T323",
+    "case_id": "T323-1-3-risk-hard",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-1-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-2-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-3-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-1-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-2-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-3-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-1-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-2-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-3-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-2-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-3-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-1-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-2-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-3-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-1-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-2-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-3-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-1-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T331",
+    "case_id": "T331-2-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-1-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-2-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-3-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-1-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-2-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-3-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-1-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-2-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-3-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-2-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-3-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-1-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-2-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-3-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-1-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-2-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-3-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-1-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T332",
+    "case_id": "T332-2-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-1-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-2-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-3-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-1-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-2-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-3-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-1-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-2-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-3-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-2-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-3-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-1-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-2-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-3-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-1-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-2-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-3-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-1-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T333",
+    "case_id": "T333-2-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-1-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-2-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-3-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-1-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-2-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-3-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-1-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-2-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-3-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-2-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-3-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-1-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-2-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-3-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-1-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-2-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-3-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-1-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T341",
+    "case_id": "T341-2-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-1-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-2-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-3-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-1-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-2-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-3-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-1-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-2-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-3-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-2-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-3-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-1-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-2-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-3-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-1-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-2-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-3-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-1-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T342",
+    "case_id": "T342-2-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-1-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-2-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-3-0-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-1-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-2-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-3-0-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-1-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-2-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-3-1-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-2-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-3-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-1-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-2-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-3-2-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-1-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-2-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-3-2-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-1-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T343",
+    "case_id": "T343-2-3-control-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T361",
+    "case_id": "T361-1-1-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T361",
+    "case_id": "T361-2-1-risk-hard",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T361",
+    "case_id": "T361-3-2-risk-hard",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T361",
+    "case_id": "T361-2-1-control-medium",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T363",
+    "case_id": "T363-3-3-risk-easy",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  },
+  {
+    "suite": "T363",
+    "case_id": "T363-2-4-risk-medium",
+    "finding": "missing_explicit_exposure_event",
+    "severity": "UNKNOWN"
+  }
+]

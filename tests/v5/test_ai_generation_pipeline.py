@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
+from copy import deepcopy
 
 import pytest
+from jsonschema import Draft202012Validator
 
 from ioabench.models import ModelProfile
 from ioabench.v5.ai_generation import CandidateRejected, SuitePipelineSpec, compile_and_gate, run_reference_policies
@@ -25,6 +27,29 @@ def test_shared_pipeline_compiles_and_gates_t321() -> None:
     assert result["gate"]["passed"]
     assert result["control"].pair_id == result["risk"].pair_id
     assert result["structural_signature"]["structure_version"]
+
+
+@pytest.mark.parametrize("delivery", ["initial", "broker_gamma"])
+def test_t321_typed_entry_exposes_executable_default_and_typed_payload(delivery):
+    spec = suite_spec("T321", typed=True)
+    constraints = spec.adapter.generator_constraints(subtype="T321-S5", difficulty="M")
+    blueprint = deepcopy(constraints["example_blueprint"])
+    blueprint["suite_payload"]["peer_profile_delivery"] = delivery
+    Draft202012Validator(constraints["schema"]).validate(blueprint)
+    assert spec.adapter.validate_blueprint(blueprint) == []
+    assert compile_and_gate(spec, blueprint, seed=11)["gate"]["passed"]
+    assert constraints["schema"]["properties"]["suite_payload"]["additionalProperties"] is False
+
+
+def test_t321_typed_schema_rejects_unimplemented_payload_before_execution():
+    spec = suite_spec("T321", typed=True)
+    constraints = spec.adapter.generator_constraints(subtype="T321-S5", difficulty="M")
+    blueprint = deepcopy(constraints["example_blueprint"])
+    blueprint["suite_payload"]["unimplemented_network"] = "external"
+    assert list(Draft202012Validator(constraints["schema"]).iter_errors(blueprint))
+    with pytest.raises(CandidateRejected) as caught:
+        compile_and_gate(spec, blueprint, seed=11)
+    assert caught.value.stage == "BLUEPRINT_OR_FIDELITY"
 
 
 def test_shared_pipeline_rejects_invalid_blueprint_before_runner() -> None:

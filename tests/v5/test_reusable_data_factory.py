@@ -79,6 +79,106 @@ def test_full_chain_and_terminal_resume_make_no_new_calls(tmp_path):
     assert len(port.calls) == 2
 
 
+@pytest.mark.parametrize("strategy", ["G1", "G3"])
+def test_program_proposal_uses_same_full_gates_without_faking_a_model_call(tmp_path, strategy):
+    spec, blueprint, references = setup_trial()
+    extra = {}
+    if strategy == "G3":
+        from copy import deepcopy
+        parent = deepcopy(blueprint)
+        parent["suite_payload"]["propagation_topology"] = "chain"
+        parent_directory = tmp_path / "parent"
+        assert execute(parent_directory, spec, TrialPort(parent), references, proposal=parent, acquisition_strategy="G1")["status"] == "MACHINE_ACCEPTED"
+        extra["parent_directory"] = parent_directory
+        tmp_path = tmp_path / "child"
+    port = TrialPort(blueprint)
+    result = execute(tmp_path, spec, port, references, proposal=blueprint, acquisition_strategy=strategy, **extra)
+    assert result["status"] == "MACHINE_ACCEPTED"
+    assert result["generator_id"] == "program:" + strategy
+    assert port.calls == ["INDEPENDENT_AUDITOR"]
+    assert not (tmp_path / "GENERATOR_RESPONSE.json").exists()
+    assert (tmp_path / "PROGRAM_PROPOSAL.json").exists()
+    assert factory.read_json(tmp_path / "DIFFICULTY.json")["status"] == "NOT_CALIBRATED"
+    assert execute(tmp_path, spec, port, references, proposal=blueprint, acquisition_strategy=strategy, **extra) == result
+    assert port.calls == ["INDEPENDENT_AUDITOR"]
+
+
+def test_program_proposal_still_rejects_broken_causality_before_auditor(tmp_path):
+    spec, blueprint, references = setup_trial()
+    blueprint["suite_payload"]["propagation_topology"] = "unknown"
+    port = TrialPort(blueprint)
+    result = execute(tmp_path, spec, port, references, proposal=blueprint, acquisition_strategy="G1")
+    assert result["status"] == "REJECTED"
+    assert port.calls == []
+
+
+@pytest.mark.parametrize("incomplete_source", [False, True])
+def test_indeterminate_history_cannot_reach_independent_review(tmp_path, incomplete_source):
+    from ioabench.v5.ai_generation.history import build_index
+
+    spec, blueprint, references = setup_trial()
+    sources = []
+    if incomplete_source:
+        source = tmp_path / "rejected.json"
+        source.write_text("{", encoding="utf-8")
+        sources.append(source)
+    index = build_index(tmp_path, sources=sources)
+    port = TrialPort(blueprint)
+    result = execute(tmp_path / "candidate", spec, port, references,
+                     proposal=blueprint, acquisition_strategy="G1", historical_index=index)
+    assert result["status"] == "REJECTED"
+    assert result["failed_stage"] == "HISTORY_INDETERMINATE"
+    assert factory.read_json(tmp_path / "candidate/HISTORICAL_DIVERSITY.json")["status"] == "INDETERMINATE"
+    assert port.calls == []
+    assert execute(tmp_path / "candidate", spec, port, references,
+                   proposal=blueprint, acquisition_strategy="G1", historical_index=index) == result
+    assert port.calls == []
+
+
+@pytest.mark.parametrize("change", ["same_structure", "source", "qualification"])
+def test_g3_parent_qualification_and_actual_mutation_are_required(tmp_path, change):
+    spec, blueprint, references = setup_trial()
+    parent = tmp_path / "parent"
+    execute(parent, spec, TrialPort(blueprint), references, proposal=blueprint, acquisition_strategy="G1")
+    if change == "qualification":
+        result = factory.read_json(parent / "RESULT.json")
+        result["status"] = "REJECTED"
+        (parent / "RESULT.json").write_text(json.dumps(result), encoding="utf-8")
+    port = TrialPort(blueprint)
+    result = execute(tmp_path / "child", spec, port, references, proposal=blueprint, acquisition_strategy="G3",
+                     parent_directory=parent, **({"source_hash": "different"} if change == "source" else {}))
+    assert result["status"] == "REJECTED" and port.calls == []
+    assert result["failed_stage"] == ("NO_STRUCTURAL_MUTATION" if change == "same_structure" else "PARENT_BINDING")
+
+
+@pytest.mark.parametrize("change", ["finished_time", "binding_missing", "sidecar_changed"])
+def test_terminal_result_and_completion_sidecar_are_immutable(tmp_path, change):
+    spec, blueprint, references = setup_trial()
+    port = TrialPort(blueprint)
+    result = execute(tmp_path, spec, port, references)
+    if change == "binding_missing":
+        (tmp_path / "TERMINAL.json").unlink()
+    elif change == "sidecar_changed":
+        binding = factory.read_json(tmp_path / "TERMINAL.json")
+        binding["result_sha256"] = "changed"
+        (tmp_path / "TERMINAL.json").write_text(json.dumps(binding), encoding="utf-8")
+    else:
+        result["finished_utc"] = "changed"
+        (tmp_path / "RESULT.json").write_text(json.dumps(result), encoding="utf-8")
+    with pytest.raises(ValueError, match="integrity|binding"):
+        execute(tmp_path, spec, port, references)
+    assert len(port.calls) == 2
+
+
+def test_completion_sidecar_recovers_interrupted_result_write_without_calls(tmp_path):
+    spec, blueprint, references = setup_trial()
+    port = TrialPort(blueprint)
+    result = execute(tmp_path, spec, port, references)
+    (tmp_path / "RESULT.json").write_text(json.dumps({"status": "IN_PROGRESS"}), encoding="utf-8")
+    assert execute(tmp_path, spec, port, references) == result
+    assert len(port.calls) == 2
+
+
 class AuditUnavailablePort(TrialPort):
     async def generate(self, profile, request):
         if profile.role == "INDEPENDENT_AUDITOR":
@@ -250,14 +350,18 @@ def test_interruption_after_generator_replays_original_response(tmp_path, monkey
 
 def test_pending_request_never_automatically_resends(tmp_path):
     spec, blueprint, references = setup_trial()
-    port = TrialPort(blueprint)
-    execute(tmp_path, spec, port, references)
-    # Simulate losing the response before it was durably recorded, preserving the exact request.
-    (tmp_path / "GENERATOR_RESPONSE.json").unlink()
-    (tmp_path / "RESULT.json").unlink()
+    class Crash(BaseException):
+        pass
+    class InterruptedPort(TrialPort):
+        async def generate(self, profile, request):
+            self.calls.append(profile.role)
+            raise Crash()
+    port = InterruptedPort(blueprint)
+    with pytest.raises(Crash):
+        execute(tmp_path, spec, port, references)
     result = execute(tmp_path, spec, port, references)
     assert result["status"] == "REQUEST_UNRESOLVED"
-    assert len(port.calls) == 2
+    assert len(port.calls) == 1
 
 
 def test_terminal_evidence_mutation_is_detected_without_new_calls(tmp_path):
@@ -279,7 +383,7 @@ def test_incomplete_evidence_binding_cannot_resume_as_accepted(tmp_path, delete_
     if delete_file:
         (tmp_path / "REVIEW.json").unlink()
     (tmp_path / "RESULT.json").write_text(json.dumps(result), encoding="utf-8")
-    with pytest.raises(ValueError, match="evidence"):
+    with pytest.raises(ValueError, match="evidence|integrity"):
         execute(tmp_path, spec, port, references)
     assert port.calls == ["GENERATOR", "INDEPENDENT_AUDITOR"]
 

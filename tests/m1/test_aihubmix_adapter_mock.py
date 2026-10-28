@@ -200,5 +200,5 @@ def test_curl_preserves_only_documented_identity_headers(monkeypatch) -> None:
     monkeypatch.setattr(module.subprocess, "run", run)
     payload = module._curl_json("https://aihubmix.com/v1", "POST", "/chat/completions", {}, "secret", 2)
     assert payload["transport_metadata"] == {"x-aihubmix-model": "aux", "x-aihubmix-fallback": "false",
-                                             "x-structured-output-degraded": "unsupported"}
+                                             "x-structured-output-degraded": "unsupported", "http_status": 200}
     assert payload["model"] == "aux-2026-10-12"

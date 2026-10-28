@@ -5,6 +5,7 @@
 # competing goal. Gate A-H definitions stay in
 # NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/03_PUBLICATION_READINESS_CONTRACT.md.
 # Status vocabulary: NOT_STARTED / IN_PROGRESS / VALIDATED / BLOCKED / PI_DECISION_REQUIRED.
+# Latest continuation: COORD-R3 Round01; state/WORK_QUEUE.yaml coordination_round01_20261019_overlay is authoritative. Engineering prepared; Gold/PI and completion recovery remain blocked.
 # PI-V5-008 (2026-10-12) supersedes fixed auxiliary-model routing and authorizes versioned,
 # non-frozen candidate expansion; formal freeze, Gate D, confirmation Pilot and Campaign stay gated.
 # Mainstream connectivity20261014:9/10 exact IDs basic Chat PASS; qwen3.8-27b no_available_channel even with official minimum request; no401.
@@ -740,3 +741,65 @@ concurrency_rules:
   - 共享文件（src/ioabench/v5/core/*、scripts/v5/pilot.py、state/*）改动前确认另一会话无并行写入；无 .git，不做 worktree 假设。
   - 历史证据、冻结数据集、既有 Release 只读；新产物进独立命名空间。
   - 确定性系统性故障立即停止无效模型调用；质量不足不降门槛。
+
+factory_spec_20261019_overlay:
+  goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+  authorization: PI-V5-017
+  status: PARTIAL_BLOCKED_MACHINE_QUALIFICATION
+  current_write_owner: Codex_root_with_scoped_subagents
+  current_git: local_main_user_authorized_no_remote_no_push_supersedes_old_no_git_snapshot
+  evidence: artifacts/v5/data_factory/upgrade-20261019
+  report: docs/v5/data_factory_upgrade/04_TRIAL_RESULTS.md
+  tasks:
+    - {id: DF-00, name: Baseline and authority reconciliation, status: VERIFIED}
+    - {id: DF-API-00, name: Docs catalog and request inventory, status: TESTED, limit: Qwen_Next_ID_UNRESOLVED}
+    - {id: DF-01, name: Capability truth table and IR, status: TESTED, limit: all18_bounded_factors_540_references_not_arbitrary_graphs}
+    - {id: DF-02, name: Program-owned causality and firewall, status: TESTED}
+    - {id: DF-03, name: Runtime consumer fidelity, status: TESTED, limit: bounded_existing_primitives}
+    - {id: DF-04, name: Three representative typed adapters, status: TESTED}
+    - {id: DF-05, name: Constrained composable primitives, status: TESTED, limit: finite_49_canonical_structures_no_arbitrary_graph_composer}
+    - {id: DF-06, name: Coverage-aware acquisition, status: TESTED}
+    - {id: DF-07, name: G1 G2 G3 and resume, status: BLOCKED, limit: production_and_G3_NOT_RUN_no_current_qualified_auditor_or_parent}
+    - {id: DF-API-01, name: Preflight failover and telemetry, status: TESTED}
+    - {id: DF-08, name: Cross-history deduplication, status: PARTIAL, limit: R13_794sources_43643occurrences_7687unique_6661PROBED_1026INDETERMINATE_29654files_zero_execution_resume_PASS_merge_fixed}
+    - {id: DF-09, name: Independent judge controls, status: BLOCKED, limit: finite_comparison_CLOSED_no_qualified_auditor_Sol16of18_GLM8of18_Gemini_partial_no_threshold_change}
+    - {id: DF-10, name: Empirical difficulty and quarantine, status: PARTIAL, limit: fixed96_92COMPLETED_2BUDGET_2pending_94terminalReplayPASS_new60zero_call_resumePASS_scientific_labels_UNCALIBRATED}
+    - {id: DF-11, name: Extend all18 suites, status: TESTED, limit: all18_828reference_checks_live_chain_pending}
+    - {id: DF-12, name: Negative controls and regression, status: TESTED, limit: R13_1486passed_16S3classes_38selectors_bounded_scope_machine_qualification_separate}
+    - {id: DF-13, name: Bounded real generation, status: BLOCKED, limit: old_G2_REJECTED_ALL_HISTORY_DEDUP_current_production_NOT_RUN_machine_qualification_required}
+    - {id: DF-14, name: Qualification and closure report, status: BLOCKED, limit: FINAL_S0_S6_ACCEPTANCE_R13_delivers_actual_evidence_machine_qualification_and_independent_scientific_adjudication_remain_blocked}
+  offline_pool_acceptance: actual18candidates_36cases_114references_all_duplicate_rejected_pool_layers36_0_0_0_build_verify_resume_PASS_674files_unchanged_tamper_rejected_API0
+  unified_all18_offline: current_R13_checks36_reference_checks228_suites18_API0_help_and_run_exit0
+  protection: PROTECTED_HISTORY_R13_45434_files_unchanged
+  new_qualified_global_families: 0
+  formal_accepted: false
+  formal_freeze: NOT_AUTHORIZED
+
+r13_followup_20261019_overlay:
+  goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+  authorization: PI-V5-020
+  status: BLOCKED
+  acceptance: PARTIAL
+  current_write_owner: Codex_root_only_prior_scoped_workers_completed
+  evidence: artifacts/v5/data_factory/next-r1/FINAL_ACCEPTANCE.json
+  report: docs/WORK_COMPLETION_20261019_R3.md
+  task_queue: state/WORK_QUEUE.yaml#r13_followup_20261019_overlay
+  tasks:
+    - {id: DW-NEXT-00, status: VALIDATED, result: current_baseline_and_ZIP_difference_preserved_protection_baseline_race_PARTIAL}
+    - {id: DW-NEXT-01, status: PI_DECISION_REQUIRED, result: Gold_facts_reproduced_two_blind_reviews_and_PI_disposition_pending}
+    - {id: DW-NEXT-02, status: VALIDATED, result: eight_model_native_protocol_and_parameter_probes_PARTIAL_capabilities_not_qualification}
+    - {id: DW-NEXT-03, status: BLOCKED, result: generation192plan_39valid_10rejected_6provider_failed_3unresolved_134NOT_RUN_real401}
+    - {id: DW-NEXT-04, status: VALIDATED, result: fixed_repairs24of24_and378strict_Replay_189zero_call_resumes}
+    - {id: DW-NEXT-05, status: VALIDATED, result: 18typed_19slices_49feasible_cells_36offline_pairs_228references_540capability_references}
+    - {id: DW-NEXT-06, status: VALIDATED, result: current_source_history7687reprobed_1026gaps_preserved_78generated_behavior_matches_no_new_scientific_family}
+    - {id: DW-NEXT-07, status: VALIDATED, result: T362_version5.1.1_public_projection_fix_20cases_Replay_resume_historical_science_PI_REQUIRED}
+    - {id: DW-NEXT-08, status: BLOCKED, result: development48plan_11completed_11Replay_7resume_real401_scientific_calibration_NOT_RUN}
+    - {id: DW-NEXT-09, status: BLOCKED, result: first_machine_sample_then_three_then18_NOT_RUN_no_qualified_auditor}
+    - {id: DW-NEXT-10, status: VALIDATED, result: actual1562regression_local_commit_da4ba4e_and7779file_verified_source_package, evidence: state/SOURCE_DELIVERY_20261019_R3.yaml}
+  qualified_independent_auditors: 0
+  machine_qualified_samples: 0
+  new_scientific_families: 0
+  formal_accepted: false
+  publication_ready: false
+  formal_freeze: NOT_RUN_NOT_AUTHORIZED
+  simulation_only: [T361, T362, T363]

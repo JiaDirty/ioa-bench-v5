@@ -1,0 +1,99 @@
+{
+  "version": "ioabench.v5.r3-package/1.0",
+  "purpose": "R3 ZCode executable goal documents only, NOT modified project source or accepted data",
+  "file_count_excluding_manifest": 17,
+  "files": [
+    {
+      "path": "00_使用说明.md",
+      "bytes": 4075,
+      "sha256": "657de7a96ae35205e74964a3c6f03a6996f2f6dab00ebad7f339f8f34a465b9c"
+    },
+    {
+      "path": "01_R2事实基线与差距.md",
+      "bytes": 4323,
+      "sha256": "3762da069962819bbce1f923b1f7239e1883cbd90f691178b194160c89f4dfd5"
+    },
+    {
+      "path": "02_可组合业务DAG与IR架构.md",
+      "bytes": 8538,
+      "sha256": "ef3843aa5d02ec7a0c893f84927a60465257c8c666b4cc42dfd70729924aefed"
+    },
+    {
+      "path": "03_T321多阶段与角色执行.md",
+      "bytes": 4549,
+      "sha256": "11814befded64403690671fed6dcd4041b696943edc263314006e50c213bda46"
+    },
+    {
+      "path": "04_见证验证与反例集.md",
+      "bytes": 4927,
+      "sha256": "a8fee7d90245f945146e90674bdf9ffdf9256bf5cb6fc57d17bcf123fa9e93f6"
+    },
+    {
+      "path": "05_高质量生成与模型调用.md",
+      "bytes": 5052,
+      "sha256": "db855d0b7843046737079434142b0a8be54282205d275cd4544f01a7f6f4940d"
+    },
+    {
+      "path": "06_实验与科研口径.md",
+      "bytes": 4904,
+      "sha256": "6f3e042fee9dc028a2a3042d1be3608b64d8243aaf5b1b842b4be6c3548cf694"
+    },
+    {
+      "path": "07_任务队列与源码落点.md",
+      "bytes": 7093,
+      "sha256": "d1179bf6f7a01a1469b18414a8e1f865413bf7a2b9404c714d692f7596d308c2"
+    },
+    {
+      "path": "08_回归_验收与交接.md",
+      "bytes": 5193,
+      "sha256": "5098e4028d6a9a8cd166bdc5d76e73253ed991e76eb5ed8fc80bccc9b50d95c8"
+    },
+    {
+      "path": "09_18项推广路线与未来边界.md",
+      "bytes": 2816,
+      "sha256": "7f09545c5f4208e876571c9a45a9e60e33781be8d40596573260ffeee5deaba1"
+    },
+    {
+      "path": "10_问题到修复对照表.md",
+      "bytes": 2848,
+      "sha256": "d953f88c3458e4a6fbf03c15b233dc8b98e9dc4cb3df012d54dc3cf7e7e2a204"
+    },
+    {
+      "path": "11_ZCode启动和完成清单.md",
+      "bytes": 2097,
+      "sha256": "cb7d60d13e7832a692d946d3466ae5b1832379e9e1b19840e48d7b186e334968"
+    },
+    {
+      "path": "FILE_SHA256.json",
+      "bytes": 2700,
+      "sha256": "b2782e23aefcfb4305ee5bd88106021b06d0566885531924558c3f2c1c60b855"
+    },
+    {
+      "path": "GOAL.md",
+      "bytes": 9552,
+      "sha256": "7a6a561905d835eb624233bcd022bcfe56b2b3c41318d172076466610f917103"
+    },
+    {
+      "path": "R3_TASK_QUEUE.yaml",
+      "bytes": 3039,
+      "sha256": "98a8558a8086d0ce960c123bac14ba7e76232068eed10f7fa62a6add64c67f70"
+    },
+    {
+      "path": "ZCODE_GOAL_COMMAND.txt",
+      "bytes": 1714,
+      "sha256": "ec0a6a7be3ef0234ebfef5b1a7a2b11aa1b3655db32ed3f0790b4c36c6996c6d"
+    },
+    {
+      "path": "config/R3_model_quality_first.yaml",
+      "bytes": 3431,
+      "sha256": "0a8e478762320f26c7ae7426717b490e22f7cc52cd82354c731840c10838c98a"
+    }
+  ],
+  "static_validation": {
+    "yaml_parse": "PASS",
+    "all_goals_present": "PASS",
+    "startup_command": "PASS",
+    "no_key_literals": "PASS",
+    "source_code_modified": false
+  }
+}

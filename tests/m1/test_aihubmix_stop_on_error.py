@@ -36,8 +36,9 @@ def test_post_urllib_failure_is_one_primary_attempt(monkeypatch, failure):
     with pytest.raises(ProviderTransientError):
         asyncio.run(adapter.generate(PROFILE, REQUEST))
     assert len(calls) == 1
-    assert calls[0][0] == "https://aihubmix.com/v1/chat/completions"
-    assert 0 < calls[0][1] <= 900
+    assert calls[0][0] == "https://api.inferera.com/v1/chat/completions"
+    # Subtracting monotonic deadlines can round a fraction above the budget.
+    assert 0 < calls[0][1] <= 900 + 1e-6
 
 
 @pytest.mark.parametrize("failure", ["transient", "permanent", "no-response"])
@@ -62,7 +63,7 @@ def test_post_windows_curl_does_not_change_transport_or_endpoint(monkeypatch, fa
     with pytest.raises(expected):
         asyncio.run(adapter.generate(PROFILE, REQUEST))
     assert len(calls) == 1
-    assert calls[0][:3] == ("https://aihubmix.com/v1", "POST", "/chat/completions")
+    assert calls[0][:3] == ("https://api.inferera.com/v1", "POST", "/chat/completions")
     assert 0 < calls[0][3] <= 900
 
 

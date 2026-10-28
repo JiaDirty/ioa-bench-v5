@@ -1,8 +1,9 @@
+# Current GitHub sync20261028: source-only public update; local private history retained; see workspace_github_sync_20261028 and local remote verification receipt.
 project: IoA-Bench
 spec_version: 1.0-draft-model-centric
-target_release: v4.1.13-corrective-integration-20261002
-status: v4_corrective_campaign_final_delivery_complete
-current_milestone: V4_CORRECTIVE_STRICT_CAMPAIGN
+target_release: v5-unfrozen
+status: v5_data_generation_in_progress
+current_milestone: V5_DATA_FACTORY_18_SUITE_DELIVERY
 confirmed_research_objective: model_endogenous_safety_in_ioa
 v1_tested_model_requested: deepseek-v4.1-flash
 runtime_profile: local-v1-no-docker
@@ -259,8 +260,8 @@ completed:
 - V4-S10-POSTRUN-VALIDATION
 - V4-S11-CANONICAL-AGGREGATION
 - V4-S12-FINAL-DELIVERY
-in_progress: []
-next: []
+in_progress: [V5_DATA_FACTORY_18_SUITE_DELIVERY]
+next: [QGEN-005, Q18-001, QAUD-002]
 incident:
 - INCIDENT-SUITE-GATES-T311-20260928 (documented; ADR_PHASE_A_V2_INCIDENT_SUITE_GATES_T311)
 blocked:
@@ -400,9 +401,10 @@ canonical_constraints:
   frozen_datasets_immutable: true
 work_queue_version: 26
 work_queue_task_count: 464
-next_task: none
-blocked_external: none; explicit user approval recorded in artifacts/gates/V4_S7_PROVIDER_APPROVAL_005.json
+next_task: QGEN-005
+blocked_external: T322_120_legacy_runtime_contracts_unavailable_independent_auditor_qualification_open
 provider_calls_allowed: true
+provider_authorization_note: Prior_user_small_development_authorization_retained_R20_fresh_100token_protocol_probe_PASS_old_UNKNOWNs_never_resent
 suite_lifecycle:
   T311: FORMAL_EVALUATION_COMPLETE (2.0.0; 90/90 terminal)
   T312: FORMAL_EVALUATION_COMPLETE (2.2.0; 90/90 terminal)
@@ -457,7 +459,371 @@ workspace_full_organization_20261013:
   provider_calls: 0
   scientific_acceptance_changed: false
 
+workspace_maintenance_20261023:
+  status: COMPLETE_SOURCE_REVIEW_DELIVERED
+  evidence: artifacts/workspace_maintenance/20261023-r1
+  progress_report: docs/PROJECT_PROGRESS_20261023.md
+  source_package_directory: exports/source-code-20261023
+  source_package: exports/source-code-20261023/IoA-Bench-source-code-20261023.zip
+  source_package_sha256: 66700b280d76adfa24fe62228995ea3361bd8c6bcb929f60d2773230d59ec449
+  source_package_bytes: 7295572
+  source_package_files: 1537
+  source_package_commit: ad9e4f4236917d52b35e65d8286317c8e0d79641
+  source_package_verification: PASS_CRC_SHA_secret_scan_independent_extraction_runtime_hash_import_and_CLI_no_network
+  source_package_scope: source_review_selected_evidence_not_full_history_or_Replay_bundle
+  cache_directories_removed: 84
+  cache_files_removed: 869
+  logical_bytes_removed: 10741451
+  runtime_source_unchanged: true
+  current_packaging_report_tests: {status: PASS, passed: 51, failed: 0, errors: 0, skipped: 0, external_network_attempts: 0}
+  full_runtime_regression_this_maintenance: NOT_RUN_no_runtime_change
+  provider_calls: 0
+  scientific_acceptance_changed: false
+  history_and_user_files: PASS_186737_hashes_unchanged_including_180204_prior_protected_and_5111_development_evidence
+  finite_grammar_recount: 14_of_18_have_compiled_upper_bound_2_prior_13_omitted_T322
+
 v5:
+  development_auto_audit_20261020:
+    status: DELIVERED_WITH_ENGINEERING_LIMITS
+    authorization: explicit_user_same_model_development_factory_20261020
+    baseline_head: e6e3ecff0ce3661251b8efb2cea20ca73301f185
+    evidence: artifacts/v5/data_factory/dev_auto_audit/round-20261020
+    policy: config/v5/deepseek_development_policy_v1.yaml
+    audit_profile: config/v5/deepseek_development_audit_v1_1.yaml
+    roles: {generator: deepseek-flash, auditor: deepseek-flash, repair_proposer: deepseek-flash}
+    provider: official_DeepSeek_ModelPort_only
+    cross_family_exclusion_for_development: false
+    human_gold_prerequisite_for_development: false
+    previous_pairs_preserved: 32
+    previous_suites: 16
+    previous_pairs_regenerated: 0
+    retained_baseline_audited_pairs: 32
+    dev_accepted_pairs: 19
+    dev_accepted_cases: 38
+    dev_accepted_suites: 12
+    dev_accepted_reused_pairs: 16
+    dev_accepted_new_pairs: 3
+    admission_totals: {DEV_ACCEPTED: 19, QUARANTINED: 20, QUARANTINED_HISTORY_INDETERMINATE: 1, REJECTED: 2}
+    fresh_generation: {planned: 11, executed: 11, engineering_pass: 10, fail: 1}
+    T362: PASS_3_new_executable_structures_SIMULATION_ONLY
+    T322: QUARANTINED_120_old_5_1_0_contracts_missing_FULL_HISTORY_not_proven
+    audit_calibration: {status: FAIL, executed: 6, valid_two_REJECT: 4, decision_two_REJECT: 5, hard_gate_rejected: 6}
+    request_intents: 140
+    complete_ModelPort_completions: 133
+    new_unknown_terminals: 0
+    AIHubMix_new_generation_requests: 0
+    historical_unknown_requests_resent: 0
+    new_cost_CNY_estimate_bounds: [17.65157448, 35.30314896]
+    actual_invoice: UNKNOWN
+    regression: {status: PASS, tests: 1844, failures: 0, errors: 0, evidence: FINAL_REGRESSION_R9.xml}
+    protected_history: {status: PASS, checked: 180204, changed: 0, missing: 0}
+    terminal_plan_reentry: PASS_42_admissions_zero_provider_calls_ledger_unchanged
+    final_replay_verification: {status: PASS, strict_replays: 272, original_32_pairs_replays: 204, original_reference_resumes: 102, source_snapshots: 9, provider_calls: 0, ledger_unchanged: true}
+    handoff: PASS_R2_CRC_SHA_secret_scan_9_source_snapshots_272_extracted_Replays_zero_call_resume
+    handoff_code_commit: a8c22053df8c77750c85f99b314047e9285b4f5b
+    handoff_archive: exports/development-factory-handoff-20261020-r2/IoA-Bench-v5-Development-Factory-HANDOFF-20261020-R2.zip
+    handoff_archive_sha256: ced72379ea0fc2e54dad4653885711bdcf1f190d8604ada3c0957405d5698e22
+    final_delivery_verification: exports/development-factory-handoff-20261020-r2/FINAL_DELIVERY_VERIFICATION.json
+    final_delivery_verification_sha256: 2fa86235d1f96aef2312ecbd9b04295c69a0773006d4a391dbfd5d7a34d0c1bc
+    first_package_failure: PRESERVED_R1_missing_6_runtime_metadata_files_fixed_without_hash_change
+    archive_replication_scope: exact_source_Replay_resume_and_reports_using_bound_evidence_not_a_full_workspace_copy
+    archive_protected_history: {status: PASS_INCLUDED_SUBSET, included: 8767, not_included: 171437, full_history_reverified_inside_archive: NOT_RUN}
+    package_repair_regression: {status: PASS, tests: 47, authoritative_runtime_files: 435, missing: 0, runtime_hash_unchanged: true}
+    difficulty_calibration: NOT_RUN_design_intent_only
+    long_term_stability: NOT_ESTABLISHED
+    formal_accepted: false
+    same_model_audit_independent_science: false
+    machine_qualified: false
+    publication_ready: false
+    simulation_only: [T361, T362, T363]
+    production_Pilot_Campaign_freeze: NOT_RUN
+    limits: '12/18 suites in the development pool; 14 finite grammars currently support at most two structural cells (2026-10-23 recount of the sealed 18-row CSV corrects prior count 13). T322 historical novelty is indeterminate; audit negative calibration is 4/6, difficulty uncalibrated and long-term stability unproven.'
+  direct_deepseek_g2_20261020:
+    historical_checkpoint: true
+    current_development_scope_override: development_auto_audit_20261020
+    status: BLOCKED_EXTERNAL
+    engineering_delivery: PASS_DEVELOPMENT_EXPLORATORY_SAME_FAMILY_32pairs_16of18_suites
+    scientific_blocker: independent_Gold_two_humans_PI_cross_family_generator_and_auditor_qualification
+    authorization: PI-V5-023_user_direct_request
+    baseline_head: 32735cc0d8a6eefe33326df15b28962ead5d090c
+    evidence: artifacts/v5/data_factory/direct_deepseek_g2/deepseek-g2-20261020T0430Z
+    official_connectivity: PASS_HTTP200_exact_deepseek_flash_high_and_disabled_JSON_and_thinking_tool_followup
+    initial_tool_output_failure: retained_prose_plus_JSON_then_explicit_JSON_format_task_PASS
+    history: 1335_sources_7865_unique_inputs_48983_occurrences_reprojected_current_source
+    history_gap: 120_T322_original_contract_projection_failures_retained
+    first_engineering_G2_pair: PASS_pool_T331_01_replayfix_four_official_stages_both_arms_history_6_strict_replays
+    engineering_pool_pairs: 32
+    engineering_pool_cases: 64
+    engineering_pool_suites: 16
+    priority_T321_T331_T352: PASS_two_distinct_executable_targets_each
+    pool_validation_jobs: 54
+    pool_paid_generation_jobs: 53
+    T362_gap: FAIL_local_finite_grammar_all_6_candidates_rejected_no_threshold_change
+    official_completion_requests: 304
+    complete_HTTP200_responses: 304
+    new_unresolved_requests: 0
+    AIHubMix_new_generation_requests: 0
+    historical_unknown_requests_resent: 0
+    effort_fixed_six_tasks: {disabled: 2, low: 4, high: 5, max: 4}
+    recommended_development_effort: high
+    total_cost_CNY_estimate_bounds: [0.96056932, 1.92113864]
+    actual_invoice: UNKNOWN
+    regression: {tests: 1652, failures: 0, errors: 0, skipped: 0}
+    protected_history_files: {checked: 173519, status: PASS, changed: 0, missing: 0}
+    all_terminal_CLI_reentry: PASS_78_terminal_jobs_zero_new_submissions_ledger_unchanged
+    strict_replay_and_resume: {status: PASS, source_revisions: 2, valid_candidates: 47, strict_replays: 294, provider_calls: 0, sealed_bytes_unchanged: true}
+    handoff: PASS_CRC_SHA_secret_scan_independent_extraction_294_replays_zero_provider_calls
+    handoff_archive: exports/deepseek-g2-handoff-20261020/IoA-Bench-v5-DeepSeek-G2-HANDOFF-20261020.zip
+    final_archive_verification: exports/deepseek-g2-handoff-20261020/IoA-Bench-v5-DeepSeek-G2-HANDOFF-20261020-VERIFICATION.json
+    formal_generator_allowed: false
+    formal_auditor_qualified: false
+    machine_qualified_samples: 0
+    formal_accepted: false
+    publication_ready: false
+    production_Pilot_Campaign_freeze: NOT_RUN
+    simulation_only: [T361, T362, T363]
+  coordination_round02_resumed_20261020:
+    status: BLOCKED_AUTH_PERMISSION_RECURRED_AFTER_INITIAL_RECOVERY
+    authorization: user_reports_key_reenabled_and_explicitly_requests_fresh_verification_and_full_matrix
+    baseline_head: 4620286e239dc6ee2b3dd8d586657233bba8584f
+    evidence: artifacts/v5/provider_benchmark/round02-resume-20261020T024920Z
+    provider_recovered: NO_AT_END_INITIAL_FRESH_HTTP200_MIMO_PRO_EXACT_ID_USAGE120
+    primary_domain_direct: NETWORK_CONNECT_TIMEOUT
+    official_alternate_domain: TCP_TLS_HTTP_COMPLETION_PASS
+    historical_unresolved: 4
+    historical_unresolved_resent: 0
+    protocol: 17_full_PASS_one_partial_one_output_failure_one_documentation_blocked_before_followup
+    followup: Meta_Responses_full_PASS_MiniMax_Messages_output_failure_retained
+    effort_plan: 18_models_67_configurations_frozen_before_R_Q
+    reliability: 2_nonoverlapping_short_batches_536_planned_533_PASS_2FAIL_1NOT_RUN
+    short_window_all_pass_configurations_before_auth_stop: 65
+    provisional_configurations: 2
+    quality: 536_planned_4_started_0_valid_pairs_532_NOT_RUN_one_started_interrupted_by_global_stop
+    latest_auth: Claude_Opus_Messages_HTTP401_20261020T032728Z_STOP_no_new_paid_starts
+    provider_attempts: 767
+    durable_successes: 762
+    failed_attempts: 5
+    new_unresolved: 0
+    known_estimated_subtotal_usd: 0.666275740995
+    actual_bill_and_total_estimate: UNKNOWN_two_missing_usage_or_rate_records
+    unit_engineering_and_machine_qualified_cost: NOT_COMPUTABLE
+    role_selection: NOT_ESTABLISHED_no_active_contracts_no_quality_ranking
+    long_context_B_and_live_healthy_fallback: NOT_RUN_AUTH_STOP
+    runtime_sha256: 692b6ca8f90d410a02dcb22f88ed39c090b3172fe0d41ada364988c1fb94051f
+    routing_version: ioabench.v5.auxiliary-routing/1.3.1
+    final_regression: 1631_PASS_zero_failure_error_skip_PROVIDER_REGRESSION_R3_XML
+    terminal_resume: 155_protocol_4_quality_zero_calls_raw_bytes_unchanged
+    protected_history: 39358_zero_changed_missing
+    first_machine_qualified: BLOCKED
+    qualified_auditors: 0
+    Gold_PI: HUMAN_REQUIRED
+    formal_accepted: false
+    publication_ready: false
+    production_Pilot_Campaign_freeze: NOT_RUN
+  coordination_round02_aihubmix_20261020:
+    status: BLOCKED_AUTH_PERMISSION_AFTER_NETWORK_PATH_ISOLATION
+    instruction: user_adopted_Round02_independent_provider_engineering_specialty
+    evidence: artifacts/v5/provider_benchmark/round02-20261020T002308CST
+    baseline_head: ee6f0d8c98b247e24e27dae3c8c24326185a4b47
+    provider_recovered: NO
+    network: primary_direct_TCP_timeout_official_alternate_TLS_HTTP_PASS_existing_WinINET_proxy_public_GET_PASS
+    completion: one_fresh_mimo_v2_6_pro_Chat_HTTP401_1point071seconds_no_usage_or_served_identity
+    new_completion_sends: 1
+    new_unresolved: 0
+    historical_unresolved_retained: 4
+    historical_unresolved_resent: 0
+    billing: UNKNOWN_not_zero
+    S1: BLOCKED_AUTH_OR_PERMISSION
+    S2_S3_S4: NOT_RUN_S1_GATE_BLOCKED
+    S5: PARTIAL_offline_Mock_guard_regression_only_live_failover_NOT_RUN
+    config_verified: 0
+    stable_observed: 0
+    provisional: 0
+    routing_version: ioabench.v5.auxiliary-routing/1.3.0
+    repair: explicit_HTTP_status_required_for_retry_bad_output_and_schema_stop_without_fallback
+    runtime_source_sha256: 72d7604d69a34931c74cb2b09fb0d739df03d2bb80c5ce490cc4622ee50f875e
+    regression: 1607_passed_zero_failure_error_skip_PROVIDER_REGRESSION_R2_XML
+    directed_regression: 124_passed_subset_not_added_to_full_count
+    catalog_verified: 16_of17_public_catalog_ID_matches_not_key_access
+    protected_history: 39239_paths_zero_changed_missing
+    first_machine_qualified: BLOCKED
+    qualified_auditors: 0
+    gold_PI: HUMAN_REQUIRED
+    formal_accepted: false
+    publication_ready: false
+    new_Goal_or_v6: false
+    production_Pilot_Campaign_freeze_human_experiments: NOT_RUN
+    simulation_only: [T361, T362, T363]
+  coordination_round01_20261019:
+    status: ENGINEERING_READY_BOUNDED_MACHINE_QUALIFICATION_BLOCKED
+    instruction: COORD-R3-01_round01_user_adopted_20261019
+    evidence: artifacts/v5/data_factory/coord-round01-20261019T073200Z
+    baseline_head: a037b4ef8623541f4d799cb98dcbff3573dc5aed
+    runtime_source_sha256: 035c7c4391ade382651f591098ca027fe355cfd09abf2c4784dbfb8c8eb5307c
+    factory_version: 2.7.1
+    repair: reject_HISTORY_INDETERMINATE_before_independent_review
+    regression: 1564_passed_tests_v5_m1_plus13_new_artifact_tests_zero_failure_error_skip
+    gold_materials: two_separate_reviewer_phase_A_and_B_packages_CRC_SHA_verified_HUMAN_REQUIRED
+    human_gold_reviews: NOT_RUN
+    PI_gold_disposition: NOT_RUN
+    qualified_auditors: 0
+    provider_completion: BLOCKED_UNRESOLVED_NETWORK_NO_HTTP_RESPONSE
+    provider_new_requests: 1
+    provider_new_unresolved: 1
+    provider_old_unresolved_resent: 0
+    provider_billing: unknown_no_usage_returned_not_zero_cost
+    engineering_pair: T331-DYNA-AI-810191-806ccec5c4a4-P1
+    generation: G1_PROGRAM_NOT_AI
+    history: 7863_unique_1325_sources_48973_occurrences_all7687_old_cases_retained
+    pair_history_status: VALID_FAMILY_INSTANCE
+    new_scientific_families: 0
+    existing_family_new_instances: 1
+    replay: 6_of6_PASS_terminal_and_replay_resume_zero_new_calls
+    suite_readiness: 18typed_19slices_540references_49of52cells_36negative_controls_PASS
+    g2_offline_schema_stages: 72_MOCK_ONLY_NOT_AI
+    g3: BLOCKED_NO_QUALIFIED_PARENT
+    machine_qualified_samples: 0
+    first_machine_qualified: BLOCKED_GOLD_PI_AND_AUDITOR_QUALIFICATION
+    protected_history: 38785_checked_zero_changed_missing
+    formal_accepted: false
+    publication_ready: false
+    scientific_validity: NOT_ESTABLISHED
+    formal_freeze: NOT_RUN
+    confirmation_Pilot: NOT_RUN
+    Campaign: NOT_RUN
+    human_experiments: NOT_RUN
+    simulation_only: [T361, T362, T363]
+  r13_followup_eight_models_20261019:
+    status: PARTIAL_BLOCKED_MACHINE_QUALIFICATION_AND_PROVIDER_AUTH
+    pi_decision: PI-V5-020
+    evidence: artifacts/v5/data_factory/next-r1
+    report: docs/WORK_COMPLETION_20261019_R3.md
+    source_delivery: state/SOURCE_DELIVERY_20261019_R3.yaml
+    local_implementation_commit: da4ba4e59cf67b8874ce9f8f42e098a83b490ded
+    package_verification: PASS_7779files_CRC_SHA_secret_scan_and_independent_extraction
+    delivery_task: COMPLETE_SCOPED_DELIVERY_SCIENTIFIC_BLOCKERS_REMAIN
+    goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+    baseline_head: 034c867e69d474bb13c9e18862a5a12ba4be2c50
+    runtime_source_sha256: 0a4b9c9551ad93b01c54e679b7229c5f08af3cceeeb6d2af760e87594590fb26
+    candidates: [gpt-6.1-sol, glm-5.3-flash, mimo-v2.6-pro, claude-haiku-5-5, mimo-v2.6-flash, qwen3.8-flash, deepseek-v4.1-flash-1017, glm-5.3]
+    write_owner: Codex_root_scoped_workers_completed_current_root_only
+    regression: FINAL_REGRESSION_R3_XML_1562_passed_zero_failure_error_skip_exit0
+    protocol: eight_exact_models_JSON_and_real_tool_roundtrip_PASS_in_at_least_one_protocol
+    parameter_scope: official_limits_separate_from_preregistered_16384_budget_no_reasoning_downgrade
+    limitations: [context_boundary_NOT_RUN, full_maximum_generation_NOT_RUN, reasoning_strength_UNVERIFIED]
+    controls: original_17PASS_2FAIL_GLM_disabled_accepted_Qwen_limit_FAIL_MiMo_usage_FAIL
+    generation_plan: 192_tasks_39ENGINEERING_VALID_10REJECTED_6PROVIDER_FAILED_3UNRESOLVED_134NOT_RUN
+    fixed_repairs: 24_of24_PASS_three_narrow_fragments_per_model
+    independent_auditor: NONE_QUALIFIED_BLOCKED_PI_GOLD_DISPOSITION
+    machine_qualified_samples: 0
+    production_single_then_three_then18: BLOCKED_NOT_RUN
+    historical_current_source_reprobe: 7687_unique_6661PROBED_1026INDETERMINATE_API0
+    generated_history: 78cases_24EXACT_DUPLICATE_26NEAR_DUPLICATE_28VALID_FAMILY_INSTANCE_78behavior_matches
+    bounded_runtime_structures: 18typed_19slice_49_of52_feasible_three_generated_structures_per_sample_suite
+    new_scientific_families: 0
+    replay: 378_of378_PASS_189_zero_call_resume_batches_on_disposable_copies
+    candidate_snapshot_integrity: PARTIAL_one_candidate_three_mutable_checkpoints_changed_by_first_offline_resume_requests_traces_scores_unchanged
+    development_panel: 48planned_11COMPLETED_2INFRA_INTERRUPTED_1RETRYABLE_INFRA_FAILURE_34NOT_RUN_11Replay_PASS
+    difficulty: MEASURED_EXPLORATORY_UNCALIBRATED_LABEL
+    t362: scenario_generator5.1.1_scorer5.1.0_20cases_60references_20runner_Replay_and_resume_PASS
+    t352: versioned_provider_registry_order_fix_JSON_sort_roundtrip_replay_PASS
+    provider_usage: 510started_493SUCCEEDED_14FAILED_3UNRESOLVED_1214168reported_tokens_USD0.830890141988_estimate_7unknown_billing
+    provider_stop: real_MiMo_Pro_and_DeepSeek1017_HTTP401_no_completion_retry_catalog_GET_does_not_prove_recovery
+    protected_history: 146890_preexisting_files_unchanged_21_transient_pytest_files_in_baseline_race_raw_FAIL_retained
+    contracts: 37score_function_AST_and67contract_config_files_unchanged
+    scientific_validity: NOT_ESTABLISHED
+    formal_accepted: false
+    publication_ready: false
+    formal_freeze: NOT_RUN_NOT_AUTHORIZED
+    confirmation_Pilot: NOT_RUN_NOT_AUTHORIZED
+    Campaign: NOT_RUN_NOT_AUTHORIZED
+    human_experiments: NOT_RUN_NOT_AUTHORIZED
+    simulation_only: [T361, T362, T363]
+    remaining_blockers: [Gold_independent_blind_reviews_and_PI_disposition, completion_auth_or_channel_restoration, historical1026_gaps, approved_scientific_difficulty_design, Gate_D_reviewers, formal_experiment_authorization]
+  auxiliary_candidate_removal_20261019:
+    pi_decision: PI-V5-019
+    removed: Qwen3.8-Flash-Next
+    reason: explicit_user_request
+    active_candidate_count: 7
+    regression: 58_routing_and_auxiliary_runtime_tests_passed
+    full_regression_this_change: NOT_RUN
+    source: src/ioabench/v5/ai_generation/model_routing.py#USER_CANDIDATES
+    historical_preflights_and_exports: preserved_immutable_prior_checkpoints
+    provider_calls: 0
+    formal_SUT_changed: false
+  auxiliary_full_parameters_20261019:
+    pi_decision: PI-V5-018
+    status: ENGINEERING_AND_BASIC_LIVE_PREFLIGHT_PASS
+    runtime_source_sha256: c3d0cdaf53f2a486149da9e03947caaf35b129a924e173b005f636c6bc41e6c1
+    regression: 1496_passed_zero_failures_errors_skipped
+    source_delivery: state/SOURCE_DELIVERY_20261019_R2.yaml
+    write_owner: Codex_root_only_no_delegation_no_other_workspace_process_observed
+    policy: ioabench.v5.auxiliary-routing/1.2.0
+    evidence: artifacts/v5/provider_contracts/full-parameters-20261019-r1
+    report: docs/v5/V5_AUXILIARY_FULL_PARAMETERS_20261019.md
+    output_limit: documented_exact_numeric_maximum_no_application_cap
+    effort: model_documented_default_or_explicit_user_preference_no_fallback_downgrade
+    preflight: six_exact_IDs_live_JSON_identity_PASS_803tokens_USD0.0015529412_estimate
+    blocked_at_checkpoint: [DeepSeek_exact_numeric_output_limit_undocumented, Qwen_Next_exact_ID_unresolved]
+    independent_auditor_requalification: NOT_RUN
+    formal_SUT_changed: false
+    formal_accepted: false
+    publication_ready: false
+  data_factory_spec_20261019:
+    status: PARTIAL_BLOCKED_MACHINE_QUALIFICATION
+    pi_decision: PI-V5-017
+    goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+    write_owner: Codex_root_with_scoped_subagents
+    baseline_source_sha256: 1416449d4ae6fda00d3f487e9d32115f553baf0c2002f5bb41591d2a43787e7d
+    runtime_source_sha256: 4f7fc7c842ea63a352157baffe8252838fdc06332e2839fd3ddb6f250e04e9e5
+    git: local_main_initialized_user_authorized_no_remote_no_push
+    baseline_commit: 90f691a2a163f01e01878bc4ce29bfe46ea32bfc
+    implementation_commit: 7a699bf943bdf40ad21a3d569f5bd3e8f74ece24
+    evidence: artifacts/v5/data_factory/upgrade-20261019
+    report: docs/v5/data_factory_upgrade/04_TRIAL_RESULTS.md
+    final_acceptance_report: artifacts/v5/data_factory/upgrade-20261019/FINAL_S0_S6_ACCEPTANCE_R13.json
+    queue: state/WORK_QUEUE_V5_DYNAMIC_WORLD.yaml#factory_spec_20261019_overlay
+    typed_structural_suites: [T311, T312, T313, T321, T322, T323, T331, T332, T333, T341, T342, T343, T351, T352, T353, T361, T362, T363]
+    structural_scope: bounded_declared_compiler_factors_only_no_arbitrary_graph_claim
+    remaining_typed_suites: []
+    reference_coverage: r8_132_pairs_264_cases_828_checks_all18_supported_44_selected_canonical_structures
+    capability_manifest: r5_18typed_19slice_540_reference_executions_49_feasible_3_pruned
+    regression_checkpoint: INTEGRATED_REGRESSION_R13.xml_1486_passed_zero_failure_error_skip
+    strict_reference_replay: 72_of72_PASS_747_scripted_policy_calls_API0
+    reference_resume: r13_actual_same_command_zero_new_episode_policy_or_API_calls_bound_inventory_unchanged
+    unified_all18_offline: df-all18-offline-typed-20261019-r13_36_checks_228_reference_checks_18suites_API0_help_and_run_exit0
+    provider_preflight: seven_exact_IDs_basic_JSON_PASS_Qwen_Next_UNRESOLVED
+    real_tool_loops: MiMo_Pro_Gemini_and_GLM_PASS
+    real_parameter_failover: MiMo_HTTP400_REQUEST_SCHEMA_to_healthy_Gemini_and_GLM_PASS
+    machine_review: control1.5.1_finite_comparison_CLOSED_Sol_16of18_twice_GLM_8of18_twice_Gemini_12valid_each_then_truncated_NO_QUALIFIED_AUDITOR
+    live_acquisition: old_source_T331_four_stages_REJECTED_ALL_HISTORY_DEDUP_current_paid_sequence_NOT_RUN_pending_auditor
+    difficulty_panel: fixed96_92COMPLETED_2BUDGET_EXCEEDED_2PENDING_94terminalReplayPASS_new60same_command_resumePASS_uncalibrated
+    measured_panel_behavior: technical_scored90_SAFE77_RECOVERED5_UNSAFE8_utility_success72_failed18_abstain2_separate_from_budget2_pending2
+    provider_matrix: artifacts/v5/data_factory/upgrade-20261019/PROVIDER_ROLE_MATRIX_R13.json
+    provider_usage: 2061started_2054succeeded_2deliberate_failed_5unresolved_known9543841tokens_USD5.394535590692_known_estimate_not_invoice_33unknown_billing
+    history_index: artifacts/v5/data_factory/history-index-20261019-r13
+    history_index_counts: 794_bound_sources_43643_occurrences_7687_unique
+    history_behavioral_probe: 7687_total_6661_PROBED_1026_INDETERMINATE_current_source_API0
+    history_probe_resume: R13_PASS_29654_file_SHA_unchanged_zero_policy_or_API_calls
+    history_probe_gaps: 954_legacy_missing_business_fields_72_unsupported_legacy_profile
+    retained_pool_integration: r13_18real_candidates_17ALL_HISTORY_DEDUP_1DEDUP_114reference_episodes_pool18entries_36cases_layers36_0_0_0_build_verify_and_zero_write_resume_PASS_tamper_rejected
+    retained_pool_resume: 674_file_SHA_and_mtime_unchanged_zero_new_model_calls_and_reference_episodes_tamper_copy_verify_exit1_original_unchanged
+    recovery_repairs: history_same_probe_evidence_merge_calibration1.2.0_terminal_no_call_resume_pool1.0.2_JSON_roundtrip_fixed_and_regression_tested
+    source_bridge: only_pool_changed_426runtime_files_7entrypoints_actual_import_excludes_pool_API0_old_calls_not_relabelled
+    protected_history: 45434_checked_zero_changed_zero_missing_PROTECTED_HISTORY_R13.json
+    exact_source_archive: artifacts/v5/data_factory/trials/df-offline-retained-duplicates-20261019-r13/source.zip
+    exact_source_archive_sha256: 10fba140476996c027a254b8418d2b40e4f5eff713b71d7b587d208a8bfb7c30
+    delivery_checks: FINAL_DELIVERY_SCAN_PRELIM_R13A.json_and_FINAL_DELIVERY_SCAN_R13.json_cover_explicit_archive_CRC_members_SHA_and_secret_scan
+    new_qualified_global_families: 0
+    engineering: PASS_BOUNDED_LOCAL_CONTROLS_FULL_PRODUCTION_CHAIN_BLOCKED
+    machine_review_qualification: FAILED_PRODUCER_QUALIFICATION_CURRENT_REQUALIFICATION_NOT_RUN
+    structure: FINITE49_GLOBAL_NEW_FAMILIES0
+    difficulty_validity: MEASURED_EXPLORATORY_UNCALIBRATED_LABEL
+    remaining_blockers: [independent_gold_realism_and_evidence_anchor_adjudication, Gate_D_human_labels_missing, historical_behavior_compatibility_gaps, classic_T362_preselected_evidence_field_P1, scientific_difficulty_thresholds_and_sampling, confirmation_Pilot_and_Campaign_and_Release_authorization]
+    formal_accepted: false
+    scientific_validity: NOT_ESTABLISHED
+    formal_freeze: NOT_AUTHORIZED
+    simulation_only: [T361, T362, T363]
   line: IoA-Bench v5 publication-grade scientific revision (started 2026-10-04)
   historical_baseline: v4.1.13 (read-only; NOT_SCIENTIFICALLY_READY per artifacts/scientific_validity_audit_20261004)
   architecture_decision: docs/v5/V5_00_ARCHITECTURE_DECISION.md
@@ -467,7 +833,7 @@ v5:
   code: src/ioabench/v5
   tests: tests/v5
   external_blockers: [Gate D human/expert reviewers (PI-V5-003), single-model confirmation pilot spend approval (PI-V5-006), formal campaign approval (PI-V5-002)]
-  continuation_checkpoint: 2026-10-14
+  continuation_checkpoint: 2026-10-18
   implementation_status: 18_of_18_suite_modules_present
   offline_gates: "PASS: 3240/3240 pair-seed checks; seeds 5, 11, 101"
   offline_revalidation_artifact: artifacts/v5/gates/offline-matrix-20261009-single-model-precheck.json
@@ -478,7 +844,7 @@ v5:
     pairs_per_suite: 60
     cases_per_suite: 120
     gate_c: "18/18 candidate checks pass; not frozen"
-  test_result: "2026-10-14: current factory2.3.5/quality1.4.0 source tests/v5 852 passed, focused155 passed;18-suite preflight36/36 and228 references; evidence data_factory_process_review_20261014. Earlier816/809/full-tree results remain source-bound."
+  test_result: "2026-10-19: current runtime4f7fc7c8 tests/v5 plus tests/m1 1486 passed, zero failure/error/skip; INTEGRATED_REGRESSION_R13.xml. R11 1464 and R12 1482 remain historical source-bound checkpoints. Engineering regression does not establish machine qualification or scientific acceptance."
   online_link_fixes_20261011:
     status: COMPLETE_OFFLINE (zero provider calls)
     scope: v5 online evaluation chain hardening; no Goal/taxonomy/dataset/scorer/threshold changes
@@ -611,7 +977,8 @@ v5:
     codex_probe: read-only inventory done; src/ioabench/v5/ai_generation/ actively modified 2026-10-11; no writes, no auto-merge (M5)
     m5_option_a_execution_20261011:
       pi_authorization: "Option A approved by PI (docs/v5/V5_PI_REQUEST_M5_M8_20261011.md): snapshot acceptance + selective integration + T321-DYNA real compilation + stage-1 small-scale live verification; large-scale generation/pilot/campaign remain separately authorized"
-      snapshot: 'D:\Project\ioa_codex_spec_ai_generation_probe\deliveries\IoA-Bench-v5-AIDataFactory-legacyT321-0.2.0-handoff-20261011-r1 (ioa-bench-v5-ai-data-factory-legacy-t321/0.2.0-handoff.20261011.r1)'
+      snapshot: 'archive/external_workspaces/20261018/ioa_codex_spec_ai_generation_probe/deliveries/IoA-Bench-v5-AIDataFactory-legacyT321-0.2.0-handoff-20261011-r1 (ioa-bench-v5-ai-data-factory-legacy-t321/0.2.0-handoff.20261011.r1)'
+      snapshot_original_location: 'D:\Project\ioa_codex_spec_ai_generation_probe\deliveries\IoA-Bench-v5-AIDataFactory-legacyT321-0.2.0-handoff-20261011-r1; relocated byte-for-byte20261018,no automatic code merge'
       snapshot_verification: "ZIP SHA-256 1315ee5b… and MANIFEST SHA-256 b41f42f1… match PI-declared values; 460/460 payload files hash-verified; aggregate_sha256 construction undocumented (6 candidate constructions tried, none match) — recorded honestly as unverified, file-level hashes carry the guarantee; artifacts/v5/dynamic_world/porting-review.json"
       selective_integration: "PORTED: blueprint_schema.py + 02_BLUEPRINT_SCHEMA.json + validator.py + suite_adapter.py -> src/ioabench/v5/ai_generation/; DO_NOT_PORT: legacy t321_adapter (fixed five-subtype compiler — must not cap T321-DYNA capability per HANDOFF.md) and private provider requester wiring"
       blueprint_compiler: "src/ioabench/v5/ai_generation/t321_dyna_compiler.py T321DynaCompiler 1.3.0 / scenario 0.4.0; requires explicit per-arm offer_profiles (2 or 3 brokers), checks alpha/beta RISK weakening before compilation, retains version/signing across arms and matches broker claim text to offer version. Missing declarations fail closed; old run evidence is retained, not recompiled in place. Gamma publication timing and item labels are preserved. Live acceptance remains pending."
@@ -622,12 +989,13 @@ v5:
       provider_calls: 0
   overnight_execution_20261012:
     pi_decision: PI-V5-008
-    current_pi_decision: PI-V5-016
-    current_user_scope: '审查数据生成流程及优化点，修复已证实工程缺陷并离线验证；本轮API0。七模型顺序与角色隔离保留，不批量生产、不变更正式模型或科研门。'
+    current_pi_decision: PI-V5-017
+    prior_scope_20261014: '审查数据生成流程及优化点，修复已证实工程缺陷并离线验证；当轮API0。七模型历史顺序与角色隔离保留。'
+    current_user_scope: '20261019完整数据工厂实施、八候选预检、辅助生成/独审/难度校准和有界小批试跑；渠道故障分类并有限切换已验证模型；不得刷独审通过、改正式被测模型或开展确认Pilot/Campaign/正式冻结。'
     policy_version: ioabench.v5.model-routing.20261012.1
     source: NightGoalDoc/IoA-Bench-v5-Dynamic-World-Goal-20261011/09_MODEL_ROUTING_OVERNIGHT_20261012/
     write_owner: Codex (user confirms ZCode stopped project work; no active command line references this workspace)
-    git_metadata: absent; no Git/worktree state claimed
+    git_metadata: local_main_initialized_20261019_user_authorized_no_remote_no_push_previous_absent_snapshot_retained_in_baseline
     formal_tested_model: deepseek-v4.1-flash (unchanged and excluded from generation/audit routes)
     provider_routing:
       catalog_entry_count: 419
@@ -1105,3 +1473,996 @@ v5:
       difficulty_evidence_status: DESIGN_PROXY_ONLY_NOT_EMPIRICALLY_CALIBRATED
       provider_calls: 0
       formal_accepted: false
+
+github_source_publication_20261014:
+  status: VERIFIED_PRIVATE_SOURCE_UPLOAD
+  repository: https://github.com/JiaDirty/ioa-bench-v5
+  commit: db723e44364036258181e69b1a72db7b8908baea
+  private: true
+  additional_collaborators: 0
+  evidence: artifacts/workspace_maintenance/20261014-github-private-r1/VERIFICATION.json
+  scope: verified source-review snapshot; full historical runs and credentials retained locally
+  research_acceptance_changed: false
+
+workspace_consolidation_20261018:
+  status: CONSOLIDATED
+  scope: workspace maintenance only; research acceptance unchanged
+  archived_probe: archive/external_workspaces/20261018/ioa_codex_spec_ai_generation_probe
+  archived_probe_files: 993
+  removed_duplicate_or_superseded_fragments: 13
+  compressed_completed_test_temporary_files: 4394
+  evidence: artifacts/workspace_maintenance/20261018-r1/VERIFICATION.json
+  report: docs/WORKSPACE_STATUS_20261018.md
+  runtime_source_tree_unchanged: true
+  provider_calls: 0
+  scientific_acceptance_changed: false
+
+source_code_export_20261018:
+  directory: exports/source-code-20261018
+  kind: source_review_not_full_historical_replay
+  handoff: docs/WORKSPACE_STATUS_20261018.md
+  verification: exports/source-code-20261018/PACKAGE_VERIFICATION.json
+  provider_calls: 0
+  scientific_acceptance_changed: false
+
+tree_factory_r2_20261024:
+  status: R2_COMPLETE_10_FRESH_DEV_ACCEPTED
+  goal_contract: docs/plans/zcode_tree_factory_r2_20261024/GOAL.md
+  baseline_head: 49d096e20f6db160130ece6d78220aff7d2bd53f
+  run: artifacts/v5/data_factory/tree_factory_r2/tf-r2-20261024-r1
+  mandatory_chain: 'tree_ir_runtime_v2: TreeSelection -> BusinessBinding.compile -> MechanismIR.validate==[] -> capability.validate_binding -> fail-closed blueprint_from_ir -> existing compilers -> full gates -> protocol-1.2 two-effort audit'
+  fresh_dev_accepted_pairs:
+    T321: ['R2-T321-x1-T', 'R2-T321-x2-Br2-B']
+    T331: ['R2-T331-x1-T', 'R2-T331-x2-T', 'R2-T331-x3-T', 'R2-T331-x2-B']
+    T362: ['R2-T362-x1-T', 'R2-T362-x3-T', 'R2-T362-x1-B', 'R2-T362-x3-B']
+  provider: aihubmix
+  model: deepseek-v4.1-flash-1017
+  accepted_max_tokens_ceiling: 393216
+  budget_gate: DISABLED_USER_AUTHORIZED
+  offline_calibration: 'AUDIT_CALIBRATION_R2: 13 unseen negatives blocked, 6 positives accepted, 0 false accepts/rejects'
+  offline_ablation: 'ABLATION_OFFLINE: 12-grid all green; Tree supplies consumed business tools/events, IR supplies illegal-input interception (4 classes x 3 suites)'
+  full_regression: '1928/1928 passed (tests/v5 tests/m1) at current HEAD'
+  zero_call_resume: 'PASS: 23 sealed results, ledger sha256 unchanged'
+  history_protection: 'PASS: R1 stop/ledger/7 accepted pairs read-only, never resent'
+  unresolved_requests_never_resent: ['audit-high-5be53da31c7a2100']
+  review_zips:
+    source: exports/IoA-Bench-v5-TreeFactory-R2-SOURCE.zip
+    evidence: exports/IoA-Bench-v5-TreeFactory-R2-EVIDENCE.zip
+  baseline_schema_leak_incident: '4 frozen 4-stage baseline cells failed through a model-written business_binding key visible in staged prompts; acquisition.staged_proposal now strips the program-owned key; failed originals retained in denominator, repairs ran under fresh ids (1 accepted)'
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  t361_t363_simulation_only: true
+  scientific_acceptance_changed: false
+
+# Historical R3 offline checkpoint; later observations are recorded in workspace_maintenance_20261025.
+tree_factory_r3_20261025:
+  status: R3_OFFLINE_COMPLETE_ONLINE_BLOCKED_EXTERNAL
+  goal_contract: docs/plans/zcode_tree_factory_r3_20261024/GOAL.md
+  baseline_head: 8e3c70498709d279693f499264494bf10267ce1e (R2 closeout; HEAD advanced by R3 offline work df1261f)
+  run: artifacts/v5/data_factory/tree_factory_r3/tf-r3-20261025-r1
+  compositional_chain: 'compositional_r3: model WorkflowPlan (module catalog, typed refs, structural focus) -> workflow_compiler.validate/compile -> BusinessBinding.from_plan (no truncation, explicit multi-role grants) -> MechanismIR -> existing compilers -> full gates -> receipt-chain business witnesses -> protocol-1.2 audit'
+  m0_reconciliation: 'BASELINE_R3.json + R2_RECONCILIATION.md + FROZEN_REFERENCES.json; 17 frozen pairs (R1 7 + R2 10) TERMINAL-hash anchored; R2 files_checked=0 limitation repaired by HISTORY_PROTECTION_R3 (1203 files, 0 mismatches)'
+  t321_multistage: 'T321_MULTISTAGE_PROOF.json: linear4 (4 stages/3 logical roles) + fork_join (5 stages/3 roles) fully WITNESSED on real engine episodes; EARLY_COMMIT rejected pre-verification'
+  witness_strict: 'NEGATIVE_WITNESS_CASES.json: CROSS_TRACE/SAME_TURN_REORDER/FORGED_RECEIPT/EVENT_NOT_CAUSED/FAILED_CALL/HIDDEN_EVIDENCE all FAIL; honest baseline WITNESSED; naive negative control not evidence'
+  offline_ablation: 'R3_ABLATION.json: join-switch changes hash+stages; root switch keeps abstract topology hash; composition_off static route == frozen families only; tree_off UNSUPPORTED_WITH_REASON; witness strict-off quantifies 2 old false positives intercepted'
+  full_regression: '1949/1949 passed (tests/v5 tests/m1) incl 21 new R3 tests'
+  online_blocker: 'AIHubMix gateway TCP-unreachable from this host since 2026-10-25T01:45Z (aihubmix.com and api.aihubmix.com both http 000 while baidu/github 200); 1 intent, 0 finished, 1 REQUEST_UNRESOLVED (wf-plan-52402e21e5316a6a NEVER resent); study stop preserved; 20-min gateway watcher active'
+  prereg: 'R3_AB_PREREGISTRATION.json frozen BEFORE first paid call; 18 matched cells x 2 routes; no-resend guard added for unresolved request ids'
+  provider: aihubmix
+  model: deepseek-v4.1-flash-1017
+  budget_gate: DISABLED_USER_AUTHORIZED
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  t361_t363_simulation_only: true
+  scientific_acceptance_changed: false
+
+workspace_maintenance_20261025:
+  scope: cache_cleanup_and_dirty_working_tree_source_review_only
+  cleanup_status: PASS
+  cache_directories_removed: 22
+  cache_files_removed: 330
+  logical_bytes_removed: 7945788
+  protected_baseline_files: 207418
+  protection_verification: artifacts/workspace_maintenance/20261025-r1/PROTECTION_VERIFICATION.json
+  maintenance_tests_passed: 51
+  source_git_head: 7e35bc1591d970c4fd66765008000d4e0b637615
+  snapshot_includes_existing_uncommitted_changes: true
+  source_package_directory: exports/source-code-20261025-r1
+  source_package_acceptance: external_receipt_authoritative
+  source_package_verification: exports/source-code-20261025-r1/PACKAGE_VERIFICATION.json
+  handoff: docs/WORKSPACE_STATUS_20261025.md
+  r3_observed_status: PARTIAL_ONLINE_RESULTS_PRESENT_FINAL_ACCEPTANCE_PENDING
+  r3_unique_dev_accepted_pairs: {T321: 5, T331: 1, T362: 1}
+  r3_novel_workflow_families: NOT_ACCEPTED_hash_difference_alone_is_insufficient
+  r3_request_ledger: '97 intents, 94 finished, 2 unresolved failures, 1 intent without terminal event; no resend performed'
+  prior_gateway_blocker: historical_only_not_current_connectivity_evidence
+  full_business_regression_this_maintenance: NOT_RUN
+  strict_replay_this_maintenance: NOT_RUN
+  provider_calls: 0
+  source_redaction: 'scripts/v5/tf_r2_finalize.py credential literal replaced in package copy only; local original and Git history unchanged'
+  formal_accepted: false
+  scientific_acceptance_changed: false
+
+aihubmix_mainland_endpoint_20261025:
+  status: IMPLEMENTED_OFFLINE_VERIFIED
+  basis: explicit_user_mainland_endpoint_instruction
+  base_url: https://api.inferera.com/v1
+  development_policy_version: ioabench.v5.development-policy/1.2.0
+  historical_overseas_policy_validation: PRESERVED_1.1.0
+  tests_passed: 81
+  evidence: artifacts/workspace_maintenance/20261025-mainland-endpoint/CHECKS.json
+  live_connectivity: NOT_TESTED
+  provider_calls: 0
+  historical_requests_and_frozen_evidence: UNCHANGED
+  existing_source_package: PRE_ENDPOINT_CHANGE_SNAPSHOT_NOT_OVERWRITTEN
+  next_online_run: fresh_endpoint_and_source_binding_required_do_not_resend_unknown_requests
+  scientific_acceptance_changed: false
+
+tree_factory_r3_codex_closure_20261025:
+  status: FINAL_ACCEPTANCE_RECEIPT_AUTHORITATIVE
+  goal_contract: docs/plans/codex_r3_closure_20261025/GOAL.md
+  acceptance_contract: C0_C7_only_no_R4
+  original_head: 7e35bc1591d970c4fd66765008000d4e0b637615
+  original_tracked_dirty_files: 18
+  evidence: artifacts/v5/data_factory/tree_factory_r3/tf-r3-20261025-r1/closure
+  authoritative_status: artifacts/v5/data_factory/tree_factory_r3/tf-r3-20261025-r1/closure/R3_GOAL_STATUS.json
+  export: exports/codex-r3-closure-20261025
+  fixed: [empty_assertions_business_witness_bypass, declared_DAG_edges_not_consumed, missing_role_receipt_event_checks, synthetic_SSE_stop_fallback, orphan_intent_resend, guessed_proxy_port_selection]
+  novelty: exact_typed_graph_canonicalization_plus_mapping_and_observed_historical_receipt_edge_invariants
+  historical_graph_limit: missing_R1_DAGs_not_invented_observed_reference_scope_not_unobserved_grammar
+  original_raw_R3_dev_accepted: {T321: 5, T331: 1, T362: 1}
+  new_strict_R3_dev_accepted: {T321: 2, T331: 2, T362: 2}
+  new_executed_families_per_suite: {T321: 2, T331: 2, T362: 2}
+  original_admissions: preserved_unmodified_unconsumed_declared_edges_exclude_them_from_current_closure_eligibility
+  provider: aihubmix
+  base_url: https://api.inferera.com/v1
+  model: deepseek-v4.1-flash-1017
+  output_ceiling_used: 131072
+  native_high_max_SSE_JSON_contract: live_HTTP200_identity_usage_and_terminal_verified_not_long_context_boundary_tested
+  new_request_intents: 68
+  new_complete_responses: 62
+  new_unknown_terminals: 6
+  continuation_request_intents: 19
+  continuation_complete_responses: 18
+  continuation_unknown_terminals: 1
+  historical_unknown_requests_resent: 0
+  stopped_scopes: [online, baseline_online, repair_followup1, fresh_generation, baseline_remaining, baseline_remaining_continue2]
+  budget_gate: disabled_user_authorized
+  audit_format_revision: r3-explicit-fact-coverage-20261025
+  audit_gate_semantics: unchanged_missing_fact_claims_still_quarantined
+  frozen_AB: {opportunities: 18, route_cells: 36, actual_first_results: 36, NOT_RUN: 0, frozen_field_violations: 0}
+  comparison_scope: exploratory_source_policy_strata_explicit_no_causal_superiority_claim
+  checkpoint_regression: 1978_passed_not_final_HEAD_evidence
+  final_regression: FULL_REGRESSION_FINAL.xml_authoritative_after_local_commit
+  final_source_reference_reexecution_and_strict_replay: FINAL_STRICT_REPLAY.json_authoritative
+  protected_history: {files_checked: 1203, mismatches: 0}
+  scorer_AST_protection: {modules_checked: 39, changed: 0}
+  zero_network_resume: actual_runner_STOP_guards_provider_blocked_ledger_unchanged
+  completion_rule: C0_C7_must_all_PASS_in_R3_GOAL_STATUS.json
+  remaining_15_readiness: closure/SUITE18_CAPABILITY_READINESS.csv_live_schema_and_pool_bound
+  commit_scope: task_hunks_only_with_preserved_preexisting_dirty_overlay_no_push
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  simulation_only: [T361, T362, T363]
+
+workspace_integration_r3_20261025:
+  scope: local_fast_forward_and_cache_only_maintenance
+  merge_status: PASS
+  main_before: 7e35bc1591d970c4fd66765008000d4e0b637615
+  main_after: a18db13f0eda480f8466fec1e7ccfb775837d093
+  integrated_commits: 3
+  deleted_branch: codex/r3-closure-20261025
+  original_dirty_overlay_and_untracked_status: VERIFIED_IDENTICAL_AT_SWITCH
+  existing_uncommitted_work: PRESERVED_NOT_COMMITTED
+  merge_receipt: artifacts/workspace_maintenance/20261025-merge-r3/MERGE_VERIFICATION.json
+  protection_verification: artifacts/workspace_maintenance/20261025-merge-r3/PROTECTION_VERIFICATION.json
+  protection_acceptance: external_receipt_authoritative
+  protected_baseline_files: 212495
+  cache_directories_removed: 1
+  cache_files_removed: 5
+  logical_cache_bytes_removed: 231757
+  regression: {passed: 1984, failed: 1, cause: maintenance_basetemp_inside_workspace_changes_report_binding_root}
+  report_module_external_temp_retest: {passed: 24, failed: 0}
+  regression_receipts: [REGRESSION.xml, REPORT_PATH_RETEST.xml]
+  runtime_code_modified_by_maintenance: false
+  remote_configured: false
+  push_performed: false
+  provider_calls: 0
+  scientific_acceptance_changed: false
+
+branch_coverage_and_semantic_controls_20261026:
+  status: ENGINEERING_VERIFIED_SEMANTIC_CONTROLS_CONFOUNDED_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r5
+  entrypoint: python -B -m scripts.v5.workflow_branch_trial
+  branch_trial_version: ioabench.v5.workflow-branch-trial/1.0.0
+  branch_source_candidates: 2
+  branch_truth_values: [false, true]
+  branch_strict_replays: 24
+  branch_external_network_attempts: 0
+  branch_terminal_files_unchanged: 150
+  original_admissions_unchanged: true
+  new_data_pairs: 0
+  new_scientific_families: 0
+  semantic_control_source_version: semantic-task-controls/1.1.0
+  semantic_control_sources_rebuilt: 3
+  semantic_source_strict_replays: 18
+  semantic_source_design_and_business_witnesses: HISTORICAL_PASS_WITH_T331_A2_POSITIVE_WITNESS_GAP
+  semantic_source_preflight: PASS
+  semantic_maximum_new_requests: 6
+  semantic_online_status: COMPLETED_6_RESPONSES_0_UNKNOWN
+  semantic_two_reviews_match_expected: 2_of_3
+  semantic_disagreement_case: case-03
+  semantic_actual_schema_valid_responses: 6
+  semantic_auditor_qualification: NOT_QUALIFIED_SHARED_POSITIVE_WITNESS_CONFOUND
+  complete_response_conservative_upper_usd: 2.05486
+  invoice: UNKNOWN
+  regression_passed: 2034
+  exact_source_strict_replay_reruns: 42
+  terminal_cohort_files_unchanged: 369
+  protected_history_files_unchanged: 2747
+  source_snapshot: artifacts/v5/data_factory/main_quality_20261026-r5/source_f5de
+  impact_assessment: artifacts/v5/data_factory/main_quality_20261026-r5/IMPACT_ASSESSMENT.json
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  remaining_15_compositional_suites: NOT_IMPLEMENTED
+  overall_goal_complete: false
+  previous_goal_turn_classification: progress
+
+overnight_continuation_20261028:
+  status: NIGHT_WINDOW_FINISHED
+  deadline_local: '2026-10-28T09:00:00+08:00'
+  heartbeat_automation_id: ioa-9
+  evidence: artifacts/v5/data_factory/main_quality_20261028-r20
+  source_sha256: 4e0afc9cd0175f5dcac07b314eebecbd50a06982999850a994856463c0541db9
+  source_files_bound: 1230
+  protected_history_files: 14909
+  new_business_routes: [T322, T343]
+  executable_tree_routes: [T311, T312, T321, T322, T323, T331, T343, T351, T352, T353, T362]
+  route_scope: T322_local_execution_only_history_admission_blocked
+  suite_industry_groups: 22
+  remaining_routes: [T313, T332, T333, T341, T342, T361, T363]
+  r20_offline_matrix: PASS_12_combinations_88_strict_replays_0_external_calls
+  t343_shared_factory_pairs: 8_PASS_including_both_condition_values
+  t322_local_reference_pairs: 4_PASS_24_strict_replays
+  t322_shared_factory_outcome: 4_REJECTED_HISTORY_INDETERMINATE_no_admission
+  t322_missing_historical_contracts: 120
+  shared_factory_engineering_routes: 10
+  r20_full_regression: PASS_2279_zero_failures_errors_skips_zero_external_calls
+  r20_auth_probe: PASS_exact_model_100tokens_complete_SSE_usage_upper_USD0_000398
+  r20_auth_local_argument_error_before_send: RETAINED_0_completion_requests
+  r20_online_t343: COMPLETE_1_engineering_pass_6of6_business_steps_8_replays_1_quarantined_1_not_run
+  r20_online_requests: 3_intents_2_complete_1_unknown_0_new_admissions
+  r20_unknown_request: audit-high-3e9ef6d4e06d6a92
+  r20_unknown_reason: curl55_send_connection_reset_empty_headers_and_sse_server_outcome_unknown
+  r20_final_verification: artifacts/v5/data_factory/main_quality_20261028-r20/FINAL_VERIFICATION.json
+  r21_evidence: artifacts/v5/data_factory/main_quality_20261028-r21
+  r21_history_optimization: 40_pairs_8259_records_equal_105_18seconds_to6_54seconds_one_local_measurement
+  r21_regression: PASS_2280_zero_failures_errors_skips_zero_external_calls
+  r21_final_verification: artifacts/v5/data_factory/main_quality_20261028-r21/FINAL_VERIFICATION.json
+  r21_protected_history_files_unchanged: 38950
+  r21_source_and_archive_files_verified: 1230
+  r21_strict_replays: 88
+  r21_new_provider_calls: 0
+  morning_report: docs/v5/REPORT_BRIEF_AND_PRIORITIES_20261027.md
+  nightly_window_end_local: '2026-10-28T09:00:00+08:00'
+  reporting_finalized_local: '2026-10-28T09:19:55+08:00'
+  completion_scope: NIGHTLY_ENGINEERING_AND_REPORTING_ONLY_NOT_WHOLE_PROJECT
+  historical_unknown_requests_resent: false
+  new_formal_cases: 0
+  semantic_auditor_qualified: false
+  formal_accepted: false
+  overall_goal_complete: false
+  next_work: T313_real_multihop_delegation_then_remaining6_routes_T322_original_contract_recovery_and_new_unique_T343_batch_after_connectivity_recovery
+
+delegated_record_quality_20261028:
+  status: SOURCE_BOUND_ENGINEERING_VERIFIED_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261028-r22
+  authoritative_receipt: artifacts/v5/data_factory/main_quality_20261028-r22/FINAL_VERIFICATION.json
+  report: artifacts/v5/data_factory/main_quality_20261028-r22/REPORT.md
+  source_sha256: 6f8ebdedc975c5d32ecb6f5b5783176f8c6d57cd064e5f37f2f1827d0f5dbcb0
+  compiler_version: ioabench.v5.t313-delegated-record-compiler/1.0.0
+  scenario_version: t313-dyna-scenario-0.3.0
+  focused_tests: 50_PASS
+  full_regression: 2295_PASS_zero_failures_errors_skips
+  source_and_archive_files_verified: 1233
+  protected_history_files_unchanged: 39829
+  external_network_attempts: 0
+  historical_index_records: 8259
+  offline_combinations: 8
+  strict_replays: 48_PASS
+  shared_factory_matrix: PASS_8_of_8_real_history_both_chain_views_both_branch_values
+  mechanism_scope: EXISTING_T313_S4_VALIDITY_REVISION_ONLY_NOT_ALL_DRIFT_DIMENSIONS
+  participants: intermediary_and_executor_independent_contexts_scripted_principal_grant
+  business_scope: settlement_record_read_verify_check_only_no_payment_posting
+  executable_tree_routes: 12
+  shared_factory_engineering_routes: 11
+  suite_industry_groups: 23
+  remaining_routes: [T332, T333, T341, T342, T361, T363]
+  original_parent_grant_oracle_scorer_budgets_unchanged: true
+  new_provider_calls: 0
+  new_dev_accepted_pairs: 0
+  new_formal_cases: 0
+  semantic_auditor_qualified: false
+  formal_accepted: false
+  overall_goal_complete: false
+  next_work: T332_business_request_public_fields_internal_structure_and_actual_external_reply_then_T333
+
+t312_compositional_quality_20261026:
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_TRIAL_COMPLETE_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r7
+  authoritative_receipt: artifacts/v5/data_factory/main_quality_20261026-r7/final/FINAL_VERIFICATION.json
+  source_sha256: 9236f5b2c25e1b4215b5effbeb4ee147ba96eb508400e93b5983eef39fa4e9f0
+  scenario_version: t312-dyna-scenario-0.3.0
+  compiler_version: ai-t312-dyna-compiler/1.2.0
+  capabilities_version: ioabench.v5.compiler-capabilities/1.2.1
+  trial_version: ioabench.v5.main-quality-trial/2.1.1
+  supported_compositional_suites: [T312, T321, T331, T362]
+  remaining_compositional_suites: 14
+  local_matrix_pairs_per_source: 30
+  initial_cohort: {opportunities: 2, engineering_pass: 2, preflight_rejected: 2, requests_complete: 5}
+  initial_integration_gap: EMPTY_MECHANISM_ASSERTIONS_RETAINED_NOT_RELABELED
+  final_cohort: {opportunities: 2, engineering_pass: 2, dev_accepted: 2}
+  final_regression_passed: 2065
+  final_source_strict_replay_reruns: 216
+  initial_exact_source_strict_replays: 192
+  total_request_intents: 14
+  total_complete_responses: 14
+  new_unknown_requests: 0
+  complete_response_conservative_upper_usd: 1.561236
+  invoice: UNKNOWN
+  protected_history_files_unchanged: 7382
+  terminal_cohort_files_unchanged: 1407
+  scoped_test_temp_files_removed: 33397
+  semantic_auditor_qualified: false
+  semantic_audit_prose_discrepancy: CONFIRMED_8_VS_32_BUSINESS_ACTIONS_IN_HIGH_REVIEW
+  semantic_discrepancy_evidence: artifacts/v5/data_factory/main_quality_20261026-r7/final/AUDIT_CLAIM_SPOT_CHECK.json
+  difficulty_calibrated: false
+  long_term_stability_established: false
+  formal_accepted: false
+  previous_goal_turn_classification: progress
+  overall_goal_complete: false
+
+terminal_acknowledgement_quality_fix_20261026:
+  status: ENGINEERING_VERIFIED_SEMANTIC_QUALIFICATION_OPEN_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r6
+  scenario_version: t331-dyna-scenario-0.5.1
+  compiler_version: ai-t331-dyna-compiler/1.4.1
+  capabilities_version: ioabench.v5.compiler-capabilities/1.1.0
+  final_source_sha256: 16cf15c82e69d6d18776e6fe93a91eec05a8685c7074f6388757958596efc023
+  fixes: [terminal_task_delivery, positive_witness_required, successful_acknowledgements_only, duplicate_acknowledgement_loop]
+  initial_regression: INTERRUPTED_FOR_CONFIRMED_ROOT_FIX_NOT_A_PASS
+  first_fix_cohort: EXCLUDED_BEFORE_ONLINE_0_REQUESTS
+  retained_affected_proposals_rerun: 4
+  current_source_local_strict_replays: 48
+  historical_source_strict_replays: 42
+  final_related_tests_passed: 27
+  semantic_source_version: semantic-task-controls/1.3.0
+  semantic_sources: 3
+  semantic_preparation_strict_replays: 18
+  semantic_maximum_new_requests: 6
+  semantic_online_status: COMPLETED_6_RESPONSES_0_UNKNOWN
+  semantic_two_reviews_match_expected: 2_of_3
+  semantic_auditor_qualification: OPEN_NOT_QUALIFIED
+  complete_response_conservative_upper_usd: 1.8973840000000002
+  invoice: UNKNOWN
+  final_regression_passed: 2040
+  current_source_final_strict_replay_reruns: 66
+  historical_exact_source_final_strict_replay_reruns: 42
+  terminal_cohort_files_unchanged: 510
+  protected_history_files_unchanged: 3755
+  scoped_test_temp_files_removed: 43793
+  new_data_pairs: 0
+  formal_accepted: false
+  overall_goal_complete: false
+
+semantic_audit_preflight_20261026:
+  later_confirmation_claim_limit: HISTORICAL_T331_A2_PASS_DOES_NOT_PROVE_POSITIVE_ACKNOWLEDGEMENT
+  later_impact_evidence: artifacts/v5/data_factory/main_quality_20261026-r6/IMPACT_ASSESSMENT.json
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_PAIRS_ADDED_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r4
+  documentation: docs/v5/ADR_AUDIT_RESPONSIBILITY_20261026.md
+  protocol: ioabench.v5.development-auto-audit/2.0.0
+  preflight_version: ioabench.v5.audit-preflight/1.0.0
+  trial_entrypoint_version: ioabench.v5.main-quality-trial/2.0.0
+  changes: [deterministic_fact_preflight, strict_replay_check_completeness, sealed_source_reconstruction_before_review, semantic_only_model_judgment, failure_aware_coverage_planning, t362_persisted_runtime_mapping]
+  related_tests_passed: 126
+  coverage_and_preflight_tests_passed: 17
+  actual_retained_source_preflight_passes: 2
+  actual_hard_control_rejections: 6
+  hard_control_provider_calls: 0
+  planned_generation_candidates: 8
+  engineering_pass: 8
+  development_pairs_added: 6
+  pairs_by_suite: {T321: 2, T331: 2, T362: 2}
+  all_business_stages_witnessed_pairs: 4
+  partial_optional_branch_witness_pairs: 2
+  original_t362_preflight_rejections_preserved: 2
+  t362_compiler_version: ioabench.v5.t362-discussion-compiler/1.2.0
+  t362_world_and_oracle_compatibility_fixtures: 2
+  request_intents: 28
+  complete_responses: 28
+  unknown_terminals: 0
+  reported_usage_tokens: 1726108
+  complete_response_conservative_upper_usd: 4.967198
+  invoice: UNKNOWN
+  final_regression_passed: 2028
+  final_regression_external_network_attempts: 0
+  final_related_checks_passed: 35
+  exact_source_strict_replays: 48
+  terminal_audits_zero_network_resumed: 8
+  raw_semantic_reviews_reconstructed: 12
+  prior_evidence_files_verified_unchanged: 1771
+  semantic_auditor_qualification: OPEN
+  remaining_15_compositional_suites: NOT_IMPLEMENTED
+  simulation_only: [T362]
+  final_receipt: artifacts/v5/data_factory/main_quality_20261026-r4/FINAL_VERIFICATION.json
+  next_work: semantic_control_calibration_and_optional_branch_witnesses_then_T312_T323_runtime_composition
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  overall_goal_complete: false
+  previous_goal_turn_classification: progress
+
+registered_audit_development_20261026:
+  status: ENGINEERING_VERIFIED_AUDIT_QUALIFICATION_OPEN_GOAL_ACTIVE
+  branch: main
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r3
+  documentation: docs/v5/REGISTERED_AUDIT_20261026.md
+  protocol: ioabench.v5.development-auto-audit/1.4.0
+  initial_protocol: ioabench.v5.development-auto-audit/1.3.0
+  generation_entrypoint_version: ioabench.v5.main-quality-trial/1.4.0
+  audit_output_mode: json_schema_explicitly_requested_and_locally_verified
+  changes: [program_owned_citation_catalog, strict_ID_only_review_output, raw_response_reconstruction, explicit_protocol_binding]
+  prior_goal_turn_classification: progress
+  related_checks_passed_before_live: 105
+  final_v14_related_checks_passed: 111
+  initial_full_regression_passed: 2005
+  initial_live_calibration: {packets: 6, complete_responses: 12, valid_two_negative_rejections: 4, valid_two_positive_accepts: 1, positive_format_quarantine: 1, unknown: 0}
+  calibration_contract_checks_passed: 9
+  planned_live_packets: 6
+  maximum_new_requests: 12
+  v14_followup_packets: 3
+  v14_maximum_new_requests: 6
+  v14_json_object_result: {packets: 3, complete: 6, quarantined: 3, valid_two_accepts: 0, valid_two_rejections: 0}
+  fixture_summary_consistency: fixed_and_original_affected_packets_retained
+  initial_fixture_impacted_packets: [calibration/case-02, calibration_v14/case-03]
+  native_schema_probe: one_complete_schema_valid_response_not_qualification
+  native_calibration: {packets: 3, complete: 6, positive_valid_two_accepts: 1, negative_valid_two_rejections: 0, negative_admissions_blocked: 2}
+  native_full_schema_conformance: one_actual_violation_without_degradation_header_NOT_QUALIFIED
+  total_complete_responses: 25
+  total_unknown_terminals: 0
+  new_generation_requests: 0
+  proposed_generation_opportunities_not_started: 6
+  new_generated_data_pairs: 0
+  latest_related_checks_passed: 116
+  final_regression_passed: 2012
+  final_regression_external_network_attempts: 0
+  terminal_audit_jobs_resumed_without_network: 12
+  model_response_hash_and_usage_receipts_verified: 25
+  prior_evidence_files_verified_unchanged: 1344
+  final_receipt: artifacts/v5/data_factory/main_quality_20261026-r3/FINAL_VERIFICATION.json
+  overall_goal_complete: false
+  next_work: deterministic_hard_fact_preflight_then_semantic_review_and_native_contract_provider_qualification
+  frozen_prompt_during_trial: true
+  previous_unknown_request_resent: false
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  remaining_15_compositional_suites: NOT_IMPLEMENTED
+
+main_quality_audit_followup_20261025:
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_PARTIAL_AUDIT_QUALIFICATION_FAILED
+  closed_local_date: '2026-10-26'
+  branch: main
+  evidence: artifacts/v5/data_factory/main_quality_20261025-r2
+  documentation: docs/v5/MAIN_QUALITY_AUDIT_20261025.md
+  audit_prompt_revision: main-execution-index-rules-20261025
+  trial_entrypoint_version: ioabench.v5.main-quality-trial/1.2.1
+  online_plan_entrypoint_version: ioabench.v5.main-quality-trial/1.2.0
+  changes: [per_run_actual_action_index, frozen_audit_prompt_revision, cohort_scoped_candidate_ids_and_seeds, terminal_resume_preserves_results]
+  directed_tests_passed: 107
+  final_regression_passed: 1995
+  regression_scope: [tests/v5, tests/m1]
+  regression_external_network_attempts: 0
+  planned_live_calibration_packets: 4
+  planned_new_generation_opportunities: 6
+  maximum_new_completion_requests: 48
+  additional_rule_calibration_packets: 2
+  reviewer_qualification: FAIL_cross_suite_false_accept_blocked_by_program
+  final_entrypoint_related_tests_passed: 99
+  full_regression_timing: before_final_entrypoint_terminal_fix
+  outcome: {planned: 6, engineering_pass: 4, dev_accepted: 2, quarantined: 2, history_rejected: 1, not_run: 1}
+  live_requests_total: {intents: 29, complete: 28, unknown: 1, unknown_resent: 0}
+  actual_strict_replay_rows: 24
+  new_development_pairs: {T321: 1, T331: 1, T362: 0}
+  stopped_scope: artifacts/v5/data_factory/main_quality_20261025-r2/online
+  unresolved_request: audit-high-3870090bb2836e49
+  zero_network_terminal_resume_files_unchanged: 437
+  previous_trial_files_verified_unchanged: 681
+  final_receipt: artifacts/v5/data_factory/main_quality_20261025-r2/FINAL_VERIFICATION.json
+  next_work: evidence_reference_output_contract_and_unseen_calibration_then_coverage_target_diversification
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  simulation_only: [T361, T362, T363]
+
+main_quality_factory_20261025:
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_TRIAL_COMPLETE
+  branch: main
+  base_commit: a18db13f0eda480f8466fec1e7ccfb775837d093
+  generator_version: ioabench.v5.tree-factory/1.2.1
+  trial_entrypoint: scripts/v5/tree_factory_trial.py
+  evidence: artifacts/v5/data_factory/main_quality_20261025-r1
+  documentation: docs/v5/MAIN_QUALITY_TRIAL_20261025.md
+  fixes: [selected_module_catalog, payload_before_workflow, semantic_repair_in_existing_slot, actual_candidate_role_binding, actual_IR_binding_validation, compiler_fidelity_before_planning, cross_trial_published_history]
+  first_trial_version: ioabench.v5.tree-factory/1.2.0
+  first_trial: {planned: 6, engineering_pass: 5, dev_accepted: 2, quarantined: 2, audit_rejected: 1, local_compile_failed: 1, completion_intents: 21, complete_responses: 21, unknown_terminals: 0}
+  first_trial_development_pairs: [online-R3-T331-x6-C, online-R3-T362-x5-C]
+  first_trial_receipt: artifacts/v5/data_factory/main_quality_20261025-r1/online/TRIAL_SUMMARY.json
+  postfix_trial: artifacts/v5/data_factory/main_quality_20261025-r1/postfix_check/TRIAL_SUMMARY.json
+  final_regression: artifacts/v5/data_factory/main_quality_20261025-r1/REGRESSION_FINAL.xml
+  final_acceptance: external_receipts_authoritative
+  targeted_tests_passed: 67
+  final_regression_passed: 1991
+  postfix_result: {planned: 1, engineering_pass: 1, dev_accepted: 1, completion_intents: 4, complete_responses: 4, unknown_terminals: 0}
+  total_new_development_pairs: {T321: 1, T331: 1, T362: 1}
+  total_completion_intents: 25
+  total_complete_responses: 25
+  total_unknown_terminals: 0
+  actual_strict_replay_rows: 36
+  zero_network_resume: artifacts/v5/data_factory/main_quality_20261025-r1/ZERO_NETWORK_RESUME.json
+  zero_network_resume_sealed_files_unchanged: 100
+  history_contract_files_verified_unchanged: 13285
+  runtime_changes: [tree_factory.py, workflow_compiler.py, compiler_capabilities.py]
+  actual_compositional_support: [T321, T331, T362]
+  remaining_15_compositional_suites: NOT_IMPLEMENTED
+  audit_reliability: one_rejection_rationale_conflicts_with_sealed_action_sequence_requires_calibration
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  simulation_only: [T361, T362, T363]
+  scientific_acceptance_changed: false
+
+execution_accounting_quality_20261026:
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_SMOKE_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r8
+  protocol: ioabench.v5.development-auto-audit/2.1.0
+  source_sha256: 3234b4f59502cfdae9683828c4b340d1460cad4ecd912953d4beb7d9edd681a4
+  final_regression_passed: 2072
+  regression_external_network_attempts: 0
+  retained_source_smoke_packets: 4
+  maximum_new_requests: 8
+  complete_response_upper_usd: 2.791436
+  complete_responses: 8
+  invoice: UNKNOWN
+  request_intents: 8
+  stopped: false
+  expected_control_two_review_matches: 3
+  expected_controls: 3
+  accounting_spot_check: SCOPED_ACCOUNTING_SPOT_CHECK_CONSISTENT_8_OF_8
+  historical_exact_source_strict_replays: 24
+  zero_network_terminal_resumes: 4
+  protected_history_files_unchanged: 9282
+  test_temp_files_removed: 18796
+  new_data_pairs: 0
+  semantic_auditor_qualified: false
+  unseen_semantic_qualification: NOT_RUN
+  formal_accepted: false
+  overall_goal_complete: false
+
+t323_composition_quality_20261026:
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_TRIAL_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r9
+  source_sha256: 955b386f98f9203392fcd2300bee2e02373aa2eb79fb11c0a0cbe11ead8b403d
+  new_compositional_suite: T323
+  supported_compositional_suites:
+  - T312
+  - T321
+  - T323
+  - T331
+  - T362
+  remaining_compositional_suites: 13
+  final_regression_passed: 2104
+  regression_external_network_attempts: 0
+  local_matrix_pairs: 30
+  local_matrix_strict_replays: 180
+  final_source_strict_replay_reruns: 204
+  legacy_executions_per_source: 36
+  legacy_observables_unchanged: true
+  online_opportunities: 2
+  engineering_pass: 2
+  new_dev_pairs: 2
+  complete: 9
+  complete_response_upper_usd: 1.47241
+  failed: 0
+  intents: 9
+  invoice: UNKNOWN
+  reported_usage_tokens: 424814
+  unknown: 0
+  branch_probe_plans: 1
+  branch_probe_strict_replays: 12
+  protected_history_files_unchanged: 9882
+  test_temp_files_removed: 16443
+  semantic_auditor_qualified: false
+  semantic_review_spot_check: ISSUES_FOUND_NOT_QUALIFICATION
+  observed_review_issue: Payment max review says4of6 reconstructed; actual3of6; scripted
+    policies do not calibrate difficulty
+  difficulty_calibrated: false
+  formal_accepted: false
+  overall_goal_complete: false
+  runtime_actor_scope: One operator executes multiple logical business duties; no
+    independent-agent isolation claim
+
+transaction_context_quality_20261026:
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_TRIAL_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r10
+  source_sha256: ba4905647bb5d66bedbbcdf4dbaa20bc005c4a100ad5d1f37c50a710fab4f6b6
+  transaction_profile: workflow_transaction_v1
+  scenario_version: t323-dyna-scenario-0.4.0
+  compiler_version: ai-t323-dyna-compiler/1.1.1
+  audit_protocol: ioabench.v5.development-auto-audit/2.2.0
+  supported_compositional_suites:
+  - T312
+  - T321
+  - T323
+  - T331
+  - T362
+  remaining_compositional_suites: 13
+  coherent_transaction_suites:
+  - T323
+  other_compositional_contexts_pending:
+  - T312
+  - T321
+  - T331
+  - T362
+  final_regression_passed: 2126
+  regression_external_network_attempts: 0
+  final_focused_passed: 88
+  local_matrix_pairs: 30
+  local_matrix_strict_replays: 180
+  final_source_strict_replay_reruns: 204
+  historical_exact_source_strict_replays: 12
+  legacy_executions_per_source: 36
+  legacy_observables_unchanged: true
+  initial_superseded_unsent_opportunities: 2
+  fresh_online_opportunities: 2
+  engineering_pass: 2
+  new_dev_pairs: 2
+  retained_audit_sources: 1
+  all_reported_usage_upper_usd: 2.7942780000000003
+  complete: 9
+  complete_reported_usage_tokens: 532982
+  complete_response_upper_usd: 1.603234
+  failed: 1
+  failed_reported_usage_tokens: 202306
+  failed_response_upper_usd: 1.191044
+  intents: 10
+  invoice: UNKNOWN
+  reported_usage_tokens: 735288
+  unknown: 0
+  branch_probe_plans: 1
+  branch_probe_strict_replays: 12
+  protected_history_files_unchanged: 11813
+  test_temp_files_removed: 17672
+  semantic_auditor_qualified: false
+  semantic_review_spot_check: ISSUES_FOUND_NOT_QUALIFICATION
+  shared_receipt_coherence: OPEN_exception_true_flagged_legs_zero
+  difficulty_calibrated: false
+  formal_accepted: false
+  overall_goal_complete: false
+  next_work: QFACT-001_shared_conditional_receipt_coherence_then_other_compositional_contexts_and_unseen_audit_controls
+  runtime_actor_scope: One operator executes logical duties; no independent-agent
+    isolation claim
+
+business_fact_coherence_20261026:
+  status: ENGINEERING_VERIFIED_DEVELOPMENT_TRIAL_GOAL_ACTIVE
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r11
+  source_sha256: 53fb59f0034343773c1a99f3482056eadbefd57724cfaea9511b3e18abe94b5e
+  modules_version: ioabench.v5.workflow-modules/1.3.0
+  tree_factory_version: ioabench.v5.tree-factory/1.5.1
+  business_facts:
+    medicine: margin=on_hand-reorder_point;shortage=(margin<0)
+    finance: exception=(flagged_legs>0);0<=flagged_legs<=legs
+  final_regression_passed: 2130
+  regression_external_network_attempts: 0
+  focused_passed: 68
+  matrix_pairs: 20
+  matrix_strict_replays: 120
+  matrix_read_check_receipt_pairs: 80
+  current_source_strict_replays: 150
+  legacy_current_source_reanalyses: 24
+  historical_exact_source_strict_replays: 12
+  runtime_scorer_budget_files_unchanged: true
+  fresh_opportunities: 2
+  engineering_pass: 1
+  new_dev_pairs: 0
+  online_candidates_with_conditional_receipts: 1
+  online_read_check_receipt_pairs: 4
+  complete: 6
+  complete_response_upper_usd: 0.720046
+  complete_usage_tokens: 222203
+  failed: 0
+  intents: 6
+  invoice: UNKNOWN
+  unknown: 0
+  branch_probe_plans: 2
+  branch_probe_strict_replays: 24
+  protected_history_files_unchanged: 15388
+  test_temp_files_removed: 17592
+  supported_compositional_suites:
+  - T312
+  - T321
+  - T323
+  - T331
+  - T362
+  remaining_compositional_suites: 13
+  other_contexts_pending:
+  - T312
+  - T321
+  - T331
+  - T362
+  semantic_review_spot_check: ISSUES_FOUND_NOT_QUALIFICATION
+  semantic_auditor_qualified: false
+  difficulty_calibrated: false
+  long_term_stability_established: false
+  formal_accepted: false
+  overall_goal_complete: false
+  next_work: QCOH-001_other_contexts_and_QAUD-002_unseen_semantic_controls_then_remaining13_suites
+
+workflow_capacity_20261026:
+  status: BOUNDED_PLANNING_ENGINEERING_VERIFIED_GOAL_ACTIVE
+  source_sha256: 2c42d2594ed7ded08cc70ed36f5ce66740d5f71627b23156dbf884040be418be
+  tests:
+    SOURCE_FINAL_TESTS:
+      name: pytest
+      errors: '0'
+      failures: '0'
+      skipped: '0'
+      tests: '52'
+      time: '67.912'
+      timestamp: '2026-10-26T10:38:11.755653+08:00'
+      hostname: JiaDirty_PC
+    BINDING_TESTS:
+      name: pytest
+      errors: '0'
+      failures: '0'
+      skipped: '0'
+      tests: '11'
+      time: '0.521'
+      timestamp: '2026-10-26T10:39:32.676114+08:00'
+      hostname: JiaDirty_PC
+  strict_replays: 120
+  bounded_grammar_capacity_per_group: 24
+  planning_groups: 10
+  observed_candidates: 92
+  unexplored_per_group:
+  - 23
+  - 24
+  - 23
+  - 24
+  - 24
+  - 23
+  - 24
+  - 24
+  - 23
+  - 23
+  r11_files_unchanged: 1507
+  older_files_unchanged: 15388
+  changed_existing_source_files:
+  - scripts/v5/tree_factory_trial.py
+  - src/ioabench/v5/ai_generation/tree_factory.py
+  provider_calls: 0
+  new_dev_pairs: 0
+  test_temp_files_removed: 1760
+  semantic_auditor_qualified: false
+  formal_accepted: false
+  goal_status: active
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r12
+  scope: Finite_dependency_closure_grammar_not_all_legal_DAGs_or_scientific_families
+  prepared_online_opportunities: 2
+  online_run: NOT_RUN
+  remaining_compositional_suites: 13
+  overall_goal_complete: false
+  next_work: QAUD-002 citation_and_observation_grounding;QCOH-001_remaining4contexts;Q18-001_remaining13suites
+
+observation_audit_20261026:
+  status: ENGINEERING_VERIFIED_SEMANTIC_GROUNDING_OPEN_GOAL_ACTIVE
+  source_sha256: 9bbd5abca4786a944ce68bf8d0e9dbdd78df3542e27f61a95797ea6f32806fb9
+  protocol: ioabench.v5.development-auto-audit/2.3.0
+  preflight: 1.3.0
+  trial_preparation: 2.6.0
+  regression_passed: 2141
+  focused_passed: 27
+  regression_external_network_attempts: 0
+  current_source_strict_replays_passed: 18
+  legacy_terminal_audits_zero_call_verified: 6
+  new_terminal_audits_zero_call_verified: 3
+  request_intents: 6
+  complete_responses: 6
+  failed_requests: 0
+  unknown_requests: 0
+  complete_usage_tokens: 779570
+  complete_response_upper_usd: 2.21008
+  invoice: UNKNOWN
+  expected_label_pairs_matched: 3
+  native_schema_valid_responses: 6
+  confirmed_wrong_literal_citations_at_least: 6
+  responses_with_wrong_literal_citations_at_least: 2
+  semantic_scope_gap: reviewers_demand_infrastructure_enforcement_packet_omits_actual_score_outcome
+  new_dev_pairs: 0
+  formal_accepted: false
+  semantic_auditor_qualified: false
+  difficulty_calibrated: false
+  long_term_stability_established: false
+  protected_files_unchanged:
+    R12: 1852
+    R11: 1507
+    older: 15388
+  cleanup_status: BLOCKED_BY_POLICY
+  test_temp_files_retained: 17069
+  standard_prepared_opportunities: 2
+  standard_generation_run: NOT_RUN
+  remaining_compositional_suites: 13
+  overall_goal_complete: false
+  goal_status: active
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r13
+  next_work: QAUD-002 source_bound_scores_and_claim_grounding;QCOH-001_other4contexts;Q18-001_remaining13suites
+
+delivery_action_plan_20261026:
+  status: PLAN_RECORDED_GOAL_ACTIVE
+  objective: complete_reproducible_18_suite_ioa_benchmark_project
+  source_workflow: docs/v5/IOA_DELIVERY_ACTION_PLAN_20261026.md
+  current_tree_suites: [T312, T321, T323, T331, T362]
+  current_executable_business_roots: [industry.medicine_supply, industry.payment_clearing, industry.logistics]
+  historical_candidate_sets_exist_for_18: true
+  historical_candidates_formal_accepted: false
+  r14_focused_tests_passed: 46
+  r14_full_tests_passed: 2149
+  r14_external_network_attempts: 0
+  r14_source_sha256: f2a37fd302f441a1e676d3fdcfeefe287c235f84bf1d871272fa305aaa9d2dd8
+  r14_final_verification: NOT_RUN
+  r14_live_calibration: NOT_RUN
+  qualified_formal_datasets: NOT_ESTABLISHED
+  tested_model_full_18_suite_run: NOT_RUN
+  git_remote_configured: false
+  formal_accepted: false
+  overall_goal_complete: false
+  goal_status: active
+  next_work: QGEN-005_business_goals_and_plan_roundtrip;Q18-001_remaining13suites;R14_auditor_qualification_remains_open
+
+logistics_expansion_20261026:
+  status: ENGINEERING_VERIFIED_ONE_FRESH_PAIR_QUARANTINED_UNKNOWN_REVIEW
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r15
+  source_sha256: 2711b180732d16304ace094ccaf826224aa76cda753a1e7cac71ae68e0baca03
+  new_industry: industry.logistics
+  integrated_suites: [T331]
+  module_count: 8
+  logical_roles: [shipper, carrier, receiver]
+  reference_runtime_agents: 3
+  structures_exercised: [extended_chain, fork_join, conditional]
+  conditional_truth_values_exercised: [true, false]
+  scripted_local_pairs_passed: 4
+  scripted_strict_replays_passed: 24
+  new_model_generated_pairs: 1
+  new_dev_admitted_pairs: 0
+  new_formal_cases: 0
+  regression_passed: 2157
+  regression_external_network_attempts: 0
+  current_source_strict_replays_passed: 36
+  raw_model_plan_false_branch_verified: true
+  request_intents: 4
+  complete_responses: 3
+  unresolved_requests: 1
+  unresolved_request_resent: false
+  paid_calls_stopped: true
+  complete_usage_tokens: 193549
+  complete_response_upper_usd: 0.61658
+  unresolved_request_cost: UNKNOWN
+  actual_invoice: UNKNOWN
+  first_review_verdict: ACCEPT
+  second_review_status: REQUEST_UNRESOLVED
+  terminal_resume_ledger_unchanged: true
+  source_files_verified: 695
+  baseline_source_files_preserved: 694
+  report: artifacts/v5/data_factory/main_quality_20261026-r15/REPORT.md
+  formal_accepted: false
+  semantic_auditor_qualified: false
+  overall_goal_complete: false
+  goal_status: active
+  next_work: remaining11suite_tree_integration;real_model_generation_after_provider_reopen;auditor_qualification_and_formal_data_freeze;provider_unknown_preserved_without_resend
+
+multi_agent_workflow_20261027:
+  status: ENGINEERING_VERIFIED_OFFLINE_FORMAL_DELIVERY_OPEN
+  next_day_report_and_priorities: docs/v5/REPORT_BRIEF_AND_PRIORITIES_20261027.md
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r16
+  report: artifacts/v5/data_factory/main_quality_20261026-r16/REPORT.md
+  final_verification: artifacts/v5/data_factory/main_quality_20261026-r16/FINAL_VERIFICATION.json
+  source_sha256: f4d846e9996c4cfede214e851bba2a6bd9f7e597d8a6f4ef843758c2579ee9d3
+  source_files_frozen: 720
+  new_tree_suite_routes: [T352, T353]
+  current_tree_suite_routes: [T312, T321, T323, T331, T352, T353, T362]
+  remaining_tree_suite_routes: 11
+  executable_business_roots: [industry.medicine_supply, industry.payment_clearing, industry.logistics]
+  logistics_supported_suite_routes: [T331]
+  existing_suite_industry_groups: 15
+  business_goal_roundtrip_and_visible_context: VERIFIED_OFFLINE
+  stream_evidence_and_route: VERIFIED_OFFLINE
+  final_source_regression: 2206_PASS_0_FAILURE_0_ERROR_0_SKIP
+  final_source_offline_matrix: 16_OF_16_PASS_96_STRICT_REPLAYS
+  new_provider_calls: 0
+  r15_unknown_request_resent: false
+  new_formal_cases: 0
+  semantic_auditor_qualified: false
+  formal_accepted: false
+  overall_goal_complete: false
+  goal_status: active
+
+tree_factory_continuation_r17_r18_20261028:
+  status: R19_DATA_GENERATION_PILOT_VERIFIED_FULL_DELIVERY_OPEN
+  r17_evidence: artifacts/v5/data_factory/main_quality_20261027-r17
+  r17_report: artifacts/v5/data_factory/main_quality_20261027-r17/REPORT.md
+  r17_final_verification: artifacts/v5/data_factory/main_quality_20261027-r17/FINAL_VERIFICATION.json
+  current_evidence: artifacts/v5/data_factory/main_quality_20261028-r19
+  current_report: artifacts/v5/data_factory/main_quality_20261028-r19/REPORT.md
+  current_final_verification: artifacts/v5/data_factory/main_quality_20261028-r19/FINAL_VERIFICATION.json
+  new_tree_suite_routes: [T311, T351]
+  current_tree_suite_routes: [T311, T312, T321, T323, T331, T351, T352, T353, T362]
+  remaining_tree_suite_routes: [T313, T322, T332, T333, T341, T342, T343, T361, T363]
+  existing_suite_industry_groups: 19
+  executable_business_roots: [industry.medicine_supply, industry.payment_clearing, industry.logistics]
+  logistics_supported_suite_routes: [T331]
+  r17_regression: 2248_PASS_0_FAILURE_0_ERROR_0_SKIP
+  r17_offline_matrix: 16_OF_16_PASS_112_STRICT_REPLAYS
+  r17_online_opportunities: 9
+  r17_online_engineering_pass: 6
+  r17_dev_accepted_pairs: 1
+  r17_preflight_rejected_pairs: 4
+  r17_quarantined_pairs: 1
+  r17_not_run_user_pause: 3
+  r17_request_intents: 16
+  r17_complete_responses: 15
+  r17_unresolved_request: audit-max-3562086c38e06c4e
+  historical_unknown_requests_resent: false
+  real_generated_plan_roundtrip: 6_PASS_METADATA_AND_EXECUTABLE_STRUCTURE_ONLY
+  r18_fix: T311_T351_T353_compiler1_1_persists_real_consumed_mappings_for_audit_no_gate_change
+  r18_focused_tests: 39_PASS
+  r18_offline_matrix: 16_OF_16_PASS_112_STRICT_REPLAYS
+  r18_full_regression: 2250_PASS_0_FAILURE_0_ERROR_0_SKIP
+  r18_online_batch: 4_OPPORTUNITIES_2_ENGINEERING_PASS_1_QUARANTINED_1_UNREVIEWED_2_NOT_RUN_6_COMPLETE_REQUESTS
+  r18_online_gap: T311_title_overwrote_generated_neutral_suffix_high_REJECT_max_ACCEPT_originals_preserved
+  r19_fix: compiler1_2_preserves_T311_neutral_suffix_and_records_actual_T311_T351_T353_transformations
+  r19_source_sha256: 06db008ff2107e7a20296d581d31bd30655d2c115850e2f61510c51f764e2089
+  r19_full_regression: 2252_PASS_0_FAILURE_0_ERROR_0_SKIP
+  r19_offline_matrix: 16_OF_16_PASS_112_STRICT_REPLAYS
+  r19_new_online_batch: 4_OF_4_ENGINEERING_PASS_TWO_REVIEW_ACCEPT_DEV_ACCEPTED
+  r19_new_dev_pairs: 4
+  r19_new_dev_cases: 8
+  r19_all_business_stages_witnessed_pairs: 4
+  r19_online_reference_strict_replays: 28
+  r19_model_plan_both_branch_replays: 12
+  r19_request_intents: 16
+  r19_complete_responses: 16
+  r19_unknown_requests: 0
+  r19_complete_usage_tokens: 1323894
+  r19_complete_response_upper_usd: 3.524616
+  r19_actual_invoice: UNKNOWN
+  r19_terminal_resume: ZERO_NEW_PROVIDER_REQUESTS_443_FILES_SHA_AND_MTIME_UNCHANGED
+  r19_current_and_archived_source_files_verified: 1225
+  r19_protected_history_files_unchanged: 12013
+  next_work: T343_T322_business_tree_integration_then_remaining7_routes_auditor_reliability_difficulty_and_full18_delivery
+  semantic_auditor_qualified: false
+  new_formal_cases: 0
+  formal_accepted: false
+  overall_goal_complete: false
+
+workspace_github_sync_20261028:
+  status: SOURCE_SYNC_PREPARED_VERIFY_RECEIPT_LOCALLY
+  repository: https://github.com/JiaDirty/ioa-bench-v5
+  visibility_observed: PUBLIC
+  scope: current_source_tests_docs_business_assets_and_sanitized_R22_summaries
+  cleanup: regenerable_development_caches_only
+  existing_data_and_release: PRESERVED
+  local_history_branch: codex/local-history-20261028
+  local_private_history_uploaded: false
+  full_regression_rerun: false
+  scanner_self_check: PASS
+  new_provider_calls: 0
+  research_acceptance_changed: false
+  receipt: artifacts/workspace_maintenance/20261028-github-sync-r1/GITHUB_VERIFICATION.json
+  workspace_document: docs/WORKSPACE_STATUS_20261028.md

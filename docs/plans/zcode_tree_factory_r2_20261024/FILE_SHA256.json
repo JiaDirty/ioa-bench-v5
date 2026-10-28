@@ -1,0 +1,74 @@
+{
+  "version": "ioabench.v5.zcode-r2-delivery/1.0.0",
+  "scope": "docs_and_goal_only",
+  "files": [
+    {
+      "path": "00_使用说明.md",
+      "bytes": 3643,
+      "sha256": "ce94b04dc35891ccd1902048e57a51cafaab375bcc8b8d545fd47ddb0c423ea4"
+    },
+    {
+      "path": "GOAL.md",
+      "bytes": 6810,
+      "sha256": "f441c72e90a2a329b9ae3b31a464dc91c9afcab4e4304681bb4b3fedc4766323"
+    },
+    {
+      "path": "01_架构改造与源码落点.md",
+      "bytes": 8189,
+      "sha256": "30a7f720b8e99873cce6f5cc0d01e04710387720c5d193bea0a8337ccf59abfe"
+    },
+    {
+      "path": "02_执行队列.md",
+      "bytes": 6807,
+      "sha256": "d9df379134ab7fd8b106f1411a7614543d00e769e9bd64a41a9a48bc496ecc74"
+    },
+    {
+      "path": "03_AIHubMix_QualityFirst.yaml",
+      "bytes": 3286,
+      "sha256": "39315e3e0a5d8bb05bcdcbdd54f6caad2a0a550b3266837926f13ac83c4d447d"
+    },
+    {
+      "path": "04_模型调用_流式与异常恢复.md",
+      "bytes": 6750,
+      "sha256": "0eae85380eb2ca40f6be4407121b2dfc67dd25eee619f15d4fad79590d8fba27"
+    },
+    {
+      "path": "05_实验与验收.md",
+      "bytes": 5859,
+      "sha256": "87a4716d541ea55a2fe6660f0cb6057fced057cc34a6bffdca4b8dae226a5fb2"
+    },
+    {
+      "path": "06_轻量工程纪律.md",
+      "bytes": 3274,
+      "sha256": "7266c037bb996f9657e6d7e980f11ee27d6c428acc00c55a1a7ebae6ee2a59a7"
+    },
+    {
+      "path": "07_交付清单.md",
+      "bytes": 2459,
+      "sha256": "06dcb8064b6a270342aa11a7076e8557024f1e98711e52fecd52c65b9d444e08"
+    },
+    {
+      "path": "08_ZCode启动指令.md",
+      "bytes": 2151,
+      "sha256": "84f55b0b131a2c463e8ae9a56522b3251f79d5bec4708b250c6a57e1e12e8914"
+    },
+    {
+      "path": "09_改造验收矩阵.csv",
+      "bytes": 1799,
+      "sha256": "117d854a66f0f845983e64bbd3726bfa379e447bba8c1c0522424d85b26760fa"
+    },
+    {
+      "path": "R2_WORK_QUEUE.yaml",
+      "bytes": 1577,
+      "sha256": "cf54b6f99d103b1a18cf24b8686eac02858bef3eb03b6cc3fe303204a711851a"
+    },
+    {
+      "path": "ZCODE_GOAL_COMMAND.txt",
+      "bytes": 1600,
+      "sha256": "7f635b48180ef025fefa72877525bfa795b48524bd354d9cbdd3063d0dffe63f"
+    }
+  ],
+  "file_count": 13,
+  "model_calls": 0,
+  "project_workspace_modified": false
+}

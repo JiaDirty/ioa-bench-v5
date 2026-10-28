@@ -1,0 +1,85 @@
+# IoA-Bench v5 tree-mechanism R&D trial; candidate config, live schema NOT YET VERIFIED.
+# ZCode Agent uses GLM-5.3 Max separately; these parameters apply ONLY to data-generator/auditor API calls.
+version: ioabench.v5.aihubmix-tree-pilot/0.1.0
+scope: DEVELOPMENT_AUTO_AUDITED
+provider:
+  id: aihubmix
+  model_id: deepseek-v4.1-flash-1017
+  base_url: https://aihubmix.com/v1
+  endpoint_family: openai.chat_completions
+  api_key_env: AIHUBMIX_API_KEY
+  use_existing_model_port: true
+  strict_no_automatic_fallback: true
+  stop_on_provider_error: true
+  request_timeout_seconds: 900
+  preflight:
+    authenticated_catalog_and_schema: required
+    dry_run_validation: required
+    fresh_json_completion: required
+    expected_status: 200
+    served_model_verify: required
+    usage_verify: required
+    json_schema_support: unknown_until_live_test
+    thinking_effort_support: unknown_until_live_test
+    on_auth_or_unknown: stop_all_paid_requests
+model_limits_documented_not_request_parameters:
+  context_window_tokens: 1000000  # capability only; DO NOT send as context_length parameter
+  maximum_output_tokens_advertised: 393216  # AIHubMix comparison listing; enforce live schema before requesting
+  interpretation: '1M is available window, not prompt target; 393216 is ceiling not recommended per-request output.'
+request_defaults:
+  stream: false
+  response_format: {type: json_object}  # only after validated by gateway probe
+  thinking: {type: enabled}  # use correct top-level or gateway mapping after wire validation
+  reasoning_effort: high
+  temperature: OMIT
+  top_p: OMIT
+  presence_penalty: OMIT
+  frequency_penalty: OMIT
+  tools: OMIT_UNLESS_TOOL_TASK
+  json_prompt_must_contain_json_instruction: true
+  enforce_local_json_schema: true
+  never_rely_on_response_format_as_schema_enforcement: true
+stage_budgets:
+  mechanism_plan: {effort: high, max_tokens: 32768}
+  typed_ir: {effort: high, max_tokens: 65536}
+  world_and_executable_bindings: {effort: high, max_tokens: 65536}
+  surface_realization: {effort: high, max_tokens: 32768}
+  semantic_review: {effort: high, max_tokens: 65536}
+  complex_review_or_capability_study: {effort: max, max_tokens: 131072}
+  bounded_expansion_if_known_length_exhaustion: [98304, 131072, 196608]
+  full_advertised_ceiling_393216: EXPLICIT_APPROVAL_AND_SCHEMA_VERIFICATION_ONLY
+  note: 'Budgets include reasoning and final output where endpoint counts both; max_tokens is upper bound, not guaranteed consumption.'
+context_management:
+  pack_only_relevant_facts: true
+  compact_witness_summary_with_sha_and_json_pointers: true
+  keep_all_full_artifacts_on_disk: true
+  pilot_prompt_soft_target_tokens: 120000
+  before_send: 'verify prompt_tokens + max_tokens <= live context budget; if not, summarize/retrieve, never truncate truth or evidence blindly'
+  prevent_full_history_dump: true
+execution:
+  initial_concurrency: 1
+  after_stable_fresh_completions: 2
+  request_attempts_per_unique_id: 1
+  no_retry_on_unknown_terminal: true
+  new_candidate_attempt_max_per_plan: 2
+  immutable_ledgers: true
+  stop_on_http: [401, 402, 403]
+  stop_on_response_incomplete: true
+  estimate_cost_with_reported_usage: true
+  stop_on_reported_limit_reached: true
+  soft_spend_warning_usd: 5.0  # proposed conservative default; adjust only by explicit user instruction
+  hard_spend_stop_usd: 20.0     # proposed hard limit; NOT authorization for unlimited spend
+review_policy:
+  same_model_independent_contexts: true
+  engineering_dev_admission_allowed: true
+  deterministic_facts_take_precedence: true
+  blind_review_to_generator_thoughts: true
+  formal_scientific_independence_claim: false
+  formal_accepted: false
+  no_silent_promotion_of_old_pool: true
+provenance:
+  require_stage_config_sha256: true
+  require_source_runtime_sha256: true
+  require_exact_http_model_parameters_and_served_id: true
+  record_finish_reason_usage_cost_source: true
+  key_plaintext_and_authorization_header: NEVER_PERSIST

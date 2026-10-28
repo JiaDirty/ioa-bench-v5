@@ -1,0 +1,11 @@
+version: ioabench.v5.development-auto-audit/1.1.0
+provider: deepseek
+model_id: deepseek-flash
+efforts: [high, max]
+max_tokens: 65536
+thinking: {type: enabled}
+response_format: {type: json_object}
+contexts: isolated
+formal_scientific_claims: false
+retry_terminal_reviews: false
+reason: 'Six of eight complete initial responses exhausted reasoning output at 16384/32768; official documented bounded expansion is 65536. Protocol 1.1 clarifies document pointers and per-run observation provenance; no acceptance rule is relaxed.'

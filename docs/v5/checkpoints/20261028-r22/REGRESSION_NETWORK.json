@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "network": {
+    "provider_http_or_external_network_attempts": 0,
+    "windows_asyncio_loopback_connections": 12498
+  },
+  "new_formal_cases": 0,
+  "source_sha256": "6f8ebdedc975c5d32ecb6f5b5783176f8c6d57cd064e5f37f2f1827d0f5dbcb0"
+}

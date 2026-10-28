@@ -1,11 +1,62 @@
 from __future__ import annotations
 
 import asyncio
+import io
+from http.client import IncompleteRead
+from urllib.error import HTTPError, URLError
 
 import pytest
 
 from ioabench.errors import ModelUnsupportedError
 from ioabench.models import DeepSeekAdapter, ModelProfile, ModelRequest
+
+
+@pytest.mark.parametrize("failure", [TimeoutError("timeout"), URLError("connection reset"),
+    IncompleteRead(b'{"choices":', 120), ValueError("invalid-json")])
+def test_sent_direct_request_is_unknown_and_cannot_enter_generic_retry(monkeypatch, failure):
+    from ioabench.models import deepseek
+    from ioabench.models.retry import RetryPolicy, run_with_retry
+    calls = []
+    class Response:
+        status, headers = 200, {"x-request-id": "mock-partial"}
+        def __enter__(self): return self
+        def __exit__(self, *_): pass
+        def read(self):
+            if isinstance(failure, ValueError): return b'{invalid'
+            raise failure
+    def transport(*args, **kwargs):
+        calls.append(1)
+        if isinstance(failure, (TimeoutError, URLError)): raise failure
+        return Response()
+    monkeypatch.setattr(deepseek, "urlopen", transport)
+    adapter = DeepSeekAdapter(api_key="fixture")
+    async def operation():
+        return await adapter.generate(ModelProfile("deepseek", "deepseek-flash", {}, {}),
+            ModelRequest(({"role": "user", "content": "json"},), {}))
+    with pytest.raises(Exception) as caught:
+        asyncio.run(run_with_retry(operation, RetryPolicy(max_attempts=3, base_delay_seconds=0)))
+    assert getattr(caught.value, "category", None) == "REQUEST_UNRESOLVED"
+    assert len(calls) == 1
+    assert getattr(caught.value, "transport_metadata", {}).get("http_status") == (
+        None if isinstance(failure, (TimeoutError, URLError)) else 200)
+
+
+@pytest.mark.parametrize("status", [401, 402, 403, 422, 429, 503])
+def test_direct_http_failure_retains_structured_status_without_secret(monkeypatch, status):
+    from ioabench.models import deepseek
+    def fail(*args, **kwargs):
+        raise HTTPError("https://api.deepseek.com/chat/completions", status, "failed", {}, io.BytesIO(b'{}'))
+    monkeypatch.setattr(deepseek, "urlopen", fail)
+    with pytest.raises(Exception) as caught:
+        DeepSeekAdapter(api_key="fixture-sensitive")._request_json("POST", "/chat/completions", {})
+    assert caught.value.http_status == status
+    assert caught.value.transport_metadata["http_status"] == status
+    assert "fixture-sensitive" not in str(caught.value)
+
+
+def test_direct_key_cannot_be_sent_to_gateway():
+    with pytest.raises(ValueError, match="official"):
+        DeepSeekAdapter(api_key="fixture", base_url="https://aihubmix.com/v1")
 
 
 def test_direct_deepseek_catalog_resolution_and_response_parsing() -> None:

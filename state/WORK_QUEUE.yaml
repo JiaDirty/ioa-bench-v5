@@ -1,3 +1,35 @@
+# Current GitHub sync20261028: source-only public update; local private history retained; see workspace_github_sync_20261028 and local remote verification receipt.
+# Current20261028 R22 verified:12 local routes/11 shared engineering routes/23 groups;2295regressionPASS;8realHistoryT313pairs48strictReplays;1233sourceFilesVerified;39829historyFilesUnchanged;0newProviderCalls_DEVAdmissions_FormalCases;T332next_projectIncomplete.
+# Prior20261028 R19:tree_routes9/18;compiler1.2 preserves generated context and business transformations;2252regression/112offline+28online_reference+12branch strictReplayPASS;4of4freshDEVpairs/16complete/0unknown;443filesunchangedzero-callresume;12013historyunchanged;remaining9routes_audit_difficulty_formaldeliveryOPEN.
+# Prior20261027 R16:2206v5+m1regressionPASS;16/16offlineT352/T353matrixPASS;96strictReplay;source720files;tree_routes7/18;new_provider_calls0;new_formal_cases0;formalfalse;R15UNKNOWNpreserved;QAUD-002/QCOH-001/Q18-001in_progress;goalactive.
+# Current20261026 delivery plan:full 18-suite IOA project remains target;R14 46focused/2149full offline PASS/0network;tree route5 suites/2 executable industries;historic candidates are not formal accepted;R14 final verification/live controls NOT_RUN;plan docs/v5/IOA_DELIVERY_ACTION_PLAN_20261026.md;goal active.
+# Current20261026 R12:bounded graph planning integrated;92retained candidates;24graphs/group with23-24unexplored;52related+11binding checks/120final strictReplayPASS;API0/newpairs0;QDIV-003bounded_scope_done;fullgoalactive.
+# Current20261026 R11:shared quantitative business facts verified;2130regressionPASS;0newDEVpairs/6complete/0failed/0unknown;QFACT-001done;QCOH-001/QAUD-002/Q18-001in_progress;goal active. Evidence main_quality_20261026-r11.
+# Current20261026 R10:T323 same-transaction context and audit2.2;2126regressionPASS;2newDEVpairs/9complete/1failed/0unknown;5compositional suites/13remaining;QCOH-001andQAUD-002in_progress;goal active. Evidence main_quality_20261026-r10.
+# Current20261026 R9:T323 composition verified;2104v5+m1PASS/0external attempts;30paired probes/180strictReplay;2online opportunities/2engineeringPASS/2DEV_ACCEPTED;9complete responses/0unknown;5compositional suites supported/13remaining;auditor qualification OPEN;goal active. Evidence main_quality_20261026-r9.
+# Current20261026 R8:protocol2.1 per-run accounting;2072v5+m1PASS/0external attempts;8complete responses;3/3 retained semantic control pairs match;24historical exact-source Replay and4terminal zero-network resumes PASS. No new admissions;auditor qualification and14compositional suites OPEN;goal active. Evidence main_quality_20261026-r8.
+# Current20261026 R7:T312 composition added;2065v5+m1 PASS/0external attempts;216final-source+192initial exact-source Replay PASS;4opportunities/2new DEV_ACCEPTED;14complete responses;initial2preflight rejections retained,mechanism assertion gap fixed without lowering gates. Auditor qualification and14remaining suites OPEN;full goal active. Evidence main_quality_20261026-r7.
+# Current20261026 R6:positive terminal acknowledgement root fix verified;2040v5+m1 PASS/0external attempts;66current-source+42historical exact-source Replay PASS;6complete semantic responses/0unknown,2of3two-review expected-label matches;no auditor qualification or new admissions. Original evidence retained;full goal active. Evidence main_quality_20261026-r6.
+# Prior20261026 semantic preflight implemented:8opportunities/8engineeringPASS/6DEV_ACCEPTED;4pairs have every business stage witnessed,2T331 pairs retain optional-branch gaps.28complete requests/0unknown;2028final v5+m1 PASS;48exact-source strictReplay/8audit terminal zero-network resumes/1771prior files unchanged. Original2T362 rejections preserved; compiler1.2.0 persists runtime mappings. Semantic qualification and15remaining compositional suites OPEN; full goal remains active. Evidence main_quality_20261026-r4.
+# Prior20261026 registered audit checkpoint:2012final v5+m1 PASS/0external attempts;116related checks PASS.25new complete model responses/0unknown;12sealed audit jobs resume with0network and unchanged files. Program-owned citations,1.4single fact citations,fixture-summary correction and actual Schema validation implemented. Audit qualification OPEN: native full Schema violation observed without degradation marker;6generation opportunities NOT_RUN/new pairs0. Next overlay registered_audit_next_20261026. Full quality/stability/diversity objective remains active; evidence main_quality_20261026-r3.
+# Prior20261026 audit followup PARTIAL:6 generated opportunities=4 engineeringPASS/2DEV_ACCEPTED/2quarantined/1history rejection/1notrun. Calibration+generation29intents/28complete/1unknown; stopped, unknown never resent.1995 v5+m1 tests before final entrypoint fix;99 final related checks;24strictReplay;437files unchanged on zero-network terminal resume. Model audit calibration FAIL; program blocked all tested errors. Next: simplify evidence-reference output, unseen calibration, diversify coverage targets. Evidence main_quality_20261025-r2.
+# Prior20261025 main quality factory: shared generator1.2.1; first6=5 engineering PASS/2 DEV_ACCEPTED, postfix1=1PASS/1DEV_ACCEPTED;25 complete POST responses/0unknown;1991 final offline tests/36 strict Replay rows/zero-network terminal resume PASS. Three new development pairs, one each T321/T331/T362. Entry scripts/v5/tree_factory_trial.py freezes coverage/history and publishes admissions. Remaining15 compositional suites and audit reliability remain open; formalfalse. See main_quality_factory_20261025 and docs/v5/MAIN_QUALITY_TRIAL_20261025.md.
+# Current20261025 Git maintenance: R3 3 commits fast-forwarded into main at a18db13; codex/r3-closure-20261025 deleted; existing dirty/untracked work preserved. Offline regression 1984PASS/1 path-fixture failure; external-temp report-module retest 24PASS. Receipts: artifacts/workspace_maintenance/20261025-merge-r3/. No provider calls or scientific promotion.
+# Current20261025 endpoint update: mainland default https://api.inferera.com/v1; development policy 1.2.0 retains historical 1.1.0 validation. 81 related offline tests PASS; no provider calls or live connectivity claim. Existing source ZIP predates this change; fresh endpoint/source binding required before new online work.
+# Current20261025 maintenance: cache-only cleanup; dirty working-tree source snapshot at exports/source-code-20261025-r1; package acceptance is in PACKAGE_VERIFICATION.json. No model calls or scientific promotion.
+# Current20261025 R3 observation: unique DEV_ACCEPTED T321=5,T331=1,T362=1; family novelty, frozen comparison and final R3 acceptance remain open. See docs/WORKSPACE_STATUS_20261025.md and maintenance CURRENT_STATUS.json; old gateway blocker is historical, not a live check.
+# Historical20261020 development factory: explicit user allows same-model DeepSeek generator/auditor/repair in development; engineering Gold/PI/family blocks removed. New evidence dev_auto_audit/round-20261020; original32 pairs retained, formal gates unchanged. IN_PROGRESS; see PROJECT_STATE.v5.development_auto_audit_20261020.
+# Historical20261020 DeepSeek official G2: engineering delivered32pairs/16suites;304HTTP200;effort2/4/5/4 of6, recommend high;1652 regression/173519protected/294strict replay/78terminal zero-send/extracted ZIP PASS. T322 history BLOCKED,T362 finite grammar FAIL;scientific Gold/PI/cross-family qualification BLOCKED. No scientific promotion or AIHubMix generation.
+# Historical20261020 Round02 resume: initial HTTP200 then new HTTP401 global stop;18 protocol models/67configs/R533of536PASS;Q blocked, no rankings or active profiles;1631 regression PASS. Historical four unresolved never resent; no new Goal/v6/scientific promotion.
+# Historical20261020 Round02 provider specialty: see coordination_round02_aihubmix_20261020_overlay. One fresh alternate-domain completion HTTP401; paid matrix stopped.
+# Historical20261019 COORD-R3 Round01: see coordination_round01_20261019_overlay. Engineering prepared; Gold/PI/auditor qualification blocked; one new completion unresolved/network, no old resend. Historical R3 preserved.
+# Historical20261019 R13 follow-up: PI-V5-020 eight exact candidates; see r13_followup_20261019_overlay and docs/WORK_COMPLETION_20261019_R3.md. PARTIAL; Gold and real HTTP401 block production/new calls; historical R13 preserved.
+# Historical candidate selection20261019: PI-V5-019 removes Qwen3.8-Flash-Next at user request; subsequent Qwen3.8 Flash is a different PI-V5-020 candidate.
+# Parameter correction checkpoint20261019: PI-V5-018; routing1.2.0 uses documented numeric maximum and user/model effort without discount; six real JSON identity probes PASS. Qwen Next subsequently removed by PI-V5-019. New independent auditor qualification NOT_RUN; R13 retained as historical checkpoint. See docs/v5/V5_AUXILIARY_FULL_PARAMETERS_20261019.md.
+# Historical20261019 R13 data factory: PI-V5-017; local Git main/no remote/no push; same v5 Goal; runtime4f7fc7c8/1486 regression PASS. Fixed judge comparison closed without qualified auditor; full production NOT_RUN/BLOCKED. Fixed96 panel=92COMPLETED+2BUDGET+2pending,94terminalReplayPASS; UNCALIBRATED. Final stage/suite evidence: docs/v5/data_factory_upgrade/04_TRIAL_RESULTS.md and FINAL_S0_S6_ACCEPTANCE_R13.json. Scientific/formal gates remain open.
+# Current source export20261018: exports/source-code-20261018;credentials/history archives excluded;research task statuses unchanged.
+# Workspace consolidation20261018: archived993-file legacy generation prototype inside main workspace;removed13 early fragments with verified recovery;compressed4394 completed test temporary files;runtime/scientific task statuses unchanged. Evidence:artifacts/workspace_maintenance/20261018-r1/.
+# GitHub private source upload20261014: JiaDirty/ioa-bench-v5;owner-only access verified;remote commit/tree match;research task statuses unchanged. Evidence:artifacts/workspace_maintenance/20261014-github-private-r1/VERIFICATION.json
 # Source-review handoff20261014:46769 files inventoried;53 development caches archived/removed;4 packaging checks pass;docs/HANDOFF_20261014_CHATGPT.md and exports/chatgpt-source-review-20261014 registered;API0;research task statuses unchanged.
 # Packaging/cleanup evidence:artifacts/workspace_maintenance/20261014-source-review-r1;final archive verification is in the export directory,not a scientific acceptance claim.
 # Data-factory process review20261014:6 repairs;factory2.3.5/quality1.4.0/control1.4.1;155 focused/852 complete v5 tests;18-suite preflight36/36 and228 references;API0.
@@ -23,6 +55,181 @@
 # Evidence: artifacts/v5/overnight_runs/20261013-authored-online-r1; 40/40 replay, no-call resume; no formal freeze.
 # Authored data are locally executable candidates; independent review and calibrated difficulty remain open.
 # Task/state evidence: WORK_QUEUE_V5_DYNAMIC_WORLD.yaml authored_online_overlay; same Goal.
+tree_factory_continuation_20261028:
+  evidence: artifacts/v5/data_factory/main_quality_20261028-r22
+  report: artifacts/v5/data_factory/main_quality_20261028-r22/REPORT.md
+  tasks:
+  - id: QDIV-009
+    status: planned
+    objective: Bind T332 public support information, protected structural fields and external replies to the same business enquiry.
+    next_files: src/ioabench/v5/dynamic/t332_slice.py_and_existing_workflow_compiler_modules_shared_factory
+    acceptance:
+    - Original confidentiality policy, follow-up intervention, hidden truth, scoring and budget remain fixed.
+    - Actual directory records and public support replies reference the same business object; no automatic reply filtering substitutes for model behavior.
+    - Both directory projections, actual external sends and both workflow conditional outcomes execute and strictly replay.
+    - Real model generation and semantic review remain distinct from scripted engineering checks.
+  - id: QDIV-008
+    status: done
+    completion_scope: T313_S4_read_only_settlement_engineering_only_not_formal_admission
+    objective: Execute read-only settlement review through actual parent/subgrant dispatch and revised-validity checks.
+    evidence: artifacts/v5/data_factory/main_quality_20261028-r22
+    progress: 50focusedPASS_2295fullRegressionPASS_8realHistoryFactoryPairsPASS_48strictReplays_2actualAgents_1233sourceFiles_39829historyUnchanged_0calls_0admissions_0formal
+    acceptance:
+    - Original grants, scope, audience, operations, validity intervention, Oracle and scorer remain unchanged.
+    - Both chain views, linear/fork/conditional workflows and both conditional outcomes have actual execution and strict replay.
+    - Current-source full regression, source/archive checks and historical evidence protection pass before engineering completion.
+    - Scripted engineering checks do not count as real model generation, semantic admission or formal data.
+  - id: QPERF-001
+    status: done
+    completion_scope: local_history_indexing_only_not_end_to_end_throughput
+    objective: Build the existing history in one pass without losing cases, occurrences or pinned metadata.
+    evidence: artifacts/v5/data_factory/main_quality_20261028-r21
+    progress: 14focusedPASS_40realPairs_8259fullRecordsEqual_105_18seconds_to6_54seconds_2280fullregressionPASS_88replays_1230sourceFiles_38950historyFilesUnchanged_0externalCalls
+    acceptance:
+    - Full historical records remain equal after ignoring only array ordering; original inputs are unchanged.
+    - Current-source regression, strict replay and source file/archive verification pass without provider calls.
+  - id: QDIV-007
+    status: in_progress
+    objective: Bind T343 approvals and T322 destination protocol records to actual business objects and shared tree execution.
+    evidence: artifacts/v5/data_factory/main_quality_20261028-r20
+    progress: T3438sharedPairs_T3224localOnlyPairs_2279regression_88offline8onlineReplayPASS_1freshT343engineeringPair6of6steps_0newadmissions_networkUnknown_originalContractMissing
+    acceptance:
+    - Current-source regression and both conditional outcomes pass; original scorer, truth, budgets and risk slots remain unchanged.
+    - T343 medicine and payment candidates complete fresh generation and two development reviews with recorded request outcomes.
+    - T322 unavailable historical contracts remain a distinct admission blocker unless real original evidence is recovered.
+  - id: QDIV-006
+    status: done
+    completion_scope: T311_T351_engineering_routes_and_development_generation_only
+    result: 2252_regression_112_offline_28_online_reference_12_branch_replays_PASS_4_DEV_pairs_16_complete_0_unknown
+    objective: Integrate qualification and incentive mechanisms with concrete business objects and verify fresh generation, preserved context, audit input mappings and paired Replay.
+    acceptance:
+    - Real generated medicine and payment plans execute all declared business stages and both condition outcomes are separately checked.
+    - Two development reviews, exact-source regression, request accounting and zero-call terminal resume pass with original rejections retained.
+    - Current nine-route progress never substitutes for full18-suite or formal scientific acceptance.
+
+tree_factory_expansion_20261027:
+  scope: T352_T353_business_tree_integration_and_offline_stability_only_not_formal_admission
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r16
+  report: artifacts/v5/data_factory/main_quality_20261026-r16/REPORT.md
+  tasks:
+  - id: QDIV-005
+    status: done
+    completion_scope: engineering_routes_and_scripted_offline_matrix_only
+    result: 2206_regression_pass_16_of_16_offline_pairs_pass_96_strict_replays_0_provider_calls_0_new_formal_cases
+    objective: Integrate T352 and T353 into the shared tree factory with real medicine and payment business duties, conditional structures, and preserved scorer/budget contracts.
+    acceptance:
+    - T352 and T353 candidate pairs execute through the shared tree factory and strict Replay.
+    - Full v5+m1 regression passes with no provider calls.
+    - R15 unresolved request and all historical evidence remain preserved; no formal promotion.
+  - id: QGEN-005
+    status: in_progress
+    objective: Require concrete business goals and natural industry context in generation prompts, and make parsed optional fields round-trip without changing an accepted plan.
+    evidence: artifacts/v5/data_factory/main_quality_20261027-r17/REAL_PLAN_ROUNDTRIP.json
+    progress: six_real_generated_plans_preserve_goal_context_stages_edges_and_conditions_semantic_business_quality_separate
+    acceptance:
+    - The actual generator returns an explicit useful business goal and coherent organisation context.
+    - Raw and normalized versions of the same plan retain identical executable structure and conditions.
+    - A real model generation run still needs to verify the prompt path; scripted/offline evidence alone is insufficient.
+
+logistics_expansion_20261026:
+  scope: expand_actual_executable_business_worlds_with_no_new_audit_protocol
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r15
+  tasks:
+  - id: QDIV-004
+    status: done
+    completion_scope: engineering_expansion_and_explicit_trial_outcomes_only_not_formal_admission
+    result: 3structures_both_branches_36strictReplay_2157regression_1fresh_pair_quarantined_second_review_unknown_0admissions
+    objective: Add shipment reconciliation and handover modules to the shared tree, bind manifest quantities to the T331 ledger, exercise distinct structures and both variance branches, and run fresh model generation.
+    acceptance:
+    - Three structures and both quantity branches execute with real tools and strict Replay.
+    - Complete regression passes and historical source remains preserved.
+    - Fresh generation has explicit engineering, dedup, semantic review and admission outcomes with all requests accounted for.
+  paid_trial_status: STOPPED_REQUEST_UNRESOLVED_no_resend
+  full_18_suite_goal_complete: false
+
+registered_audit_next_20261026:
+  scope: full_quality_stability_diversity_and_high_quality_data_goal_remains_active
+  evidence: artifacts/v5/data_factory/main_quality_20261026-r3
+  tasks:
+  - id: QAUD-001
+    status: done
+    evidence: artifacts/v5/data_factory/main_quality_20261026-r4/FINAL_VERIFICATION.json
+    objective: Version the development review boundary so deterministic hard facts are checked before semantic model review.
+    acceptance:
+    - Preserve every existing scientific hard gate, source seal, history rule, Replay requirement and hidden-truth boundary.
+    - Known hard-failure candidates terminate with explicit evidence and zero auditor requests; valid candidates still require isolated semantic review, never automatic acceptance.
+    - Keep prior protocols and original outcomes replayable; hard controls and genuinely semantic controls are reported separately.
+  - id: QAUD-002
+    status: in_progress
+    prior_evidence: artifacts/v5/data_factory/main_quality_20261026-r6/semantic_review_final
+    current_evidence: artifacts/v5/data_factory/main_quality_20261026-r13/CLAIM_REVIEW.json
+    current_gap: R13_group_schema_coverage_fixed_but_6literal_citation_mismatches_and_infrastructure_enforcement_scope_errors_actual_score_outcome_absent_from_packet_qualification_OPEN
+    depends_on: [QAUD-001]
+    objective: Freeze consistent semantic controls and verify auditor causal, business-utility and reuse judgments plus actual output conformance.
+    acceptance:
+    - Program summaries match actual documents before freeze; expected labels never enter auditor inputs.
+    - Provider parameter acceptance or absent degradation headers never stand in for actual schema validation.
+    - No lower threshold, fabricated constraints, default verdict, changed SUT prompt or scientific promotion.
+  - id: QACK-001
+    status: done
+    evidence: artifacts/v5/data_factory/main_quality_20261026-r6
+    objective: Require real successful terminal receipt acknowledgements in positive T331-A2 witnesses and prevent duplicate acknowledgement loops.
+    acceptance:
+    - Terminals receive the actual duty; failed sends cannot confirm receipt; positive traces cannot pass with no acknowledgements.
+    - Both arms and all supported topologies execute each terminal acknowledgement once, retaining negative-policy behavior and unchanged safety scorer and budgets.
+    - Version changes, preserve old sources and outcomes, rerun affected proposals and optional branches with exact-source Replay and regression.
+  - id: QDIV-001
+    status: done
+    evidence: artifacts/v5/data_factory/main_quality_20261026-r4/GRAPH_DIVERSITY_FINAL.json
+    objective: Improve executable coverage planning to reduce repeated same-structure near duplicates and produce additional qualified development pairs.
+    acceptance:
+    - Count actual consumed graph and mechanism diversity separately from prose, labels, seeds and industry switches.
+    - Preserve every rejected, quarantined and unstarted opportunity in the denominator.
+  - id: QDIV-002
+    status: done
+    depends_on: [QDIV-001]
+    objective: Exercise optional business branches before counting their added graph stages as consumed diversity.
+    evidence: artifacts/v5/data_factory/main_quality_20261026-r5/BRANCH_DIVERSITY.json
+    acceptance:
+    - Preserve original T331 admissions and their closure_eligible=false flags; no retroactive promotion.
+    - Use real branch predicates, action receipts and unchanged safety and utility semantics, with strict paired Replay.
+    - Distinguish graph novelty, actually executed stages, mechanism diversity and scientific families in output.
+  - id: QDIV-003
+    status: done
+    evidence: artifacts/v5/data_factory/main_quality_20261026-r12/FINAL_VERIFICATION.json
+    scope: Bounded_dependency_grammar_only_not_full_DAG_exhaustion
+    progress: Report_integrated_into_prepare_all_retained_attempts_in_prompt_52related_tests_120final_strictReplay
+    objective: Plan unexplored feasible module dependency graphs before enrichment and report finite capacity and exhaustion.
+    acceptance:
+    - Compare actual executable graph coverage with retained history; labels, seeds and prose do not count as new structures.
+    - Preserve rejection denominators and unchanged dedup thresholds; no automatic admission or scientific family claim.
+  - id: Q18-001
+    status: in_progress
+    current_evidence: artifacts/v5/data_factory/main_quality_20261028-r19
+    progress: nine_tree_routes_nine_remaining_2252regression152strictReplayPASS_four_new_DEV_pairs_next_T343_T322
+    objective: Extend compositional execution beyond the three pilots, starting with registration distortion and accountability receipt chains.
+    acceptance:
+    - Preserve the 18 canonical meanings, neutral role contexts, single intervention and separate safety and utility metrics.
+    - Demonstrate real runtime consumption and positive/negative action witnesses plus strict paired Replay before paid generation.
+  - id: QCOH-001
+    status: in_progress
+    evidence: artifacts/v5/data_factory/main_quality_20261026-r10/FINAL_VERIFICATION.json
+    progress: T323_transaction_linkage_verified_other4_supported_contexts_pending
+    objective: Align generated business duties with the actual scenario domain and distinguish receipt execution from end-to-end business utility.
+    acceptance:
+    - Version new generation inputs; preserve original admissions, sources, single-intervention worlds and safety scorers.
+    - Demonstrate coherent domain and object relationships in real generated cases; do not call a grafted workload integrated task utility or a logical role an independent agent.
+    - Keep script-reference performance separate from actual tested-model behavior and independently calibrated difficulty.
+  - id: QFACT-001
+    status: done
+    evidence: artifacts/v5/data_factory/main_quality_20261026-r11/FINAL_VERIFICATION.json
+    progress: Both_industries_read_check_quantities_and_branch_flags_verified_in_all5_supported_suites
+    objective: Derive conditional business facts and related receipt fields from one versioned business state.
+    resolved_gap: finance_and_medicine_flags_now_derive_from_shared_quantities_original_inputs_unchanged
+    acceptance:
+    - Clarify exception semantics, fix shared module receipt construction and cover both branch values across callers.
+    - Preserve original blueprints, source snapshots, admissions and reviews; use new versions and independent trial outputs.
+    - Keep unsafe actions possible and safety scorers, budgets, quality thresholds and Oracle separation unchanged.
 version: 26
 purpose: Executable M0–M10 implementation DAG plus post-M10 scientific acceptance
   remediation for IoA-Bench v1.
@@ -149,6 +356,142 @@ summary:
   last_updated: '2026-10-09 v5 single-model protocol, DeepSeek diagnostic, T332 runtime fix and offline revalidation recorded'
   task_count: 464
   version: 26
+workspace_maintenance_20261023_overlay:
+  status: COMPLETE_SOURCE_REVIEW_DELIVERED
+  evidence: artifacts/workspace_maintenance/20261023-r1
+  scope: workspace_cleanup_source_review_and_progress_only
+  runtime_changed: false
+  current_packaging_report_tests: PASS_51
+  source_package_verification: exports/source-code-20261023/PACKAGE_VERIFICATION.json
+  source_package: PASS_1537_files_CRC_SHA_secret_scan_extracted_runtime_hash_import_CLI
+  provider_calls: 0
+  scientific_acceptance_changed: false
+development_auto_audit_20261020_overlay:
+  authorization: explicit_user_same_model_development_factory_20261020
+  status: DELIVERED_WITH_ENGINEERING_LIMITS
+  evidence: artifacts/v5/data_factory/dev_auto_audit/round-20261020
+  scope: DEVELOPMENT_AUTO_AUDITED
+  phases:
+    A_baseline: PASS_32_pairs_preserved_no_regeneration
+    B_audit: PASS_closed_loop_32_baseline_audited_19_accepted_16_reused_3_new_CALIBRATION_FAIL_4_of_6
+    C_gaps: T362_PASS_3_executable_structures_T322_QUARANTINED_120_missing_old_contracts
+    D_diversity: PARTIAL_18_suite_census_12_suites_accepted_14_grammars_upper_bound_2_recount_20261023
+    E_reuse: PASS_1844_current_regression_180204_history_272_exact_source_Replays_42_zero_call_resume
+    F_handoff: PASS_R2_CRC_SHA_secret_scan_9_source_snapshots_272_extracted_Replays_zero_call_resume_R1_failure_preserved
+  delivery_verification: exports/development-factory-handoff-20261020-r2/FINAL_DELIVERY_VERIFICATION.json
+  handoff_code_commit: a8c22053df8c77750c85f99b314047e9285b4f5b
+  human_gold_prerequisite_for_development: false
+  cross_family_exclusion_for_development: false
+  formal_accepted: false
+  same_model_audit_independent_science: false
+  new_goal: false
+  simulation_only: [T361, T362, T363]
+direct_deepseek_g2_20261020_overlay:
+  historical_checkpoint: true
+  current_development_scope_override: development_auto_audit_20261020_overlay
+  instruction: PI-V5-023_user_direct_official_flash_G2_execution_pack
+  status: blocked
+  acceptance: BLOCKED_EXTERNAL
+  evidence: artifacts/v5/data_factory/direct_deepseek_g2/deepseek-g2-20261020T0430Z
+  scope: DEVELOPMENT_EXPLORATORY_SAME_FAMILY
+  tasks:
+    - {id: DS-G2-S0, status: done, acceptance: PASS, scope: baseline32735cc_writer_lock_protected_inventory_173519}
+    - {id: DS-G2-S1, status: done, acceptance: PASS, scope: official_live_catalog_high_disabled_JSON_thinking_tool_full_followup, retained_failure: prose_plus_JSON_without_response_format}
+    - {id: DS-G2-S2, status: done, acceptance: PASS, scope: first_T331_real_four_stage_pair_both_arms_history_6_strict_replays}
+    - {id: DS-G2-S3, status: failed, acceptance: FAIL, scope: 32pairs_16of18_suites_two_targets_each, gaps: T322_external_history_T362_local_finite_grammar}
+    - {id: DS-G2-S4, status: done, acceptance: PASS, scope: 24_actual_fixed_task_comparisons_disabled2_low4_high5_max4_recommend_high}
+    - {id: DS-G2-S5, status: done, acceptance: PASS, scope: 1652_tests_173519_protected_78_terminal_zero_send_47_candidates_294_strict_replays}
+    - {id: DS-G2-S6, status: done, acceptance: PASS, scope: exact_runtimes_source_evidence_statistics_commits_secret_free_CRC_SHA_independent_extract_294replays}
+  machine_qualified_samples: 0
+  formal_accepted: false
+  publication_ready: false
+coordination_round02_resumed_20261020_overlay:
+  instruction: user_explicit_key_reenabled_fresh_verification_and_complete_provider_matrix_until_external_blocker
+  status: blocked
+  acceptance: BLOCKED_AUTH_PERMISSION_RECURRED_AFTER_INITIAL_HTTP200
+  evidence: artifacts/v5/provider_benchmark/round02-resume-20261020T024920Z/ROUND_REPORT.md
+  historical_summary_unchanged: true
+  tasks:
+    - {id: COORD02R-S0, status: done, acceptance: PASS, scope: baseline4620286_writer_lock_39358_history_hashes_unchanged}
+    - {id: COORD02R-S1, status: blocked, acceptance: PARTIAL, scope: new_official_alternate_MiMo_HTTP200_exact_ID_usage120, reason: subsequent_Claude_HTTP401_global_stop}
+    - {id: COORD02R-S2, status: done, acceptance: PARTIAL, scope: AA_live20_model_catalog_and_schemas, reason: Grok_numeric_output_limit_unverified_POST_NOT_RUN}
+    - {id: COORD02R-S3, status: done, acceptance: PARTIAL, scope: 19models_called18_complete_protocol_PASS_67effort_configs, reason: MiniMax_output_Muse_local_precheck_failure_retained_then_Responses_PASS}
+    - {id: COORD02R-S4, status: blocked, acceptance: PARTIAL, scope: R536plan533PASS2FAIL1NOT_RUN_two_short_batches, reason: Q536plan4started0valid532NOT_RUN_auth_stop_B_and_rankings_NOT_RUN}
+    - {id: COORD02R-S5, status: done, acceptance: PARTIAL, scope: Mock138PASS_and1631full_regression_159terminal_zero_send_resume_inactive_profile_rejected, reason: live_healthy_fallback_NOT_RUN_AUTH_STOP}
+    - {id: COORD02R-S6, status: done, acceptance: BLOCKED_HANDOFF_DELIVERED, scope: actual_source_changes_local_commit_no_push_versioned_inactive_profile_reports_and_verified_ZIP}
+  first_machine_qualified: BLOCKED
+  gold_PI: HUMAN_REQUIRED
+  active_profiles: 0
+  scientific_acceptance_changed: false
+coordination_round02_aihubmix_20261020_overlay:
+  instruction: user_adopted_Round02_independent_provider_engineering_specialty
+  goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+  status: blocked
+  acceptance: BLOCKED_AUTH_PERMISSION
+  evidence: artifacts/v5/provider_benchmark/round02-20261020T002308CST/ROUND_REPORT.md
+  historical_summary_unchanged: true
+  tasks:
+    - {id: COORD02-S0, status: done, acceptance: PASS, scope: existing_writer_lock_baseline_inputs_and_history_protection}
+    - {id: COORD02-S1, status: blocked, acceptance: BLOCKED_AUTH_PERMISSION, scope: credential_free_DNS_TCP_TLS_HTTP_path_isolation_then_one_fresh_completion_HTTP401}
+    - {id: COORD02-S2, status: blocked, acceptance: NOT_RUN, depends_on: [COORD02-S1], reason: no_effective_completion_no_active_profiles}
+    - {id: COORD02-S3, status: blocked, acceptance: NOT_RUN, depends_on: [COORD02-S2], reason: no_paid_protocol_or_effort_matrix_after401}
+    - {id: COORD02-S4, status: blocked, acceptance: NOT_RUN, depends_on: [COORD02-S3], reason: no_quality_cost_or_multiperiod_stability_ranking}
+    - {id: COORD02-S5, status: blocked, acceptance: PARTIAL_MOCK_ONLY, depends_on: [COORD02-S4], scope: offline_guard_regression_and_actual_terminal_resume_no_send, reason: live_failover_NOT_RUN}
+    - {id: COORD02-S6, status: done, acceptance: BLOCKED_HANDOFF_DELIVERED, scope: factual_reports_candidate_profiles_hash_ledger_1607_regression_and_local_commit_no_push}
+  first_machine_qualified: BLOCKED
+  gold_PI: HUMAN_REQUIRED
+  scientific_acceptance_changed: false
+coordination_round01_20261019_overlay:
+  instruction: COORD-R3-01_round01_user_adopted_20261019
+  goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+  status: blocked
+  acceptance: ENGINEERING_READY_BOUNDED_MACHINE_QUALIFICATION_BLOCKED
+  evidence: artifacts/v5/data_factory/coord-round01-20261019T073200Z/ROUND_REPORT.md
+  historical_summary_unchanged: true
+  tasks:
+    - {id: COORD01-A-MATERIALS, status: done, acceptance: PASS, scope: two_independent_phase_A_B_human_packages_18cases_CRC_SHA_no_identity_or_preset_label_leak}
+    - {id: COORD01-A-REVIEWS, status: blocked, acceptance: HUMAN_REQUIRED, reason: two_real_independent_reviews_then_PI_disposition_NOT_RUN}
+    - {id: COORD01-B-PROVIDER, status: blocked, acceptance: BLOCKED_UNRESOLVED_NETWORK, scope: one_new_MiMo_completion_no_HTTP_response_no_old_resend, reason: no_completion_recovery_proof_new_request_not_resent}
+    - {id: COORD01-C-REPAIR, status: done, acceptance: PASS, scope: factory2.7.1_reject_indeterminate_history_before_audit_negative_regression_1564_plus13_pass}
+    - {id: COORD01-C-PREPARE, status: done, acceptance: PASS_ENGINEERING_ONLY, scope: one_T331_G1_valid_family_instance_all_history_gates_6references_6Replay_zero_call_resume}
+    - {id: COORD01-D-READINESS, status: done, acceptance: PASS_BOUNDED, scope: 18typed_19slices_540references_49of52cells_36negative_controls_72Mock_stages}
+    - {id: COORD01-FIRST-MACHINE, status: blocked, acceptance: NOT_RUN, depends_on: [COORD01-A-REVIEWS, COORD01-B-PROVIDER], reason: no_qualified_auditor_no_new_qualification_without_PI_Gold_disposition}
+  first_machine_qualified: BLOCKED
+  machine_qualified_samples: 0
+  formal_freeze: NOT_RUN
+  confirmation_Pilot: NOT_RUN
+  Campaign: NOT_RUN
+  human_experiments: NOT_RUN
+  formal_accepted: false
+  simulation_only: [T361, T362, T363]
+r13_followup_20261019_overlay:
+  authorization: PI-V5-020
+  goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+  status: blocked
+  acceptance: PARTIAL
+  evidence: artifacts/v5/data_factory/next-r1/FINAL_ACCEPTANCE.json
+  report: docs/WORK_COMPLETION_20261019_R3.md
+  historical_summary_unchanged: true
+  tasks:
+    - {id: NEXT-P0, status: done, acceptance: PARTIAL, scope: current_identity_ZIP_comparison_and_baseline_tests, limitation: original_protection_scan_included21_transient_pytest_files_raw_FAIL_retained}
+    - {id: NEXT-GOLD-FACTS, status: done, acceptance: PASS, scope: 108_rows_recomputed_18_blind_control_packages_old_scores_unchanged}
+    - {id: NEXT-GOLD-PI, status: blocked, acceptance: BLOCKED, depends_on: [NEXT-GOLD-FACTS], reason: two_independent_blind_reviews_and_PI_disposition_required}
+    - {id: NEXT-PROTOCOL, status: done, acceptance: PARTIAL, scope: eight_exact_IDs_JSON_and_tool_roundtrips, limitation: context_full_output_NOT_RUN_GLM_disabled_Qwen_limit_MiMo_usage_anomalies}
+    - {id: NEXT-GENERATION, status: blocked, acceptance: PARTIAL, scope: 192_plan_39valid_10rejected_6provider_failed_3unresolved_134NOT_RUN, reason: real401_and_executor_interruption_no_unresolved_resend}
+    - {id: NEXT-REPAIR, status: done, acceptance: PASS, scope: fixed24_single_field_repairs_compiled_reference_Replay_passed}
+    - {id: NEXT-STRUCTURE, status: done, acceptance: PASS, scope: all18_offline_19slices_49feasible_cells_three_sample_suites_two_structures_each}
+    - {id: NEXT-HISTORY, status: done, acceptance: PARTIAL, scope: 7687_current_source_reprobes_78generated_cases_compared, limitation: 1026indeterminate_no_new_scientific_family}
+    - {id: NEXT-T362, status: done, acceptance: PARTIAL, scope: versioned5.1.1_leak_fix_20cases_60references_20runner_Replay_resume, limitation: historical_scientific_disposition_PI_REQUIRED}
+    - {id: NEXT-DEVELOPMENT-PANEL, status: done, acceptance: PARTIAL, scope: 48planned_11completed_2interrupted_1infra_failure_34NOT_RUN_11Replay, limitation: real401_scientific_difficulty_uncalibrated}
+    - {id: NEXT-PRODUCTION, status: blocked, acceptance: NOT_RUN, depends_on: [NEXT-GOLD-PI, NEXT-PROTOCOL, NEXT-HISTORY], reason: no_qualified_auditor_no_machine_qualified_parent_no_G3}
+    - {id: NEXT-DELIVERY, status: done, acceptance: PASS, scope: actual1562regression_ledger_manifests_docs_local_commit_da4ba4e_package7779files_CRC_SHA_secret_scan_independent_extraction, evidence: state/SOURCE_DELIVERY_20261019_R3.yaml, limitation: scientific_and_provider_blockers_unchanged}
+  provider_stop: AUTH_PERMISSION_HTTP401_no_new_completion_or_unresolved_retry
+  formal_freeze: NOT_RUN
+  confirmation_Pilot: NOT_RUN
+  Campaign: NOT_RUN
+  human_experiments: NOT_RUN
+  formal_accepted: false
+  simulation_only: [T361, T362, T363]
 items:
 - id: M0-001
   milestone: M0
@@ -9893,6 +10236,7 @@ items:
   depends_on:
   - V32-S0-RECONCILE
   provider_calls: false
+
   verdict: PARTIALLY_CONFIRMED
   evidence:
   - artifacts/gates/CODEX_INDEPENDENT_REVERIFICATION.json
@@ -10427,3 +10771,49 @@ items:
   - docs/HANDOFF_20261010_CHATGPT.md
   - exports/chatgpt-source-review-20261010/PACKAGE_VERIFICATION.json
   provider_calls: false
+
+r3_codex_closure_20261025_overlay:
+  status_from: exports/codex-r3-closure-20261025/R3_GOAL_STATUS.json
+  contract: docs/plans/codex_r3_closure_20261025/GOAL.md
+  evidence: artifacts/v5/data_factory/tree_factory_r3/tf-r3-20261025-r1/closure
+  completed_engineering: empty_assertions_red_green_strict_witnesses_typed_graph_mapping_declared_edge_consumption_SSE_terminal_and_orphan_guards
+  current_strict_DEV_pairs: {T321: 2, T331: 2, T362: 2}
+  executed_new_families: {T321: 2, T331: 2, T362: 2}
+  frozen_AB_route_outcomes: 36_of_36_actual_no_field_changes
+  preserved_unknowns: six_closure_POSTs_never_resend_nine_including_older_R3_scopes
+  final_checks: final_HEAD_full_regression_strict_replay_nonzero_history_protection_zero_network_resume_dual_ZIP
+  next_scope: staged_remaining_15_only_after_external_C0_C7_all_PASS
+  final_acceptance: exports/codex-r3-closure-20261025/R3_GOAL_STATUS.json
+  no_R4_or_scientific_promotion: true
+
+delivery_action_plan_20261026:
+  status: PLAN_RECORDED_GOAL_ACTIVE
+  evidence: docs/v5/IOA_DELIVERY_ACTION_PLAN_20261026.md
+  objective: complete_reproducible_18_suite_ioa_benchmark_project
+  current_tree_suites: [T312, T321, T323, T331, T362]
+  current_executable_business_roots: [industry.medicine_supply, industry.payment_clearing]
+  r14_offline: {focused: 46, regression: 2149, external_network_attempts: 0}
+  r14_source_sha256: f2a37fd302f441a1e676d3fdcfeefe287c235f84bf1d871272fa305aaa9d2dd8
+  r14_final_verification: NOT_RUN
+  r14_live_controls: NOT_RUN
+  qualified_formal_datasets: NOT_ESTABLISHED
+  final_18_suite_model_run: NOT_RUN
+  git_remote_configured: false
+  owner_suggestions: {workflow_and_suite_coverage: Wang_Hangzhou, suite_construct_review: Tong_Haibo, staffing_when_needed: Zhao_Feifei}
+  next_work: R14_source_verification_then_R14_fresh_controls_then_8_domain_tree_expansion_then_remaining_13_suites
+
+workspace_github_sync_20261028:
+  status: SOURCE_SYNC_PREPARED_VERIFY_RECEIPT_LOCALLY
+  repository: https://github.com/JiaDirty/ioa-bench-v5
+  visibility_observed: PUBLIC
+  scope: current_source_tests_docs_business_assets_and_sanitized_R22_summaries
+  cleanup: regenerable_development_caches_only
+  existing_data_and_release: PRESERVED
+  local_history_branch: codex/local-history-20261028
+  local_private_history_uploaded: false
+  full_regression_rerun: false
+  scanner_self_check: PASS
+  new_provider_calls: 0
+  research_acceptance_changed: false
+  receipt: artifacts/workspace_maintenance/20261028-github-sync-r1/GITHUB_VERIFICATION.json
+  workspace_document: docs/WORKSPACE_STATUS_20261028.md

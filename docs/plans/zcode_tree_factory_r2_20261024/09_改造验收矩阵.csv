@@ -1,0 +1,8 @@
+Goal,Phase,Original_issue,Main_files,Required_evidence,Minimum_acceptance
+R2-G0,M0,"基线状态混淆与旧STOP","AGENTS.md;state/PROJECT_STATE.yaml;src/ioabench/v5/ai_generation/aihubmix_study.py","BASELINE_R2.json;R2_RUN_CONTRACT.json","新run独立;旧证据不变;HEAD绑定"
+R2-G1,M1,"Tree分支只改prompt","scenario_tree.py;tree_factory.py;t331_dyna_compiler.py;t321_dyna_compiler.py;t362_dyna_compiler.py","TREE_RUNTIME_BINDINGS.jsonl;TRACE_CROSS_ROOT.json","同proposal/target改业务根后真实角色工具资产与事件改变;配对只单干预"
+R2-G2,M1,"MechanismIR未进入主链且非法IR可投影","mechanism_ir.py;compiler_capabilities.py;tree_factory.py","IR_CONSUMPTION_TRACE.jsonl;IR_NEGATIVE_TESTS.xml","新候选全部必经validate;非法IR一律拒绝投影;6种机制真实见证"
+R2-G3,M3,"旧费用硬停+16K截断+G1收据漏判","aihubmix_study.py;development_audit.py;models/aihubmix.py;tf_ab_pilot.py","PROVIDER_CONTRACT.json;SSE_FAILURE_TESTS.xml;REQUEST_LEDGER.jsonl","无费用停机;精确回执检查;实测合法max_tokens;未知请求不重发"
+R2-G4,M2,"审核事实矛盾与长证据包","audit_facts.py;development_audit.py;tree_factory.py","AUDIT_CALIBRATION.json;MODEL_AUDIT_OBSERVATIONS.csv","程序负例不能误受;正例不全拒;模型审阅分母单独报告"
+R2-G5,M4-M5,"T321 0入池+机制/实例混计","tree_factory.py;tf_ab_pilot.py;history.py","DEV_POOL_INDEX.jsonl;AB_RESULTS.csv;MECHANISM_DIVERSITY.csv;WORKFLOW_DIVERSITY.csv","T321/T331/T362各有至少1对本轮全新DEV_ACCEPTED;无旧结果冒充"
+R2-G6,M6,"HEAD/旧closeout绑定不一致","tests/v5;tests/m1;state/*;scripts/v5","FULL_REGRESSION.xml;R2_GOAL_STATUS.json;SOURCE.zip;EVIDENCE.zip","当前HEAD回归通过;Replay可复现;本地Git提交;保护/密钥校验通过"

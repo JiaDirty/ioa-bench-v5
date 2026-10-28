@@ -1,0 +1,105 @@
+# IoA-Bench v5 R3 candidate execution profile. Values require real provider compatibility check.
+# NEVER put API key here. Read AIHUBMIX_API_KEY from the local environment only.
+version: ioabench.v5.r3-quality-first/1.0.0
+mode: development_auto_audited
+zcode_developer_agent:
+  model_family: GLM-5.3
+  effort: max
+  note: 'ZCode product setting; NOT a parameter to the AIHubMix DeepSeek API.'
+provider:
+  name: aihubmix
+  base_url: https://aihubmix.com/v1
+  model_id: deepseek-v4.1-flash-1017
+  key_env: AIHUBMIX_API_KEY
+  streaming: true
+  json_mode: true
+  require_completed_finish: true
+  request_id_unique_per_attempt: true
+  never_resend_unknown_post: true
+  model_identity_check: true
+  use_existing_adapter: true
+  max_context_tokens:
+    advertised: 1000000
+    enforcement: provider_native_only
+    note: 'Not independently load-tested at 1M. Do not artificially cap at 120K.'
+  output_max_tokens:
+    standard: 131072
+    complex: 262144
+    conditional_ceiling: 393216
+    ceiling_requires_accepted_provider_probe: true
+    ceiling_does_not_imply_all_tokens_will_be_emitted: true
+  thinking:
+    default: high
+    complex: max
+    fallback: highest_provider_accepted
+    verify_reasoning_effort_compatibility: true
+  response_format:
+    preferred_type: json_object
+    validate_local_schema: true
+    schema_overrides_natural_language: true
+  billing:
+    monetary_soft_stop: null
+    monetary_hard_stop: null
+    log_usage_and_actual_invoice_if_available: true
+    log_cost_estimate_separately_from_invoice: true
+  transport:
+    transport: sse
+    require_terminal: true
+    record_http_and_stream_finish_reason: true
+    categorize_length_truncation_separately: true
+    network_unknown_is_not_retryable_same_request: true
+  stop_on:
+    - unauthorized_or_forbidden
+    - unavailable_secret
+    - confirmed_insufficient_balance
+    - request_terminal_state_unknown
+workflow_generation:
+  route: compositional_tree_ir_r3
+  workflow_plan_schema: ioabench.v5.workflow-plan/1.0.0
+  stages:
+    plan:
+      max_tokens: 131072
+      thinking: high
+    difficult_plan:
+      max_tokens: 262144
+      thinking: max
+    surface_artifacts:
+      max_tokens: 131072
+      thinking: high
+    semantic_review_high:
+      max_tokens: 131072
+      thinking: high
+    semantic_review_max:
+      max_tokens: 262144
+      thinking: max
+  escalate_on:
+    - complete_finish_reason_length
+    - verified_output_token_exhaustion
+  no_escalation_on:
+    - unsupported_provider_parameters
+    - uncertain_network_terminal_state
+  proposal_requirements:
+    propose_dag_not_preset_full_flow: true
+    truth_owned_by_program: true
+    role_grants_from_catalog_only: true
+    evidence_references_must_resolve: true
+    validate_before_suite_compiler: true
+    save_raw_response_and_plan: true
+  audit:
+    deterministic_facts_first: true
+    human_readable_evidence_pointers: true
+    same_model_two_efforts_independent_science: false
+experiments:
+  pilots: [T321, T331, T362]
+  min_new_dev_accepted_pairs_per_suite: 2
+  min_new_executable_workflow_families_per_suite: 2
+  min_matched_opportunities_per_suite_per_route: 6
+  freeze_before_ab_paid_calls: true
+  count_original_attempt_and_repair_separately: true
+  no_monetary_stop: true
+history:
+  preserve_r1_r2_accepted: true
+  never_modify_prior_stop_ledgers_or_receipts: true
+  preserve_control_risk_single_intervention: true
+  require_strict_replay: true
+  require_historical_dedup: true

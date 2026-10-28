@@ -1,0 +1,5 @@
+请直接执行现有项目 D:\Project\ioa_codex_spec 的 R3 收口工作，不要只做计划或复述。先按仓库现有 AGENTS.md 和最新状态核对，然后以 docs/plans/codex_r3_closure_20261025/GOAL.md 为唯一完成合同，依次执行 02_EXECUTION_QUEUE.md 的 S0–S5。当前已知 R3 有 T321 5对、T331 1对、T362 1对新DEV_ACCEPTED，关键漏洞是 tree_factory.run_task 中 business_witnesses 处于 if assertion_ids 分支里、空断言可能漏验；立即写红测、修到真实业务见证必经，然后做类型化DAG图同构及历史新颖性审计，针对实际缺口补齐三套件各≥2对新入池且各≥2个经真实执行和历史比对的新家族，完成冻结18个matched task机会的A/B和已有消融，最终HEAD全量回归、Replay、保护验证、本地提交、SOURCE/EVIDENCE交付。
+
+模型生成及研发审核使用AIHubMix deepseek-v4.1-flash-1017。用户已在本机将Base URL改成 https://api.inferera.com/v1（官方备用域名、适合当前网络），你必须先检查最新代码并保留该修改，修齐Study/Adapter/Policy/Runner/冻结回执中的任何不一致；不要用10月25日旧快照覆盖。密钥直接从本机现有AIHUBMIX_API_KEY读取，无需再次询问。费用不设任何美元停止阈值。模型公开支持约1M上下文、最大393216输出；复杂生成与审核使用131072/262144 max_tokens，必要时用393216、high/max思考，保留完整SSE收流、JSON/模型身份验证；不要为了省钱设16K/32K导致截断，也不要要求输出无意义的满额Token。未知终态的旧POST绝不重发，新实验使用独立ID。
+
+像高效工程师一样 Inspect→Reproduce→Edit→Test→Run→Verify→Commit；复用现有runner/IR/编译器/工具，不重造第二套平台、不反复写长计划、不为简单字段堆防御性包装。普通问题自主修复继续；只保留对数据真实性关键的单点风险/Oracle/权限/历史/Replay门，不降质量阈值。以当前真实Git状态和run为依据，严守原用户未提交修改、R1/R2封存数据。同模型双档只能叫研发审核，T361–T363保持SIMULATION_ONLY。C0–C7都有原始证据才报完成，若确实被外部阻塞必须交付已完成成果并标PARTIAL/BLOCKED。现在立即从S0快速核实并进入S1写红测，不需要先询问常规细节。

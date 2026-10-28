@@ -1,0 +1,24 @@
+version: ioabench.v5.development-policy/1.0.0
+authorized_at: '2026-10-20'
+authorization: explicit_user_same_model_development_factory_20261020
+scope: DEVELOPMENT_AUTO_AUDITED
+provider: deepseek
+base_url: https://api.deepseek.com
+model_id: deepseek-flash
+roles: {generator: deepseek-flash, auditor: deepseek-flash, repair_proposer: deepseek-flash}
+cross_family_exclusion: false
+human_gold_prerequisite: false
+formal_scientific_claims: false
+same_model_audit_independent_science: false
+formal_accepted: false
+generation_effort: high
+audit_efforts: [high, max]
+audit_contexts: isolated
+minimum_recorded_strict_replays: 6
+history_policy: FULL_HISTORY_OR_QUARANTINE
+near_duplicate_threshold: 0.9
+budget_cny: {soft_notice: 50, hard_stop: 200}
+max_concurrency: 1
+per_stage_post_attempts: 1
+on_unknown_terminal: STOP_AND_PRESERVE_NO_RESEND
+simulation_only: [T361, T362, T363]

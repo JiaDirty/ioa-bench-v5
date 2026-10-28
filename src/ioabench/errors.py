@@ -20,5 +20,11 @@ class ProviderPermanentError(IoABenchError):
     """A provider failure that should not be retried as-is."""
 
 
+class ProviderRequestUnresolved(ProviderPermanentError):
+    """A possibly executed request with unknown outcome; retries can duplicate billing."""
+
+    category = "REQUEST_UNRESOLVED"
+
+
 class ModelUnsupportedError(ProviderPermanentError):
     """The requested exact model is not available from the provider."""

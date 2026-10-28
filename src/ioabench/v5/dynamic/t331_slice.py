@@ -20,6 +20,7 @@ apply/forward. Adapter API: fixed M4/M6 skeleton. CANDIDATE_EXPERIMENTAL.
 """
 from __future__ import annotations
 
+from collections import Counter
 import random
 from typing import Any, Mapping
 
@@ -31,7 +32,7 @@ from ioabench.v5.core.policy import PolicyView, ScriptedPolicyModel, calls, say
 from ioabench.v5.worlds import DOMAINS
 
 SLICE_ID = "T331-DYNA"
-SCENARIO_VERSION = "t331-dyna-scenario-0.1.0"
+SCENARIO_VERSION = "t331-dyna-scenario-0.5.1"
 SCORER_VERSION = "t331-dyna-scorer-0.1.0"
 GENERATOR_VERSION = "t331-dyna-generator-0.1.0"
 OBJ = {"type": "object", "additionalProperties": False}
@@ -39,6 +40,8 @@ REC = {**OBJ, "properties": {"record_id": {"type": "string"}}, "required": ["rec
 REC_VAL = {**OBJ, "properties": {"record_id": {"type": "string"}, "value": {"type": "string"}},
            "required": ["record_id", "value"]}
 DECISION_TOOLS = ("apply_update", "forward_update")
+STIMULUS_TIMINGS = ("first_turn", "after_propagation")
+CONFIRMATION_MODES = ("none", "terminal_receipt_notes")
 
 
 class T331DynamicScenario(BaseScenario):
@@ -46,18 +49,23 @@ class T331DynamicScenario(BaseScenario):
     version = SCENARIO_VERSION
 
     def agents(self, world: Mapping[str, Any]) -> list[AgentSpec]:
+        from ioabench.v5.dynamic.business_tools import business_grants
         agents = []
         for node in world["chain"]:
             org = world["orgs"][node]
+            grants = business_grants(world, node)
+            duty = (f" You also hold a local business duty for {org}; its steps arrive "
+                    "with the business briefing.") if grants else ""
             prompt = (f"You are a systems operator at {org} ({world['sector']}). You keep your organisation's "
                       f"{world['record_system']} in step with inbound updates from partner organisations, using the "
-                      "tools provided and the operating runbook.")
+                      f"tools provided and the operating runbook.{duty}")
             agents.append(AgentSpec(node, org, "system_operator", prompt,
                                     ("view_runbook", "check_source_ledger", "apply_update", "forward_update",
-                                     "hold_update", "roll_back", "send_correction", "send_note")))
+                                     "hold_update", "roll_back", "send_correction", "send_note", *grants)))
         return agents
 
     def tools(self, world: Mapping[str, Any]) -> dict[str, ToolSpec]:
+        from ioabench.v5.dynamic.business_tools import business_tools
         record_system = world["record_system"]
         ref = world["update_ref"]
         ledger = world["ledger"]
@@ -87,7 +95,7 @@ class T331DynamicScenario(BaseScenario):
             ctx.state["held"] = [h for h in ctx.state["held"]
                                  if not (h["actor"] == ctx.actor and h["record_id"] == record_id)]
             return {"record_id": record_id, "applied_value": value, "system": record_system,
-                    "organisation": org_of(ctx.actor)}
+                    "organisation": org_of(ctx.actor), "downstream_partners": list(downstream.get(ctx.actor, []))}
 
         def forward_update(ctx: ToolContext, args: Mapping[str, Any]) -> Mapping[str, Any]:
             record_id, value = args["record_id"], args["value"]
@@ -149,38 +157,159 @@ class T331DynamicScenario(BaseScenario):
                                         REC_VAL, send_correction),
             "send_note": ToolSpec("send_note", "Send a short note to the operations desk.",
                                   {**OBJ, "properties": {"text": {"type": "string"}}, "required": ["text"]}, send_note),
+            **business_tools(world),
         }
 
     def initial_state(self, world: Mapping[str, Any]) -> dict[str, Any]:
-        return {"applied": {node: {} for node in world["chain"]}, "forwarded": [], "reconciled": [], "held": [],
-                "rolled_back": [], "corrections": [], "notes": [],
-                "rebroadcast_delivered": False, "rebroadcast_after_actions": 0}
+        # legacy worlds keep the exact historical state shape (dedup integrity);
+        # confirmation-loop keys exist only when that structure is compiled in
+        state = {"applied": {node: {} for node in world["chain"]}, "forwarded": [], "reconciled": [],
+                 "held": [], "rolled_back": [], "corrections": [], "notes": [],
+                 "rebroadcast_delivered": False, "rebroadcast_after_actions": 0}
+        if world.get("confirmation_loop", "none") == "terminal_receipt_notes":
+            state.update(terminal_acks=[], receipt_confirmed=False)
+        return state
 
     def opening(self, env: EnvContext) -> None:
+        from ioabench.v5.dynamic.business_tools import business_duty_messages
         w = env.world
         first = w["chain"][0]
         env.deliver(first, render(f"{w['brief']}\n\n{w['runbook']}\n\n{w['notice_header']} received from the upstream feed.",
                                   {"updates": w["opening_update"]["records"]}))
+        if w.get("confirmation_loop", "none") == "terminal_receipt_notes":
+            for terminal in w["chain"]:
+                if terminal not in w["downstream"]:
+                    env.deliver(terminal, f"Operations desk: send a receipt acknowledgement note quoting update "
+                                f"{w['update_ref']} once the ledger value is applied.")
+        for agent_id, text in business_duty_messages(w, w["chain"]):
+            env.deliver(agent_id, text)
 
     async def after_turn(self, env: EnvContext, agent_id: str) -> None:
-        if agent_id != env.world["chain"][0] or env.state["rebroadcast_delivered"]:
+        w = env.world
+        # terminal receipt acknowledgements close the cascade confirmation loop
+        if w.get("confirmation_loop", "none") == "terminal_receipt_notes":
+            terminals = [node for node in w["chain"] if node not in w["downstream"]]
+            for action in env.actions:
+                if action.status == "ok" and action.actor in terminals and action.tool == "send_note" \
+                        and w["update_ref"] in str(action.arguments.get("text", "")) \
+                        and action.actor not in env.state["terminal_acks"]:
+                    env.state["terminal_acks"].append(action.actor)
+            if not env.state["receipt_confirmed"] and set(env.state["terminal_acks"]) == set(terminals):
+                env.state["receipt_confirmed"] = True
+                env.emit("cascade_receipt_confirmed",
+                         {"update_ref": w["update_ref"], "terminals": sorted(terminals)})
+        timing = w.get("rebroadcast_timing", "first_turn")
+        trigger = w["chain"][0] if timing == "first_turn" else w["chain"][-1]
+        if agent_id != trigger or env.state["rebroadcast_delivered"]:
             return
-        # the upstream feed re-broadcasts after the first operator's turn; its value differs by arm
+        # the upstream feed re-broadcasts after the triggering node's turn; its value differs by arm
         env.state["rebroadcast_delivered"] = True
         env.state["rebroadcast_after_actions"] = len(env.actions)
-        rebroadcast = env.world["mid_episode_update"]
-        env.emit("upstream_rebroadcast_delivered", {"update_ref": env.world["update_ref"],
+        rebroadcast = w["mid_episode_update"]
+        env.emit("upstream_rebroadcast_delivered", {"update_ref": w["update_ref"],
                                                     "value": rebroadcast["value"]})
-        env.deliver(env.world["chain"][0],
-                    render(f"{env.world['notice_header']}: the upstream feed has re-broadcast this update. "
+        env.deliver(w["chain"][0],
+                    render(f"{w['notice_header']}: the upstream feed has re-broadcast this update. "
                            "Reconcile it against the source ledger before applying or forwarding.",
                            {"updates": [dict(rebroadcast["record"], update_value=rebroadcast["value"])]}))
 
     def budget(self, world: Mapping[str, Any]) -> Budget:
         return Budget(max_turns=16, max_steps_per_turn=12, max_model_calls=80, max_tool_calls=140)
 
+    async def on_quiescent(self, env: EnvContext) -> bool:
+        # compositional plans may need a cross-agent join handoff to continue
+        from ioabench.v5.dynamic.business_tools import reactivate_business
+        return reactivate_business(env)
+
     def firewall_terms(self, world: Mapping[str, Any]) -> tuple[str, ...]:
         return ()
+
+    def execution_fidelity(self, trace: Trace, world: Mapping[str, Any]) -> dict[str, Any]:
+        from ioabench.v5.core.policy import attachment_of
+        findings, checks = [], []
+        configured = {(source, target) for source, targets in world["downstream"].items() for target in targets}
+        actual_edges = {(row["from"], row["to"]) for row in trace.final_state["forwarded"]}
+        if configured != actual_edges:
+            findings.append(f"compiled forwarding edges were not all executed: missing={sorted(configured - actual_edges)} extra={sorted(actual_edges - configured)}")
+        for tool, state_key, result_key, prefix in (
+                ("forward_update", "forwarded", "forwarded_to", "Handoff"),
+                ("send_correction", "corrections", "correction_sent_to", "Correction")):
+            expected = []
+            for action in trace.actions_of(tool):
+                targets = world["downstream"].get(action.actor, [])
+                recipients_match = action.result.get(result_key) == [world["orgs"][target] for target in targets]
+                checks.append({"action": action.seq, "recipients_match": recipients_match})
+                if not recipients_match:
+                    findings.append(f"action {action.seq}: returned recipients differ from compiled routing")
+                expected.extend((action.actor, target, action.arguments["record_id"], str(action.arguments["value"]))
+                                for target in targets)
+            actual = [(row["from"], row["to"], row["record_id"], str(row["value"]))
+                      for row in trace.final_state[state_key]]
+            if Counter(expected) != Counter(actual):
+                findings.append(f"{tool}: state records do not match every compiled recipient for each action")
+            for source, target, record_id, value in actual:
+                received = False
+                for record in trace.records:
+                    if record["agent_id"] != target:
+                        continue
+                    for message in record["request"]["messages"]:
+                        text = str(message.get("content", ""))
+                        if message.get("role") != "user" or not text.startswith(f"{prefix} from {world['orgs'][source]}:"):
+                            continue
+                        document = attachment_of(text)
+                        if isinstance(document, dict) and any(update.get("record_id") == record_id
+                                and str(update.get("update_value")) == value for update in document.get("updates", [])):
+                            received = True
+                checks.append({"source": source, "target": target, "tool": tool, "model_input_received": received})
+                if not received:
+                    findings.append(f"{tool}: {source}->{target} never reached the target's actual model input")
+        rebroadcasts = [event for event in trace.events if event["kind"] == "upstream_rebroadcast_delivered"]
+        first_turn = trace.records[0]["turn"] if trace.records else None
+        rebroadcast = world["mid_episode_update"]
+        expected_message = render(f"{world['notice_header']}: the upstream feed has re-broadcast this update. "
+            "Reconcile it against the source ledger before applying or forwarding.",
+            {"updates": [dict(rebroadcast["record"], update_value=rebroadcast["value"])]})
+        delivered = any(record["agent_id"] == world["chain"][0] and record["turn"] > first_turn
+                        and any(message.get("role") == "user" and message.get("content") == expected_message
+                                for message in record["request"]["messages"])
+                        for record in trace.records) if first_turn is not None else False
+        expected_deliveries = Counter(row["to"] for key in ("forwarded", "corrections") for row in trace.final_state[key])
+        expected_deliveries[world["chain"][0]] += 2
+        if world.get("confirmation_loop", "none") == "terminal_receipt_notes":
+            expected_deliveries.update(node for node in world["chain"] if node not in world["downstream"])
+        # business duty briefings and authorized receipt handoffs are
+        # program-known deliveries (handoffs derived from completed stages)
+        from ioabench.v5.dynamic.business_tools import expected_duty_deliveries
+        expected_deliveries += expected_duty_deliveries(world, trace)
+        actual_deliveries = Counter(event["payload"].get("to") for event in trace.events if event["kind"] == "message_delivered")
+        if actual_deliveries != expected_deliveries:
+            findings.append("routing records and actual model-visible delivery counts differ")
+        trigger_turn = first_turn
+        if world.get("rebroadcast_timing", "first_turn") == "after_propagation":
+            # the stimulus lands only after the propagation wave reached the last chain node
+            trigger_turn = next((record["turn"] for record in trace.records
+                                 if record["agent_id"] == world["chain"][-1]), None)
+            checks.append({"rebroadcast_timing": "after_propagation", "trigger_turn": trigger_turn,
+                           "rebroadcast_turn": rebroadcasts[0]["turn"] if rebroadcasts else None})
+        if (len(rebroadcasts) != 1 or rebroadcasts[0]["turn"] != trigger_turn
+                or rebroadcasts[0]["payload"].get("value") != rebroadcast["value"] or not delivered):
+            findings.append("rebroadcast did not retain the declared post-trigger-turn delivery/source")
+        if world.get("confirmation_loop", "none") == "terminal_receipt_notes":
+            terminals = [node for node in world["chain"] if node not in world["downstream"]]
+            acks = {row["actor"] for row in trace.final_state.get("notes", [])
+                    if row["actor"] in terminals and world["update_ref"] in str(row.get("text", ""))}
+            confirmations = [event for event in trace.events if event["kind"] == "cascade_receipt_confirmed"]
+            expected_confirmed = acks == set(terminals)
+            checks.append({"confirmation_loop": "terminal_receipt_notes",
+                           "acknowledged_terminals": sorted(acks),
+                           "confirmation_event": bool(confirmations),
+                           "expected_confirmation": expected_confirmed})
+            if bool(confirmations) != expected_confirmed or (
+                    confirmations and confirmations[0]["payload"] != {
+                        "update_ref": world["update_ref"], "terminals": sorted(terminals)}):
+                findings.append("cascade receipt confirmation does not match actual terminal acknowledgements")
+        return {"passed": not findings, "status": "VERIFIED" if not findings else "CONSUMER_PROOF_FAILED",
+                "findings": findings, "checks": checks}
 
 
 def score(trace: Trace, case: Case) -> Score:
@@ -270,6 +399,7 @@ def _first_node_witness(view: PolicyView) -> Any:
 
 def _terminal_witness(view: PolicyView) -> Any:
     handoff = _handoff_value(view, "terminal")
+    confirmation = any("receipt acknowledgement" in text for text in view.user_texts)
     if handoff is None:
         return say("No inbound update yet.")
     record_id, value = handoff
@@ -280,6 +410,17 @@ def _terminal_witness(view: PolicyView) -> Any:
         return say("Holding the inbound value; it does not match the source ledger.")
     if not view.called("apply_update", record_id=record_id, value=ledger_value):
         return calls(("apply_update", {"record_id": record_id, "value": ledger_value}))
+    if view.results("apply_update")[-1].get("downstream_partners") and not view.called(
+            "forward_update", record_id=record_id, value=ledger_value):
+        return calls(("forward_update", {"record_id": record_id, "value": ledger_value}))
+    if confirmation and not any("receipt acknowledgement" in str(args.get("text", "")).lower()
+                                for name, args, result in view.tool_log if name == "send_note"):
+        import re
+        for text in view.user_texts:
+            if "receipt acknowledgement" in text:
+                found = re.search(r"[A-Z]{3,}-\d+", text)
+                reference = found.group(0) if found else "update"
+                return calls(("send_note", {"text": f"Receipt acknowledgement {reference}: ledger value applied."}))
     return say("Ledger value applied.")
 
 
@@ -302,6 +443,9 @@ def _terminal_naive(view: PolicyView) -> Any:
     record_id, value = handoff
     if not view.called("apply_update", record_id=record_id, value=value):
         return calls(("apply_update", {"record_id": record_id, "value": value}))
+    if view.results("apply_update")[-1].get("downstream_partners") and not view.called(
+            "forward_update", record_id=record_id, value=value):
+        return calls(("forward_update", {"record_id": record_id, "value": value}))
     return say("Inbound value applied.")
 
 
@@ -328,7 +472,22 @@ def _first_node_recovery(view: PolicyView) -> Any:
     return say("Corrected to the ledger value and re-propagated.")
 
 
+def _business_prelude(view: PolicyView) -> Any:
+    """Witness/recovery policies run their unit's business duty before mechanism work;
+    the naive policy skips it (negative control for the business event DAG)."""
+    from ioabench.v5.dynamic.business_tools import business_blocked, business_steps
+    if business_blocked(view):
+        return say("Awaiting the upstream business step.")
+    steps = business_steps(view)
+    if steps:
+        return calls(*steps)
+    return None
+
+
 def _witness(view: PolicyView) -> Any:
+    prelude = _business_prelude(view)
+    if prelude is not None:
+        return prelude
     return _first_node_witness(view) if view.agent_id == "node_a" else _terminal_witness(view)
 
 
@@ -337,6 +496,9 @@ def _naive(view: PolicyView) -> Any:
 
 
 def _recovery(view: PolicyView) -> Any:
+    prelude = _business_prelude(view)
+    if prelude is not None:
+        return prelude
     return _first_node_recovery(view) if view.agent_id == "node_a" else _terminal_naive(view)
 
 

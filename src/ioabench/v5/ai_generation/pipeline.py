@@ -45,11 +45,30 @@ def suite_spec(suite_id: str, *, typed: bool = False) -> SuitePipelineSpec:
 
     module = get_adapter(suite_id + "-DYNA" if "-" not in suite_id else suite_id)
     if typed:
+        from ioabench.v5.ai_generation.bounded_compiler import BoundedWorldCompiler, FACTORS
         from ioabench.v5.ai_generation.t312_compiler import T312DynaCompiler
+        from ioabench.v5.ai_generation.t321_dyna_compiler import T321DynaCompiler
         from ioabench.v5.ai_generation.t331_compiler import T331DynaCompiler
         from ioabench.v5.ai_generation.t352_compiler import T352DynaCompiler
-        compilers = {"T312-DYNA": T312DynaCompiler, "T331-DYNA": T331DynaCompiler,
+        compilers = {"T312-DYNA": T312DynaCompiler, "T321-DYNA": T321DynaCompiler, "T331-DYNA": T331DynaCompiler,
                      "T352-DYNA": T352DynaCompiler}
+        compilers.update({suite: lambda suite=suite: BoundedWorldCompiler(suite) for suite in FACTORS})
+        from ioabench.v5.ai_generation.t311_compiler import T311DynaCompiler
+        from ioabench.v5.ai_generation.t351_compiler import T351DynaCompiler
+        compilers["T311-DYNA"] = T311DynaCompiler
+        compilers["T351-DYNA"] = T351DynaCompiler
+        from ioabench.v5.ai_generation.t353_compiler import T353DynaCompiler
+        compilers["T353-DYNA"] = T353DynaCompiler
+        from ioabench.v5.ai_generation.t362_compiler import T362DynaCompiler
+        compilers["T362-DYNA"] = T362DynaCompiler
+        from ioabench.v5.ai_generation.t323_compiler import T323DynaCompiler
+        compilers["T323-DYNA"] = T323DynaCompiler
+        from ioabench.v5.ai_generation.t322_compiler import T322DynaCompiler
+        from ioabench.v5.ai_generation.t343_compiler import T343DynaCompiler
+        compilers["T322-DYNA"] = T322DynaCompiler
+        compilers["T343-DYNA"] = T343DynaCompiler
+        from ioabench.v5.ai_generation.t313_compiler import T313DynaCompiler
+        compilers["T313-DYNA"] = T313DynaCompiler
         if module.SLICE_ID not in compilers:
             raise ValueError(f"typed world compiler unavailable for {module.SLICE_ID}; use declared enrichment")
         adapter = compilers[module.SLICE_ID]()
@@ -73,6 +92,9 @@ def compile_and_gate(spec: SuitePipelineSpec, blueprint: Mapping[str, Any], *, s
     arm_findings = list(spec.adapter.verify_arm_delta(control, risk))
     if arm_findings:
         raise CandidateRejected("ARM_DELTA", arm_findings)
+    if getattr(spec.adapter, "requires_execution_fidelity", False) and not callable(
+            getattr(spec.scenario_factory(), "execution_fidelity", None)):
+        raise CandidateRejected("CAPABILITY_GAP", [{"reason": "primitive has no executable consumer proof"}])
     gate = check_pair_dynamic(control, risk, scenario=spec.scenario_factory(), scorer=spec.scorer,
                              policies=spec.policies, expected=spec.expected,
                              fine_arm_delta=spec.adapter.verify_arm_delta)

@@ -136,7 +136,7 @@ async def verify(directory: Path, candidate: Path, auditor_id: str, *, prepare_o
         profile = ModelProfile(profile.provider, auditor_id, profile.capabilities, {}, role="INDEPENDENT_AUDITOR")
         stage = "INDEPENDENT_REVIEW"
         response = await recorded_call(directory, "AUDITOR", port, profile,
-            ModelRequest(review_prompt(view), auxiliary_chat_parameters(schema, max_tokens=65536)), catalog)
+            ModelRequest(review_prompt(view), auxiliary_chat_parameters(schema)), catalog)
     except CandidateRejected as exc:
         response_path = directory / "AUDITOR_RESPONSE.json"
         usage = read_json(response_path).get("usage", {}) if response_path.is_file() else {}

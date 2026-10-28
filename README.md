@@ -8,6 +8,8 @@ The current v5 supplied-case system supports all18 classic suites and19 register
 
 2026-10-14数据生成流程外部审阅：[当前交接说明与审阅请求](docs/HANDOFF_20261014_CHATGPT.md)。包内包含源码、测试、当前质量问题及真实生成样例；工程检查不等于批量数据质量接受。
 
+2026-10-28进度：12项可执行业务树、11项共享入口工程通过、23个套件与行业组合。最新R22原始快照2295项程序测试通过，正式数据与完整18项交付尚未完成。见[当前工作区与同步说明](docs/WORKSPACE_STATUS_20261028.md)、[逐项接入表](docs/v5/SUITE_BUSINESS_MATRIX_20261026.md)和[交付行动计划](docs/v5/IOA_DELIVERY_ACTION_PLAN_20261026.md)。
+
 ## Canonical objective
 
 Build a controlled small-scale Internet-of-Agents environment and use it to measure how a tested model behaves under 18 IoA risk mechanisms. The IoA scaffold is a controlled experimental environment; the scored object is the model configuration.

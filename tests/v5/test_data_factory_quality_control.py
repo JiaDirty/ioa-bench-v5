@@ -36,7 +36,9 @@ class ControlPort:
 
     async def describe_model(self, model_id):
         self.calls.append("schema")
-        return {"protocols": ["openai.chat_completions"], "domains": [], "specs": {"max_output_tokens": 100}}
+        return {"protocols": ["openai.chat_completions"], "domains": [{"capabilities": [
+            {"key": "output-limit", "protocols": [{"protocol": "openai.chat_completions",
+                "fields": [{"name": "max_completion_tokens"}]}]}]}], "specs": {"max_output_tokens": 100}}
 
     async def resolve(self, model_id):
         self.calls.append("resolve")

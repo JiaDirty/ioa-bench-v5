@@ -1,63 +1,42 @@
-# IoA-Bench v5 工作区入口
+# IoA-Bench 工作区入口
 
-本目录继续唯一的 IoA-Bench v5 项目。测的是模型在18种 IoA 风险下的可观察安全行为。
+更新：2026-10-28。项目目标仍是完整的18项IOA测评。当前重点是补齐树状业务生成、验证真实数据质量和多样性，再扩量、校准、冻结并运行完整测评。
 
-## 当前工作
+## 当前进度
 
-- 18项经典测评和19个注册动态结构已有工程实现。
-- 最新数据生成流程修复对应852项v5测试通过、18项离线预检36/36；新版独审尚待在线正负控制。工程通过不代表独立科学审核完成。
-- 行为推断的否定句、判断让渡的复核要求仍待独立审阅。18项审阅材料已经准备，真人标签尚未产生。
-- 尚未完成批量高质量数据、广泛难度/可靠性验证和正式科研测评。涉及真人的三项仍为 `SIMULATION_ONLY`。
+- 18项已有基础原型；12项有可执行业务树，其中11项通过共享入口工程检查，共23个套件与行业组合。
+- 药品补货、支付结算、物流交接三类业务可执行；物流目前只接跨系统级联扩散。代表资格漂移使用只读结算资料，不增加付款权限。
+- 最新R22原始源码检查有2295项v5+m1测试、8组授权链结构、48条严格回放通过。程序测试、脚本回放、真实模型生成和正式合格数据分别统计。
+- R19真实生成4对、8条研发案例通过两轮研发审核；R20规范漂移样例执行通过，但审核连接中断而隔离。R22没有新增模型调用或正式数据。
+- 结构暴露、行为推断、生态错误共识、谣言扩散、判断让渡、能动性弱化六项待接业务树。审核可靠性、难度校准、正式冻结与18项完整交付尚未完成。
 
-以上更新于2026-10-14；继续工作先读取最新状态，不继承这里的测试数字。
+## 从这里开始
 
-## 最常用入口
-
-| 想做什么 | 从哪里开始 |
+| 要做什么 | 入口 |
 |---|---|
-| 继续开发 | [AGENTS.md](AGENTS.md)、[项目状态](state/PROJECT_STATE.yaml)、[v5队列](state/WORK_QUEUE_V5_DYNAMIC_WORLD.yaml) |
-| 看当前进度 | [v5进度](docs/v5/V5_PROGRESS.md) |
-| 看最近修复与待解决问题 | [数据生成流程审查](artifacts/v5/data_factory/review/process-audit-20261014-r1/REPORT.md) |
-| 看18项真实测评的原始结果 | [在线测评报告](artifacts/v5/overnight_runs/20261013-authored-online-r1/MORNING_REPORT.md) |
-| 使用当前候选案例 | [36条输入](artifacts/v5/manual_18/20261013-authored-contract-fix-r1/cases_all18.jsonl)、[逐条来源](artifacts/v5/manual_18/20261013-authored-contract-fix-r1/CURRENT_INPUT_INDEX.json) |
-| 执行、续跑、回放、报告 | [系统使用说明](docs/v5/V5_SYSTEM_HANDOFF_20261012.md) |
-| 了解数据生成流程 | [数据工厂说明](docs/v5/V5_DATA_FACTORY_HANDOFF_20261012.md) |
-| 开展独立审阅 | [审阅者盲包](artifacts/v5/overnight_runs/20261013-scoring-audit-r1/review-package/reviewer_materials.zip) |
-| 查全部目录和文件的位置 | [整个工作区索引](docs/WORKSPACE_FULL_INDEX_20261013.md) |
-| 查历史交付包与旧会话 | [历史归档](archive/README.md) |
-| 回滚本次整体整理 | [整理记录与恢复说明](artifacts/workspace_maintenance/20261013-r2/REPORT.md) |
-| 查前一轮缓存清理 | [缓存清理记录](artifacts/workspace_maintenance/20261013-r1/REPORT.md) |
-| 发给网页版ChatGPT审查数据生成流程 | [当前审阅说明及可复制请求](docs/HANDOFF_20261014_CHATGPT.md)、[源码包目录](exports/chatgpt-source-review-20261014/) |
-| 查本次整理与恢复 | [2026-10-14整理记录](artifacts/workspace_maintenance/20261014-source-review-r1/REPORT.md) |
+| 看当前状态、继续工作 | [项目状态](state/PROJECT_STATE.yaml)、[工作队列](state/WORK_QUEUE.yaml)、[AGENTS.md](AGENTS.md) |
+| 看18项逐项进度 | [测评与业务接入表](docs/v5/SUITE_BUSINESS_MATRIX_20261026.md) |
+| 看行动顺序 | [整体交付计划](docs/v5/IOA_DELIVERY_ACTION_PLAN_20261026.md) |
+| 准备汇报 | [当前汇报口径](docs/v5/REPORT_BRIEF_AND_PRIORITIES_20261027.md)、[展示案例说明](docs/v5/EXAMPLES_FOR_REPORT_20261027.md) |
+| 查看本次同步及验收范围 | [工作区整理与GitHub同步](docs/WORKSPACE_STATUS_20261028.md) |
+| 查看R22可公开检查结果 | [验收摘要](docs/v5/checkpoints/20261028-r22/FINAL_VERIFICATION.json)、[程序测试记录](docs/v5/checkpoints/20261028-r22/REGRESSION.xml) |
+| 运行、续跑、评分和回放 | [系统使用说明](docs/v5/V5_SYSTEM_HANDOFF_20261012.md) |
+| 查看完整旧入口与历史检查点 | [整理前工作区记录](docs/archive/WORKSPACE_HISTORY_20261028.md) |
 
-审阅者只接收 `reviewer_materials.zip`；旁边的 `sealed_key.jsonl` 是研究团队保存的对应表。
+## 文件位置与同步范围
 
-## 文件放在哪里
+`src/`为运行代码，`scripts/`为入口，`tests/`为测试，`contracts/`和`config/`为规则与配置，`state/`为项目状态，`docs/`为使用和设计说明。业务素材放在`prompts/`、`roles/`、`worlds/`、`scenarios/`和`templates/`。
 
-| 目录 | 内容 |
-|---|---|
-| `src/` | 实际运行代码；当前主线在 `src/ioabench/v5/` |
-| `scripts/` | 可执行入口；当前主线入口主要在 `scripts/v5/` |
-| `tests/` | 自动测试；当前主线主要在 `tests/v5/`，模型适配测试在 `tests/m1/` |
-| `contracts/`、`config/` | 科研定义、机器可读规则与配置 |
-| `state/` | 当前状态、工作队列和变更记录；也保留旧版本的历史记录 |
-| `docs/` | 使用、设计和交付说明；当前v5说明在 `docs/v5/` |
-| `NightGoalDoc/` | 用户提供的目标与执行政策 |
-| `data/` | 数据集、运行记录和本地状态；不是可随意删除的临时目录 |
-| `artifacts/` | 验证证据、候选、审计、源码快照与恢复材料 |
-| `exports/` | 已生成的对外审阅或交接包 |
-| `release/` | 历史发布与冻结材料，保留原样 |
-| `archive/` | 根目录旧ZIP与旧会话集中归档；原路径映射和恢复工具保留 |
+当前GitHub仓库为公开的[JiaDirty/ioa-bench-v5](https://github.com/JiaDirty/ioa-bench-v5)。本次同步源码、测试、文档及脱敏检查摘要。仓库中已有历史数据与发布记录保留原样；新增实验数据、完整模型记录和本地恢复材料不随源码上传。
 
-旧资料中的v1、v3、v4说明适用于其各自版本，不能据此判断当前v5状态。旧交付包现位于`archive/deliveries/`；历史清单中的原路径通过归档映射查找，旧恢复辅助脚本已同步。
+本地`data/`、`artifacts/`、`release/`、`exports/`、`archive/`保留历史数据、证据与交付包；`scratch/`保留历史辅助脚本。`.env`、本机工具记忆和无关专利材料留在本地。公开源码仓库不等于完整历史回放包；依赖未公开实验资料的测试需要对应本地文件。
 
-## 本地检查
-
-从当前目录执行，下列命令不会调用模型API：
+## 本地命令
 
 ```powershell
 python -B scripts/v5/evaluate.py --help
+python -B scripts/v5/tree_factory_trial.py --help
 python -B -m pytest -p no:cacheprovider tests/v5 tests/m1 -q
 ```
 
-`-B`避免写入Python字节码，`-p no:cacheprovider`避免创建pytest缓存。模型真实运行、正式数据冻结与科研实验需遵循当前PI决策和对应运行说明。`.env`留在本机，不进入清理归档或分享包。
+全量测试需要项目对应的历史案例与证据资料。运行模型前遵循当前实验决定和调用范围；凭据从环境或本机`.env`加载。T361–T363继续标为`SIMULATION_ONLY`。

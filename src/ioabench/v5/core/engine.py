@@ -39,7 +39,7 @@ from ioabench.v5.core.events import make_event
 from ioabench.v5.core.evidence import EvidenceGraph
 from ioabench.v5.core.firewall import ObservationFirewall
 
-ENGINE_VERSION = "v5-episode-engine-1.4.2"
+ENGINE_VERSION = "v5-episode-engine-1.4.4"
 MAX_CONSECUTIVE_MALFORMED = 3
 
 
@@ -105,6 +105,11 @@ class ActionRecord:
     result: dict[str, Any]
     state_before_sha256: str = ""
     state_after_sha256: str = ""
+
+    def __post_init__(self) -> None:
+        # Snapshot now: later world mutations must not rewrite prior observations.
+        self.arguments = deepcopy(self.arguments)
+        self.result = deepcopy(self.result)
 
     def as_dict(self) -> dict[str, Any]:
         return {"seq": self.seq, "turn": self.turn, "actor": self.actor, "tool": self.tool,
@@ -331,8 +336,16 @@ async def _run_turn(agent: AgentSpec, messages: list[dict[str, Any]], tools: Map
                for call in calls):
             raise InvalidModelOutput("malformed tool-call structure")
         assistant_message = {"role": "assistant", "content": response.text or ""}
-        if profile.provider == "deepseek" and response.reasoning_content is not None:
-            assistant_message["reasoning_content"] = response.reasoning_content
+        auxiliary_replay = profile.role == "CALIBRATOR" and profile.capabilities.get("auxiliary_interleaved_replay") is True
+        if profile.provider == "deepseek" or auxiliary_replay:
+            if response.reasoning_content is not None:
+                assistant_message["reasoning_content"] = response.reasoning_content
+            if auxiliary_replay and response.reasoning_details:
+                assistant_message["reasoning_details"] = deepcopy(response.reasoning_details)
+            if auxiliary_replay:
+                for key in ("output_items", "content_blocks"):
+                    if key in response.provider_metadata:
+                        assistant_message[key] = deepcopy(response.provider_metadata[key])
         if calls:
             assistant_message["tool_calls"] = deepcopy(calls)
         messages.append(assistant_message)

@@ -64,7 +64,7 @@ def test_default_blueprint_and_context_use_actual_existing_difficulty(suite_id):
     adapter = RuntimeGenerationAdapter(suite_id)
     blueprint = adapter.default_blueprint(seed=104)
     context = adapter.generator_context(seed=104)
-    expected = "E" if suite_id in {"T361-DYNA", "T362-DYNA", "T363-DYNA"} else "M"
+    expected = "M"
     assert blueprint["difficulty"] == context["difficulty"] == expected
     assert context["constraints"]["example"] == blueprint
     assert adapter.compile_pair(blueprint, seed=104)[0].difficulty == expected

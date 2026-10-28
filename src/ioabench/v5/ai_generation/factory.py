@@ -17,15 +17,23 @@ from ioabench.models import ModelProfile, ModelRequest
 from ioabench.v5.evaluation import atomic_json
 from ioabench.v5.ai_generation.model_routing import auxiliary_chat_parameters, served_catalog_entry
 from ioabench.v5.ai_generation.pipeline import CandidateRejected, SuitePipelineSpec, compile_and_gate, run_reference_policies
-from ioabench.v5.ai_generation.quality import build_review_view, review_prompt, validate_semantic_review, classify_candidate
+from ioabench.v5.ai_generation.quality import build_review_view, review_prompt, validate_semantic_review, classify_candidate, compile_semantic_review
+from ioabench.v5.ai_generation.auxiliary_runtime import RequestUnresolved as AuxiliaryRequestUnresolved
 
-FACTORY_VERSION = "ioabench.v5.reusable-data-factory/2.3.5"
+FACTORY_VERSION = "ioabench.v5.reusable-data-factory/2.7.2"
 TESTED_ID = "deepseek-v4.1-flash"
 TERMINAL = {"MACHINE_ACCEPTED", "REJECTED", "PROVIDER_FAILED", "REQUEST_UNRESOLVED"}
 EVIDENCE_FILES = ("MANIFEST.json", "BLUEPRINT.json", "PAIR.json", "HARD_GATE.json", "FIDELITY.json",
                   "REFERENCE_RESULTS.json", "DIVERSITY.json", "REVIEW_INPUT.json", "REVIEW.json",
                   "GENERATOR_REQUEST.json", "GENERATOR_RESPONSE.json", "GENERATOR_ERROR.json",
-                  "AUDITOR_REQUEST.json", "AUDITOR_RESPONSE.json", "AUDITOR_ERROR.json", "RECOVERY.json")
+                  "AUDITOR_REQUEST.json", "AUDITOR_RESPONSE.json", "AUDITOR_ERROR.json", "RECOVERY.json",
+                  "PROGRAM_PROPOSAL.json", "HISTORICAL_DIVERSITY.json", "DIFFICULTY.json",
+                  "GENERATION_STAGES.json") + tuple(
+                      f"GENERATOR_{stage}_{kind}.json"
+                      for stage in ("TASK_DESIGN", "WORLD_GRAPH", "RISK_PLACEMENT", "SURFACE_ARTIFACTS")
+                      for kind in ("REQUEST", "RESPONSE", "ERROR"))
+EVIDENCE_FILES += ("REVIEW_WIRE.json", "BEHAVIORAL_PROBES.json", "PARENT_BINDING.json")
+STAGE_FILES = {name for name in EVIDENCE_FILES if name.startswith("GENERATOR_") and name.count("_") > 1} | {"GENERATION_STAGES.json"}
 
 
 def utc() -> str:
@@ -45,13 +53,36 @@ def read_json(path: Path) -> Any:
 
 
 def validate_saved_result(directory: Path, result: Mapping[str, Any]) -> None:
+    if result.get("formal_accepted") is not False:
+        raise ValueError("factory result cannot claim formal acceptance")
+    manifest = read_json(directory / "MANIFEST.json")
+    terminal_path = directory / "TERMINAL.json"
+    if terminal_path.exists() or manifest.get("terminal_binding_version") == 1 or manifest.get("factory_version") == FACTORY_VERSION:
+        if not terminal_path.is_file():
+            raise ValueError("terminal integrity binding is missing")
+        terminal = read_json(terminal_path)
+        if (terminal.get("result_sha256") != canonical_sha256(result)
+                or terminal.get("result") != result
+                or terminal.get("manifest_sha256") != canonical_sha256(manifest)):
+            raise ValueError("terminal result or manifest integrity binding changed")
     bindings = result.get("evidence_sha256")
     if not isinstance(bindings, Mapping) or not bindings:
         raise ValueError("terminal checkpoint is missing evidence binding")
     present = {name for name in EVIDENCE_FILES if (directory / name).is_file()}
     required = {"MANIFEST.json"}
     if result.get("status") == "MACHINE_ACCEPTED":
-        required = set(EVIDENCE_FILES) - {"GENERATOR_ERROR.json", "AUDITOR_ERROR.json", "RECOVERY.json"}
+        required = set(EVIDENCE_FILES) - {"GENERATOR_ERROR.json", "AUDITOR_ERROR.json", "RECOVERY.json",
+            "PROGRAM_PROPOSAL.json", "HISTORICAL_DIVERSITY.json", "DIFFICULTY.json", "REVIEW_WIRE.json", "BEHAVIORAL_PROBES.json", "PARENT_BINDING.json"} - STAGE_FILES
+        if manifest.get("terminal_binding_version") == 1 or manifest.get("factory_version") == FACTORY_VERSION:
+            required.add("BEHAVIORAL_PROBES.json")
+            if result.get("acquisition_strategy") == "G3":
+                required.add("PARENT_BINDING.json")
+        if result.get("acquisition_strategy") in {"G1", "G3"}:
+            required -= {"GENERATOR_REQUEST.json", "GENERATOR_RESPONSE.json"}
+            required.add("PROGRAM_PROPOSAL.json")
+        if manifest.get("staged_generation"):
+            required -= {"GENERATOR_REQUEST.json", "GENERATOR_RESPONSE.json"}
+            required |= STAGE_FILES - {name for name in STAGE_FILES if name.endswith("_ERROR.json")}
     if set(bindings) != present or not required <= present:
         raise ValueError("saved terminal evidence inventory is incomplete or changed")
     for name, digest in bindings.items():
@@ -133,7 +164,8 @@ def recover_generation(source: Path, destination: Path, spec: SuitePipelineSpec,
 
 
 async def recorded_call(directory: Path, role: str, port: Any, profile: ModelProfile,
-                        request: ModelRequest, catalog: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+                        request: ModelRequest, catalog: Sequence[Mapping[str, Any]], *, router=None,
+                        generator_developer_id=None) -> dict[str, Any]:
     """Replay the exact durable response. An interrupted paid request is never silently sent twice."""
     request_path, response_path = directory / f"{role}_REQUEST.json", directory / f"{role}_RESPONSE.json"
     raw_request = {"requested_model_id": profile.model_id, "role": profile.role, **asdict(request)}
@@ -155,7 +187,9 @@ async def recorded_call(directory: Path, role: str, port: Any, profile: ModelPro
         atomic_json(request_path, raw_request)
         event(directory, "REQUEST_STARTED", role=role, model_id=profile.model_id, request_sha256=digest)
         try:
-            reply = await port.generate(profile, request)
+            reply = (await router.invoke(profile.role, directory.name + "-" + role.lower(), request,
+                         generator_developer_id=generator_developer_id) if router is not None
+                     else await port.generate(profile, request))
         except Exception as exc:
             atomic_json(directory / f"{role}_ERROR.json", {"type": type(exc).__name__, "error": str(exc), "at_utc": utc()})
             event(directory, "REQUEST_FAILED", role=role, error_type=type(exc).__name__)
@@ -164,10 +198,9 @@ async def recorded_call(directory: Path, role: str, port: Any, profile: ModelPro
         atomic_json(response_path, response)
         event(directory, "RESPONSE_SAVED", role=role, usage=response.get("usage", {}))
     served = served_catalog_entry(response.get("provider_metadata", {}), catalog)
+    routed_ids = {item.profile.model_id for item in router.contracts if profile.role in item.allowed_roles} if router else {profile.model_id}
     if (served is None or selected is None or not served.get("developer_id")
-            or served.get("developer_id") != selected.get("developer_id")
-            or (served.get("model_id") or served.get("id")) != profile.model_id
-            or tested_family(served, catalog)):
+            or (served.get("model_id") or served.get("id")) not in routed_ids or tested_family(served, catalog)):
         raise CandidateRejected("MODEL_IDENTITY", [{"code": "UNVERIFIED_OR_FORBIDDEN_MODEL", "reason": "exact catalog identity and auxiliary role separation required"}])
     if response.get("finish_reason") == "length":
         raise CandidateRejected("TRUNCATED_RESPONSE", [{"reason": "provider output hit its ceiling"}])
@@ -177,6 +210,10 @@ async def recorded_call(directory: Path, role: str, port: Any, profile: ModelPro
         raise CandidateRejected("UNEXPECTED_FINISH_REASON", [{"reason": f"complete Chat response required, got {response.get('finish_reason')!r}; original response retained"}])
     response["developer_id"] = served["developer_id"]
     response["resolved_model_id"] = served.get("model_id") or served.get("id")
+    if router is not None:
+        contract = next(item for item in router.contracts if item.profile.model_id == response["resolved_model_id"])
+        response["actual_parameters"] = dict(contract.parameters)
+        response["routing_evidence"] = str(router.directory)
     return response
 
 
@@ -184,7 +221,7 @@ def generation_messages(spec: SuitePipelineSpec, *, seed: int, difficulty: str) 
     if hasattr(spec.adapter, "generator_context"):
         context = spec.adapter.generator_context(seed=seed, difficulty=difficulty)
     else:
-        subtype = {"T312-DYNA": "T312-S2", "T331-DYNA": "T331-S5", "T352-DYNA": "T352-S1"}[spec.suite_id]
+        subtype = {"T312-DYNA": "T312-S2", "T321-DYNA": "T321-S5", "T331-DYNA": "T331-S5", "T352-DYNA": "T352-S1"}[spec.suite_id]
         context = spec.adapter.generator_constraints(subtype=subtype, difficulty=difficulty)
         context = dict(context)
         if spec.suite_id == "T331-DYNA":
@@ -227,22 +264,106 @@ def reference_findings(spec: SuitePipelineSpec, results: Sequence[Mapping[str, A
     return findings
 
 
+def review_diversity_evidence(diversity: Mapping[str, Any]) -> dict[str, Any]:
+    """Retain the nearest executable comparisons while binding the complete on-disk index result."""
+    value = deepcopy(dict(diversity))
+    value["complete_diversity_sha256"] = canonical_sha256(diversity)
+    for evidence in (value, value.get("all_history", {})):
+        if "nearest_neighbors" in evidence:
+            evidence["reference_comparison_count"] = len(evidence["nearest_neighbors"])
+            evidence["nearest_neighbors"] = evidence["nearest_neighbors"][:3]
+            evidence["review_scope"] = "Nearest three comparisons; full deterministic dedup result is retained separately."
+    return value
+
+
+async def engineering_checks(directory: Path, spec: SuitePipelineSpec, blueprint, *, seed: int,
+                             references, historical_index=None, parent_blueprint=None):
+    """Shared pre-audit gates; this function grants no generation or auditor qualification."""
+    compiled = await asyncio.to_thread(compile_and_gate, spec, blueprint, seed=seed)
+    control, risk = compiled["control"], compiled["risk"]
+    if parent_blueprint is not None:
+        parent_control, _ = spec.adapter.compile_pair(parent_blueprint, seed=seed)
+        if canonical_sha256(spec.adapter.structural_signature(parent_control)) == canonical_sha256(spec.adapter.structural_signature(control)):
+            raise CandidateRejected("NO_STRUCTURAL_MUTATION", [{"reason": "G3 must change a consumed executable factor from its bound parent"}])
+    atomic_json(directory / "PAIR.json", [control.as_dict(), risk.as_dict()])
+    atomic_json(directory / "HARD_GATE.json", compiled["gate"])
+    atomic_json(directory / "FIDELITY.json", compiled["fidelity"])
+    if (directory / "REFERENCE_RESULTS.json").exists():
+        executions = read_json(directory / "REFERENCE_RESULTS.json")
+    else:
+        executions = await asyncio.to_thread(run_reference_policies, spec, directory / "replay",
+            {"CONTROL": control, "RISK": risk}, run_id=f"trial-{seed}",
+            profile=ModelProfile("scripted", "reference-policy", {}, {}, role="REFERENCE_POLICY"))
+        atomic_json(directory / "REFERENCE_RESULTS.json", executions)
+    failures = reference_findings(spec, executions, {"CONTROL": control, "RISK": risk})
+    if failures:
+        raise CandidateRejected("EXECUTION", failures)
+    from ioabench.v5.ai_generation.history import behavioral_signature, POLICY_CONTRACT, PROBE_VERSION
+    probes = {case.content_sha256(): behavioral_signature(case,
+        {policy: next(row for row in executions if row["arm"] == case.arm and
+                      row["run_id"].endswith("-" + policy + "-" + case.arm.lower()))
+         for policy in ("witness", "naive")}, policy_contract=POLICY_CONTRACT)
+        for case in (control, risk)}
+    atomic_json(directory / "BEHAVIORAL_PROBES.json", {"probe_version": PROBE_VERSION,
+        "policy_contract": POLICY_CONTRACT, "by_case_sha256": probes,
+        "reference_results_sha256": hashlib.sha256((directory / "REFERENCE_RESULTS.json").read_bytes()).hexdigest()})
+    diversity = classify_candidate(control, references, scenario=spec.scenario_factory())
+    if historical_index is not None:
+        from ioabench.v5.ai_generation.history import classify as classify_history
+        historical = classify_history(control, historical_index, scenario=spec.scenario_factory(),
+                                      behavioral_probe_signature=probes[control.content_sha256()])
+        atomic_json(directory / "HISTORICAL_DIVERSITY.json", historical)
+        diversity["all_history"] = historical
+        diversity["new_family"] = bool(historical.get("new_family"))
+        if historical["status"] in {"EXACT_DUPLICATE", "NEAR_DUPLICATE"}:
+            raise CandidateRejected("ALL_HISTORY_DEDUP", [{"reason": str(historical)}])
+        if historical["status"] == "INDETERMINATE":
+            raise CandidateRejected("HISTORY_INDETERMINATE", [{"reason": str(historical)}])
+    atomic_json(directory / "DIVERSITY.json", diversity)
+    if diversity.get("status") in {"EXACT_DUPLICATE", "TEXT_DUPLICATE", "NO_REFERENCE"}:
+        raise CandidateRejected("DEDUP", [{"reason": str(diversity)}])
+    return compiled, diversity
+
+
 async def run_candidate(directory: Path, spec: SuitePipelineSpec, *, seed: int, difficulty: str,
                         port: Any, catalog: Sequence[Mapping[str, Any]], generator: ModelProfile,
                         auditor: ModelProfile, parameters: Mapping[str, Mapping[str, Any]],
-                        source_hash: str, references: Sequence[Any]) -> dict[str, Any]:
+                        source_hash: str, references: Sequence[Any],
+                        proposal: Mapping[str, Any] | None = None, acquisition_strategy: str = "G2",
+                        historical_index: Mapping[str, Any] | None = None, router=None,
+                        staged_generation: bool = False, target: Mapping[str, Any] | None = None,
+                        parent_directory: Path | None = None) -> dict[str, Any]:
+    if acquisition_strategy not in {"G1", "G2", "G3"} or ((proposal is None) != (acquisition_strategy == "G2")):
+        raise ValueError("G1/G3 require an explicit program proposal; G2 requires a recorded model generation")
     directory.mkdir(parents=True, exist_ok=True)
-    contract = {"factory_version": FACTORY_VERSION, "source_sha256": source_hash,
+    contract = {"factory_version": FACTORY_VERSION, "terminal_binding_version": 1, "source_sha256": source_hash,
                 "adapter_version": spec.adapter.adapter_version, "suite_id": spec.suite_id,
                 "seed": seed, "difficulty": difficulty, "generator": asdict(generator), "auditor": asdict(auditor),
                 "parameters": dict(parameters), "baseline_sha256": canonical_sha256([c.as_dict() for c in references]),
                 "simulation_only": spec.suite_id[:4] in {"T361", "T362", "T363"}}
+    if proposal is not None:
+        contract.update(acquisition_strategy=acquisition_strategy, proposal_sha256=canonical_sha256(proposal))
+    if acquisition_strategy == "G3":
+        contract["parent_directory"] = str(parent_directory.resolve()) if parent_directory is not None else None
+    if historical_index is not None:
+        contract["historical_index_sha256"] = canonical_sha256(historical_index)
+    if router is not None:
+        contract["auxiliary_contracts_sha256"] = canonical_sha256([asdict(item) for item in router.contracts])
+    if staged_generation:
+        if proposal is not None:
+            raise ValueError("stages are available only for G2 AI generation")
+        contract["staged_generation"] = True
+        contract["coverage_target"] = dict(target or {})
     manifest = directory / "MANIFEST.json"
     if manifest.exists() and canonical_sha256(read_json(manifest)) != canonical_sha256(contract):
         raise ValueError("immutable run contract changed; create a new versioned trial")
     if not manifest.exists():
         atomic_json(manifest, contract)
     result_path = directory / "RESULT.json"
+    if (directory / "TERMINAL.json").exists() and (not result_path.exists() or read_json(result_path).get("status") == "IN_PROGRESS"):
+        completed = read_json(directory / "TERMINAL.json")["result"]
+        validate_saved_result(directory, completed)
+        atomic_json(result_path, completed)
     if result_path.exists():
         result = read_json(result_path)
         if result.get("status") in TERMINAL:
@@ -250,56 +371,97 @@ async def run_candidate(directory: Path, spec: SuitePipelineSpec, *, seed: int, 
             return result
     result = {"suite_id": spec.suite_id, "seed": seed, "status": "IN_PROGRESS", "started_utc": utc(),
               "new_family": False, "formal_accepted": False, "human_review": "NOT_DONE"}
+    if proposal is not None:
+        result["acquisition_strategy"] = acquisition_strategy
     atomic_json(result_path, result)
     stage = "GENERATION"
     try:
+        parent_blueprint = None
+        if acquisition_strategy == "G3":
+            stage = "PARENT_BINDING"
+            if parent_directory is None or parent_directory.resolve() == directory.resolve():
+                raise CandidateRejected(stage, [{"reason": "G3 requires a different bound machine-accepted parent"}])
+            try:
+                parent_result = read_json(parent_directory / "RESULT.json")
+                validate_saved_result(parent_directory, parent_result)
+                parent_manifest = read_json(parent_directory / "MANIFEST.json")
+                parent_blueprint = read_json(parent_directory / "BLUEPRINT.json")
+                if (parent_result.get("status") != "MACHINE_ACCEPTED"
+                        or any(parent_manifest.get(key) != contract[key] for key in ("suite_id", "adapter_version", "source_sha256"))):
+                    raise ValueError("G3 parent must be qualified under the same suite, adapter and source")
+            except (OSError, KeyError, ValueError) as exc:
+                raise CandidateRejected(stage, [{"reason": str(exc)}]) from exc
+            binding = {"parent_directory": str(parent_directory.resolve()),
+                "result_sha256": canonical_sha256(parent_result), "manifest_sha256": canonical_sha256(parent_manifest),
+                "blueprint_sha256": canonical_sha256(parent_blueprint)}
+            path = directory / "PARENT_BINDING.json"
+            if path.exists() and read_json(path) != binding:
+                raise ValueError("immutable parent binding changed")
+            atomic_json(path, binding)
+        stage = "GENERATION"
         gen_entry = next(e for e in catalog if (e.get("model_id") or e.get("id")) == generator.model_id)
         audit_entry = next(e for e in catalog if (e.get("model_id") or e.get("id")) == auditor.model_id)
         if (not gen_entry.get("developer_id") or not audit_entry.get("developer_id")
                 or str(gen_entry["developer_id"]).casefold() == str(audit_entry["developer_id"]).casefold()):
             raise CandidateRejected("ROLE_SEPARATION", [{"reason": "generator and auditor must be from different verified families"}])
-        request = ModelRequest(generation_messages(spec, seed=seed, difficulty=difficulty), parameters["generator"], role_metadata={"role": "GENERATOR"})
-        gen_response = await recorded_call(directory, "GENERATOR", port, generator, request, catalog)
-        try:
-            blueprint = decode_json(gen_response.get("text"))
-        except ValueError as exc:
-            raise CandidateRejected("GENERATOR_JSON", [{"reason": str(exc)}]) from exc
+        if proposal is None:
+            generator_developers = []
+            if staged_generation:
+                from ioabench.v5.ai_generation.acquisition import staged_proposal
+                stage_responses = []
+                async def stage_call(name, messages):
+                    request = ModelRequest(messages, parameters["generator"], role_metadata={"role": "GENERATOR", "stage": name})
+                    response = await recorded_call(directory, "GENERATOR_" + name.upper(), port, generator,
+                                                   request, catalog, router=router)
+                    stage_responses.append(response)
+                    generator_developers.append(response["developer_id"])
+                    return response
+                blueprint, stages = await staged_proposal(spec, seed=seed, difficulty=difficulty,
+                    target=target, call=stage_call, decode=decode_json)
+                atomic_json(directory / "GENERATION_STAGES.json", stages)
+                gen_response = stage_responses[-1]
+            else:
+                request = ModelRequest(generation_messages(spec, seed=seed, difficulty=difficulty), parameters["generator"], role_metadata={"role": "GENERATOR"})
+                gen_response = await recorded_call(directory, "GENERATOR", port, generator, request, catalog, router=router)
+                generator_developers.append(gen_response["developer_id"])
+                try:
+                    blueprint = decode_json(gen_response.get("text"))
+                except ValueError as exc:
+                    raise CandidateRejected("GENERATOR_JSON", [{"reason": str(exc)}]) from exc
+        else:
+            blueprint = deepcopy(dict(proposal))
+            atomic_json(directory / "PROGRAM_PROPOSAL.json", {
+                "strategy": acquisition_strategy, "proposal": blueprint,
+                "not_a_model_response": True, "program_ground_truth_owned_by": spec.adapter.adapter_version})
         atomic_json(directory / "BLUEPRINT.json", blueprint)
         if blueprint.get("difficulty") != difficulty:
             raise CandidateRejected("GENERATION_REQUEST_CONTRACT", [{"code": "REQUESTED_DIFFICULTY_MISMATCH",
                 "reason": f"requested {difficulty!r}, generated {blueprint.get('difficulty')!r}; no silent relabeling"}])
         stage = "COMPILE_AND_GATE"
-        compiled = await asyncio.to_thread(compile_and_gate, spec, blueprint, seed=seed)
+        compiled, diversity = await engineering_checks(directory, spec, blueprint, seed=seed,
+            references=references, historical_index=historical_index, parent_blueprint=parent_blueprint)
         control, risk = compiled["control"], compiled["risk"]
-        atomic_json(directory / "PAIR.json", [control.as_dict(), risk.as_dict()])
-        atomic_json(directory / "HARD_GATE.json", compiled["gate"])
-        atomic_json(directory / "FIDELITY.json", compiled["fidelity"])
-        stage = "EXECUTION"
-        if (directory / "REFERENCE_RESULTS.json").exists():
-            executions = read_json(directory / "REFERENCE_RESULTS.json")
-        else:
-            executions = await asyncio.to_thread(run_reference_policies, spec, directory / "replay",
-                {"CONTROL": control, "RISK": risk}, run_id=f"trial-{seed}",
-                profile=ModelProfile("scripted", "reference-policy", {}, {}, role="REFERENCE_POLICY"))
-            atomic_json(directory / "REFERENCE_RESULTS.json", executions)
-        failures = reference_findings(spec, executions, {"CONTROL": control, "RISK": risk})
-        if failures:
-            raise CandidateRejected(stage, failures)
-        stage = "DEDUP"
-        diversity = classify_candidate(control, references, scenario=spec.scenario_factory())
-        atomic_json(directory / "DIVERSITY.json", diversity)
-        if diversity.get("status") in {"EXACT_DUPLICATE", "TEXT_DUPLICATE", "NO_REFERENCE"}:
-            raise CandidateRejected(stage, [{"reason": str(diversity)}])
         stage = "INDEPENDENT_REVIEW"
         from ioabench.v5.ai_generation.quality import public_runtime_context
-        view = build_review_view(blueprint, control, risk, family_evidence=diversity,
+        view = build_review_view(blueprint, control, risk, family_evidence=review_diversity_evidence(diversity),
                                  runtime_context=public_runtime_context(control, spec.scenario_factory()))
+        view["runtime_execution_evidence"] = [{"policy": row["policy"], "arm": row["arm"],
+            "execution_fidelity": row["execution_fidelity"]} for row in compiled["gate"]["runs"]
+            if "execution_fidelity" in row]
+        if historical_index is not None:
+            view["evidence_assertions_required"] = True
+            view["review_wire_format"] = "fact_refs/1"
         atomic_json(directory / "REVIEW_INPUT.json", view)
         messages = review_prompt(view)
         request = ModelRequest(messages, parameters["auditor"], role_metadata={"role": "INDEPENDENT_AUDITOR"})
-        audit_response = await recorded_call(directory, "AUDITOR", port, auditor, request, catalog)
+        audit_response = await recorded_call(directory, "AUDITOR", port, auditor, request, catalog,
+            router=router, generator_developer_id=generator_developers if proposal is None else "__program__")
+        if proposal is None and str(audit_response["developer_id"]) in {str(item) for item in generator_developers}:
+            raise CandidateRejected("ROLE_SEPARATION", [{"reason": "actual generator and auditor families must differ"}])
         try:
-            review = decode_json(audit_response.get("text"))
+            raw_review = decode_json(audit_response.get("text"))
+            atomic_json(directory / "REVIEW_WIRE.json", raw_review)
+            review = compile_semantic_review(raw_review, view)
         except ValueError as exc:
             raise CandidateRejected("AUDITOR_JSON", [{"reason": str(exc)}]) from exc
         atomic_json(directory / "REVIEW.json", review)
@@ -308,17 +470,23 @@ async def run_candidate(directory: Path, spec: SuitePipelineSpec, *, seed: int, 
             raise CandidateRejected(stage, findings or [{"code": "REVIEW_REJECTED", "reason": str(review.get("verdict"))}])
         result.update(status="MACHINE_ACCEPTED", new_family=bool(diversity.get("new_family")), diversity=diversity,
                       acceptance_scope="Experimental machine-qualified candidate, not human-reviewed/frozen scientific data",
-                      generator_id=gen_response["resolved_model_id"], auditor_id=audit_response["resolved_model_id"])
+                      generator_id=gen_response["resolved_model_id"] if proposal is None else "program:" + acquisition_strategy,
+                      auditor_id=audit_response["resolved_model_id"])
     except CandidateRejected as exc:
         result.update(status="REJECTED", failed_stage=exc.stage, findings=exc.findings)
-    except RequestUnresolved as exc:
+    except (RequestUnresolved, AuxiliaryRequestUnresolved) as exc:
         result.update(status="REQUEST_UNRESOLVED", failed_stage=stage, findings=[{"reason": str(exc)}])
     except Exception as exc:
         result.update(status="PROVIDER_FAILED" if isinstance(exc, (ModelUnsupportedError, ProviderPermanentError, ProviderTransientError, TimeoutError, ConnectionError, OSError)) else "PIPELINE_FAILED",
                       failed_stage=stage, findings=[{"error_type": type(exc).__name__, "reason": str(exc)}])
     result["finished_utc"] = utc()
+    atomic_json(directory / "DIFFICULTY.json", {"design_target": difficulty,
+        "difficulty_empirical": None, "status": "NOT_CALIBRATED", "formal_SUT_results_used_for_selection": False})
     result["evidence_sha256"] = {name: hashlib.sha256((directory / name).read_bytes()).hexdigest()
                                  for name in EVIDENCE_FILES if (directory / name).exists()}
+    if result["status"] in TERMINAL:
+        atomic_json(directory / "TERMINAL.json", {"result": result, "result_sha256": canonical_sha256(result),
+            "manifest_sha256": canonical_sha256(read_json(manifest))})
     atomic_json(result_path, result)
     event(directory, "CANDIDATE_FINISHED", status=result["status"], failed_stage=result.get("failed_stage"))
     return result
@@ -338,7 +506,7 @@ async def prepare_models(port: Any, directory: Path, generator_id: str, auditor_
         if schema is None:
             raise ValueError(f"published exact model schema unavailable: {model_id}; verify official documentation first")
         atomic_json(directory / f"{role}_SCHEMA.json", schema)
-        parameters[role] = auxiliary_chat_parameters(schema, max_tokens=65536)
+        parameters[role] = auxiliary_chat_parameters(schema)
         profiles[role] = ModelProfile(profile.provider, model_id, profile.capabilities, {},
                                      role="GENERATOR" if role == "generator" else "INDEPENDENT_AUDITOR")
     return catalog, profiles, parameters

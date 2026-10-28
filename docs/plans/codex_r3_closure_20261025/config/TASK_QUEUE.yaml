@@ -1,0 +1,53 @@
+version: ioabench.codex-r3-closure.tasks/1.0.0
+workspace: D:\Project\ioa_codex_spec
+contract: GOAL.md
+phases:
+  - id: S0
+    name: resume-existing-worktree
+    status: NOT_STARTED
+    priority: 0
+    required_output: [R3_RESUME_STATE.json]
+    exit: "local HEAD/diff, active base_url, admitted candidates, unresolved IDs grounded"
+  - id: S1
+    name: mandatory-business-witness
+    status: NOT_STARTED
+    priority: 0
+    depends: [S0]
+    code: [src/ioabench/v5/ai_generation/tree_factory.py, src/ioabench/v5/ai_generation/compiler_capabilities.py]
+    exit: "assertions-empty branch correctly runs/blocks on real business witness; positive and negative tests pass"
+  - id: S2
+    name: executable-workflow-novelty
+    status: NOT_STARTED
+    priority: 0
+    depends: [S1]
+    code: [scripts/v5/tf_r3_pool_index.py, src/ioabench/v5/ai_generation/business_binding.py]
+    required_output: [WORKFLOW_NOVELTY_AUDIT.json, STRUCTURE_FAMILY_INDEX.jsonl, NOVELTY_COUNTEREXAMPLES.json]
+    exit: "typed graph isomorphism and frozen history evidence, non-isomorphic new families counted accurately"
+  - id: S3
+    name: fill-real-acceptance-gaps
+    status: NOT_STARTED
+    priority: 1
+    depends: [S2]
+    code: [scripts/v5/tf_r3_pilot.py]
+    output_profile: "config/deepseek_quality_first.yaml"
+    exit: "T321 T331 T362 each >=2 R3 DEV_ACCEPTED pairs in >=2 truly new executed workflow families"
+  - id: S4
+    name: preregistered-comparison-and-ablation
+    status: NOT_STARTED
+    priority: 1
+    depends: [S3]
+    code: [scripts/v5/tf_r3_ablation.py, scripts/v5/tf_r3_pilot.py]
+    required_output: [R3_AB_RESULTS.csv, R3_AB_REPORT.md, R3_ABLATION.json]
+    exit: "original frozen task denominator and repairs separate, no unfounded superiority claim"
+  - id: S5
+    name: final-regression-and-handoff
+    status: NOT_STARTED
+    priority: 1
+    depends: [S4]
+    code: [scripts/v5/tf_r3_history_protection.py, scripts/v5/tf_r3_finalize.py]
+    required_output: [R3_CLOSURE_REPORT.md, R3_GOAL_STATUS.json, SOURCE_ZIP, EVIDENCE_ZIP, SHA256_MANIFEST]
+    exit: "current final source sha, regression/replay/protection/good evidence, git and zipped files all verified"
+notes:
+  - "This is a checklist for existing scripts; do NOT build a new task-orchestration runtime."
+  - "Ordinary implementation issues are solved immediately; avoid procedural waits."
+  - "No cost stop. Historical UNKNOWN requests never resent."

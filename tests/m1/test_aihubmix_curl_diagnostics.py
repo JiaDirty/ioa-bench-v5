@@ -67,6 +67,14 @@ def test_non_json_body_and_stderr_never_appear_in_error(monkeypatch):
     assert all(not path.exists() for path in paths)
 
 
+def test_http200_with_interrupted_body_remains_unresolved(monkeypatch):
+    _curl_stub(monkeypatch, raw='{"choices":[', status="200", returncode=28)
+    with pytest.raises(ProviderTransientError) as error:
+        _call()
+    assert getattr(error.value, "category", None) == "REQUEST_UNRESOLVED"
+    assert SECRET not in str(error.value)
+
+
 @pytest.mark.parametrize("status,exception", [("404", ModelUnsupportedError),
     ("429", ProviderTransientError), ("503", ProviderTransientError), ("401", ProviderPermanentError)])
 def test_http_error_classification_is_unchanged_and_body_is_not_logged(monkeypatch, status, exception):

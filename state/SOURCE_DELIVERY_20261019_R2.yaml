@@ -1,0 +1,30 @@
+schema_version: ioabench.v5.source-delivery/1
+date: '2026-10-19'
+purpose: Documented full auxiliary parameters and bounded real preflight
+pi_decision: PI-V5-018
+runtime_source_sha256: c3d0cdaf53f2a486149da9e03947caaf35b129a924e173b005f636c6bc41e6c1
+prior_git_head: ecc38e006586b15e7330c8b67670bc14aca3b78e
+goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+completion_document: docs/WORK_COMPLETION_20261019_R2.md
+parameter_report: docs/v5/V5_AUXILIARY_FULL_PARAMETERS_20261019.md
+source_archive: exports/source-code-20261019-r2/IoA-Bench-source-code-20261019-r2.zip
+verification: exports/source-code-20261019-r2/PACKAGE_VERIFICATION.json
+producer: artifacts/v5/provider_contracts/full-parameters-20261019-r1/finalize_delivery.py
+preflight: artifacts/v5/provider_contracts/full-parameters-20261019-r1/AIHUBMIX_PREFLIGHT.json
+implementation_check: artifacts/v5/provider_contracts/full-parameters-20261019-r1/IMPLEMENTATION_CHECK.json
+regression_actual: 1496_passed_zero_failures_errors_skipped
+live_completion_attempts: 6
+live_basic_json_identity_pass: 6
+usage_tokens: 803
+estimated_usd_not_invoice: 0.0015529412
+blocked: [DeepSeek_exact_numeric_output_limit_undocumented, Qwen_Next_exact_ID_unresolved]
+new_independent_machine_auditor_qualification: NOT_RUN
+new_difficulty_panel: NOT_RUN
+formal_SUT_changed: false
+scientific_validity: NOT_ESTABLISHED
+formal_accepted: false
+publication_ready: false
+formal_Campaign: NOT_RUN
+human_experiment: NOT_RUN
+history_policy: Preserve all old exports and R13 scientific evidence
+verification_policy: Package acceptance is established only by the actual PACKAGE_VERIFICATION.json result

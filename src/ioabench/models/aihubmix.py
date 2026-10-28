@@ -1,8 +1,10 @@
 from __future__ import annotations
 import asyncio
 from collections.abc import Callable, Mapping
+import hashlib
 import json
 import os
+from pathlib import Path
 import re
 import shutil
 import time
@@ -16,10 +18,11 @@ from ioabench.errors import ConfigurationError, ModelUnsupportedError, ProviderP
 from .types import ModelProfile, ModelRequest, ModelResponse, normalize_request
 
 JsonRequester = Callable[[str, str, Mapping[str, Any]], Mapping[str, Any]]
+DEFAULT_BASE_URL = "https://api.inferera.com/v1"
 
 
 class AIHubMixAdapter:
-    def __init__(self, *, api_key: str | None = None, base_url: str = "https://aihubmix.com/v1", fallback_base_url: str = "https://api.inferera.com/v1", requester: JsonRequester | None = None, request_timeout: float = 900.0, stop_on_provider_error: bool = False) -> None:
+    def __init__(self, *, api_key: str | None = None, base_url: str = DEFAULT_BASE_URL, fallback_base_url: str = DEFAULT_BASE_URL, requester: JsonRequester | None = None, request_timeout: float = 900.0, stop_on_provider_error: bool = False) -> None:
         self._api_key = api_key or os.environ.get("AIHUBMIX_API_KEY")
         self.base_url = base_url.rstrip("/")
         self.fallback_base_url = fallback_base_url.rstrip("/")
@@ -101,11 +104,125 @@ class AIHubMixAdapter:
         if profile.provider != "aihubmix":
             raise ProviderPermanentError(f"unsupported provider profile: {profile.provider}")
         request = normalize_request(request)
+        endpoint = getattr(profile, "capabilities", {}).get("endpoint_family", "openai.chat_completions")
+        if endpoint in {"openai.responses", "anthropic.messages"}:
+            body = _native_request(profile.model_id, request, endpoint)
+            path = "/responses" if endpoint == "openai.responses" else "/messages"
+            payload = await asyncio.to_thread(self._requester, "POST", path, body)
+            return _native_response(payload, profile.model_id, endpoint)
+        if endpoint != "openai.chat_completions":
+            raise ModelUnsupportedError("unsupported AIHubMix endpoint family")
         body: dict[str, Any] = {"model": profile.model_id, "messages": list(request.messages), **dict(request.parameters)}
         if request.tools:
             body["tools"] = list(request.tools)
+        if body.get("stream") and not request.tools:
+            # streaming keeps the connection alive through long thinking turns that
+            # the gateway otherwise cuts at ~80-100s on non-streaming requests; the
+            # SSE stream is aggregated into the exact non-streaming response shape
+            body = {**body, "stream": True, "stream_options": {"include_usage": True}}
+            payload = await asyncio.to_thread(self._request_sse, "/chat/completions", body,
+                                             evidence_path=request.role_metadata.get("stream_evidence_path"))
+            return _response_from_payload(payload, profile.model_id)
         payload = await asyncio.to_thread(self._requester, "POST", "/chat/completions", body)
         return _response_from_payload(payload, profile.model_id)
+
+    def _request_sse(self, path: str, body: Mapping[str, Any], *,
+                     evidence_path: str | None = None) -> Mapping[str, Any]:
+        """POST with SSE streaming and aggregate chunks into one response object."""
+        if not self._api_key:
+            raise ConfigurationError("AIHUBMIX_API_KEY is required for provider calls")
+        base_url = self.base_url if self.stop_on_provider_error else self.base_url
+        executable = shutil.which("curl.exe") or shutil.which("curl")
+        if executable is None:
+            raise ProviderPermanentError("streaming transport requires curl")
+        handle, sse_path = tempfile.mkstemp(prefix="ioabench-sse-", suffix=".txt")
+        os.close(handle)
+        handle, headers_path = tempfile.mkstemp(prefix="ioabench-headers-", suffix=".txt")
+        os.close(handle)
+        handle, body_path = tempfile.mkstemp(prefix="ioabench-", suffix=".json")
+        with os.fdopen(handle, "w", encoding="utf-8") as stream:
+            stream.write(json.dumps(body))
+        retain_stream = False
+        curl_returncode = None
+        transport: dict[str, Any] = {}
+        try:
+            command = [executable, "--http1.1", "--silent", "--show-error", "--no-buffer", "-N",
+                       "--max-time", f"{self._request_timeout:.3f}", "--request", "POST",
+                       _request_url(base_url, path),
+                       "--header", f"Authorization: Bearer {self._api_key}",
+                       "--header", "Content-Type: application/json",
+                       "--header", "Accept: text/event-stream",
+                       "--data-binary", f"@{body_path}",
+                       "--dump-header", headers_path,
+                       "--output", sse_path]
+            completed = subprocess.run(command, capture_output=True, text=True,
+                                       timeout=self._request_timeout + 30)
+            curl_returncode = completed.returncode
+            transport = _response_headers_from_file(headers_path)
+            status = transport.get("http_status")
+            if status and status >= 400:
+                error_type = ProviderTransientError if status == 429 or status >= 500 else ProviderPermanentError
+                raise error_type(f"AIHubMix streaming HTTP {status}")
+            retain_stream = completed.returncode != 0
+            if retain_stream and status != 200:
+                raise ProviderTransientError(
+                    f"AIHubMix streaming curl failed (returncode {completed.returncode}): "
+                    f"{completed.stderr.strip()[:200]}")
+            chunks: list[Mapping[str, Any]] = []
+            done = False
+            with open(sse_path, encoding="utf-8", errors="replace") as stream:
+                for line in stream:
+                    line = line.strip()
+                    if not line.startswith("data:"):
+                        continue
+                    data = line[5:].strip()
+                    if data == "[DONE]":
+                        done = True
+                        continue
+                    try:
+                        value = json.loads(data)
+                    except json.JSONDecodeError as exc:
+                        raise ProviderTransientError("AIHubMix streaming malformed JSON chunk; terminal unknown") from exc
+                    if isinstance(value, Mapping):
+                        chunks.append(value)
+            if not chunks or not done:
+                raise ProviderTransientError("AIHubMix streaming incomplete: missing data or DONE; terminal unknown")
+            payload = _aggregate_sse(chunks, headers_path)
+            transport = payload["transport_metadata"]
+            transport["curl_returncode"] = curl_returncode
+            return payload
+        except (ProviderPermanentError, ProviderTransientError, subprocess.TimeoutExpired) as exc:
+            # HTTP 200 headers do not resolve an interrupted completion. Keep
+            # that evidence without exposing TimeoutExpired's credential argv.
+            error = (ProviderTransientError("AIHubMix streaming deadline exceeded; terminal unknown")
+                     if isinstance(exc, subprocess.TimeoutExpired) else exc)
+            retain_stream = True
+            transport = _response_headers_from_file(headers_path)
+            transport["curl_returncode"] = curl_returncode
+            error.transport_metadata = transport
+            if isinstance(error, ProviderTransientError) and transport.get("http_status", 0) < 400:
+                error.category = "REQUEST_UNRESOLVED"
+            raise error from None
+        finally:
+            try:
+                if retain_stream:
+                    if evidence_path is not None:
+                        target = Path(evidence_path)
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.move(sse_path, target)
+                        shutil.move(headers_path, target.with_suffix(".headers"))
+                        sse_path, headers_path = str(target), str(target.with_suffix(".headers"))
+                    transport["stream_evidence"] = {
+                        "sse_path": sse_path, "headers_path": headers_path,
+                        "sse_bytes": Path(sse_path).stat().st_size,
+                        "sse_sha256": hashlib.sha256(Path(sse_path).read_bytes()).hexdigest(),
+                        "headers_sha256": hashlib.sha256(Path(headers_path).read_bytes()).hexdigest()}
+            finally:
+                for temporary in (body_path,) if retain_stream else (sse_path, headers_path, body_path):
+                    try:
+                        os.unlink(temporary)
+                    except OSError:
+                        pass
 
     def _request_json(self, method: str, path: str, body: Mapping[str, Any]) -> Mapping[str, Any]:
         deadline = time.monotonic() + self._request_timeout
@@ -161,12 +278,16 @@ class AIHubMixAdapter:
             if remaining <= 0:
                 last_error = TimeoutError("AIHubMix request deadline exceeded")
                 break
-            request = Request(_request_url(base_url, path), data=data, method=method, headers={"Authorization": f"Bearer {self._api_key}", "Content-Type": "application/json"})
+            headers = {"Authorization": f"Bearer {self._api_key}", "Content-Type": "application/json"}
+            if path == "/messages":
+                headers.update({"x-api-key": self._api_key, "anthropic-version": "2023-06-01"})
+            request = Request(_request_url(base_url, path), data=data, method=method, headers=headers)
             try:
                 with urlopen(request, timeout=remaining) as response:
                     decoded = json.loads(response.read().decode("utf-8"))
                     if isinstance(decoded, dict):
                         decoded["transport_metadata"] = _response_headers(response.headers)
+                        decoded["transport_metadata"]["http_status"] = getattr(response, "status", None)
                 last_error = None
                 break
             except HTTPError as exc:
@@ -216,6 +337,66 @@ class AIHubMixAdapter:
         return decoded
 
 
+def _aggregate_sse(chunks: list[Mapping[str, Any]], headers_path: str) -> Mapping[str, Any]:
+    """Fold OpenAI-compatible SSE chunks into one non-streaming response object."""
+    content_parts: list[str] = []
+    reasoning_parts: list[str] = []
+    finish_reason = None
+    usage = None
+    model_id = None
+    response_id = None
+    created = None
+    for chunk in chunks:
+        model_id = chunk.get("model") or model_id
+        response_id = chunk.get("id") or response_id
+        created = chunk.get("created") or created
+        if chunk.get("usage"):
+            usage = chunk["usage"]
+        for choice in chunk.get("choices") or []:
+            finish_reason = choice.get("finish_reason") or finish_reason
+            delta = choice.get("delta") or {}
+            if delta.get("content"):
+                content_parts.append(delta["content"])
+            if delta.get("reasoning_content"):
+                reasoning_parts.append(delta["reasoning_content"])
+    transport = _response_headers_from_file(headers_path)
+    if not finish_reason or not model_id or not usage or any(
+            type(usage.get(key)) is not int or usage[key] < 0
+            for key in ("prompt_tokens", "completion_tokens")):
+        raise ProviderTransientError("AIHubMix streaming incomplete: missing finish/model/usage; terminal unknown")
+    transport["sse_terminal_complete"] = True
+    return {"id": response_id, "object": "chat.completion", "created": created,
+            "model": model_id, "streamed": True,
+            "choices": [{"index": 0, "finish_reason": finish_reason,
+                         "message": {"role": "assistant",
+                                     "content": "".join(content_parts),
+                                     **({"reasoning_content": "".join(reasoning_parts)}
+                                        if reasoning_parts else {})}}],
+            "usage": usage or {},
+            "transport_metadata": transport}
+
+
+def _response_headers_from_file(headers_path: str) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
+    try:
+        with open(headers_path, encoding="utf-8", errors="replace") as stream:
+            blocks = re.split(r"\r?\n\r?\n", stream.read().strip())
+    except OSError:
+        return headers
+    lines = blocks[-1].splitlines() if blocks else []
+    if lines and lines[0].split(" ")[0].isdigit() is False and " " in lines[0]:
+        try:
+            headers["http_status"] = int(lines[0].split(" ")[1])
+        except (IndexError, ValueError):
+            pass
+    for line in lines[1:]:
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        headers[key.strip().lower()] = value.strip()
+    return headers
+
+
 def _curl_json(base_url: str, method: str, path: str, body: Mapping[str, Any], api_key: str, request_timeout: float) -> Mapping[str, Any] | None:
     executable = shutil.which("curl.exe") or shutil.which("curl")
     if not executable:
@@ -223,6 +404,8 @@ def _curl_json(base_url: str, method: str, path: str, body: Mapping[str, Any], a
     handle, temporary_headers = tempfile.mkstemp(prefix="ioabench-headers-", suffix=".txt")
     os.close(handle)
     command = [executable, "--http1.1", "--silent", "--show-error", "--max-time", f"{max(0.01, request_timeout):.3f}", "--request", method, _request_url(base_url, path), "--header", f"Authorization: Bearer {api_key}", "--header", "Content-Type: application/json", "--dump-header", temporary_headers, "--write-out", "\\n__IOA_STATUS__%{http_code}"]
+    if path == "/messages":
+        command.extend(["--header", f"x-api-key: {api_key}", "--header", "anthropic-version: 2023-06-01"])
     temporary_body: str | None = None
     if method == "POST":
         encoded_body = json.dumps(body)
@@ -276,6 +459,8 @@ def _curl_json(base_url: str, method: str, path: str, body: Mapping[str, Any], a
             if isinstance(error_payload.get("error"), Mapping):
                 error_fields.update({f"error.{name}": error_payload["error"].get(name)
                                      for name in ("type", "code", "tid")})
+                if status in {400, 422}:
+                    error_fields["error.message"] = error_payload["error"].get("message")
             diagnostic_fields.update({name: (value.replace(api_key, "[REDACTED]") if api_key else value)[:240]
                                       for name, value in error_fields.items() if isinstance(value, str)})
     diagnostic = json.dumps(diagnostic_fields, sort_keys=True)
@@ -289,10 +474,15 @@ def _curl_json(base_url: str, method: str, path: str, body: Mapping[str, Any], a
         payload = json.loads(raw)
     except json.JSONDecodeError as exc:
         kind = "empty" if not raw.strip() else "non-JSON"
-        raise ProviderTransientError(f"AIHubMix curl response was {kind}; {diagnostic}") from exc
+        error = ProviderTransientError(f"AIHubMix curl response was {kind}; {diagnostic}")
+        # Receiving headers does not establish the completion's terminal state.
+        if method == "POST" and completed.returncode != 0:
+            error.category = "REQUEST_UNRESOLVED"
+        raise error from exc
     if not isinstance(payload, Mapping):
         raise ProviderPermanentError("AIHubMix returned a non-object response")
     payload["transport_metadata"] = transport_metadata
+    payload["transport_metadata"]["http_status"] = status
     return payload
 
 
@@ -344,3 +534,105 @@ def _response_from_payload(payload: Mapping[str, Any], model_id: str) -> ModelRe
         reasoning_content=reasoning_content if isinstance(reasoning_content, str) else None,
         reasoning_details=reasoning_details if isinstance(reasoning_details, (Mapping, list)) else None,
     )
+
+
+def _native_request(model_id: str, request: ModelRequest, endpoint: str) -> dict[str, Any]:
+    """Translate the same ModelPort messages; native modes are explicit auxiliary opt-ins."""
+    body = {"model": model_id, **dict(request.parameters)}
+    if endpoint == "openai.responses":
+        items = []
+        for message in request.messages:
+            if message.get("output_items"):
+                items.extend(message["output_items"])
+            elif message["role"] == "tool":
+                items.append({"type": "function_call_output", "call_id": message["tool_call_id"], "output": message["content"]})
+            else:
+                items.append({"role": message["role"], "content": message["content"]})
+                for call in message.get("tool_calls", []):
+                    items.append({"type": "function_call", "call_id": call["id"], **call["function"]})
+        body["input"] = items
+        if request.tools:
+            body["tools"] = [{"type": "function", **tool["function"]} for tool in request.tools]
+    else:
+        messages, system = [], []
+        for message in request.messages:
+            if message["role"] in {"system", "developer"}:
+                system.append(message["content"])
+                continue
+            if message["role"] == "tool":
+                role = "user"
+                content = [{"type": "tool_result", "tool_use_id": message["tool_call_id"], "content": message["content"]}]
+            else:
+                role = message["role"]
+                content = list(message.get("content_blocks") or [])
+                if not content:
+                    if message["content"]:
+                        content.append({"type": "text", "text": message["content"]})
+                    for call in message.get("tool_calls", []):
+                        args = call["function"]["arguments"]
+                        content.append({"type": "tool_use", "id": call["id"], "name": call["function"]["name"],
+                                        "input": json.loads(args) if isinstance(args, str) else args})
+            if messages and messages[-1]["role"] == role:
+                messages[-1]["content"].extend(content)
+            else:
+                messages.append({"role": role, "content": content})
+        body["messages"] = messages
+        if system:
+            body["system"] = "\n\n".join(system)
+        if request.tools:
+            body["tools"] = [{"name": tool["function"]["name"],
+                "description": tool["function"].get("description", ""),
+                "input_schema": tool["function"]["parameters"]} for tool in request.tools]
+    return body
+
+
+def _native_response(payload: Mapping[str, Any], model_id: str, endpoint: str) -> ModelResponse:
+    usage, calls, text, reasoning = dict(payload.get("usage") or {}), [], [], []
+    metadata = {key: value for key, value in payload.items() if key not in {"output", "content", "usage"}}
+    metadata["endpoint_family"] = endpoint
+    if endpoint == "openai.responses":
+        items = payload.get("output")
+        if not isinstance(items, list):
+            raise ProviderPermanentError("RESPONSE_PARSE: native response output must be an array")
+        metadata["output_items"] = items
+        for item in items:
+            if item.get("type") == "function_call":
+                calls.append({"id": item["call_id"], "type": "function", "function": {
+                    "name": item["name"], "arguments": item["arguments"]}})
+            if item.get("type") == "message":
+                text.extend(block["text"] for block in item.get("content", []) if block.get("type") == "output_text")
+            if item.get("type") == "reasoning":
+                reasoning.extend(block.get("text", "") for block in item.get("summary", []))
+        finish = "tool_calls" if calls else "stop"
+        if payload.get("status") == "incomplete":
+            finish = "length" if (payload.get("incomplete_details") or {}).get("reason") == "max_output_tokens" else "incomplete"
+        elif payload.get("status") != "completed":
+            finish = str(payload.get("status") or "unknown")
+    else:
+        items = payload.get("content")
+        if not isinstance(items, list):
+            raise ProviderPermanentError("RESPONSE_PARSE: native message content must be an array")
+        metadata["content_blocks"] = items
+        for item in items:
+            if item.get("type") == "tool_use":
+                calls.append({"id": item["id"], "type": "function", "function": {
+                    "name": item["name"], "arguments": json.dumps(item["input"])}})
+            elif item.get("type") == "text":
+                text.append(item["text"])
+            elif item.get("type") == "thinking":
+                reasoning.append(item.get("thinking", ""))
+        stop = payload.get("stop_reason")
+        finish = {"end_turn": "stop", "stop_sequence": "stop", "tool_use": "tool_calls", "max_tokens": "length"}.get(stop, stop)
+    if "input_tokens" in usage:
+        cached = int(usage.get("cache_read_input_tokens") or 0)
+        created = int(usage.get("cache_creation_input_tokens") or 0)
+        usage["prompt_tokens"] = int(usage["input_tokens"]) + cached + created
+        if cached or created:
+            usage["prompt_tokens_details"] = {**usage.get("prompt_tokens_details", {}),
+                "cached_tokens": cached, "cache_creation_tokens": created}
+    if "output_tokens" in usage:
+        usage["completion_tokens"] = usage["output_tokens"]
+    if "total_tokens" not in usage and "prompt_tokens" in usage and "completion_tokens" in usage:
+        usage["total_tokens"] = usage["prompt_tokens"] + usage["completion_tokens"]
+    return ModelResponse("".join(text), tuple(calls), usage=usage, provider_metadata=metadata,
+        model_id=model_id, finish_reason=finish, reasoning_content="".join(reasoning) or None)

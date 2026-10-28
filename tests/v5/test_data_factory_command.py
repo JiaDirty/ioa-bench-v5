@@ -5,9 +5,11 @@ import hashlib
 import importlib.util
 import json
 from dataclasses import asdict
+from contextlib import nullcontext
 from pathlib import Path
 from types import SimpleNamespace
 import zipfile
+from tempfile import TemporaryDirectory
 
 import pytest
 
@@ -17,6 +19,10 @@ from ioabench.v5.ai_generation.factory import read_json
 from ioabench.v5.ai_generation.pipeline import suite_spec
 from ioabench.v5.ai_generation.runtime_adapter import RuntimeGenerationAdapter
 from ioabench.v5.evaluation import atomic_json
+from ioabench.generation.coverage import CoveragePlanner
+from ioabench.v5.ai_generation.acquisition import program_proposal
+from ioabench.v5.ai_generation.history import build_index
+from ioabench.runtime.full_manifest import source_tree_hash
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -53,7 +59,7 @@ def _terminal(directory, *, status="REJECTED", new_family=False, pair=None):
         atomic_json(directory / "PAIR.json", [case.as_dict() for case in pair])
         if "PAIR.json" not in files:
             files.append("PAIR.json")
-    result = {"status": status, "suite_id": "T331-DYNA", "new_family": new_family,
+    result = {"status": status, "suite_id": "T331-DYNA", "new_family": new_family, "formal_accepted": False,
               "evidence_sha256": {name: hashlib.sha256((directory / name).read_bytes()).hexdigest()
                                   for name in files}}
     atomic_json(directory / "RESULT.json", result)
@@ -220,16 +226,16 @@ def test_typed_offline_runs_world_compilers_and_reproduces_each_pair(monkeypatch
 
     monkeypatch.setattr(command, "suite_spec", typed_spec)
     monkeypatch.setattr(command, "compile_and_gate", compile_pair)
-    report = command.offline(tmp_path, ["T312", "T331", "T352"], typed=True)
-    assert resolved == ["T312", "T331", "T352"]
-    assert len(compiled) == 12 and len(report["checks"]) == 6
+    report = command.offline(tmp_path, ["T312", "T321", "T331", "T352"], typed=True)
+    assert resolved == ["T312", "T321", "T331", "T352"]
+    assert len(compiled) == 16 and len(report["checks"]) == 8
     assert all(check["passed"] and check["difficulty"] == "M" for check in report["checks"])
     assert report["provider_calls"] == 0
     assert read_json(tmp_path / "PREFLIGHT.json") == report
 
 
-@pytest.mark.parametrize("suites", [["T311"], ["T321"], ["T361"], ["all"], ["T312", "T363"]])
-def test_unsupported_typed_cli_rejected_before_lock_or_model_preparation(monkeypatch, tmp_path, suites):
+@pytest.mark.parametrize("suites", [["T311"], ["T322"], ["T361"], ["all"], ["T312", "T363"]])
+def test_live_typed_cli_without_preflight_rejected_before_lock_or_model_preparation(monkeypatch, tmp_path, suites):
     command = _command(monkeypatch, tmp_path)
     monkeypatch.setattr(command, "_lock", _no_provider)
     monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
@@ -241,6 +247,26 @@ def test_unsupported_typed_cli_rejected_before_lock_or_model_preparation(monkeyp
         command.main()
     assert excinfo.value.code == 2
     assert not list(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize("typed_flag", ["--typed", "--auto-typed"])
+def test_first_batch_typed_cli_reaches_offline_pipeline_without_provider(monkeypatch, tmp_path, typed_flag):
+    command = _command(monkeypatch, tmp_path)
+    monkeypatch.setattr(command, "_lock", lambda path: nullcontext())
+    monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
+    monkeypatch.setattr(command, "prepare_models", _no_provider)
+    received = []
+
+    def offline(directory, suites, *, typed=False):
+        received.append((directory, suites, typed))
+        return {"status": "OFFLINE_ENGINEERING_PASS", "provider_calls": 0}
+
+    monkeypatch.setattr(command, "offline", offline)
+    monkeypatch.setattr(command.sys, "argv", ["data_factory.py", "--run-id", "first-batch",
+                                              "--mode", "offline", typed_flag, "--suite",
+                                              "T321", "T331", "T352"])
+    assert command.main() == 0
+    assert received == [(tmp_path / "first-batch", ["T321", "T331", "T352"], True)]
 
 
 def _small_source(monkeypatch, command, directory):
@@ -278,6 +304,8 @@ def test_source_archive_hashes_crc_and_missing_manifest_recovery(monkeypatch, tm
     archive_bytes = (directory / "source.zip").read_bytes()
     assert manifest["archive_sha256"] == hashlib.sha256(archive_bytes).hexdigest()
     assert manifest["source_sha256"] == "fixed-source-hash"
+    assert manifest["runtime_source_sha256"] == source_tree_hash(source)
+    assert manifest["command_sha256"] == hashlib.sha256(Path(command.__file__).read_bytes()).hexdigest()
     assert manifest["file_count"] == len(expected)
     with zipfile.ZipFile(directory / "source.zip") as archive:
         assert archive.testzip() is None
@@ -348,3 +376,240 @@ def test_cached_wrong_role_or_id_never_runs_candidate(monkeypatch, tmp_path, key
     with pytest.raises(ValueError, match="cached model roles/identities"):
         asyncio.run(command.live(directory, _args(trials=1)))
     assert not list(directory.glob("candidate-*"))
+
+
+def test_history_prescreen_skips_seen_combinations_without_qualifying_coverage(monkeypatch, tmp_path):
+    command = _command(monkeypatch, tmp_path / "runs")
+    spec = suite_spec("T331", typed=True)
+    original = program_proposal(spec, seed=91, difficulty="M", target={"propagation_topology": "fanout"})
+    control, risk = spec.adapter.compile_pair(original, seed=91)
+    source = tmp_path / "PAIR.json"
+    atomic_json(source, [control.as_dict(), risk.as_dict()])
+    index = build_index(tmp_path, sources=[source])
+    plan = CoveragePlanner().plan_factors({"propagation_topology": ["fanout", "chain"]}, feasible=lambda row: True)
+    monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
+    selected = command.prescreen_history_targets(spec, plan, index, seed=91, directory=tmp_path / "run")
+    assert selected["factors"] == {"propagation_topology": "chain"}
+    report = CoveragePlanner().report_coverage(plan)
+    assert report["machine_covered_interactions"] == 0 and report["shortfall"] == 2
+    assert plan["outcomes"][0]["outcome"]["rejection_code"] == "HISTORICAL_STRUCTURE_ALREADY_SEEN"
+    evidence = next((tmp_path / "run/history_prescreen").glob("*.json"))
+    assert read_json(evidence)["provider_calls"] == 0
+    child = program_proposal(spec, seed=91, difficulty="M", target=selected["factors"])
+    atomic_json(tmp_path / "PAIR-child.json", [case.as_dict() for case in spec.adapter.compile_pair(child, seed=91)])
+    expanded = build_index(tmp_path, sources=[source, tmp_path / "PAIR-child.json"])
+    assert command.prescreen_history_targets(spec, plan, expanded, seed=91, directory=tmp_path / "run") is None
+    assert CoveragePlanner().report_coverage(plan)["shortfall"] == 2
+
+
+def test_history_extension_retains_archives_probes_and_rejected_occurrences(monkeypatch, tmp_path):
+    command = _command(monkeypatch, tmp_path / "runs")
+    monkeypatch.setattr(command, "ROOT", tmp_path)
+    pair = suite_spec("T331", typed=True).slice_module.generate(seed=91, families=1)[0]
+    original = tmp_path / "old/PAIR.json"
+    atomic_json(original, [case.as_dict() for case in pair])
+    index = build_index(tmp_path, sources=[original])
+    index["source_sha256"]["archive.zip"] = "a" * 64
+    index["records"][0]["behavioral_probe_signature"] = {"immutable": "probe"}
+    rejected = tmp_path / "new/PAIR.json"
+    atomic_json(rejected, [case.as_dict() for case in pair])
+    atomic_json(rejected.parent / "RESULT.json", {"status": "REJECTED"})
+    merged = command.extend_history(index, [rejected])
+    assert merged["source_sha256"]["archive.zip"] == "a" * 64
+    assert merged["records"][0]["behavioral_probe_signature"] == {"immutable": "probe"}
+    assert len(index["records"][0]["occurrences"]) == 1
+    assert len(merged["records"][0]["occurrences"]) == 2
+    assert merged["records"][0]["occurrences"][-1]["status"] == "REJECTED"
+    assert len(merged["records"]) == 2
+
+
+def test_live_candidate_uses_authoritative_runtime_hash_and_reaches_real_pool(monkeypatch):
+    from ioabench.v5.ai_generation import pool
+    from test_reusable_data_factory import TrialPort, setup_trial, CATALOG, GEN, AUD
+
+    with TemporaryDirectory(prefix="test_cli_pool_", dir=ROOT / "artifacts/v5/data_factory/upgrade-20261019") as temporary:
+        workspace = Path(temporary)
+        command = _command(monkeypatch, workspace / "trials")
+        _, blueprint, _ = setup_trial()
+        port = TrialPort(blueprint)
+        monkeypatch.setattr(command, "AIHubMixAdapter", lambda **kwargs: port)
+        monkeypatch.setattr(command, "_load_api_key", lambda: "unused-local-fixture")
+
+        async def prepared(*args):
+            return CATALOG, {"generator": GEN, "auditor": AUD}, {"generator": {}, "auditor": {}}
+
+        monkeypatch.setattr(command, "prepare_models", prepared)
+        directory = command.RUNS / "test-run"
+        source = source_tree_hash(ROOT)
+        state = asyncio.run(command.live(directory, _args(trials=1)))
+        assert state["accepted"] == 1 and port.calls == ["GENERATOR", "INDEPENDENT_AUDITOR"]
+        assert read_json(directory / "candidate-01/MANIFEST.json")["source_sha256"] == source
+        contract = read_json(directory / "RUN_CONTRACT.json")
+        assert contract["source_sha256"] == source
+        assert contract["command_sha256"] == hashlib.sha256(Path(command.__file__).read_bytes()).hexdigest()
+        archive = read_json(directory / "SOURCE_MANIFEST.json")
+        assert archive["runtime_source_sha256"] == source and archive["source_sha256"] == "fixed-source-hash"
+        registry = workspace / "registry.jsonl"
+        registry.write_text("", encoding="utf-8")
+        report = pool.build_pool(ROOT, workspace / "pool", [{
+            "directory": (directory / "candidate-01").relative_to(ROOT).as_posix(), "split": "development"}],
+            registry_path=registry, expected_source_sha256=source)
+        assert report["layer_case_counts"][pool.LAYERS[0]] == 2
+        assert report["formal_accepted"] is False
+        assert pool.verify_pool(workspace / "pool") == report
+        contract["command_sha256"] = "0" * 64
+        atomic_json(directory / "RUN_CONTRACT.json", contract)
+        monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
+        with pytest.raises(ValueError, match="configuration or source changed"):
+            asyncio.run(command.live(directory, _args(trials=1)))
+
+
+@pytest.mark.parametrize("scope", ["family_instance", "new_structure"])
+def test_g3_prescreen_skips_identical_parent_cell_and_selects_actual_mutation(monkeypatch, tmp_path, scope):
+    from test_reusable_data_factory import setup_trial
+    command = _command(monkeypatch, tmp_path / "runs")
+    spec, parent, _ = setup_trial()
+    plan = CoveragePlanner().plan_factors({"propagation_topology": ["fanout", "chain"]}, feasible=lambda row: True)
+    index = build_index(tmp_path, sources=[])
+    monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
+    selected = command.prescreen_history_targets(spec, plan, index, seed=91, directory=tmp_path / "run",
+                                                 parent=parent, diversity_target=scope)
+    assert selected["factors"] == {"propagation_topology": "chain"}
+    child = program_proposal(spec, seed=91, difficulty="M", target=selected["factors"], parent=parent)
+    before, _ = spec.adapter.compile_pair(parent, seed=91)
+    after, _ = spec.adapter.compile_pair(child, seed=91)
+    assert spec.adapter.structural_signature(before) != spec.adapter.structural_signature(after)
+    assert plan["outcomes"][0]["outcome"]["rejection_code"] == "NO_STRUCTURAL_MUTATION"
+    evidence = read_json(next((tmp_path / "run/parent_prescreen").glob("*.json")))
+    assert evidence["provider_calls"] == 0 and evidence["parent_blueprint_sha256"]
+    assert CoveragePlanner().report_coverage(plan)["machine_covered_interactions"] == 0
+
+
+def test_g3_no_legal_mutation_persists_shortfall_even_without_coverage_flag(monkeypatch, tmp_path):
+    from ioabench.v5.ai_generation.auxiliary_runtime import AuxiliaryContract
+    from test_reusable_data_factory import TrialPort, setup_trial, execute, CATALOG, GEN, AUD
+
+    command = _command(monkeypatch, tmp_path / "runs")
+    import plan_factory_coverage
+    spec, parent, references = setup_trial()
+    parent_directory = tmp_path / "parent"
+    assert execute(parent_directory, spec, TrialPort(parent), references, source_hash=source_tree_hash(ROOT))['status'] == "MACHINE_ACCEPTED"
+    before = {path: path.read_bytes() for path in parent_directory.rglob("*") if path.is_file()}
+    gold = tmp_path / "gold"
+    atomic_json(gold / "CONTROL_RESULT.json", {"auditor": AUD.model_id})
+    history_path = tmp_path / "INDEX.json"
+    atomic_json(history_path, build_index(ROOT, sources=[]))
+    args = _args(trials=1)
+    vars(args).update(preflight=tmp_path / "preflight", judge_control=[gold], acquisition="G3", staged=False,
+        coverage=False, auto_typed=True, fallback_generator=[], fallback_auditor=[], parent=parent_directory,
+        history_index=history_path, diversity_target="family_instance")
+    monkeypatch.setattr(command, "archive_source", lambda directory: atomic_json(directory / "SOURCE_MANIFEST.json", {"fixture": True}))
+    monkeypatch.setattr(command, "baseline_sources", lambda suites: {})
+    monkeypatch.setattr(command, "baseline_cases", lambda *args: references)
+    monkeypatch.setattr(command, "AIHubMixAdapter", lambda **kwargs: object())
+    monkeypatch.setattr(command, "_load_api_key", lambda: "unused-local-fixture")
+    monkeypatch.setattr(command, "AuxiliaryRouter", lambda *args: object())
+    monkeypatch.setattr(command, "run_candidate", _no_provider)
+
+    def qualified(*args, role, **kwargs):
+        profile = GEN if role == "GENERATOR" else AUD
+        entry = next(row for row in CATALOG if row["model_id"] == profile.model_id)
+        return CATALOG, [AuxiliaryContract(profile, {}, entry, "fixture", (role,), "fixture")], "https://fixture.invalid/v1"
+
+    monkeypatch.setattr(command, "qualified_contracts", qualified)
+    monkeypatch.setattr(plan_factory_coverage, "_factors", lambda *args: {"propagation_topology": ["fanout"]})
+    directory = command.RUNS / args.run_id
+    state = asyncio.run(command.live(directory, args))
+    assert state["status"] == "COVERAGE_SHORTFALL" and state["outcomes"] == [] and state["accepted"] == 0
+    assert read_json(directory / "RUN_STATE.json") == state
+    plan = read_json(directory / "COVERAGE_PLANS.json")["T331"]
+    assert len(plan["outcomes"]) == 1
+    assert plan["outcomes"][0]["outcome"]["rejection_code"] == "NO_STRUCTURAL_MUTATION"
+    assert read_json(directory / "COVERAGE_REPORT.json")["T331"]["shortfall"] == 1
+    assert all(path.read_bytes() == content for path, content in before.items())
+
+
+def test_g3_invalid_parent_stops_before_model_qualification_and_baseline_work(monkeypatch, tmp_path):
+    command = _command(monkeypatch, tmp_path / "runs")
+    parent = tmp_path / "parent"
+    _terminal(parent)
+    args = _args(trials=1)
+    vars(args).update(preflight=tmp_path / "preflight", judge_control=[], acquisition="G3", staged=False,
+        coverage=True, auto_typed=True, fallback_generator=[], fallback_auditor=[], parent=parent,
+        diversity_target="family_instance")
+    monkeypatch.setattr(command, "archive_source", lambda directory: atomic_json(directory / "SOURCE_MANIFEST.json", {"fixture": True}))
+    monkeypatch.setattr(command, "qualified_contracts", _no_provider)
+    monkeypatch.setattr(command, "baseline_cases", _no_provider)
+    monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
+    with pytest.raises(ValueError, match="machine-accepted parent"):
+        asyncio.run(command.live(command.RUNS / args.run_id, args))
+
+
+def _independent_reference_history(monkeypatch, tmp_path):
+    from ioabench.v5.ai_generation.history import behavioral_signature, POLICY_CONTRACT, PROBE_VERSION
+    from ioabench.v5.dynamic.runner import run_dynamic_case
+
+    command = _command(monkeypatch, tmp_path / "runs")
+    monkeypatch.setattr(command, "ROOT", tmp_path)
+    monkeypatch.setattr(command, "AIHubMixAdapter", _no_provider)
+    spec = suite_spec("T331", typed=True)
+    pair = spec.slice_module.generate(seed=91, families=1)[0]
+    original = tmp_path / "prior/PAIR.json"
+    atomic_json(original, [case.as_dict() for case in pair])
+    index = build_index(tmp_path, sources=[original])
+    candidate = tmp_path / "rejected"
+    result = _terminal(candidate, pair=pair)
+    profile = ModelProfile("scripted", "reference-policy", {}, {}, role="REFERENCE_POLICY")
+    current_probes, current_results = {}, []
+    for repetition in ("historical", "candidate"):
+        for case in pair:
+            results = {policy: run_dynamic_case(tmp_path / "runner", case, spec.slice_module,
+                       spec.slice_module.policies()[policy], profile,
+                       run_id=f"{repetition}-{policy}-{case.arm.lower()}",
+                       parameters={"temperature": 0.0})
+                       for policy in ("witness", "naive")}
+            probe = behavioral_signature(case, results, policy_contract=POLICY_CONTRACT)
+            record = next(row for row in index["records"] if row["case_sha256"] == case.content_sha256())
+            if repetition == "historical":
+                record["behavioral_probe_signature"] = probe
+            else:
+                assert probe["behavior"] == record["behavioral_probe_signature"]["behavior"]
+                assert probe["evidence_sha256"] != record["behavioral_probe_signature"]["evidence_sha256"]
+                current_probes[case.content_sha256()] = probe
+                current_results.extend(results.values())
+    atomic_json(candidate / "REFERENCE_RESULTS.json", current_results)
+    atomic_json(candidate / "BEHAVIORAL_PROBES.json", {
+        "probe_version": PROBE_VERSION, "policy_contract": POLICY_CONTRACT,
+        "by_case_sha256": current_probes,
+        "reference_results_sha256": hashlib.sha256((candidate / "REFERENCE_RESULTS.json").read_bytes()).hexdigest()})
+    result["evidence_sha256"].update({name: hashlib.sha256((candidate / name).read_bytes()).hexdigest()
+                                     for name in ("REFERENCE_RESULTS.json", "BEHAVIORAL_PROBES.json")})
+    atomic_json(candidate / "RESULT.json", result)
+    return command, index, candidate
+
+
+def test_history_extension_accepts_independent_equal_behavior_and_retains_both_bindings(monkeypatch, tmp_path):
+    from copy import deepcopy
+
+    command, index, candidate = _independent_reference_history(monkeypatch, tmp_path)
+    before = deepcopy(index)
+    merged = command.extend_history(index, [candidate / "PAIR.json"])
+    assert index == before
+    for prior, added in zip(index["records"], merged["records"]):
+        assert added["behavioral_probe_signature"] == prior["behavioral_probe_signature"]
+        assert len(added["occurrences"]) == len(prior["occurrences"]) + 1
+    proof_name = (candidate / "BEHAVIORAL_PROBES.json").relative_to(tmp_path).as_posix()
+    assert merged["source_sha256"][proof_name] == hashlib.sha256((candidate / "BEHAVIORAL_PROBES.json").read_bytes()).hexdigest()
+    assert command.extend_history(merged, [candidate / "PAIR.json"]) == merged
+
+
+@pytest.mark.parametrize("field", ["behavior", "policy_contract", "probe_version", "case_sha256"])
+def test_history_extension_still_rejects_semantic_or_identity_probe_conflicts(monkeypatch, tmp_path, field):
+    command, index, candidate = _independent_reference_history(monkeypatch, tmp_path)
+    prior = index["records"][0]["behavioral_probe_signature"]
+    if field == "behavior":
+        prior["behavior"]["witness"]["actions"][0]["tool"] = "different-runtime-tool"
+    else:
+        prior[field] = "different-contract-or-case"
+    with pytest.raises(ValueError, match="conflicting pinned behavioral probes"):
+        command.extend_history(index, [candidate / "PAIR.json"])

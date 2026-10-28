@@ -1,0 +1,82 @@
+{
+  "version": "ioabench.codex-r3-closure-package/1.0.0",
+  "generated_date": "2026-10-25",
+  "purpose": "Codex R3 closure instructions, no project sources modified",
+  "files": [
+    {
+      "relative_path": "01_CURRENT_BASELINE.md",
+      "bytes": 4202,
+      "sha256": "7625c30b326728313fd7c36497201768ef593a1767add94ec73290370ee87d32"
+    },
+    {
+      "relative_path": "02_EXECUTION_QUEUE.md",
+      "bytes": 7401,
+      "sha256": "f0e50021ef2ff78759a9b309fde4ce2f5c84ce3e44134d6f5878896fc2bc3d67"
+    },
+    {
+      "relative_path": "03_MODEL_AND_ENDPOINT.md",
+      "bytes": 6280,
+      "sha256": "2c4d4c52d5493c5c081537f143d4f2040be46e588ef387dea8317d1a3d97e3f6"
+    },
+    {
+      "relative_path": "04_NOVELTY_AND_WITNESS.md",
+      "bytes": 7113,
+      "sha256": "ee9b16d1a4356c1fd5e0a2fa8490eb43bc83167feb2f469b42f15677d7881880"
+    },
+    {
+      "relative_path": "05_EXPERIMENT_PROTOCOL.md",
+      "bytes": 4535,
+      "sha256": "3d4f12022ed3bdaa0c4df4115be1c8775dea54ac16b3e15eb79354ceea5c2dca"
+    },
+    {
+      "relative_path": "06_FINAL_ACCEPTANCE.md",
+      "bytes": 4909,
+      "sha256": "08be2a8cd13364f078dd32bf3d07245adbce42c44a4ab31fe0544ed0738ab67b"
+    },
+    {
+      "relative_path": "07_NEXT_15_SUITES.md",
+      "bytes": 2308,
+      "sha256": "6b06ad394fad3944eae9f762e4da994e15dd31b29c325c0ef3c58a8f98780cae"
+    },
+    {
+      "relative_path": "08_CODEX_FAST_WORKSTYLE.md",
+      "bytes": 2928,
+      "sha256": "63db4b345ff21d61c19fe80cfe202ab323b317f2805a059b8db65e966b317f19"
+    },
+    {
+      "relative_path": "ACCEPTANCE_MATRIX.csv",
+      "bytes": 1181,
+      "sha256": "561506d85fa3da9d8852eb4a640dd3f5d43aa808db72d1d82c4c39d3450728f0"
+    },
+    {
+      "relative_path": "CODEX_GOAL_COMMAND.txt",
+      "bytes": 1596,
+      "sha256": "2177ed86d373ce6986c0c3eeff650b93c35cef1f73ff25b9558b11aefa876fe0"
+    },
+    {
+      "relative_path": "CODEX_START_PROMPT.txt",
+      "bytes": 2371,
+      "sha256": "a8c51057149530e91db2fd5de30b8f555be3721d0b03c9248a17e11051832b3e"
+    },
+    {
+      "relative_path": "GOAL.md",
+      "bytes": 8828,
+      "sha256": "930b447d572f2ebea017cc6a5417820ea47570b647f654e9620480cd2321cf73"
+    },
+    {
+      "relative_path": "README_使用说明.md",
+      "bytes": 3666,
+      "sha256": "03a30f46cbf4ea33b9ca0eed81020b5dae7e462732693b3a8f130516c1582af9"
+    },
+    {
+      "relative_path": "config/TASK_QUEUE.yaml",
+      "bytes": 2415,
+      "sha256": "af41a3ffd4bcee307b3c6865af1f6b1e244a392fc57c8389e32940bdb117deba"
+    },
+    {
+      "relative_path": "config/deepseek_quality_first.yaml",
+      "bytes": 1717,
+      "sha256": "7d9a1f43a2b1bb8295ff72e1ef693f99a62761c5e1ac9843303866b76dc301b9"
+    }
+  ]
+}

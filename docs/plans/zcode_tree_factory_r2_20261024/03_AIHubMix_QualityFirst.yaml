@@ -1,0 +1,75 @@
+# R2 设计配置：由 ZCode 在运行时把 schema 映射到现有 ModelPort/AIHubMixAdapter。
+# 不是声称网关已实测接受此处每一个参数。最终参数以 authenticated catalog/schema+新请求实测为准。
+version: ioabench.v5.treefactory.provider-qualityfirst/2.0.0
+usage: development_only
+coding_agent:
+  product: ZCode
+  model: glm-5.3
+  effort: max
+provider:
+  name: aihubmix
+  model_id: deepseek-v4.1-flash-1017
+  base_url: https://aihubmix.com/v1
+  protocol: openai.chat_completions
+  api_key_env: AIHUBMIX_API_KEY
+  roles: [DEV_GENERATOR, DEV_AUDITOR, DEV_REPAIR_PROPOSER]
+  model_capability_claims:
+    context_tokens: 1048576     # 1 Mi token 模型能力；API 不应虚构 context_length 参数
+    max_output_tokens: 393216   # 384 Ki tokens 公布能力；须验证具体网关整数上限
+    requires_live_schema_verification: true
+  output_cap_probe:
+    probe_order: [393216, 384000, 262144, 131072]
+    response_must_be_short_json: true
+    use_new_request_id_for_each_probe: true
+    stop_after_first_accepted_ceiling: true
+    # 参数被明确HTTP400拒绝时仅降低该能力探针值，不将已经发出但终态未知请求重试。
+  think:
+    default: high
+    difficult: max
+    toggle: {type: enabled}
+    allowed_effort_values: [low, high, max]
+  json:
+    response_format: {type: json_object}
+    require_schema_validation_locally: true
+    reject_early_finish_length_as_complete: true
+  streaming:
+    default: true
+    aggregate_reasoning_separately_from_content: true
+    require_terminal_done_or_equivalent: true
+    request_timeout_seconds: 1800
+    idle_timeout_seconds: 300  # 实验性，可根据成功SSE数据修改；不是费用/Token限制
+  context:
+    use_native_model_window: true
+    arbitrary_prompt_soft_cap: null
+    include_full_history_in_every_prompt: false
+    select_relevant_memory_by_mechanism: true
+    always_leave_room_for_max_output: true
+  output_plans:
+    simple_json_probe: {max_tokens: 16384, effort: high}
+    architecture_and_mechanism_ir: {max_tokens: 131072, effort: max}
+    complex_world_and_dependency: {max_tokens: 262144, effort: max}
+    causal_pair_design: {max_tokens: 262144, effort: max}
+    surface_materials: {max_tokens: 131072, effort: high}
+    semantic_audit: {max_tokens: 131072, effort: max}
+    exceptional_but_supported: {max_tokens: 393216, effort: max}
+    # 上述 max_tokens 是每请求允许的上限，包含推理与正文；不要求实际生成那么多。
+    # 上限不合法时采用最近的已验证合法上限；finish=length 后新 lineage/new id 升档。
+  costs:
+    record_real_usage: true
+    record_estimated_cost_and_actual_invoice_unknown: true
+    warn_spend_usd: null
+    stop_spend_usd: null
+    forbid_budget_based_request_refusal: true
+    forbid_budget_reservation_hard_stop: true
+  request_integrity:
+    ledger_append_only: true
+    no_resend_unresolved_request: true
+    new_run_scope_isolated_from_old_stop: true
+    old_stop_and_unknown_ids_read_only: true
+    retry_known_clean_http_failure_max: 1
+    format_repair_max_new_requests: 1
+    semantic_replan_max_new_candidates: 2
+  scientific_labels:
+    admission: DEV_ACCEPTED
+    same_model_auditor_scientifically_independent: false
+    official_oracle_and_scorer_unchanged: true

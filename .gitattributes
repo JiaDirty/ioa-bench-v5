@@ -1,2 +1,2 @@
-# Preserve the verified source snapshot byte for byte on every platform.
-* -text
+# Preserve the exact bytes used by scientific source/evidence SHA-256 manifests.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

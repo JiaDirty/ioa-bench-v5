@@ -68,6 +68,30 @@ def test_t312_all_listings_have_queryable_operational_evidence():
     assert set(control.oracle["fit_provider_ids_amended"]) == {"PRV-top", "PRV-alt"}
 
 
+@pytest.mark.parametrize("mode", ["split_queries", "bundled_manifest_receipts"])
+def test_t312_typed_operational_evidence_compiles_and_passes_real_gate(mode):
+    bp = blueprint()
+    bp["suite_payload"]["operational_evidence"] = mode
+    pair = COMPILER.compile_pair(bp, seed=7)
+    assert all(case.world["operational_evidence"] == mode for case in pair)
+    report = check_pair_dynamic(*pair, scenario=SLICE.T312DynamicScenario(), scorer=SLICE.score,
+        policies=SLICE.policies(), expected=SLICE.EXPECTED_REFERENCE, fine_arm_delta=SLICE.fine_arm_delta)
+    assert report["passed"], report["failures"]
+    for case in pair:
+        for mapping in COMPILER.fidelity_report(bp)["proposal_to_runtime_mapping"]:
+            resolve_pointer(bp, mapping["source"])
+            resolve_pointer(case.as_dict(), mapping["runtime"])
+
+
+@pytest.mark.parametrize("mode", ["queued_after_routing", True, {}])
+def test_t312_rejects_unsupported_operational_evidence(mode):
+    bp = blueprint()
+    bp["suite_payload"]["operational_evidence"] = mode
+    assert COMPILER.validate_blueprint(bp)
+    with pytest.raises(CapabilityGap):
+        COMPILER.compile_pair(bp, seed=7)
+
+
 @pytest.mark.parametrize("difficulty", ["E", "M", "H"])
 def test_t312_preserves_source_difficulty_and_isolates_pair(difficulty):
     bp = blueprint()

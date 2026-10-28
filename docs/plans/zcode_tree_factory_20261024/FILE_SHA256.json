@@ -1,0 +1,60 @@
+{
+  "version": "ioabench.v5.zcode-goal-handoff/1.0.0",
+  "generated": "2026-10-24",
+  "input_source": "IoA-Bench-source-code-20261023.zip",
+  "file_count": 13,
+  "files": {
+    "00_使用说明.md": {
+      "sha256": "b1dbb6bedc48f6d0151f68194d2643182e6daf9892038e8d296c7d3709ba7bfe",
+      "size_bytes": 2955
+    },
+    "01_基线_授权与不变式.md": {
+      "sha256": "8be8310670e0c1686b61878bae2a36de928711b683bb0b99a9782694d2de2d42",
+      "size_bytes": 4770
+    },
+    "02_树状机制工厂_设计规范.md": {
+      "sha256": "8c083d9144e0712e109d4d74a8f7f0f9e74a906444458384d64d9d0b68605f64",
+      "size_bytes": 8922
+    },
+    "03_任务队列与源码落点.md": {
+      "sha256": "675dd3e2de376fbdacb8561fbc9951d53ea07de35f3e92850ce4444e9a6e827b",
+      "size_bytes": 9375
+    },
+    "04_AIHubMix_DeepSeek_模型配置.yaml": {
+      "sha256": "ba7a3486b01b826ecb15edc9a3ba7ddd9412a749521e1c92806d0062c8cbf849",
+      "size_bytes": 3931
+    },
+    "05_接口参数与安全调用.md": {
+      "sha256": "4f04d082b36b5ccf993ae5e52eb1dd850406216198a68b0bd5002958946d75b6",
+      "size_bytes": 8306
+    },
+    "06_实验设计与验收门槛.md": {
+      "sha256": "ff7dd4ca458d0b54d20aaa284ece0121aa6a3813fba8cfc9ca7e5e893d5c7625",
+      "size_bytes": 6745
+    },
+    "07_交接与证据模板.md": {
+      "sha256": "b28d58a1604a7a908d4906ea170ac68ad8cf0dd8afce8307ce5e42971635ef63",
+      "size_bytes": 4647
+    },
+    "08_ZCode启动指令.md": {
+      "sha256": "4992f716c2e3493448a2bbc8f48953b196a027b7e0bdd2b00df536f3eb9e422d",
+      "size_bytes": 3963
+    },
+    "09_协作_测评维度Review与仓库同步.md": {
+      "sha256": "fb72e544a3560e4a970b32d777aeebc28933f65a684b983daeb0d46dc00c9a97",
+      "size_bytes": 2765
+    },
+    "10_问题到变更映射.csv": {
+      "sha256": "1e069fecbade941a1ad74069463f34869078f9f4fb87fdbc44f0b6454815f645",
+      "size_bytes": 3442
+    },
+    "GOAL.md": {
+      "sha256": "b0f16a8f08b16b4efe1dc46bf384b1092b1f48d37abbf639b7c2d1e143a3396b",
+      "size_bytes": 6549
+    },
+    "ZCODE_GOAL_COMMAND.txt": {
+      "sha256": "bbbb589bccd4f99c2e3408857e48746d5f77c5e6ad8d35c3257f6969e7c1fa8d",
+      "size_bytes": 524
+    }
+  }
+}

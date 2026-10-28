@@ -1,0 +1,33 @@
+{
+  "scope": "BYTE_IDENTICAL_R22_ENGINEERING_SUMMARIES_NOT_FRESH_REGRESSION",
+  "runtime_source_sha256": "6f8ebdedc975c5d32ecb6f5b5783176f8c6d57cd064e5f37f2f1827d0f5dbcb0",
+  "raw_experiment_and_archived_source": "RETAINED_LOCALLY",
+  "maintenance_change": "Historical tf_r2_finalize scanner credential removed; separately self-checked.",
+  "files": [
+    {
+      "path": "FINAL_VERIFICATION.json",
+      "original_path": "artifacts/v5/data_factory/main_quality_20261028-r22/FINAL_VERIFICATION.json",
+      "sha256": "98bec33d3c6528aaaa248c353ca3c9d6bd22365270fe78592df8e183eac400fb"
+    },
+    {
+      "path": "REGRESSION.xml",
+      "original_path": "artifacts/v5/data_factory/main_quality_20261028-r22/REGRESSION.xml",
+      "sha256": "5974574793bd828a6a7e3641fe93cf1682ee0186fd3d15e91489b7be104e8524"
+    },
+    {
+      "path": "REGRESSION_NETWORK.json",
+      "original_path": "artifacts/v5/data_factory/main_quality_20261028-r22/REGRESSION_NETWORK.json",
+      "sha256": "b3e9a062054fb9195929f777e94ba915e3dee990e0593c6c58a71d087a20b8d4"
+    },
+    {
+      "path": "FOCUSED_VERIFIED.xml",
+      "original_path": "artifacts/v5/data_factory/main_quality_20261028-r22/FOCUSED_VERIFIED.xml",
+      "sha256": "8fa825288811a12358a85a6ad3e4295a76a2ac77c5e141ada3a07503a11028d7"
+    },
+    {
+      "path": "MATRIX_SUMMARY.json",
+      "original_path": "artifacts/v5/data_factory/main_quality_20261028-r22/MATRIX_SUMMARY.json",
+      "sha256": "fa66549ded5f1256f81cadade15fba38f385662aa5b2848ee8fe59b66a425e7e"
+    }
+  ]
+}

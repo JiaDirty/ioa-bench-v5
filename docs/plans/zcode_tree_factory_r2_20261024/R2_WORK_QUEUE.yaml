@@ -1,0 +1,49 @@
+version: ioabench.v5.treefactory.r2.queue/1.0.0
+scope: new_r2_only
+baseline_expected: 49d096e20f6db160130ece6d78220aff7d2bd53f
+live_model: deepseek-v4.1-flash-1017
+coding_agent: ZCode GLM-5.3 Max
+cost_budget_gate: disabled
+items:
+  - id: M0
+    title: 基线与独立新运行目录
+    state: DONE
+    gates: [R2-G0]
+    depends_on: []
+    artifacts: [BASELINE_R2.json, R2_RUN_CONTRACT.json]
+  - id: M1
+    title: Tree/BusinessBinding/IR/Runtime强制消费
+    state: DONE
+    gates: [R2-G1, R2-G2]
+    depends_on: [M0]
+    artifacts: [IR_CONSUMPTION_TRACE.jsonl, TREE_RUNTIME_BINDINGS.jsonl, IR_NEGATIVE_TESTS.xml]
+  - id: M2
+    title: 生成与审核有效率提升
+    state: DONE
+    gates: [R2-G4]
+    depends_on: [M1]
+    artifacts: [AUDIT_CALIBRATION.json, MODEL_AUDIT_OBSERVATIONS.csv]
+  - id: M3
+    title: AIHubMix大输出与SSE真实可用性
+    state: DONE
+    gates: [R2-G3]
+    depends_on: [M1]
+    artifacts: [PROVIDER_CONTRACT.json, SSE_FAILURE_TESTS.xml, REQUEST_LEDGER.jsonl]
+  - id: M4
+    title: 新T321研发接受样本
+    state: DONE
+    gates: [R2-G5]
+    depends_on: [M2, M3]
+    artifacts: [DEV_POOL_INDEX.jsonl, ASSERTION_WITNESSES.jsonl]
+  - id: M5
+    title: T331/T362研发入池和同题对照
+    state: DONE
+    gates: [R2-G5]
+    depends_on: [M4]
+    artifacts: [AB_RESULTS.csv, MECHANISM_DIVERSITY.csv, WORKFLOW_DIVERSITY.csv]
+  - id: M6
+    title: 当前HEAD回归与完整交接
+    state: DONE
+    gates: [R2-G6]
+    depends_on: [M5]
+    artifacts: [FULL_REGRESSION.xml, R2_GOAL_STATUS.json, R2_ROUND_REPORT.md]

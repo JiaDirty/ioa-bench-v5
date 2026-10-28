@@ -33,12 +33,13 @@ def packager(tmp_path, monkeypatch):
 def test_build_binds_current_handoff_and_preserves_old_output(packager):
     module, root = packager
     output = root / "exports/current"
-    module.main(output, root / "docs/HANDOFF_CURRENT.md")
+    module.main(output, root / "docs/HANDOFF_CURRENT.md", snapshot_metadata={"source_git_head": "fixed-test-head"})
     result = json.loads((output / "PACKAGE_VERIFICATION.json").read_text())
     assert result["all_file_sha256_match"] and result["secret_scan"] == "PASS"
     with zipfile.ZipFile(output / result["archive"]) as archive:
         snapshot = json.loads(archive.read(module.pack.META + "SNAPSHOT.json"))
         assert snapshot["read_first"] == "docs/HANDOFF_CURRENT.md"
+        assert snapshot["source_git_head"] == "fixed-test-head"
         assert module.pack.PREFIX + "artifacts/required.json" in archive.namelist()
         assert not any(name.endswith((".env", "old.txt", "private.txt")) for name in archive.namelist())
     with pytest.raises(FileExistsError):

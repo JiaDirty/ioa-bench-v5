@@ -207,7 +207,7 @@ async def _documented_parameters(adapter, model_id: str, run_dir: Path) -> dict[
     _atomic_json(run_dir / "model_contracts" / f"{model_id}.json", schema or {
         "model_id": model_id, "status": "SCHEMA_NOT_PUBLISHED",
         "source": "https://aihubmix.com/model-data/index.json"})
-    return auxiliary_chat_parameters(schema, max_tokens=65536)
+    return auxiliary_chat_parameters(schema)
 
 
 def _input_message(compiler: T321DynaCompiler, blueprint_schema: Mapping[str, Any], seed: int) -> str:

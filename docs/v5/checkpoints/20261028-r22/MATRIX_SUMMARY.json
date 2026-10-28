@@ -1,0 +1,220 @@
+{
+  "combinations": 8,
+  "factory_outcomes": {
+    "PASS": 8
+  },
+  "history_records": 8259,
+  "network": {
+    "provider_http_or_external_network_attempts": 0,
+    "windows_asyncio_loopback_connections": 296
+  },
+  "new_dev_accepted_pairs": 0,
+  "new_formal_cases": 0,
+  "new_provider_calls": 0,
+  "rows": [
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-full_subgrants-extended_chain-7",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "extended_chain",
+        "seed": 7,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "full_subgrants"
+        }
+      }
+    },
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-full_subgrants-fork_join-7",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "fork_join",
+        "seed": 7,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "full_subgrants"
+        }
+      }
+    },
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-full_subgrants-conditional-7",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "conditional",
+        "seed": 7,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "full_subgrants"
+        }
+      }
+    },
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-full_subgrants-conditional-0",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "conditional",
+        "seed": 0,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "full_subgrants"
+        }
+      }
+    },
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-subgrant_index-extended_chain-7",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "extended_chain",
+        "seed": 7,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "subgrant_index"
+        }
+      }
+    },
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-subgrant_index-fork_join-7",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "fork_join",
+        "seed": 7,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "subgrant_index"
+        }
+      }
+    },
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-subgrant_index-conditional-7",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "conditional",
+        "seed": 7,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "subgrant_index"
+        }
+      }
+    },
+    {
+      "factory_status": "PASS",
+      "failed_stage": null,
+      "strict_replays": 6,
+      "task": {
+        "assertions": [
+          "T313-A1"
+        ],
+        "difficulty": "M",
+        "effort": "high",
+        "id": "R22-T313-subgrant_index-conditional-0",
+        "industry": "industry.payment_clearing",
+        "obligations": [
+          "obligation.settlement_verification",
+          "obligation.clearance_confirmation"
+        ],
+        "plan_focus": "conditional",
+        "seed": 0,
+        "subtype": "T313-S4",
+        "suite": "T313",
+        "target": {
+          "chain_projection": "subgrant_index"
+        }
+      }
+    }
+  ],
+  "scope": "SCRIPTED_ENGINEERING_NOT_MODEL_GENERATION_OR_SEMANTIC_ACCEPTANCE",
+  "source_sha256": "6f8ebdedc975c5d32ecb6f5b5783176f8c6d57cd064e5f37f2f1827d0f5dbcb0",
+  "status": "PASS",
+  "strict_replays": 48
+}

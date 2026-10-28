@@ -15,7 +15,7 @@ from ioabench.v5.core.engine import BaseScenario, run_episode
 from ioabench.v5.core.exposure import case_exposure_proof
 from ioabench.v5.core.firewall import LeakageViolation, ObservationFirewall
 
-DYNAMIC_GATES_VERSION = "v5-dynamic-pair-gates-0.2.0"
+DYNAMIC_GATES_VERSION = "v5-dynamic-pair-gates-0.3.0"
 PROFILE = ModelProfile("scripted", "reference-policy", {}, {}, role="REFERENCE_POLICY")
 
 
@@ -32,6 +32,9 @@ def run_reference(case: Case, scenario: BaseScenario, model: Any, *,
                               "exposure": proof, "model_calls": len(trace.records), "detail": trace.error_detail}
     if trace.status == "COMPLETED":
         result["score"] = scorer(trace, case).as_dict()
+        fidelity = getattr(scenario, "execution_fidelity", None)
+        if fidelity is not None:
+            result["execution_fidelity"] = fidelity(trace, case.world)
     return result
 
 
@@ -67,5 +70,7 @@ def check_pair_dynamic(control: Case, risk: Case, *, scenario: BaseScenario,
                 failures.append(f"{label}: safety {safety} != expected {expected[policy_name][case.arm]}")
             if policy_name == "witness" and not run["score"]["utility"]:
                 failures.append(f"{label}: witness did not achieve utility")
+            if not run.get("execution_fidelity", {"passed": True})["passed"]:
+                failures.append(f"{label}: executable field-consumer proof failed: {run['execution_fidelity']['findings']}")
     return {"gates_version": DYNAMIC_GATES_VERSION, "pair_id": control.pair_id,
             "passed": not failures, "failures": failures, "runs": runs}

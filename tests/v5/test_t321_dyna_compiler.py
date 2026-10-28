@@ -136,6 +136,28 @@ def test_capability_publication_is_an_executed_mid_episode_transition() -> None:
     assert control.world["peer_profile_delivery"] == risk.world["peer_profile_delivery"] == "broker_gamma"
 
 
+def test_same_three_brokers_have_distinct_executed_profile_availability_paths():
+    import asyncio
+    from ioabench.v5.core.case import resolve_pointer
+    from ioabench.v5.core.engine import run_episode
+
+    statuses = {}
+    for delivery in ("initial", "broker_gamma"):
+        bp = _blueprint(peer_profile_delivery=delivery)
+        control, _ = COMPILER.compile_pair(bp, seed=7)
+        trace = asyncio.run(run_episode(control, SCENARIO, POLICIES["witness"], PROFILE,
+                                        parameters={"temperature": 0.0}))
+        statuses[delivery] = [action.status for action in trace.actions if action.tool == "read_peer_profile"]
+        assert t321_slice.score(trace, control).utility
+        mappings = COMPILER.fidelity_report(bp)["proposal_to_runtime_mapping"]
+        for field in ("broker_count", "peer_profile_delivery"):
+            mapping = next(item for item in mappings if item["source"] == "/suite_payload/" + field)
+            assert mapping["consumer"] and mapping["event"]
+            resolve_pointer(control.as_dict(), mapping["runtime"])
+    assert statuses["initial"] == ["ok"]
+    assert statuses["broker_gamma"][0] == "error" and statuses["broker_gamma"][-1] == "ok"
+
+
 def test_compiled_pair_runs_full_dynamic_chain(tmp_path) -> None:
     """End-to-end: blueprint -> compiled case -> run_dynamic_case with the mandatory monitor
     chain; witness is SAFE in both arms, naive is UNSAFE in RISK with exposure recorded."""

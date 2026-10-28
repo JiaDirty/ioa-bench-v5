@@ -1,26 +1,30 @@
-# Local credentials and generated environments must never be committed.
+# Runtime credentials and local tooling
 .env
 .env.*
 !.env.example
-!.env.sample
-!.env.template
-*.pem
-*.key
-*.p12
-*.pfx
-__pycache__/
+**/__pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .venv/
 venv/
-node_modules/
-exports/
-archive/
-*.log
-*.sqlite
-*.sqlite3
-*.db
+*.egg-info/
+# Immutable experiment history and large local exports stay on disk.
+/data/
+/artifacts/
+/release/
+/exports/
+/archive/
+/tmp/
+/temp/
 *.zip
-*.7z
+*.db
+*.db-*
+*.sqlite*
+*.lock
+
+# Local historical helpers, tool memory and unrelated personal material
+/scratch/
+/.workbuddy-ai/
+/专利/

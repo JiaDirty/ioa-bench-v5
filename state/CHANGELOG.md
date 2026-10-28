@@ -1,5 +1,232 @@
 # Specification Changelog
 
+## 工作区整理与GitHub源码同步 — 2026-10-28
+
+- 更新当前工作入口并保留旧入口；仅清理可再生开发缓存，历史数据、包与未提交材料保留。
+- 现有仓库公开；按远端历史追加当前源码、测试、文档与R22脱敏摘要，旧本地历史仅留本地分支，不上传新增实验原始数据或私人材料。远端已有数据与发布记录保留。
+- 移除旧扫描脚本的真实凭据字面量，以格式扫描替代；有凭据与无凭据输入检查通过。运行源码不变，未重跑完整2295项测试，无模型调用或科研验收变更。远端提交核对详见本地维护回执。
+
+## R22代表资格漂移接入只读结算业务树 — 2026-10-28
+
+- 在现有树状入口接入T313-S4。中介与执行者实际分开运行，签发、派发、当前授权链读取、执行与只读业务回执关联同一子授权和结算资源；复用五个已有读取/核验/检查模块。原授权、修订、Oracle、评分、预算不变，超期执行仍由原评分器识别。
+- 50项相关测试、2295项全量回归、8组全历史共享入口及48条严格回放通过；覆盖两种授权链查看方式、连续/并行汇合/条件真假结构。1233个源码等文件及ZIP核对通过，39829个历史文件未改，外部调用0。
+- 当前12项本地路线、11项共享入口工程通过、23个套件与行业组合；新增真实模型调用/研发入池/正式数据均为0。只覆盖现有有效期修订和两名代理交接，不代表所有漂移维度或正式合格数据。下一项为结构暴露，T322历史合同及T343未知审核另行保留。证据 `artifacts/v5/data_factory/main_quality_20261028-r22/REPORT.md`。
+
+## R21历史整理提速及晨间验收 — 2026-10-28
+
+- 沿用原合并方法，把40对案例一次并入历史索引，修正两个脚本及对应测试。8259条完整记录与附带信息相同，只忽略数组顺序；一次本机测量105.18秒降至6.54秒，不推算模型或整条生成耗时。
+- 当前源码2280项回归、12组结构及88条严格回放通过，0外部调用；1230个源码等文件与归档一致，38950个历史文件未改，R21新增模型调用/研发入池/正式数据均为0。
+- 已更新晨间汇报、18项业务矩阵、行动计划、展示案例及项目状态；早晨9点工作窗口结束，整体目标仍未完成。下一轮先接真实多跳授权，T322旧合同与T343审核连接问题分别跟踪。证据 `artifacts/v5/data_factory/main_quality_20261028-r21/REPORT.md`。
+
+## R20业务接入与模型试跑结果 — 2026-10-28
+
+- 规范漂移接入药品订单与支付结算，两名operator共享请求金额、审批、执行、撤回和业务回执；互操作失配接入支付结算，源指令、网关映射、原生记录及生效/补偿回执关联同一结算号。评分、Oracle、基础提示、预算与风险槽不变。
+- 12组离线组合完成88条严格回放；规范漂移8组通过共享生成流程，互操作失配4组本地执行通过，但因120条旧案例缺原运行合同被历史门拒绝，未计入池。
+- 修正T343机构、行业和同事活动一致性，最终2279项回归通过。新药品候选1对6步执行及8条回放通过；审核发送时curl55连接重置，终态未知而隔离，支付机会未运行。批次3请求/2完整/1未知，新增研发入池0、正式数据0；未知未重发。极小新请求100token验证单列，费用上界USD0.000398；批次完整响应8560token、上界USD0.044792，未知请求费用与账单未知。
+- 1230个源码等文件核验，14909个历史文件未改；结束批次重进0外部调用、121个文件内容及mtime不变。用户要求推进至北京时间09:00，续办ID ioa-9保留于状态；实际夜间窗口已在R21收尾，整体项目未完成。证据 `artifacts/v5/data_factory/main_quality_20261028-r20/REPORT.md`。
+
+## R19真实生成小批完成 — 2026-10-28
+
+- T311/T351药品与支付4对真实生成候选全部通过工程检查、两轮研发审核和严格回放，新增4对DEV_ACCEPTED、8条案例；每对所有业务步骤都有参考执行见证。4个实际计划包含并行汇合、连续处理和条件处理三种结构，支付条件另做真假两侧验证。
+- 编译器1.2保留T311生成背景，明确T311/T351/T353程序业务内容与中性文字的合成映射；新增来源、运行路径、文字保留和审核入口检查。评分、预算、真值与质量门不变，原拒绝与隔离不改。
+- 最新源码2252项回归、112条离线组合回放、28条新候选脚本参考回放、12条真实计划分支回放通过。16个请求全部完整，0失败/0未知；usage1323894token，费用上界USD3.524616，实际账单未知。
+- 1225个源码等文件与归档一致，12013个历史文件不变；完成批次重进0新请求、443个文件内容及mtime不变。当前树状9/18、19个套件与行业组合，另外9项、独立审核可靠性、难度校准与正式全系统交付仍开放。证据 `artifacts/v5/data_factory/main_quality_20261028-r19/REPORT.md`。
+
+## R17接入、暂停对账与R18结构来源修复 — 2026-10-28
+
+- T311资格伪装、T351激励错配接入共享业务树；当前9项、19个套件与行业组合，另9项待接入。R17全量2248项通过，16组离线候选、112条严格回放通过；保留该源码快照，不将它当作R18回归结果。
+- 对账暂停批次：8个请求、7份完整响应、1个未知终态；1对物流案例研发入池、1对药品案例隔离、3个机会未运行。暂停前206个原文件未改；未知请求未重发。恢复批次另生成4对，8个请求均完整，因案例缺顶层结构来源映射在语义审核前全部拒绝。
+- 修复T311/T351/T353编译器实际映射的状态与持久化，版本1.1；新增从共享生成到审核前检查的测试，检查来源与运行路径真实存在。39项定向测试、16组业务结构和112条回放通过；R18全量回归、新批4对真实生成正在进行。原拒绝、暂停和历史数据不改；评分、预算、质量门和隐藏真值隔离不变。
+- 6份真实计划的目标与业务背景能保留，步骤、依赖、条件解析前后相同。正式数据仍新增0；审核资格、难度校准和完整18项交付未完成。R17报告见 `artifacts/v5/data_factory/main_quality_20261027-r17/REPORT.md`。
+
+## R16 树状业务扩展与离线稳定性验收 — 2026-10-27
+
+- 为10月28日汇报整理现状、完整案例展示、小批真实生成和剩余路线的推进顺序，见 `docs/v5/REPORT_BRIEF_AND_PRIORITIES_20261027.md`；不新增数据或提升验收状态。
+- T352 声誉垄断、T353 节点操纵接入共享树状工厂，医疗库存和支付结算两类业务根各跑通两对脚本候选；16/16 组合通过，96 条严格回放通过。
+- 新增流式证据路径的路由、失败保留、测量池和历史校验衔接；相关 88 项测试通过。全量 v5+m1 回归 2206 项通过，失败/错误/跳过均为0，外部调用0。
+- 源码冻结720个文件，源哈希 `f4d846e9996c4cfede214e851bba2a6bd9f7e597d8a6f4ef843758c2579ee9d3`。18项业务适用矩阵登记18行、35条源码映射；当前树状路线7项，剩余11项。
+- R16无新provider调用、无新正式数据、正式接受仍为false；R15未知终态请求保留且未重发。QDIV-005工程范围完成，QGEN-005、QAUD-002、QCOH-001、Q18-001继续进行中。证据见 `artifacts/v5/data_factory/main_quality_20261026-r16/REPORT.md`。
+
+## Executable logistics workflow expansion — 2026-10-26
+
+- Tree1.1/module1.4/T331 compiler1.5/tree factory1.6/trial2.8/capacity1.1 add shipment reconciliation and local handover to the existing pipeline. Three business roots, five suites, eleven supported suite/industry groups; logistics currently T331 only. Manifest/scan quantities and variance agree, and the T331 ledger uses the same shipment's declared manifest quantity.
+- Three structures and both variance branches executed;2157full regression and36current-source strictReplay PASS;695source files verified,694baseline files preserved. Existing frozen data, scorers, SUT base prompts, budgets and thresholds unchanged. Older omitted optional when fields remain usable in planning without dropping real conditions.
+- One fresh model-generated pair passed engineering/history/replay. High reviewACCEPT;max reviewREQUEST_UNRESOLVED, quarantined,0newadmissions. Four intents/3complete/1unknown;unknown not resent and new paid calls stopped.193549complete-response tokens,USD0.616580complete-response upper bound;unknown request cost and invoiceUNKNOWN. One terminal reentry adds0requests.
+- QDIV-004 complete for engineering expansion and recorded trial outcomes only;QGEN-005 starts on explicit business goals/natural context and lossless plan parsing. QAUD-002/QCOH-001/Q18-001 and full18-suite goal remain open. Root project status now reflects active v5 work, while historical v4 campaign records remain intact. Evidence main_quality_20261026-r15/REPORT.md.
+
+## 完整IOA测评项目交付行动计划 — 2026-10-26
+
+- 登记单一交付目标：18项完整数据、树状业务多样性、真实被测模型运行、评分、严格回放、报告与团队数据/源码交接。
+- 明确当前树状生成入口仅覆盖T312/T321/T323/T331/T362和药品/支付两个业务根；8类既有行业素材中6类未接入可执行工作流。旧5.1.x候选保留作历史来源，不混报当前正式接受数据。
+- R14离线证据为46项定向与2149项完整回归通过、外网调用0；来源最终核验、真实审核控制、新版候选生成/冻结仍未完成。无代码生成或模型试跑由本计划文档本身完成。
+- 行动顺序：收口R14、建立18项适用背景矩阵、扩树与模块、接入剩余套件、18项小批验证、每套约90条并按难度校准、全量真实模型评测和交付回放。风险定义和正式质量门不在本行动计划中自行修改。
+
+## Observation-grounded audit protocol — 2026-10-26
+
+- Audit2.3 adds verbatim per-action recorded/actually observed receipts and native document-group citations; preflight1.3 rebuilds the sealed packet. Trial preparation2.6.0; old protocols preserved. No scorer, SUT prompt, budget, gate or frozen-data change.
+- 2141complete/27focused checks PASS with0external attempts;18current strictReplay and6legacy+3new terminal zero-call resumes PASS. R12 1852/R11 1507/older15388 files unchanged.
+- Six complete real responses,0failed/0unknown,779570reported tokens,USD2.210080complete-response bound;invoiceUNKNOWN. Three paired expected-label matches and6native Schema passes do not establish semantic qualification: at least6literal citation errors across2reviews, role-count overstatement and infrastructure-enforcement scope errors retained. Actual safety scores distinguish SAFE/FULL_FAILURE/LATE_RECOVERY but are absent from the current packet.
+- NewDEVpairs0;2standard opportunities preparedNOT_RUN;QAUD-002/QCOH-001/Q18-001remainin_progress and fullgoalactive. Automatic approval blocked deletion of17069completed test-temp files; preserved at exact recorded paths. Evidence main_quality_20261026-r13/REPORT.md.
+
+## Bounded workflow capacity planning — 2026-10-26
+
+- Trial2.5.0 seals finite graph capacity and preparation script; all retained compiled attempts enter covered_workflows. Tree factory1.5.2 labels attempted structures without execution/admission claims. Original gates unchanged.
+- 92 real retained candidates;24 compile-feasible graphs/group,23–24unexplored.52 related tests plus11 overlapping binding tests and120final strictReplay PASS;API0,newDEVpairs0. QDIV-003 bounded scope done;overall goal active. Evidence main_quality_20261026-r12/REPORT.md.
+
+## Quantitative business facts — 2026-10-26
+
+- Module catalog1.3.0/tree factory1.5.1 derive stock shortages and settlement exception flags from shared quantitative state. Compile new receipts; keep runtime, legacy sealed inputs, scorer, budgets and thresholds unchanged.
+- 2130regression/68focused PASS;20paired probes/120strictReplay and80read-check pairs;150final strict reruns. Separate24current-source legacy reanalyses from12exact-R10-source strictReplay; all observed values/scores/outcomes unchanged.
+- 0newDEVpairs;6complete/0failed/0unknown. Complete-response boundUSD0.720046,invoiceUNKNOWN. 15388protected files unchanged;17592test temp files removed. QFACT-001done;full goal active,remaining13suites and semantic/difficulty/stability qualification OPEN. Evidence main_quality_20261026-r11/REPORT.md.
+
+## Same-transaction T323 and audit2.2 — 2026-10-26
+
+- Bind new T323 business objects, work order, source/alias/reconstructed documents and receipts to one transaction. Track operational completion separately; retain unsafe execute, scorer/budgets and legacy behavior. Add T323-A3 and preserve neutral narrative suffix.
+- Audit2.2 supplies per-tool calls/distinct-run counts and scripted-reference provenance; old protocols and source-bound outcomes retained. No lexical admission rule or scientific promotion.
+- 2126final regression/88focused/30local pairs PASS;204final-source and12historical exact-source Replay. Preserve initial red tests, interrupted regression and2unsent opportunities.
+- 2newDEVpairs;9complete/1known-length failure/0unknown responses; total reported-usage boundUSD2.794278, invoiceUNKNOWN. Retained high ACCEPT/max131072 reasoning-token truncation QUARANTINED, no resend or qualification. 11813protected files unchanged;17672test temp files removed. QCOH-001/QAUD-002/Q18-001 remain in_progress;QFACT-001planned;goal active. Evidence main_quality_20261026-r10/REPORT.md.
+
+## T323 compositional runtime and real generation trial — 2026-10-26
+
+- Add optional business binding to T323 using shared duties/tools/receipts; retain byte-equal unbound compiler output and legacy execution observables. Register post-reindex lookup and observed queued-reconstruction witnesses, with14negative mutation checks. No scorer/budget/Oracle/threshold/released-data changes.
+- 2104v5+m1 tests and59focused checks PASS/0external attempts;30paired local probes/180strictReplay,36legacy executions per source, and204final-source strict reruns PASS. 1conditional plans cover both branches; original evidence unchanged.
+- 2online opportunities/2engineeringPASS/2new DEV_ACCEPTED;9complete responses/0unknown,conservative boundUSD1.472410,invoiceUNKNOWN. Same-model development only;auditor qualification/difficulty/long-term stability remain OPEN.
+- 9882protected files unchanged;remove16443completed test temporary files. Five compositional suites supported,13remaining;Q18-001in_progress,full goal active. Single runtime operator is not independent role isolation. Evidence main_quality_20261026-r9/REPORT.md.
+
+## Per-run accounting review protocol — 2026-10-26
+
+- Add development audit2.1 per-run successful declared-business-tool accounting and pre-request document consistency; preserve2.0 packets and semantic-only review output. Freeze new tree-factory trial2.2.0 on2.1. No scorer, SUT prompt, threshold or released-data changes.
+- 2072v5+m1 tests PASS/0external attempts;24historical exact-source strictReplay and4zero-network terminal resumes PASS. 8complete review responses;3/3 retained semantic-control pairs match expectations. This is a development smoke, not unseen qualification; new admissions0, scientific qualificationfalse, full goal active.
+- Retain9282protected history files and remove18796completed test temporary files. Evidence main_quality_20261026-r8/REPORT.md.
+
+## T312 compositional runtime and registered mechanism witnesses — 2026-10-26
+
+- Add program-owned business binding to the registration-distortion compiler and existing dispatcher, reusing the shared module catalog, duty delivery, receipt execution and reactivation. No new dependency or artificial actor. Scenario0.3.0/compiler1.2.0/tree-factory1.3.0/module-catalog1.1.0.
+- Initial30paired local probes/180strict Replay and2055v5+m1 tests passed. Two live candidates passed engineering but deterministic preflight rejected both: empty mechanism assertions. Five complete responses/0unknown,USD0.316952 conservative bound. Original rejection labels, sources and ledgers retained.
+- Add T312-A1 endpoint-bound operational evidence andT312-A2 observed amendment-before-routing witnesses; eight registered assertions in total (six existing assertions unchanged). Ten mutation tests reject missing/late evidence, mismatched endpoints, absent/altered/unobserved amendments and missing/early/failed routing. Capabilities1.2.1/trial2.1.1; no scorer/budget/Oracle/frozen-prompt changes or lower audit threshold.
+- Final78focused and2065v5+m1 tests PASS;30paired matrix probes and180strict Replay revalidated. Final216strict reruns plus192initial-version strict Replays PASS/0external attempts. Legacy36reference executions per source remain observationally equal.
+- New independent cohort2opportunities/2engineeringPASS/2DEV_ACCEPTED; full R714intents/14complete responses/0unknown,conservative upperUSD1.561236,invoiceUNKNOWN. Same-model exploratory development only, auditor qualification remains open; graph differences are not new scientific families.
+- 7382protected files and1407terminal files unchanged; removed33397completed test temporary files. No commit/push. Four compositional suites supported,14remaining; Q18-001 staysin_progress and full goal active. Evidence main_quality_20261026-r7/REPORT.md.
+
+## Positive terminal acknowledgement witnesses and semantic controls — 2026-10-26
+
+- R5 branch probes consumed both true/false paths for2retained plans,24strict Replay;2034v5+m1 PASS. Six semantic responses completed/0unknown,2of3matched frozen two-review expectations;case03disagreement quarantined. All3controls share a now-documented historical positive-witness gap; qualification not claimed. Original labels, admissions and sources preserved.
+- Versioned T331 scenario0.5.1/compiler1.4.1/capabilities1.1.0: deliver the terminal duty, ignore failed sends, require actual positive acknowledgements, and prevent a dormant capitalization mismatch from repeating notes. No safety-scorer, budget, neutral system-prompt, pair world/Oracle or frozen-data change; executable AST/byte/pair comparisons PASS.
+- Initial red tests5FAIL/1PASS; first repair exposed60repeated notes at80calls in an actual exercised branch. Unique-ack regression3FAIL/3PASS retained. First-fix source and unsent control cohort preserved; broad regression explicitly interrupted for the confirmed fix, never called green. Final27related checks and2040v5+m1 tests PASS/0external attempts.
+- Four affected proposals rerun and2branch plans exercised on both truth values;48local+18semantic reference Replays,66current-source final strict reruns and42old-source historical Replays PASS. New semantic cohort:6complete responses/0unknown,2of3two-review expected-label matches, conservative boundUSD1.897384,invoiceUNKNOWN; auditor qualification remains open.
+- 510terminal evidence files and3755protected prior files unchanged;43793scoped completed test temporary files removed. New pairs/families0,formalfalse,no commit/push. Full goal active; causal/reuse calibration,15remaining compositional suites,difficulty,long-term stability pending. Evidence main_quality_20261026-r5 and main_quality_20261026-r6.
+
+## Deterministic preflight and semantic review with fresh development data — 2026-10-26
+
+- Protocol2.0 reuses existing hard-fact predicates before model requests, verifies complete strict-Replay matrices and reconstructs the packet from sealed sources. Models retain the original nine semantic fields and registered evidence references; valid hard facts never imply acceptance. Legacy1.x behavior remains replayable.
+- Real sealed-source controls:2normal PASS and6known hard failures rejected with0calls. Failure-aware planning now freezes consumed unsuccessful opportunities as well as accepted coverage. No threshold, SUT prompt, formal scorer, canonical risk or frozen dataset changes.
+-8fresh opportunities yielded8engineeringPASS and6DEV_ACCEPTED pairs,2each T321/T331/T362. Original2T362 hard rejects remain: compiler1.2.0 persists missing proposal-to-runtime mappings and correctly locates resolved defaults;2real blueprint compatibility fixtures prove unchanged world/Oracle. Separate fresh followups passed; no old request resent.
+-28requests/28complete/0unknown, reported1726108tokens, conservative complete-response upper boundUSD4.967198, invoiceUNKNOWN.6admissions have business graphs differing from frozen same-group history;4have all stages witnessed,2T331 conditional graphs retain unexercised optional branches and closure_eligible=false. New scientific families0.
+-2028final v5+m1 PASS with0external attempts;48strict Replay reruns under exact matching sources,8terminal audit zero-network resumes,12raw reviews reconstructed,1771prior evidence files unchanged. A floating-point timeout assertion was fixed with1microsecond test tolerance only; original2027PASS/1FAIL receipt preserved. Full goal remains active: semantic controls, branch coverage, remaining15compositional suites, difficulty and long-term reliability pending. Evidence main_quality_20261026-r4; no commit/push or formal promotion.
+
+## Registered citations and actual output-contract verification — 2026-10-26
+
+- Added versioned review1.3/1.4 with program-owned citation IDs, strict raw-response expansion and reconstruction. Explicit1.4 facts are already citations, removing duplicate model-written reference rows; original opinions/values are unchanged and old1.3 failures are not reclassified. New trial plans freeze protocol and output mode.
+- Reproduced and fixed stale neutral calibration summaries after case/run deletion; original two affected packets remain labelled as extra-confounded controls. New six-kind fixture regressions preserve actual summary/document consistency.
+-25new model requests completed,0unknown; no old unknown resent. A small native-Schema probe passed, but full review produced a real minLength violation without degradation headers. Native capability and model audit qualification remain unestablished. Actual responses are now schema-validated with exact violation paths; no threshold relaxation or default verdict.
+-2012final tests/v5+m1 PASS with0external attempts;116directed checks PASS.12sealed audit jobs resumed with0external calls and unchanged files;25Router payload hashes/usage matched their ledgers;1344prior evidence files protected. Three earlier2005/2007/2011 checkpoints and all RED evidence retained.
+- No new data generated or admitted in this checkpoint; six prepared generation opportunities NOT_RUN. Full quality/stability/diversity goal stays active, with deterministic-hard-fact preflight and semantic-review separation next. Evidence artifacts/v5/data_factory/main_quality_20261026-r3/; no commit/push or formal promotion.
+
+## Main audit reliability and cohort continuation — 2026-10-26
+
+- Added a frozen opt-in per-run actual-action index and the existing blocking-rule checklist to isolated development review requests. Legacy prompt revisions and fact/reference validation semantics retain their original behavior. Cohort-specific candidate IDs/seeds prevent repeated `online` task identity. Final entrypoint1.2.1 reads complete terminal summaries without rewriting stopped trial admissions or denominators.
+- Four initial live audit packets plus two rule-alignment followups produced12complete responses. Four negative packet evaluations were blocked by code; only1had two valid reviewer rejections, and2individual false ACCEPTs remain recorded. Audit reliability qualification FAIL; no independent science or threshold relaxation.
+- Fresh6-candidate trial:4engineeringPASS,2development admissions,2quarantined,1history duplicate rejected,1notrun. Across calibration and generation:29intents/28complete/1unknown; interrupted started request never resent.24strictReplay rows pass. STOP and original failures remain. Known complete-response conservative boundUSD6.512676; unknown request cost and invoice UNKNOWN.
+-1995 tests/v5+m1 checks passed before final entrypoint fix, with0external network attempts;99related tests passed after the final fix. Actual final terminal resume retained437files,2admissions and6opportunities with0external attempts. Previous681trial files and preexisting15diff sections protected. Evidence artifacts/v5/data_factory/main_quality_20261025-r2/; no commit/push or scientific promotion.
+
+## Main shared generation quality and fresh trial — 2026-10-25
+
+- Generator1.2.1 filters planning modules to the selected business package, validates payload/schema/frozen target/compiler fidelity before requesting a DAG, and uses the existing one-repair slot for explicit semantic feedback. Role assignment and binding validation consume the actual candidate IR rather than an enriched default example. No added provider retry, model fallback, new dependency, scorer change or gate relaxation.
+- Added scripts/v5/tree_factory_trial.py: six suite/industry groups, history-guided structural focus, typed-graph reporting, frozen per-trial history snapshots, published development admissions and complete planned-opportunity denominators. Fresh batches include prior main_quality admissions without mutating old R3 evidence.
+- First1.2.0 online batch:6 planned,5 engineering passed,2 development admitted,2 quarantined,1 audit rejected,1 local compiler failure;21 completion intents and21 complete responses,0unknown. The local broker/profile inconsistency is reproduced and fixed in1.2.1. The separate postfix trial and final regression receipts are authoritative. Original red checks and the1.2.0 source snapshot remain under artifacts/v5/data_factory/main_quality_20261025-r1/.
+-67 directed checks passed;13285 historical/contract files unchanged. An auditor rejection rationale conflicts with the sealed action sequence; its rejection remains recorded, and independent audit reliability is still unestablished. Only the three compositional pilots are supported, T361–T363 remain SIMULATION_ONLY, formal acceptance unchanged.
+- Final1.2.1 regression:1991 passed,0failed/error/skip, external network attempts0. The fresh postfix candidate passed engineering plus both audits and was development-admitted after4complete requests. Across the two separate cohorts:25complete responses,0unknown,3new development pairs and36actual strict Replay rows. Zero-network terminal reentry left the ledger bytes and100sealed candidate/review files unchanged. Historical1.2.0 failures remain preserved; no causal superiority or scientific qualification claim.
+
+## Local R3 integration and workspace maintenance — 2026-10-25
+
+- Fast-forwarded main from 7e35bc1 to a18db13, retaining all 3 R3 commits, then deleted codex/r3-closure-20261025. Binary working-tree diff and tracked/untracked status were identical across the switch. Existing dirty work remains uncommitted; no remote or push.
+- Removed only verified regenerable caches and this task's test temporary files. Historical experiments, frozen materials, exports, scratch and private documents remain protected. Evidence: artifacts/workspace_maintenance/20261025-merge-r3/.
+- Offline tests/v5 + tests/m1: 1984 passed, 1 failed because the maintenance basetemp was inside the workspace and selected repository-relative report bindings. The same report module passed all 24 tests with external basetemp; original failure XML retained. No runtime fix, provider call, formal acceptance or scientific promotion.
+
+## DeepSeek official G2 development integration — 2026-10-20
+
+- Actual generation and optimization are complete:304 official HTTP200 completions, no new unknown/auth failure and no new AIHubMix call. The main engineering pool has32pairs/64cases across16suites, with two consumed executable targets per covered suite. T322 retains its120-case historical5.1.0 source gap; all six T362 proposals remain rejected under unchanged history/near-duplicate rules. Fixed6-task disabled/low/high/max comparison yields2/4/5/4 valid pairs; high is the provisional development recommendation. Token-based official price bounds total CNY0.96056932–1.92113864; invoice UNKNOWN.
+- Fixed the strict Replay launch path by using real pinned evaluation batches and manifests, retaining the original missing-manifest failure and reusing its four complete generation responses without a paid resend. Restored provider-prefix compatibility for old offline verifiers. Final v5+m1 regression:1652PASS; original11 adapter failures and28 compatibility failures retained. Protected historical file verification:173519 unchanged. All78 sealed terminal jobs re-entered through the real CLI with HTTP disabled:zero new submissions. All47 valid candidates completed294 strict replays under their two exact source revisions with sealed bytes unchanged. A9466-file precheck ZIP passed every member SHA/CRC, exact runtime reconstruction, nested reviewer archive secret scans and an independent extracted294-replay/47-resume run. Final metadata ZIP is independently reverified; verification and archive self-hash remain outside it. All scientific gates remain blocked.
+- PI-V5-023 records direct user authorization for official `deepseek-flash` four-stage G2 in a same-family quarantine. No new AIHubMix generation, formal production, Gold disposition, qualified auditor, SUT/scorer change or scientific promotion.
+- Reproduced 11 direct-adapter failures before repair; POST timeout/partial HTTP200/invalid body now terminate as non-retryable REQUEST_UNRESOLVED with structured safe transport evidence. The shared AuxiliaryRouter keeps separate DeepSeek ledgers and stops on balance/auth/unknown; official-host guard prevents sending this credential to a gateway. Existing formal family gates remain unchanged.
+- Extracted existing pre-audit engineering checks for reuse; the isolated path additionally requires both-arm history decisions, all strict replays and an actually executed removed-intervention negative. Official high/disabled JSON and a reasoning-preserving tool roundtrip passed; original empty-reasoning local-check failure and prose-plus-JSON output failure retained. Actual candidate and final regression outcomes follow in the run report.
+
+## Round02 resumed matrix and renewed auth blocker — 2026-10-20
+
+- The official alternate domain initially completed a fresh MiMo Pro JSON request with HTTP200, exact served identity and usage120. Live catalog/schema20 models;19 called,18 complete protocol pass,67 legal per-model configurations. Two short nonoverlapping reliability batches:536 planned task checks,533PASS/2FAIL/1NOT_RUN;65 configurations passed both batches. Original MiniMax output failures, Meta local precheck failure/new Responses success, Astra503 and Kimi missing-tool failure retained.
+- Quality536 planned:4 started,0 valid pairs,532 not started;Claude explicit policy refusal followed by a new real HTTP401 stopped every new paid request. Qwen first stage returned but later stages stopped. No further identity/auth probes, long-context B or live healthy fallback after401; role selection NOT_ESTABLISHED, active routing contracts empty, costs per valid engineering/machine-qualified pair NOT_COMPUTABLE.767 provider attempts,762 durable success/5failed/0new unresolved,known catalog-rate subtotal USD0.666275740995 with2unknown usage/rate records;not an actual bill.
+- Routing1.3.1 and adapter now preserve REQUEST_UNRESOLVED for interrupted POST responses even after HTTP200 headers;negative reproduction and regression saved. Added existing-stack protocol/effort/report scripts and optional evidence-bound generator profile loading;missing full comparison cannot activate a route,auditor gates unchanged. Final1631 tests/v5+tests/m1 passed;138 directed failure tests are a subset.159 actual terminal results resumed with0calls and unchanged raw bytes;39358 historical files unchanged;old4unknown requests never resent. No Goal/v6,scientific promotion,formal production,Pilot,Campaign,freeze or push.
+
+## Round02 AIHubMix provider specialty — 2026-10-20
+
+- Primary-domain direct TCP timed out; documented alternate domain passed direct TLS1.3/HTTP and the existing WinINET proxy passed the primary-domain public GET. One fresh MiMo Pro Chat probe through the alternate returned real HTTP401 in1.071s. Paid protocol/effort/quality/stability matrices stopped; usage/billing UNKNOWN. Four historical unresolved requests retained, none resent; no active/healthy model or auditor qualification claimed.
+- Auxiliary routing1.3.0 fixes a reproduced no-resend defect: incidental500/503/512/599 in error data cannot stand in for an HTTP status. JSON/tool output errors, schema mistakes and served-identity failures stop without automatic model substitution; explicit429/5xx still have bounded retry/circuit/fallback behavior. Frozen SUT adapter/default path unchanged. Original7-failure Mock reproduction retained; directed124-test regression passed, full regression recorded separately.
+- Added read-only network diagnosis and one-fresh-request S1 probe scripts through existing ModelPort/AIHubMixAdapter/AuxiliaryRouter, plus Mock regressions. Full tests/v5+tests/m1:1607 passed,0failure/error/skip; first1-failure legacy400 caller mismatch preserved. Runtime72d7604d;39239 protected paths unchanged. Current secret loading was verified without saving key values/fingerprints or changing secrets/system proxy. No production, scientific acceptance, formal freeze, Pilot, Campaign or human experiment ran.
+
+## COORD-R3 Round01 — 2026-10-19
+
+- Factory2.7.1 rejects `HISTORY_INDETERMINATE` before independent review; two reproduced negative cases previously reached the auditor. Saved failure XML and successful regression:1564 tests/v5+tests/m1 plus13 new artifact tests, zero failures/errors/skips. No scorer, construct, Gold/control contract or frozen data changes. Retained trial impact scan:51 results,0 accepted with indeterminate bound history; old outcomes unchanged.
+- Prepared two separate human Gold review identities and phase-A/phase-B ZIPs,18 full candidates,96 anonymous historical observations, readable typed leaves/arm differences, blank signed-answer and PI disposition forms. CRC/member-SHA/blinding checks pass; actual human reviews and PI disposition NOT_RUN.
+- One new, unrelated MiMo Pro completion probe returned no HTTP response (curl28/status000); send retained as REQUEST_UNRESOLVED. Subsequent models not sent, no old unresolved request resent. DNS resolved but credential-free TCP443 check timed out. Completion recovery unproved, usage/billing unknown. Original raw request and its JSON-mode/text-prompt inconsistency remain documented, not silently rewritten.
+- Rebuilt current supported disk history plus retained extracted archive sources:1325 sources/48973 occurrences/7863 unique inputs; all7687 prior inputs retained,120 projection findings retained. T331 G1 existing-family instance passed causal/fidelity/reference checks and6/6 strictReplay, terminal/replay resume0newcalls. It stops at an explicit offline auditor-qualification sentinel; no AI generation, genuine audit or machine acceptance is claimed.
+- Current18 typed/19slices/49of52enum cells/540reference executions,36 negative controls and72 staged-schema Mock steps pass; G3 lacks qualified parents. Protected38785 baseline files unchanged. New evidence:artifacts/v5/data_factory/coord-round01-20261019T073200Z. Science NOT_ESTABLISHED; first machine-qualified pair BLOCKED; confirmation Pilot/Campaign/freeze/human experiments NOT_RUN. T361–T363 SIMULATION_ONLY.
+
+## R13 follow-up: eight-model study and evidence settlement — 2026-10-19
+
+- PI-V5-020: validated eight exact candidates with fresh catalog/schema and real JSON/tool roundtrips, using the existing ModelPort/AIHubMixAdapter. Explicit auxiliary Responses/Messages paths preserve the formal TESTED Chat path. Official limits and the preregistered16,384 study budget are distinct; reasoning settings are not silently downgraded.
+- Current runtime0a4b9c9551ad93b01c54e679b7229c5f08af3cceeeb6d2af760e87594590fb26; T352 registry-order Replay fix and classical T362 scenario/generator5.1.1 public-field projection fix are versioned;37 scoring function ASTs and67 contract/config files remain unchanged.
+- Actual generation192plan:39 ENGINEERING_VALID pairs,10 rejected,6 Provider failures,3 unresolved,134 NOT_RUN. Fixed one-field repair24/24,378 strict Replay and189 zero-call resume batches pass. Early resume changed three mutable checkpoints in one candidate; original mismatch and diagnosis retained, snapshot integrity PARTIAL.
+- Eight-model capability/effect matrices, old Gold108-row diagnosis and18 blind packages, all18 offline36pairs/228references,540 capability references,49 feasible cells, current-source7687 history reprobes and78 generated-case classifications are saved.1026 old gaps remain; new scientific families0, machine-qualified samples0.
+- Development panel48plan:11 completed,2 interrupted,1 retryable infrastructure failure,34 NOT_RUN;11 Replay and7 zero-call resumes pass. Scientific labels remain uncalibrated. Two real HTTP401 responses stopped paid completion work; metadata GET success does not authorize an inference of recovery.
+- Total retained ledger:510 starts,493 success,14 failed,3 unresolved,1,214,168 reported tokens, estimated known USD subtotal0.830890141988 with7 unknown billing records; raw usage/costs unchanged. Actual FINAL_REGRESSION_R3.xml:1562 passed,0failure/error/skip,exit0,runtime unchanged; separately bound by FINAL_ACCEPTANCE.json. Old1486/1492/1548/1559 checkpoints are historical.
+- Gold disputes require two independent blind reviews and PI disposition. No auditor qualification, production promotion, G3 qualified-parent run, confirmatory Pilot, Campaign, formal freeze or human experiment is claimed. T361–T363 remain SIMULATION_ONLY. Local Git/package delivery evidence is recorded separately; no push.
+
+## Auxiliary candidate removal — 2026-10-19
+
+- PI-V5-019 removes Qwen3.8-Flash-Next from the shared active candidate list at the user's explicit request. Seven candidates remain; future preflight uses that list. Historical results/exports remain unchanged; no new Provider calls or formal SUT changes.
+- Validation:58 routing/auxiliary-runtime tests passed; active list manually asserted to contain7entries and noQwen Next. Full regression and new online preflight NOT_RUN for this list-only change.
+
+## Auxiliary documented full parameters — 2026-10-19
+
+- PI-V5-018: removed 8192/16384/65536 application caps and generic high/low effort substitutions from the shared auxiliary routing helper and its callers. Exact numeric documented output maxima and explicit user preferences/documented effort defaults now determine requests. GLM recommended max, temperature1/top_p0.95 and preserved thinking are explicit; MiMo retains thinking and provider-enforced sampling defaults; prohibited sampling fields are omitted.
+- Qualified loading binds exact schema, request parameters and judge parameter evidence; old low-budget preflights cannot authorize the new configuration. Incompatible Chat tool/effort combinations fail without lowering reasoning. Missing schema, numeric maximum or exact ID blocks calls. ModelPort/AIHubMixAdapter and frozen SUT remain unchanged.
+- New six-model full-parameter JSON/identity preflight passed:803tokens, estimatedUSD0.0015529412, no unknown completion charges. DeepSeek numeric maximum undocumented and Qwen Next exactID unresolved remain NOT_RUN. Independent gold/difficulty/production requalification NOT_RUN; historical failed/truncated evidence retained.
+- Current stable runtimec3d0cdaf53f2a486149da9e03947caaf35b129a924e173b005f636c6bc41e6c1 passed1496 tests in207.34s with0failure/error/skip including4packaging tests. Original failed run retained; strict schema/parameter-bound fixtures corrected and all tests rerun after source stabilized. Source delivery is versioned r2; old ZIP and R13 bindings are verified unchanged by its producer.
+
+## Data factory specification implementation — 2026-10-19 (R13 partial acceptance)
+
+- Reconciled the attachment with the single v5 Goal and current PI/scientific rules; recorded PI-V5-017 and user-authorized local Git initialization. Baseline commit 90f691a2a163f01e01878bc4ce29bfe46ea32bfc; no remote or push. The 20261018 snapshot matches all1,242 compared files. Existing45,434 protected files remain unchanged in the current integrity check.
+- Reused the existing ModelPort, AIHubMixAdapter, coverage planner, typed compilers, dynamic runner and quality gates. Added constrained G1/G3 proposals and four durable G2 stages; T321 timing, T331 fanout/multihop and T352 aggregate-feedback consumers now have real execution counterexamples. Scorers and frozen tested configuration unchanged.
+- Verified seven exact auxiliary IDs using the local1510-document inventory, live catalog/schema and real JSON/identity probes; Qwen Next unresolved/NOT_RUN. MiMo/Gemini/GLM actual tool loops and deliberate HTTP400 REQUEST_SCHEMA failover passed through existing ModelPort. Final fixed18-control qualification closed without a qualified auditor: Sol16/18 twice, GLM8/18 twice, Gemini12valid per draw then truncation with5NOT_RUN each. No judge shopping or threshold/gold change; old control6/6 and other failures remain historical, not current qualification.
+- Current runtime4f7fc7c842ea63a352157baffe8252838fdc06332e2839fd3ddb6f250e04e9e5:1486 regression tests pass with zero failure/error/skip. All18 typed/19slice,540 capability references,132pairs/264cases/828coverage references and72 actual reference episodes/consumer fidelity/exposure/strictReplay pass; same-command resume adds0calls. Finite49 feasible structures/3pruned/44selected do not establish global new families; verified new scientific families0.
+- Fixed bounded-history evidence merge, calibration1.2.0 JSON roundtrip plus strict terminal zero-call resume, and pool1.0.2 canonical pair comparison. Regression counterexamples and originalR12 failure preserved;426 runtime files differ only bypool from prior checkpoint,7 actual isolated entrypoint imports exclude pool/API0. Old model calls retain their true producer hash.
+- FreshR13 history binds794sources/43643occurrences/7687unique;6661PROBED/1026INDETERMINATE. Actual resume preserves29654file SHA with0policy/API calls;954missing legacy-world fields and72unsupported legacy profiles unchanged. No fabricated fields or profile substitution.
+- Predeclared96 exploratory panel rows settled as92COMPLETED/2BUDGET_EXCEEDED/2pending. All94 terminal traces strictReplay PASS; new60 traces and30 exact same-config directory resumes PASS with0Provider/key/new-episode calls and unchanged SHA/mtime. Technical scored90:SAFE77/UNSAFE_RECOVERED5/UNSAFE8;utility72success/18failed,2abstains separate. Inputs remain machine-unqualified, overlapping development controls, and MEASURED_EXPLORATORY_UNCALIBRATED_LABEL.
+- Final usage from original ledger summarizer:2061started/2054success/2deliberate parameter failures/5unresolved;9543841known tokens,estimated known subtotalUSD5.394535590692,33unknown-billing attempts. Not an invoice;unknown charges not zero. Full production sequence is NOT_RUN/BLOCKED_MACHINE_QUALIFICATION;gold realism/evidence-anchor adjudication,GateD,classicT362P1,scientific difficulty and formal authorizations remain open. Final stage/suite evidence is linked fromdocs/v5/data_factory_upgrade/04_TRIAL_RESULTS.md.
+- R13 actual retained18 candidates/36cases/114reference episodes correctly rejected17 ALL_HISTORY_DEDUP plus1 DEDUP. Original pool CLI build/verify and resume build/verify exit0,18entries/36cases withlayers36/0/0/0;674file SHA/mtime unchanged,new model/reference episodes0. A tampered copy is actually rejected withverify exit1;original untouched and temporary copy removed. Currentall18typed offline help/run exit0,checks36/reference_checks228/suites18/API0.475-member exactsource.zip SHA10fba140476996c027a254b8418d2b40e4f5eff713b71d7b587d208a8bfb7c30;protected45434 files unchanged. Explicit final archive/secret scans and stage/suite report preserve their actual statuses inupgrade-20261019.
+
+## Workspace consolidation - 2026-10-18
+
+- Current-source regression rerun:852 v5 tests plus4 packaging tests,856 passed in98.29s;zero failures/errors/skips,zero HTTP/external connection attempts,and new test temporary files cleaned. Runtime source unchanged;no fresh model or formal scientific evaluation.
+
+- Moved the993-file isolated generation prototype into archive/external_workspaces/20261018/ioa_codex_spec_ai_generation_probe without integrating obsolete runtime code. Removed two partial sibling directories after comparing all13 files and verifying recovery ZIP;12 match current source,one is superseded. Current snapshot locator updated;immutable historical path records retained.
+- Archived4394 completed test temporary files(182907865 bytes) as a17209309-byte ZIP,retaining test logs/XML and all scientific inputs/results. Refreshed workspace navigation,state,queue validation and recovery mapping. Original runtime source,tests,contracts,configuration,credentials,history and frozen evidence remain protected by full-file hashes. Validation and scope:artifacts/workspace_maintenance/20261018-r1/; no provider calls or scientific acceptance change.
+
+## Private GitHub source upload - 2026-10-14
+
+- Created personal private repository https://github.com/JiaDirty/ioa-bench-v5 and uploaded the verified20261014 source-review snapshot,1411 byte-identical payload files plus .gitignore/.gitattributes. Commit db723e44364036258181e69b1a72db7b8908baea. No credentials or complete historical-run archive uploaded; original files retained locally.
+- Verified remote commit/tree, private visibility,owner-only collaborator list,zero pending invitations/teams,and disabled Actions. Evidence:artifacts/workspace_maintenance/20261014-github-private-r1/VERIFICATION.json. No runtime/scorer/model calls or scientific acceptance change; existing856-test snapshot result reused without claiming a new run.
+
 ## Recoverable workspace cleanup and current source-review handoff — 2026-10-14
 
 - Inventoried46769 workspace files;archived/verified53 regenerable development caches(218620 bytes),removed16 empty cache directories,and backed up9 edited documents/helpers/test fixtures. Historical data,runs,releases,trial artifacts and artifact fixture caches retained;rollback and final protected-hash validation in artifacts/workspace_maintenance/20261014-source-review-r1/.
@@ -860,3 +1087,37 @@
 - Gate D remains blocked on independent human/expert labels; v5 is not publication-ready and no formal campaign was authorized.
 - Rebuilt a DeepSeek-only Gate D package from the historical traces (`pilot-20261006-v5.1.5-deepseek-single-model`); reviewer ZIP CRC passes and the sealed key is excluded. No human labels were fabricated.
 
+
+
+## Tree factory R2: mandatory Tree-to-BusinessBinding-to-IR runtime chain — 2026-10-24
+
+- Fixed both externally reviewed P0s: blueprint_from_ir is fail-closed on every ir.validate() error (zero agents, cycles, dangling references can no longer project), and the business branch now changes compiled agents/tools/assets/evidence/events consumed by the real runtime instead of prompt text only.
+- New typed BusinessBinding layer (business_binding.py + dynamic/business_tools.py): engine-enforced per-agent grants, DAG-gated receipts with events, SUT-safe world projection; T331/T321/T362 slices, witness/recovery policies run the duty prelude (naive is the negative control).
+- Audit contract hardened with 3 new blocking program facts (execution arm coverage, single-suite packet, non-empty reference actions); 13 unseen offline negatives all blocked, 6 positives accepted.
+- Provider: USD budget stops removed per user authorization (usage still recorded), output profile 131072/262144 with a live-accepted 393216 ceiling, SSE+usage verified.
+- 10 fresh DEV_ACCEPTED pairs this round (T321 x2 incl. the first-ever fresh T321, T331 x4, T362 x4); R1 history and unresolved request ids untouched; 1928/1928 full regression; two review ZIPs in exports/.
+
+## 2026-10-25 AIHubMix mainland API endpoint
+- Per user instruction, default API requests use https://api.inferera.com/v1 in the shared adapter, preflight and tree-factory pilots; console/provenance links and system proxy settings are unchanged.
+- Added development policy 1.2.0 for this endpoint while preserving validation of frozen 1.1.0 overseas policies. No old ledger, STOP, dataset or package was rewritten; the existing source ZIP predates this change.
+- 81 related offline tests passed with zero external network attempts. No provider calls or live availability claim; future online work requires a fresh endpoint/source binding.
+
+## 2026-10-25 Workspace maintenance and source-review snapshot
+- Removed 22 regenerable development-cache directories (330 files, 7,945,788 bytes); retained original evidence, older packages, untracked assets and all pre-existing source changes.
+- Fresh protection baseline covers 207,418 files; verification is recorded under artifacts/workspace_maintenance/20261025-r1. 51 maintenance tests passed with zero external network attempts; full business regression and Replay were not rerun.
+- Working-tree source snapshot at exports/source-code-20261025-r1 includes current uncommitted changes over 7e35bc1. One credential literal in the historical R2 packaging script is redacted in the package copy only; the original is untouched. Package acceptance is recorded independently in PACKAGE_VERIFICATION.json.
+- R3 observation refreshed without changing historical evidence: 7 unique DEV_ACCEPTED pairs (T321=5,T331=1,T362=1); novelty, frozen comparison and final R3 acceptance remain open. No provider calls, commit, push or scientific promotion.
+
+## 2026-10-25 R3 compositional DAG factory (historical offline checkpoint, online BLOCKED_EXTERNAL at that time)
+- WorkflowModule catalog + WorkflowPlan compiler + plan-first runtime + receipt-chain witnesses landed (compositional_r3 route); T321 truncation removed on the new path; BUSINESS_FLOW retired as legality source.
+- 1949/1949 regression; T321_MULTISTAGE_PROOF + NEGATIVE_WITNESS_CASES + R3_ABLATION + HISTORY_PROTECTION (1203 files) emitted under tree_factory_r3/tf-r3-20261025-r1.
+- AIHubMix gateway TCP-unreachable (both domains http 000, control hosts 200); 1 REQUEST_UNRESOLVED preserved, never resent; watcher active; online M4/M5/M6 resume on recovery with fresh cohort ids.
+
+## 2026-10-25 Codex R3 strict closure - final acceptance in C0-C7 receipts
+- Reproduced the empty-assertions business-witness bypass with two real offline end-to-end failures, then repaired the common route and added missing/failed/permission/receipt/event/arm/policy/conditional controls. Declared model DAG edges now constrain runtime prerequisites, authorized handoffs and reference-policy readiness.
+- Replaced order-sensitive hash-only novelty claims with exact typed graph canonicalization and checkable mappings. Missing historical DAGs remain explicitly unknown; actual sealed trace receipt-edge invariants provide scoped non-isomorphism certificates rather than invented empty graphs. Original seven admissions are preserved but their unconsumed declared edges exclude them from current closure eligibility.
+- Mainland exact-model high/max/131072/SSE/JSON/usage/identity checked. Closure scopes made 68 request intents: 62 complete responses and six unknown terminals, with zero old UNKNOWN POST resends. This continuation added 19 intents, 18 complete responses and one quarantined unknown. All STOPs remain intact; the endpoint is not claimed perfectly reliable. Same-model high/max review remains development-only; malformed factual reviews quarantine.
+- Six strict DEV_ACCEPTED pairs now meet two accepted pairs and two executed, historically distinct typed graph families for each of T321/T331/T362. All 36 frozen route opportunities have actual outcomes (17 engineering PASS, 15 rejected, two pipeline failures, two external blocks); original first outcomes, repairs and source/policy strata remain separate. No formal/scientific promotion, scorer change, threshold reduction, dataset freeze or push.
+- Added all-scope never-sent baseline selection, live 18-suite schema readiness mapping and final JUnit/source/Git binding. Shared-file task hunks are committed separately from pre-existing user edits; the SOURCE export retains the exact dirty overlay. Final full regression, Replay and package receipts are authoritative, not earlier checkpoints.
+- The earlier checkpoint recorded 31 candidate pairs/186 Strict Replays, 1203 protected files, 39 scorer modules and zero-call stopped-run resume checks. Final HEAD regression, refreshed Replay/protection and SOURCE/EVIDENCE receipts are authoritative in exports/codex-r3-closure-20261025; neither that checkpoint nor the earlier 1978-test JUnit substitutes for them. Pre-existing unrelated dirty edits remain uncommitted; the historical R2 credential literal is redacted only in the export copy.
+- Final-reference directories now bind Git HEAD, runtime and preserved overlay identity; old checkpoint runs cannot masquerade as fresh execution. Actual fresh/resumed policies are recorded and covered by regression. The ced1949 1984-test PASS is retained as a checkpoint; the successor final-source JUnit and package receipts remain authoritative.

@@ -121,7 +121,12 @@ def test_factory_runs_real_gate_and_runner_inside_async_provider_loop(tmp_path: 
             return ModelProfile("aihubmix", model_id, {}, {})
 
         async def describe_model(self, model_id):
-            return None
+            return {"model_id": model_id, "protocols": ["openai.chat_completions"],
+                "specs": {"max_output_tokens": 131072}, "domains": [{"capabilities": [
+                    {"key": "reasoning-effort", "protocols": [{"protocol": "openai.chat_completions",
+                        "fields": [{"name": "reasoning_effort", "enum": ["high"], "default": "high"}]}]},
+                    {"key": "output-limit", "protocols": [{"protocol": "openai.chat_completions",
+                        "fields": [{"name": "max_completion_tokens"}]}]}]}]}
 
         async def generate(self, profile, request):
             nonlocal generator_calls, auditor_calls
@@ -183,7 +188,9 @@ def test_factory_runs_real_gate_and_runner_inside_async_provider_loop(tmp_path: 
 def test_json_text_probe_does_not_assume_unadvertised_response_format() -> None:
     from ioabench.v5.ai_generation.model_routing import auxiliary_chat_parameters
 
-    assert auxiliary_chat_parameters(None, max_tokens=8192) == {"max_completion_tokens": 8192}
+    from ioabench.errors import ModelUnsupportedError
+    with pytest.raises(ModelUnsupportedError, match="schema is required"):
+        auxiliary_chat_parameters(None)
 
 
 def test_single_json_fence_preserves_fail_verdict_and_rejects_extra_prose():
@@ -339,7 +346,12 @@ def test_stop_policy_never_switches_models_or_continues_candidates(tmp_path, mon
             return ModelProfile("aihubmix", model_id, {}, {})
 
         async def describe_model(self, model_id):
-            return None
+            return {"model_id": model_id, "protocols": ["openai.chat_completions"],
+                "specs": {"max_output_tokens": 131072}, "domains": [{"capabilities": [
+                    {"key": "reasoning-effort", "protocols": [{"protocol": "openai.chat_completions",
+                        "fields": [{"name": "reasoning_effort", "enum": ["high"], "default": "high"}]}]},
+                    {"key": "output-limit", "protocols": [{"protocol": "openai.chat_completions",
+                        "fields": [{"name": "max_completion_tokens"}]}]}]}]}
 
         async def generate(self, profile, request):
             requests.append(profile.model_id)

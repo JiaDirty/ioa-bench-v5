@@ -1,13 +1,45 @@
 # IoA-Bench v5 — Progress Ledger
 
+## 当前检查点（2026-10-23）
+
+官方DeepSeek同模型研发路径已交付，正式科学状态未提升。原32对保留且全部完成隔离上下文审核；研发池19对/38条、12项，其中旧16对、新3对。讨论扭曲达到3种真实结构并继续SIMULATION_ONLY；互操作失配因120条旧5.1.0合同缺失保持历史隔离。负例有效双拒绝4/6，校准FAIL；当前有限语法有14项上限不足3种（本次按18行普查重算，旧状态“13”少算互操作失配），难度未校准、长期稳定性未证明。
+
+运行源码哈希仍为79728d82…；1844项全量回归、272次实际包内Replay和42条禁网恢复为10月20日证据，本次维护实际运行51项打包/报告回归。清理84个开发缓存目录、869文件，历史、研发证据、未提交资料均保留。API0，无新的生成或科学实验。AIHubMix最近实测为10月20日HTTP401，本次未联网复验。
+
+完整进度、18项数据表和剩余工作见[当前说明](../PROJECT_PROGRESS_20261023.md)；源码包位于`exports/source-code-20261023/`，完整Replay包仍为`exports/development-factory-handoff-20261020-r2/`。下文Current字样均属于各自历史检查点，不作为今日最新状态。
+
+Current COORD-R3 Round01 (2026-10-19): `artifacts/v5/data_factory/coord-round01-20261019T073200Z/ROUND_REPORT.md` is the latest engineering handoff. Factory2.7.1 rejects indeterminate history before audit; current runtime035c7c43,1564 full regression plus13 new artifact tests pass. One G1 T331 existing-family instance passes current-history screening,6 references/6 strictReplay and zero-call terminal/replay resume; actual AI audit/first machine qualification remain BLOCKED.18 typed/19slices/540references/49of52cells/36negative controls and72 Mock stages pass. Two staged independent human packages are ready, actual reviews/PI disposition NOT_RUN. One new completion send has no HTTP response and remains unresolved; no old resend, no recovery claim. Full scientific/formal gates remain open; R3 evidence below is historical.
+
+Current R13 follow-up2026-10-19, PI-V5-020: see ../WORK_COMPLETION_20261019_R3.md and artifacts/v5/data_factory/next-r1/FINAL_ACCEPTANCE.json. Eight-model protocol study and24/24 fixed repairs actually executed; generation192 planned=39 engineering-valid pairs,10 rejected,6 Provider-failed,3 unresolved,134 NOT_RUN. All78 compiled cases match historical behavior; scientific new families0. Gold/qualified auditor still BLOCKED. New48-episode development panel=11 completed,2 infra-interrupted,1 infra-failure,34 NOT_RUN; labels uncalibrated. Real HTTP401 stopped calls; no completion retry. Native protocols remain explicit auxiliary profiles; frozen SUT/37 score functions/contracts retained. Regression, SHA/Replay and source/Git delivery are separately bound to this checkpoint; historical numbers below are not current acceptance.
+
+Current auxiliary correction 2026-10-19 (PI-V5-018): documented full output maxima and user/model reasoning defaults; six new real JSON/identity probes PASS,803tokens,USD0.0015529412 estimate. DeepSeek numeric maximum and Qwen Next exactID blocked. New auditor controls/difficulty/production NOT_RUN; historical R13 evidence unchanged. See V5_AUXILIARY_FULL_PARAMETERS_20261019.md and ../WORK_COMPLETION_20261019_R2.md.
+
 Authoritative v5 status for resuming work. Update at every milestone. Gate definitions:
 `NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/03_PUBLICATION_READINESS_CONTRACT.md`.
+
+## 数据工厂R13及源码交付更新（2026-10-19）
+
+总体`PARTIAL / BLOCKED_MACHINE_QUALIFICATION`。18 typed Suite、19动态slice已有真实有限结构与参考闭环；R13的`tests/v5 tests/m1`实际1486项通过，0失败/错误/跳过，全18项离线入口通过。本次仅更新交付文档和源码包，未重新调用模型或运行科研试验；1486是保留的R13检查点，不是本次新增测试。
+
+52声明组合中49个规范可行、3个剪枝；132对/264例、828参考检查映射44个规范结构，全历史已验证新科学家族0。独审固定控制未有合格模型，完整AI生产链仍`NOT_RUN`。开发面板96计划为92 COMPLETED、2 BUDGET_EXCEEDED、2中断/未决，94条终态严格Replay通过，标签仍未校准。科学有效性`NOT_ESTABLISHED`，`formal_accepted=false`、`publication_ready=false`；T361–T363继续`SIMULATION_ONLY`，确认性Pilot/Campaign/正式冻结/真人实验均未执行、未获本轮授权。
+
+交付入口：[工作完成说明](../WORK_COMPLETION_20261019.md)、[实际修改/命令/结果](data_factory_upgrade/04_TRIAL_RESULTS.md)、[逐阶段逐套件验收](../../artifacts/v5/data_factory/upgrade-20261019/FINAL_S0_S6_ACCEPTANCE_R13.md)、[更新源码包](../../exports/source-code-20261019/IoA-Bench-source-code-20261019.zip)、[实际包验证记录](../../exports/source-code-20261019/PACKAGE_VERIFICATION.json)。包成员/hash/CRC/凭据扫描及解压复查以该记录实际结果为准，不继承旧包PASS。
+
+R13 runtime SHA-256为`4f7fc7c842ea63a352157baffe8252838fdc06332e2839fd3ddb6f250e04e9e5`；已初始化本地Git，上一轮R13交付提交`4e6a8fee7fd98e7a5424c8f9d2f16e633f18aac4`，分支main、无remote、未push。已知9,543,841 Token，目录估价小计USD5.394535590692，33次计费未知，不是完整账单。下文历史段落及其源码/测试数字保持原样；本节不将历史调用重标为当前源码资格。
 
 ## Key documents
 - `docs/v5/V5_00_ARCHITECTURE_DECISION.md` — ADR-V5-000 (principles P1–P16, suite classification, overlap designs, order)
 - `docs/v5/V5_PI_DECISION_LOG.md` — user decisions (single formal DeepSeek roster under PI-V5-005; new paid Provider calls require explicit approval; no reviewers yet → stop at Gate D; T361–T363 scored on tested behavior)
 - `contracts/v5/construct_maps.json` — Gate A construct maps, 18 suites (single source; rendered doc generated from it)
 - `artifacts/v5/architecture/v4113_arm_split.json` — evidence that v4.1.13 lacks manipulation validity (script `scripts/v5/v4113_arm_split.py`)
+
+## 工作区状态复核与目录归并（2026-10-18）
+
+本轮重新核对运行源码，权威hash仍为`1416449d4ae6fda00d3f487e9d32115f553baf0c2002f5bb41591d2a43787e7d`；18项实现、19个注册动态结构、M5/M8及独审/校准/正式接受的进度没有新增科研完成。旧生成原型993个文件完整迁入`archive/external_workspaces/20261018/ioa_codex_spec_ai_generation_probe/`，只作历史参考；另两个早期残片目录13文件已对比、验证归档后移除。4394个已完成测试的临时文件压缩保存，原测试XML/日志及历史科学证据保留。
+
+本次状态、当前回归结果、目录映射和恢复入口见`docs/WORKSPACE_STATUS_20261018.md`及`artifacts/workspace_maintenance/20261018-r1/`。不把工作区整理或自动测试通过解释为独立科学审核或正式测评完成。本轮API0，没有改动正式模型、GT、评分、提示或冻结数据；GitHub仍为10月14日上传快照，本轮未自动推送。
+
+本次重新执行当前源码的852项v5与4项打包回归，856项全部通过，0失败/错误/跳过，用时98.29秒；外网/HTTP尝试0，临时目录自动清理。测试XML与网络约束记录在上述整理目录，未重新运行真实模型或科研实验。
 
 ## 当前工作区整理与源码审阅交接（2026-10-14）
 

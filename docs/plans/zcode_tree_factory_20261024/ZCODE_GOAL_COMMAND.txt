@@ -1,0 +1,1 @@
+/goal 在现有IoA-Bench v5中按GOAL.md的G0–G7全部验收条件，完成T331/T321/T362树状依赖业务分支、typed MechanismIR、编译消费与执行见证、程序事实审核、有界新ID修复和AIHubMix deepseek-v4.1-flash-1017真实冻结A/B试点；每套件获得至少一对真实新DEV_ACCEPTED并证明结构不同，同时保证全量回归/严格Replay/历史不变/预算停机/证据和本地Git交接全部通过，任何401或终态未知必须停付费并报告BLOCKED，不允许虚报完成。

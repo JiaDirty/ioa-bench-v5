@@ -70,6 +70,14 @@ def signature(case: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _executable_shape(shape):
+    binding = shape.get("business_binding")
+    if not isinstance(binding, Mapping):
+        return shape
+    return {**shape, "business_binding": {key: value for key, value in binding.items()
+                                         if key not in {"goal", "public_narrative"}}}
+
+
 def executable_structure_signature(case: Mapping[str, Any]) -> dict[str, Any]:
     """The normalized EXECUTABLE-STRUCTURE projection (post-audit FAMILY-01): the task/evidence/
     authorization/tool-path semantics only — suite_id, subtype, difficulty, arm and domain are
@@ -85,7 +93,7 @@ def executable_structure_signature(case: Mapping[str, Any]) -> dict[str, Any]:
             "structure_version": STRUCTURE_VERSION,
             "mechanism_slots": sorted(case.get("mechanism_slots", [])),
             "fingerprints_normalized": [_normalize_value(f) for f in case.get("fingerprints", [])],
-            "world_shape": _shape(world),
+            "world_shape": _executable_shape(_shape(world)),
             "world_normalized_keys": sorted(str(k) for k in world),
             "carrier_text_normalized": _normalize_value(json.dumps(
                 {k: world[k] for k in sorted(world) if isinstance(world.get(k), str)},
@@ -97,7 +105,7 @@ def executable_structure_signature(case: Mapping[str, Any]) -> dict[str, Any]:
             "structure_version": STRUCTURE_VERSION,
             "mechanism_slots": sorted(case.get("mechanism_slots", [])),
             "fingerprints_normalized": case.get("fingerprints_normalized", []),
-            "world_shape": case.get("world_shape"),
+            "world_shape": _executable_shape(case["world_shape"]),
             "world_normalized_keys": case.get("world_normalized_keys", []),
             "carrier_text_normalized": case.get("carrier_text_normalized"),
         }

@@ -1,0 +1,49 @@
+# Target policy for Codex to reconcile into EXISTING code; not a second runtime configuration layer.
+version: ioabench.codex-r3-closure.quality-first/1.0.0
+provider: aihubmix
+model_id: deepseek-v4.1-flash-1017
+protocol: openai.chat.completions
+base_url: https://api.inferera.com/v1
+endpoint: /chat/completions
+api_key_source: env:AIHUBMIX_API_KEY
+context_capability_tokens: 1000000  # supplier advertised; NOT a validation that 1M is usable in one call
+max_output_capability_tokens: 393216 # supplier advertised / R2 parameter accepted; not actual full output proof
+request_profile:
+  default:
+    thinking: enabled
+    reasoning_effort: high
+    max_tokens: 131072
+    stream: true
+    response_format: json_object
+  difficult:
+    thinking: enabled
+    reasoning_effort: max
+    max_tokens: 262144
+    stream: true
+    response_format: json_object
+  ceiling_if_needed:
+    thinking: enabled
+    reasoning_effort: max
+    max_tokens: 393216
+    stream: true
+    response_format: json_object
+parameter_compatibility: use_real_gateway_evidence_not_unverified_assumptions
+money:
+  usd_soft_stop: null
+  usd_hard_stop: null
+  usage_recording: true
+limits:
+  max_context_soft_cap: null
+  arbitrary_output_reduction: false
+  ignore_token_usage_metrics: false
+  unknown_request_resend: forbidden
+results:
+  require_complete_stream_terminal: true
+  require_valid_json: true
+  require_actual_schema_validation: true
+  require_served_model_identity: true
+  require_ledger_and_candidate_id: true
+notes:
+  - 'Replace only stale URLs in existing provider adapters; never add a parallel SDK.'
+  - 'Keep formal safety and benchmark-scoring gates unchanged.'
+  - 'Large max_tokens is headroom, not a demand to emit useless tokens.'

@@ -60,7 +60,7 @@ def selected(relative):
             and parts[4] in {"5.1.5-candidate-20261006", "5.1.6-candidate-20261009"})
 
 
-def main(output, handoff):
+def main(output, handoff, *, snapshot_metadata=None):
     output = output.resolve()
     if not output.is_relative_to((ROOT / "exports").resolve()):
         raise ValueError("Output must be a new directory under workspace exports/")
@@ -118,6 +118,7 @@ def main(output, handoff):
                     "source_scope": sorted(TOPS), "candidate_versions": ["5.1.5-candidate-20261006", "5.1.6-candidate-20261009 (T332 only)"],
                     "limitations": "Historical full runs, backups, reviewer sealed keys, credentials, caches and archives omitted except explicitly selected review evidence/example; consult EXCLUDED.json. Partial example evidence is not a full replay bundle. No scientific acceptance claimed.",
                     "secret_scan": "Known local .env secret values, key-token patterns and private-key headers checked."}
+        snapshot.update(snapshot_metadata or {})
         for name, value in (("FILES.json", inventory), ("EXCLUDED.json", excluded), ("SNAPSHOT.json", snapshot)):
             z.writestr(pack.META + name, pack.json_bytes(value))
     result = pack.verify(temporary)
@@ -126,6 +127,7 @@ def main(output, handoff):
     (output / "PACKAGE_VERIFICATION.json").write_bytes(pack.json_bytes(result))
     (output / (archive.name + ".sha256")).write_text(result["sha256"] + "  " + archive.name + "\n", encoding="ascii")
     print(json.dumps(result, ensure_ascii=False, indent=2))
+    return result
 
 
 if __name__ == "__main__":

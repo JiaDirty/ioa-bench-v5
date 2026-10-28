@@ -1,0 +1,74 @@
+version: ioabench.v5.r3-task-queue/1.0.0
+source_contract: GOAL.md
+run_mode: autonomous_evidence_first
+stages:
+  - id: M0
+    goal: R3-G0
+    title: reconcile_current_head_and_frozen_r2
+    depends_on: []
+    outputs: [BASELINE_R3.json, R2_RECONCILIATION.md, FROZEN_REFERENCES.json]
+    done_when: current_head_verified_and_r1_r2_history_frozen
+  - id: M1
+    goal: R3-G1
+    title: t321_real_multi_stage_business
+    depends_on: [M0]
+    paths:
+      - src/ioabench/v5/ai_generation/business_binding.py
+      - src/ioabench/v5/dynamic/business_tools.py
+      - src/ioabench/v5/dynamic/t321_slice.py
+    outputs: [T321_MULTISTAGE_PROOF.json]
+    done_when: '>=3 real stages; >=2 logical roles; cross-role provenance; original construct unchanged'
+  - id: M2
+    goal: R3-G2
+    title: model_proposed_composable_workflow_to_existing_runtime
+    depends_on: [M1]
+    paths:
+      - src/ioabench/v5/ai_generation/tree_factory.py
+      - src/ioabench/v5/ai_generation/mechanism_ir.py
+      - src/ioabench/v5/ai_generation/business_binding.py
+      - src/ioabench/v5/dynamic/business_tools.py
+    outputs: [WORKFLOW_PLAN.json, COMPILED_WORKFLOW.json, EXECUTION_CONSUMPTION_TRACE.jsonl]
+    done_when: '3 pilots run new graph structure not statically listed in prior BUSINESS_FLOW'
+  - id: M3
+    goal: R3-G3
+    title: action_event_receipt_evidence_witness
+    depends_on: [M2]
+    paths:
+      - src/ioabench/v5/ai_generation/compiler_capabilities.py
+      - src/ioabench/v5/dynamic/business_tools.py
+    outputs: [WITNESS_VALIDATION.json, WITNESS_CALIBRATION.json]
+    done_when: real_good_traces_pass_and_forged_cross_trace_early_actions_fail
+  - id: M4
+    goal: R3-G4
+    title: model_contract_and_actual_novel_plans
+    depends_on: [M3]
+    paths:
+      - src/ioabench/v5/ai_generation/aihubmix_study.py
+      - src/ioabench/v5/ai_generation/tree_factory.py
+    outputs: [PROVIDER_BEHAVIOR_R3.json, REQUEST_LEDGER.jsonl]
+    done_when: completed_provider_response_and_novel_proposal_binds_to_runtime
+  - id: M5
+    goal: R3-G5
+    title: r3_new_dev_accepted_novel_families
+    depends_on: [M4]
+    outputs: [R3_DEV_POOL_INDEX.jsonl, WORKFLOW_NOVELTY_AUDIT.json]
+    done_when: '>=2 new DEV_ACCEPTED pairs and >=2 truly new workflow families per each of T321 T331 T362'
+  - id: M6
+    goal: R3-G6
+    title: pre_registered_frozen_ab_and_ablations
+    depends_on: [M3, M4]
+    outputs: [R3_AB_PREREGISTRATION.json, R3_AB_RESULTS.csv, R3_AB_REPORT.md, R3_ABLATION.json]
+    done_when: '>=6 matched tasks per suite per route, with all first attempts and retries distinctly counted'
+  - id: M7
+    goal: R3-G7
+    title: final_head_regression_and_complete_handoff
+    depends_on: [M5, M6]
+    outputs:
+      - TECHNICAL_REVIEW_HANDOFF_R3.md
+      - GOAL_STATUS_R3.json
+      - FILE_SHA256.json
+      - REVIEW_FILE_INDEX.json
+      - PACKAGE_VERIFICATION.json
+      - IoA-Bench-v5-TreeFactory-R3-SOURCE.zip
+      - IoA-Bench-v5-TreeFactory-R3-EVIDENCE.zip
+    done_when: final_head_bound_full_regression_real_history_check_and_packages_verified

@@ -1,0 +1,31 @@
+schema_version: ioabench.v5.source-delivery/1
+date: '2026-10-19'
+purpose: Update the source package and work completion documents after R13 acceptance
+runtime_changes: false
+runtime_source_sha256: 4f7fc7c842ea63a352157baffe8252838fdc06332e2839fd3ddb6f250e04e9e5
+research_checkpoint_commit: 4e6a8fee7fd98e7a5424c8f9d2f16e633f18aac4
+goal_reference: NightGoalDoc/IoA-Bench-v5-Publication-Grade-Goal-Pack/GOAL_CONTRACT.yaml
+completion_document: docs/WORK_COMPLETION_20261019.md
+source_archive: exports/source-code-20261019/IoA-Bench-source-code-20261019.zip
+verification: exports/source-code-20261019/PACKAGE_VERIFICATION.json
+producer: artifacts/workspace_maintenance/20261019-source-delivery-r1/package_current.py
+packaging_tests: artifacts/workspace_maintenance/20261019-source-delivery-r1/PYTEST.xml
+synthetic_fixture_test: artifacts/workspace_maintenance/20261019-source-delivery-r1/FIXTURE_TEST.xml
+failed_packaging_attempt: artifacts/workspace_maintenance/20261019-source-delivery-r1/FAILED_ATTEMPT_01.json
+packaging_tests_actual: 4_passed
+fixture_regression_actual: 1_passed
+source_test_only_change: Split a synthetic fake-key literal into identical runtime fragments; credential scan unchanged
+verification_policy: Actual results are recorded by the producer; planned paths do not imply PASS
+scope: Current source, tests, contracts, documentation, state, Goal and selected R13 evidence
+limitations: Source review package, not a full historical Replay bundle or scientific release
+research_status: PARTIAL_BLOCKED_MACHINE_QUALIFICATION
+independent_machine_auditor: NONE_QUALIFIED
+scientific_validity: NOT_ESTABLISHED
+formal_accepted: false
+publication_ready: false
+provider_calls_this_delivery: 0
+full_regression_this_delivery: NOT_RUN
+confirmation_Pilot: NOT_RUN
+formal_Campaign: NOT_RUN
+human_experiment: NOT_RUN
+history_policy: Preserve previous exports and R13 acceptance evidence unchanged

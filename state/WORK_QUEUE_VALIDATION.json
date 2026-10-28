@@ -51,8 +51,8 @@
   },
   "missing_dependencies": [],
   "source_hashes": {
-    "state/WORK_QUEUE.yaml": "d7a3efcfa2180cc6eca8cf6a702fad696949d940ea53805a789c8829e2d1d64e",
-    "state/PROJECT_STATE.yaml": "28ecc1ccd1ba89dd38b666e5523335fd7cedcf8e37dee403dccf17298fb7addc"
+    "state/WORK_QUEUE.yaml": "282188c0843ef5d8c7b73617f62ce0666865e16a27694673fec62b5bd1d2dfed",
+    "state/PROJECT_STATE.yaml": "d850f7e9a4a27c0a6e8ed2f28d7fbeec26fb963db955ca15c2ec0dabe5b2a873"
   },
   "scope": "Counts, versions, IDs, dependencies and DAG only; no historical done labels, evidence paths or scientific gates re-certified.",
   "repaired_by": "artifacts/v5/overnight_runs/20261013-audit-fixes-r1/refresh_queue_statistics.py"

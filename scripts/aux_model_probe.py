@@ -111,12 +111,18 @@ async def probe_candidate(adapter, model_id: str, reps: int) -> dict:
         entry["resolution_error"] = f"{type(exc).__name__}: {exc}"[:200]
         return entry
 
-    parameters = {"temperature": 0.0, "max_tokens": 2000}
+    schema = await adapter.describe_model(model_id)
+    parameters = auxiliary_chat_parameters(schema)
     for task_name, spec, kind in (
             ("persona_decision", PERSONA_DECISION, "json"),
             ("exposure_shift", EXPOSURE_SHIFT, "json"),
             ("tool_call", TOOL_PROBE, "tool")):
         results = []
+        try:
+            task_parameters = auxiliary_chat_parameters(schema, for_tools=kind == "tool")
+        except Exception as exc:
+            entry["task_results"][task_name] = {"status": "NOT_RUN", "reason": str(exc)}
+            continue
         for rep in range(reps):
             if kind == "tool":
                 messages = ({"role": "system", "content": spec["system"]},
@@ -124,7 +130,7 @@ async def probe_candidate(adapter, model_id: str, reps: int) -> dict:
                 tools = [{"function": {"name": "inspect_receipt", "description": "inspect a stored receipt by id",
                                         "parameters": {"type": "object", "properties": {"receipt_id": {"type": "string"}},
                                                         "required": ["receipt_id"]}}}]
-                call = await _one_call(adapter, profile, messages, parameters, tools=tools)
+                call = await _one_call(adapter, profile, messages, task_parameters, tools=tools)
                 call["tool_called"] = "inspect_receipt" in json.dumps(call.get("text", "")) or call.get("finish") == "tool_calls"
             else:
                 messages = ({"role": "system", "content": spec["system"]},
@@ -163,10 +169,7 @@ async def probe_protocol(adapter, model_id: str, catalog) -> dict:
         schema = await adapter.describe_model(model_id)
         entry["official_schema"] = schema
         entry["schema_source"] = "https://aihubmix.com/model-data/index.json"
-        parameters = auxiliary_chat_parameters(schema, max_tokens=8192, effort="low")
-        # A connectivity probe needs no deep reasoning; production generation keeps thinking on.
-        if schema and schema.get("vendor") == "xiaomi":
-            parameters["thinking"] = {"type": "disabled"}
+        parameters = auxiliary_chat_parameters(schema)
         expected = {"probe": "ioa-protocol-20261012", "value": 42}
         messages = ({"role": "user", "content":
                      'Return JSON only with exactly two fields: probe="ioa-protocol-20261012", value=6*7.'},)

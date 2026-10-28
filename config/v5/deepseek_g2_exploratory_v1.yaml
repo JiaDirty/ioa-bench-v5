@@ -1,0 +1,22 @@
+version: ioabench.v5.deepseek-exploratory-g2/1.0.0
+scope: DEVELOPMENT_EXPLORATORY_SAME_FAMILY
+provider: deepseek
+base_url: https://api.deepseek.com
+model_id: deepseek-flash
+secret_env: DEEPSEEK_API_KEY
+endpoint: openai.chat_completions
+formal_generator_allowed: false
+formal_auditor_qualified: false
+formal_accepted: false
+G3_parent_eligible: false
+default_effort: high
+distinct_efforts: [disabled, low, high, max]
+stage_max_tokens: {task_design: 16384, world_graph: 32768, risk_placement: 32768, surface_artifacts: 16384}
+response_format: {type: json_object}
+stream: false
+parameters_omitted: [temperature, top_p, presence_penalty, frequency_penalty]
+per_stage_post_attempts: 1
+max_concurrency: 1
+on_unknown_terminal: STOP_AND_PRESERVE_NO_RESEND
+on_401_402_403: STOP_AND_PRESERVE
+budget_cny: {soft_notice: 50, hard_stop: 200}

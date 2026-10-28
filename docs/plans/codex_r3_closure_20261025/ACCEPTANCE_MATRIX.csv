@@ -1,0 +1,9 @@
+﻿gate,objective,evidence,acceptance,phase
+C0,Worktree takeover,R3_RESUME_STATE.json; Git status; existing ledger,current local modified state accurately identified,S0
+C1,Mandatory business witnesses,tree_factory.py; NEGATIVE_WITNESS_CASES; test results,assertions=[] never bypasses business witness,S1
+C2,Typed DAG structural novelty,WORKFLOW_NOVELTY_AUDIT.json; STRUCTURE_FAMILY_INDEX.jsonl,isomorphism/history/execution evidence; no hash-only novelty,S2
+C3,Three-suite fresh accepted pools,R3_DEV_POOL_INDEX.jsonl; ADMISSION; REPLAY,each suite >=2 R3 pairs and >=2 new executed families,S3
+C4,Model endpoint/large output reliability,PROVIDER_BEHAVIOR_R3.json; REQUEST_LEDGER,inferera aligned; 1M capability; up to 393216; no USD stop; SSE valid,S3
+C5,Matched A/B and ablations,R3_AB_RESULTS.csv; R3_AB_REPORT.md; R3_ABLATION.json,18 opportunities; arms paired; first attempts separate from repairs,S4
+C6,Current code regression and history,current JUnit; strict Replay; history hashes,same final source; replay valid; non-zero protected evidence,S5
+C7,Final handoff,R3_CLOSURE_REPORT.md; two zips; manifest; local commit,independently inspectable and honest status,S5
